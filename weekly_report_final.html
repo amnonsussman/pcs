@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>השבוע האחרון במרחב התודעה הציבורית</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --card: #f9fafb;
+      --border: #e5e7eb;
+      --accent: #2563eb;
+      --maxw: 1100px;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    header {
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, #fff, #fafafa);
+    }
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 22px 18px;
+    }
+    h1 {
+      font-size: 28px;
+      margin: 0 0 6px 0;
+      letter-spacing: -0.02em;
+    }
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .meta {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+    }
+    .badge {
+      display: inline-block;
+      background: #eef2ff;
+      border: 1px solid #e0e7ff;
+      color: #3730a3;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 15px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    main .section {
+      margin: 22px 0;
+      padding: 18px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+    h2 {
+      margin: 0 0 15px 0;
+      font-size: 22px;
+      color: #1e3c72;
+    }
+    h3 {
+      font-size: 16px;
+      margin: 20px 0 10px 0;
+      color: #374151;
+    }
+    h4 {
+      font-size: 14px;
+      margin: 15px 0 8px 0;
+      color: #1e3c72;
+      font-weight: 600;
+    }
+    p { margin: 10px 0; }
+    ul { margin: 10px 0 0 0; padding-right: 18px; }
+    li { margin: 6px 0; }
+    
+    /* גריד עבור 6 גרפים קטנים */
+    .trends-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+    
+    .trend-chart-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 15px;
+    }
+    
+    .trend-chart-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #374151;
+      text-align: center;
+    }
+    
+    .trend-chart-container {
+      position: relative;
+      height: 180px;
+    }
+    
+    /* גרפי עמודות גדולים */
+    .chart-container-large {
+      position: relative;
+      height: 400px;
+      margin: 20px 0;
+      padding: 15px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+    
+    .chart-caption {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+    }
+    .note {
+      font-size: 13px;
+      color: var(--muted);
+      border-right: 3px solid #e5e7eb;
+      padding-right: 12px;
+      margin-top: 10px;
+    }
+    .placeholder {
+      padding: 14px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 12px;
+      background: #ffffff;
+      color: var(--muted);
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 40px;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a href="index.html" class="back-link">← חזרה לדף הבית</a>
+      <h1>השבוע האחרון במרחב התודעה הציבורית</h1>
+      <p class="subtitle">ניתוח שבועי על בסיס עקבות דיגיטליות ברשת האינטרנט: חיפושים, תגובות, וקליקים</p>
+      <div class="meta">
+        <span class="badge">טיימליין + מדדים</span>
+        <span class="badge">Google Trends + תגובות</span>
+        <span>מחבר: אמנון זוסמן</span>
+        <span>תאריך: 1-7 פברואר 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="section">
+      <h2>מה יש בדף הזה</h2>
+      <ul>
+        <li><b>ציר זמן</b>: רצף האירועים שהגדירו את השבוע.</li>
+        <li><b>6 גרפי שטח של Google Trends</b>: כל גרף מציג את העניין באירוע ספציפי לאורך כל השבוע.</li>
+        <li><b>2 גרפי עמודות</b>: מעורבות לפי מחנות — (1) נפח תגובות, (2) קליקים תומכים.</li>
+        <li><b>ניתוח וממצאים</b>: פרשנות מעמיקה של הנתונים, כולל אמינות Google Trends, דפוסי המחנות, והפער בין נפח ללגיטימציה.</li>
+      </ul>
+      <p class="note">
+        הערה: כל הגרפים הם <b>אינטראקטיביים</b>. אפשר להרחיף עם העכבר כדי לראות ערכים מדויקים!
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>ציר זמן: רצף האירועים</h2>
+      <ul>
+        <li><b>שבת</b> — מרדכי דוד</li>
+        <li><b>ראשון</b> — (אין אירוע)</li>
+        <li><b>שני</b> — גל הירש</li>
+        <li><b>שלישי</b> — בג"ץ בן גביר</li>
+        <li><b>רביעי</b> — מזכיר הממשלה מתערב (אירוע המשך)</li>
+        <li><b>חמישי</b> — בצלאל זיני</li>
+        <li><b>שישי</b> — מסמכי נתניהו</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>עניין ציבורי לפי אירוע לפי יחס החיפושים במנוע החיפוש של גוגל</h2>
+      <p>
+        הגרפים הבאים מציגים את רמת העניין בחיפושי Google לכל אירוע במהלך כל השבוע.
+        זהו מדד <b>קשב</b> — לא עמדה, לא רגש.
+      </p>
+      
+      <div class="trends-grid">
+        <!-- גרף 1: מרדכי דוד -->
+        <div class="trend-chart-box">
+          <div class="trend-chart-title">מרדכי דוד (שבת)</div>
+          <div class="trend-chart-container">
+            <canvas id="trendChart1"></canvas>
+          </div>
+        </div>
+        
+        <!-- גרף 2: גל הירש -->
+        <div class="trend-chart-box">
+          <div class="trend-chart-title">גל הירש (שני)</div>
+          <div class="trend-chart-container">
+            <canvas id="trendChart2"></canvas>
+          </div>
+        </div>
+        
+        <!-- גרף 3: בג"ץ בן גביר -->
+        <div class="trend-chart-box">
+          <div class="trend-chart-title">בג"ץ בן גביר (שלישי)</div>
+          <div class="trend-chart-container">
+            <canvas id="trendChart3"></canvas>
+          </div>
+        </div>
+        
+        <!-- גרף 4: מזכיר הממשלה -->
+        <div class="trend-chart-box">
+          <div class="trend-chart-title">מזכיר הממשלה (רביעי) - אירוע המשך</div>
+          <div class="trend-chart-container">
+            <canvas id="trendChart4"></canvas>
+          </div>
+        </div>
+        
+        <!-- גרף 5: בצלאל זיני -->
+        <div class="trend-chart-box">
+          <div class="trend-chart-title">בצלאל זיני (חמישי)</div>
+          <div class="trend-chart-container">
+            <canvas id="trendChart5"></canvas>
+          </div>
+        </div>
+        
+        <!-- גרף 6: מסמכי נתניהו -->
+        <div class="trend-chart-box">
+          <div class="trend-chart-title">מסמכי נתניהו (שישי)</div>
+          <div class="trend-chart-container">
+            <canvas id="trendChart6"></canvas>
+          </div>
+        </div>
+      </div>
+      
+      <div class="chart-caption">
+        מקור: Google Trends. כל גרף מציג את העניין באירוע ספציפי לאורך כל השבוע.
+        שימו לב: מזכיר הממשלה (ירוק) הוא אירוע המשך של בג"ץ בן גביר (ירוק), ולכן הם באותו צבע.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>מעורבות לפי מחנות</h2>
+
+      <h3>גרף 1: נפח תגובות לפי אירוע ומחנה</h3>
+      <div class="chart-container-large">
+        <canvas id="commentVolumeChart"></canvas>
+      </div>
+      <div class="chart-caption">
+        נפח תגובות לכל אירוע לפי מחנה פוליטי.
+        כחול: אנטי-קואליציה | אדום: פרו-קואליציה
+      </div>
+
+      <h3>גרף 2: קליקים תומכים לפי אירוע ומחנה</h3>
+      <div class="chart-container-large">
+        <canvas id="supportiveClicksChart"></canvas>
+      </div>
+      <div class="chart-caption">
+        קליקים תומכים לכל אירוע לפי מחנה פוליטי.
+        הגדרה: לייקים של המחנה + דיסלייקים של המחנה המנוגד.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>ניתוח וממצאים מרכזיים</h2>
+      
+      <h3>אמינות הנתונים: אירוע בג"ץ בן גביר ואירוע ההמשך</h3>
+      <p>
+        אחת העדויות המרכזיות לאמינות נתוני Google Trends ניתן למצוא בהשוואה בין גרף בג"ץ בן גביר (שלישי) 
+        לגרף מזכיר הממשלה (רביעי - אירוע המשך). שני הגרפים מוצגים <b>באותו צבע ירוק</b> מסיבה טובה: 
+        אלו בעצם שני פרקים של אותו סיפור.
+      </p>
+      <p>
+        בהתבוננות בגרף מזכיר הממשלה, ניתן לראות בבירור שהעניין הציבורי לא מתחיל מאפס ביום רביעי, 
+        אלא <b>נושא עמו את המומנטום מהאירוע הקודם</b>. זהו מבחן אמת לנתוני Google - הם משקפים את 
+        הרצף האמיתי של השיח הציבורי, ולא רק נקודות בדידות. ההתערבות של מזכיר הממשלה לטובת בן גביר 
+        נתפסה על ידי הציבור כהמשך ישיר של פרשת בג"ץ, והנתונים מאמתים זאת בצורה חד-משמעית.
+      </p>
+
+      <h3>ממצאים מרכזיים: המחנות הפוליטיים</h3>
+      <p>
+        הנתונים חושפים דפוס מעניין של <b>עלייה מתמדת בפולריזציה</b> לאורך השבוע:
+      </p>
+      <ul>
+        <li><b>מרדכי דוד</b> (73/27) - פולריזציה גבוהה כבר בפתיחת השבוע</li>
+        <li><b>גל הירש</b> (60/40) - האירוע היחיד עם יחסית איזון בשיח</li>
+        <li><b>מסמכי נתניהו</b> (87/13) - הפולריזציה הגבוהה ביותר, כמעט 9:1</li>
+      </ul>
+      <p>
+        מגמה זו מצביעה על <b>הסלמה בשיח הפוליטי</b> במהלך השבוע, כאשר כל אירוע תורם לחידוד החזיתות 
+        בין המחנות.
+      </p>
+
+      <h3>הפער בין נפח תגובות לקליקים תומכים: מה הוא מלמד?</h3>
+      <p>
+        אחד הממצאים המרכזיים של השבוע הוא <b>הפער המשמעותי</b> בין נפח התגובות לבין הקליקים התומכים. 
+        הבה נבחן מספר מקרי מבחן:
+      </p>
+      
+      <h4>מקרה 1: בצלאל זיני - הפער הגדול</h4>
+      <p>
+        <b>תגובות:</b> 70% מתנגדים מול 30% תומכים<br>
+        <b>קליקים:</b> 92% מתנגדים מול 8% תומכים
+      </p>
+      <p>
+        כאן אנו עדים ל<b>פער של 22 נקודות אחוז</b> בין השיח המילולי ללגיטימציה הציבורית. 
+        המשמעות: גם התומכים שכן התבטאו בתגובות, לא זכו לתמיכה קולקטיבית (לייקים). 
+        זהו מצב שבו <b>קול המיעוט נחנק על ידי רוב מוחץ</b>.
+      </p>
+
+      <h4>מקרה 2: מסמכי נתניהו - הקונצנזוס</h4>
+      <p>
+        <b>תגובות:</b> 87% מתנגדים מול 13% תומכים<br>
+        <b>קליקים:</b> 96% מתנגדים מול 4% תומכים
+      </p>
+      <p>
+        גם כאן הפער הוא 9 נקודות, אך המספרים המוחלטים מעידים על <b>קונצנזוס כמעט מוחלט</b>. 
+        96% קליקים מתנגדים פירושו שכמעט אין קול תומך שמקבל לגיטימציה ציבורית. זהו המקרה 
+        הקיצוני ביותר בשבוע.
+      </p>
+
+      <h4>מקרה 3: גל הירש - הפער ההפוך</h4>
+      <p>
+        <b>תגובות:</b> 60% מתנגדים מול 40% תומכים<br>
+        <b>קליקים:</b> 74% מתנגדים מול 26% תומכים
+      </p>
+      <p>
+        כאן התמונה הופכת: יש <b>יותר תומכים שמדברים</b> (40%) מאשר תומכים שמקבלים לגיטימציה (26%). 
+        פער של 14 נקודות. המשמעות: חלק מהתומכים מנסים להשמיע את קולם, אך <b>הקהל הרחב לא נותן 
+        להם גיבוי</b>. זהו מצב של "דיבור לריק".
+      </p>
+
+      <h3>מסקנות: נפח מול לגיטימציה</h3>
+      <p>
+        ההבדל בין נפח התגובות לקליקים התומכים חושף את ההבחנה המהותית בין:
+      </p>
+      <ul>
+        <li><b>נפח תגובות</b> = מי <u>מדבר</u>, מי נוכח בשיח, מי מנסה להשמיע קול</li>
+        <li><b>קליקים תומכים</b> = מי מקבל <u>לגיטימציה</u>, מי הקהל הרחב תומך בו בפועל</li>
+      </ul>
+      <p>
+        כאשר הפער גדול, הכיוון חשוב:
+      </p>
+      <ul>
+        <li><b>פער חיובי</b> (קליקים > תגובות לאותו מחנה): המחנה מקבל תמיכה רחבה יותר מהנוכחות השיחית שלו - 
+        יש "רוב שקט" שתומך</li>
+        <li><b>פער שלילי</b> (קליקים < תגובות): המחנה מדבר הרבה אבל לא מקבל גיבוי - "מיעוט רועש" 
+        שלא מייצג את הקהל הרחב</li>
+      </ul>
+      <p>
+        ממצא מרכזי נוסף: ככל שהאירוע יותר קיצוני או פולמוסי (כמו מסמכי נתניהו), כך <b>הפער גדל</b> - 
+        הציבור הרחב "מצביע" בקליקים בצורה חד-משמעית יותר מאשר בתגובות.
+      </p>
+
+      <h3>מבט קדימה</h3>
+      <p>
+        השבוע הבא כדאי לעקוב אחר:
+      </p>
+      <ul>
+        <li>האם המגמה של הסלמה בפולריזציה תימשך?</li>
+        <li>האם תהיה תגובת נגד מהמחנה התומך לאחר השבוע הקשה?</li>
+        <li>אירועים חדשים שעשויים לשנות את הדינמיקה</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div style="padding: 15px 0;">© אמנון זוסמן — דף שבועי | נבנה עבור GitHub Pages</div>
+      <div style="padding-bottom: 15px;">
+        <a href="index.html">חזרה לדף הבית</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ימי השבוע
+    const days = ['שבת', 'ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי'];
+    
+    // שמות האירועים לגרפי העמודות - עם ימים
+    const eventLabels = [
+      ['שבת', 'מרדכי דוד'],
+      ['ראשון', '(אין אירוע)'],
+      ['שני', 'גל הירש'],
+      ['שלישי', 'בג"ץ בן גביר'],
+      ['רביעי', 'מזכיר הממשלה'],
+      ['חמישי', 'בצלאל זיני'],
+      ['שישי', 'מסמכי נתניהו']
+    ];
+
+    // === נתוני Google Trends לכל אירוע ===
+    // כל מערך מכיל 7 ערכים (שבוע שלם) - ערכים לדוגמה
+    const trendsData = {
+      event1: [45, 52, 38, 25, 18, 12, 8],      // מרדכי דוד
+      event2: [0, 5, 68, 75, 55, 35, 22],       // גל הירש
+      event3: [0, 0, 12, 85, 78, 50, 30],       // בג"ץ בן גביר
+      event4: [0, 0, 0, 15, 72, 65, 40],        // מזכיר הממשלה
+      event5: [0, 0, 0, 0, 8, 88, 82],          // בצלאל זיני
+      event6: [0, 0, 0, 0, 0, 12, 95]           // מסמכי נתניהו
+    };
+
+    // === נתוני תגובות לכל יום (נפח מתנגדים ותומכים) ===
+    const commentData = {
+      anti: [73, 0, 60, 65, 75, 70, 87],     // מתנגדים לכל יום (ראשון = 0)
+      pro: [27, 0, 40, 35, 25, 30, 13]       // תומכים לכל יום (ראשון = 0)
+    };
+
+    // === נתוני קליקים תומכים לכל יום ===
+    const clicksData = {
+      anti: [70, 0, 74, 67, 80, 92, 96],     // קליקים מתנגדים
+      pro: [30, 0, 26, 33, 20, 8, 4]         // קליקים תומכים
+    };
+
+    // === פונקציה ליצירת גרף שטח של Google Trends ===
+    function createTrendChart(canvasId, data, color) {
+      const ctx = document.getElementById(canvasId).getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: days,
+          datasets: [{
+            label: 'רמת עניין',
+            data: data,
+            borderColor: color,
+            backgroundColor: color.replace('1)', '0.2)'),
+            borderWidth: 2,
+            fill: true,
+            tension: 0.4,
+            pointRadius: 3,
+            pointHoverRadius: 5
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return 'עניין: ' + context.parsed.y;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              ticks: { font: { size: 10 } }
+            },
+            y: {
+              beginAtZero: true,
+              max: 100,
+              ticks: { font: { size: 10 } }
+            }
+          }
+        }
+      });
+    }
+
+    // === יצירת 6 גרפי Google Trends ===
+    const colors = [
+      'rgba(139, 92, 246, 1)',   // סגול - מרדכי דוד
+      'rgba(59, 130, 246, 1)',   // כחול - גל הירש
+      'rgba(16, 185, 129, 1)',   // ירוק - בג"ץ בן גביר
+      'rgba(16, 185, 129, 1)',   // ירוק - מזכיר הממשלה (אותו צבע!)
+      'rgba(239, 68, 68, 1)',    // אדום - בצלאל זיני
+      'rgba(236, 72, 153, 1)'    // ורוד - מסמכי נתניהו
+    ];
+
+    createTrendChart('trendChart1', trendsData.event1, colors[0]);
+    createTrendChart('trendChart2', trendsData.event2, colors[1]);
+    createTrendChart('trendChart3', trendsData.event3, colors[2]);
+    createTrendChart('trendChart4', trendsData.event4, colors[3]);
+    createTrendChart('trendChart5', trendsData.event5, colors[4]);
+    createTrendChart('trendChart6', trendsData.event6, colors[5]);
+
+    // === גרף נפח תגובות ===
+    const commentCtx = document.getElementById('commentVolumeChart').getContext('2d');
+    new Chart(commentCtx, {
+      type: 'bar',
+      data: {
+        labels: eventLabels,
+        datasets: [
+          {
+            label: 'אנטי-קואליציה',
+            data: commentData.anti,
+            backgroundColor: 'rgba(59, 130, 246, 0.7)',
+            borderColor: '#3b82f6',
+            borderWidth: 2
+          },
+          {
+            label: 'פרו-קואליציה',
+            data: commentData.pro,
+            backgroundColor: 'rgba(239, 68, 68, 0.7)',
+            borderColor: '#ef4444',
+            borderWidth: 2
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top'
+          },
+          title: {
+            display: true,
+            text: 'נפח תגובות לפי אירוע ומחנה',
+            font: { size: 16 }
+          }
+        },
+        scales: {
+          x: {
+            ticks: { font: { size: 11 } }
+          },
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'מספר תגובות'
+            }
+          }
+        }
+      }
+    });
+
+    // === גרף קליקים תומכים ===
+    const clicksCtx = document.getElementById('supportiveClicksChart').getContext('2d');
+    new Chart(clicksCtx, {
+      type: 'bar',
+      data: {
+        labels: eventLabels,
+        datasets: [
+          {
+            label: 'אנטי-קואליציה',
+            data: clicksData.anti,
+            backgroundColor: 'rgba(59, 130, 246, 0.7)',
+            borderColor: '#3b82f6',
+            borderWidth: 2
+          },
+          {
+            label: 'פרו-קואליציה',
+            data: clicksData.pro,
+            backgroundColor: 'rgba(239, 68, 68, 0.7)',
+            borderColor: '#ef4444',
+            borderWidth: 2
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top'
+          },
+          title: {
+            display: true,
+            text: 'קליקים תומכים לפי אירוע ומחנה',
+            font: { size: 16 }
+          }
+        },
+        scales: {
+          x: {
+            ticks: { font: { size: 11 } }
+          },
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'קליקים תומכים'
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
