@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מאמרים | מרחב התודעה הציבורית הישראלית</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e8ba3 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .site-title {
+            color: #1e3c72;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .page-subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        nav {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #1e3c72;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: #1e3c72;
+            color: white;
+        }
+
+        .intro-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        .intro-section h2 {
+            color: #1e3c72;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .intro-section p {
+            color: #333;
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+        }
+
+        .article-content {
+            padding: 25px;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: #eef2ff;
+            color: #1e3c72;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .article-title {
+            color: #1e3c72;
+            font-size: 1.4em;
+            margin-bottom: 12px;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        .article-excerpt {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #999;
+            font-size: 0.9em;
+            padding-top: 15px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .article-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .article-read-time {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .filter-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .filter-title {
+            color: #1e3c72;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            background: white;
+            color: #374151;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #1e3c72;
+            color: white;
+            border-color: #1e3c72;
+        }
+
+        .no-articles {
+            background: white;
+            padding: 60px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        .no-articles-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        .no-articles h3 {
+            color: #374151;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .no-articles p {
+            color: #6b7280;
+            font-size: 1.05em;
+        }
+
+        footer {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .footer-text {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .site-title {
+                font-size: 2em;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-link">← חזרה לדף הבית</a>
+            <h1 class="site-title">📚 מאמרים</h1>
+            <p class="page-subtitle">מאמרי עומק על התודעה הציבורית, מתודולוגיה, ותובנות מהשיח הישראלי</p>
+        </header>
+
+        <nav>
+            <div class="nav-links">
+                <a href="index.html">דף הבית</a>
+                <a href="index.html#analyses">כל הניתוחים</a>
+                <a href="articles.html" class="active">מאמרים</a>
+                <a href="index.html#methodology">מתודולוגיה</a>
+                <a href="index.html#about">אודות</a>
+            </div>
+        </nav>
+
+        <section class="intro-section">
+            <h2>על המאמרים</h2>
+            <p>
+                בניגוד לניתוחים השבועיים המתמקדים באירועים ספציפיים, המאמרים כאן עוסקים בתובנות 
+                רוחביות, מתודולוגיה, ודפוסים ארוכי טווח בשיח הציבורי הישראלי.
+            </p>
+            <p>
+                כאן תמצאו מאמרים על איך אנו מודדים את התודעה הציבורית, מה ניתן ללמוד מניתוח 
+                נתונים דיגיטליים, והאם כלים כמו Google Trends באמת משקפים את המציאות.
+            </p>
+        </section>
+
+        <section class="filter-section">
+            <div class="filter-title">סינון לפי נושא:</div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">הכל</button>
+                <button class="filter-btn" data-category="methodology">מתודולוגיה</button>
+                <button class="filter-btn" data-category="insights">תובנות</button>
+                <button class="filter-btn" data-category="theory">תיאוריה</button>
+                <button class="filter-btn" data-category="case-study">מקרי מבחן</button>
+            </div>
+        </section>
+
+        <div id="articlesContainer" class="articles-grid">
+            <!-- כרטיסי מאמרים ייווצרו כאן דינמית -->
+        </div>
+
+        <footer>
+            <p class="footer-text">© 2026 Israel Public Consciousness Space | כל הזכויות שמורות</p>
+            <p class="footer-text">ניתוח עצמאי ובלתי תלוי של התודעה הציבורית הישראלית</p>
+            <div style="padding-top: 15px;">
+                <a href="index.html" style="color: #1e3c72; text-decoration: none;">חזרה לדף הבית</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // מאמרים לדוגמה - תוכל להוסיף מאמרים אמיתיים כאן
+        const articles = [
+            {
+                id: 1,
+                title: "האם Google Trends באמת משקף את התודעה הציבורית?",
+                category: "methodology",
+                categoryName: "מתודולוגיה",
+                excerpt: "בחינה ביקורתית של האמינות והמגבלות של Google Trends כמקור מידע על דעת הקהל. האם חיפושים באמת שווים לעניין ציבורי?",
+                date: "15 ינואר 2026",
+                readTime: "8 דקות",
+                icon: "🔍",
+                link: "#" // כאן תשים קישור למאמר כשתיצור אותו
+            },
+            {
+                id: 2,
+                title: "נפח מול לגיטימציה: מדוע תגובות לא שוות קליקים",
+                category: "insights",
+                categoryName: "תובנות",
+                excerpt: "ניתוח מעמיק של הפער בין מי שמדבר בשיח הציבורי לבין מי שמקבל תמיכה קולקטיבית. מה זה אומר על הדינמיקה הפוליטית?",
+                date: "10 ינואר 2026",
+                readTime: "12 דקות",
+                icon: "📊",
+                link: "#"
+            },
+            {
+                id: 3,
+                title: "מדידת פולריזציה: מודל חדש להבנת פיצול חברתי",
+                category: "theory",
+                categoryName: "תיאוריה",
+                excerpt: "הצעה למודל כמותי למדידת עוצמת הפולריזציה בשיח הציבורי, על בסיס נתוני מעורבות דיגיטלית.",
+                date: "5 ינואר 2026",
+                readTime: "15 דקות",
+                icon: "⚖️",
+                link: "#"
+            }
+            // כאן תוכל להוסיף מאמרים נוספים
+        ];
+
+        // פונקציה ליצירת כרטיס מאמר
+        function createArticleCard(article) {
+            return `
+                <div class="article-card" data-category="${article.category}" onclick="openArticle('${article.link}')">
+                    <div class="article-image">${article.icon}</div>
+                    <div class="article-content">
+                        <span class="article-category">${article.categoryName}</span>
+                        <h3 class="article-title">${article.title}</h3>
+                        <p class="article-excerpt">${article.excerpt}</p>
+                        <div class="article-meta">
+                            <span class="article-date">📅 ${article.date}</span>
+                            <span class="article-read-time">⏱️ ${article.readTime}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // הצגת מאמרים
+        function displayArticles(category = 'all') {
+            const container = document.getElementById('articlesContainer');
+            
+            let filteredArticles = articles;
+            if (category !== 'all') {
+                filteredArticles = articles.filter(article => article.category === category);
+            }
+            
+            if (filteredArticles.length === 0) {
+                container.innerHTML = `
+                    <div class="no-articles" style="grid-column: 1/-1;">
+                        <div class="no-articles-icon">📝</div>
+                        <h3>אין מאמרים בקטגוריה זו</h3>
+                        <p>מאמרים נוספים יתווספו בקרוב</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = filteredArticles.map(article => createArticleCard(article)).join('');
+            }
+        }
+
+        // טיפול בסינון
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                displayArticles(this.dataset.category);
+            });
+        });
+
+        // פתיחת מאמר
+        function openArticle(link) {
+            if (link === '#') {
+                alert('המאמר בהכנה ויפורסם בקרוב! 📝');
+            } else {
+                window.location.href = link;
+            }
+        }
+
+        // טעינה ראשונית
+        displayArticles();
+    </script>
+</body>
+</html>
