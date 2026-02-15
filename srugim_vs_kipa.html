@@ -3,139 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ניתוח השוואתי: סרוגים מול כיפה - פברואר 2026</title>
+    <title>ניתוח השוואתי: סרוגים מול כיפה | מרחב התודעה הציבורית</title>
     <style>
-        :root {
-            --srugim-color: #0056b3; /* כחול כהה - חדשותי */
-            --kipa-color: #e67e22;   /* כתום - קהילתי/מגזיני */
-            --bg-color: #f4f7f6;
-            --card-bg: #ffffff;
-            --text-main: #2c3e50;
-            --text-light: #7f8c8d;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e8ba3 100%);
+            min-height: 100vh;
             padding: 20px;
-            line-height: 1.6;
+            line-height: 1.75;
+            color: #333;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 850px;
             margin: 0 auto;
         }
 
-        header {
-            text-align: center;
+        /* --- Navigation Styles (Matches Superstar Article) --- */
+        .back-links {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .back-link {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* --- Main Article Box --- */
+        article {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        .article-header {
+            border-bottom: 3px solid #1e3c72;
+            padding-bottom: 30px;
             margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #ddd;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: #eef2ff;
+            color: #1e3c72;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 15px;
         }
 
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            color: var(--text-main);
+            color: #1e3c72;
+            font-size: 2.2em;
+            line-height: 1.3;
+            margin-bottom: 15px;
         }
 
-        .subtitle {
+        .article-subtitle {
+            color: #555;
             font-size: 1.2em;
-            color: var(--text-light);
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 30px;
+            color: #666;
+            font-size: 0.95em;
+            padding-top: 20px;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* --- Content Styles & Custom Comparison Elements --- */
+        .article-content {
+            font-size: 1.1em;
+        }
+
+        /* Colors for comparison */
+        :root {
+            --srugim-color: #0056b3;
+            --kipa-color: #e67e22;
         }
 
         /* Profiles Section */
-        .profiles {
+        .profiles-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
-            margin-bottom: 50px;
+            margin: 30px 0 50px 0;
         }
 
         .profile-card {
-            background: var(--card-bg);
-            padding: 25px;
+            background: #f8f9fa;
+            padding: 20px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             border-top: 5px solid transparent;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         .profile-srugim { border-color: var(--srugim-color); }
         .profile-kipa { border-color: var(--kipa-color); }
 
         .profile-title {
-            font-size: 1.8em;
+            font-size: 1.4em;
             font-weight: bold;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin-bottom: 10px;
         }
-
-        .tagline {
-            font-weight: bold;
-            font-size: 1.1em;
-            margin-bottom: 15px;
-            display: block;
-        }
+        
+        .color-srugim { color: var(--srugim-color); }
+        .color-kipa { color: var(--kipa-color); }
 
         .badge {
             display: inline-block;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.85em;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 0.75em;
             color: white;
             margin-left: 5px;
             margin-bottom: 5px;
         }
-
+        
         .badge-srugim { background-color: var(--srugim-color); }
         .badge-kipa { background-color: var(--kipa-color); }
 
-        /* Battle Section */
-        .battle-section {
-            margin-bottom: 40px;
-        }
-
+        /* Battle Cards */
         .section-title {
-            font-size: 2em;
             text-align: center;
+            color: #1e3c72;
+            font-size: 1.8em;
             margin-bottom: 30px;
             position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: #34495e;
-            margin: 10px auto 0;
-            border-radius: 2px;
         }
 
         .battle-card {
-            background: var(--card-bg);
+            border: 1px solid #eee;
             border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             margin-bottom: 25px;
             overflow: hidden;
         }
 
         .battle-header {
-            background: #ecf0f1;
-            padding: 15px 25px;
+            background: #eef2ff;
+            padding: 10px 20px;
             font-weight: bold;
-            font-size: 1.1em;
             border-bottom: 1px solid #ddd;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            color: #1e3c72;
         }
 
         .battle-content {
@@ -144,7 +181,7 @@
         }
 
         .battle-side {
-            padding: 25px;
+            padding: 20px;
         }
 
         .battle-side:first-child {
@@ -152,212 +189,193 @@
         }
 
         .headline {
-            font-size: 1.1em;
             font-weight: bold;
-            margin-bottom: 10px;
-            line-height: 1.4;
+            font-size: 1em;
+            margin-bottom: 8px;
+            line-height: 1.3;
         }
 
-        .analysis {
-            font-size: 0.95em;
-            color: #555;
+        .analysis-box {
             background: #f9f9f9;
             padding: 10px;
             border-radius: 6px;
-            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
         }
 
-        .side-label {
-            font-size: 0.8em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-            display: block;
-            font-weight: bold;
-        }
-
-        .color-srugim { color: var(--srugim-color); }
-        .color-kipa { color: var(--kipa-color); }
-
-        /* Summary Footer */
-        .summary-footer {
-            background: #2c3e50;
-            color: white;
+        /* Conclusion Box */
+        .conclusion {
+            background: #f1f5f9;
             padding: 30px;
-            border-radius: 12px;
-            margin-top: 50px;
+            border-radius: 10px;
+            margin-top: 40px;
+            border-right: 5px solid #1e3c72;
         }
 
-        .summary-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        .summary-col h3 {
-            border-bottom: 2px solid rgba(255,255,255,0.3);
-            padding-bottom: 10px;
+        footer {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         @media (max-width: 768px) {
-            .profiles, .battle-content, .summary-grid {
+            .profiles-grid, .battle-content {
                 grid-template-columns: 1fr;
             }
             .battle-side:first-child {
                 border-left: none;
                 border-bottom: 1px solid #eee;
             }
+            article { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <header>
-        <h1>ניתוח אתרי מגזר: סרוגים vs כיפה</h1>
-        <div class="subtitle">על בסיס נתוני אמת מהתאריכים 13-14 בפברואר 2026</div>
-    </header>
-
-    <!-- פרופילים -->
-    <div class="profiles">
-        <!-- פרופיל סרוגים -->
-        <div class="profile-card profile-srugim">
-            <div class="profile-title color-srugim">
-                <span>🟦 סרוגים</span>
-            </div>
-            <span class="tagline">"הצהובון הפוליטי-מגזרי"</span>
-            <p>אתר מהיר, עצבני ופוליטי מאוד. מתמקד בסקופים, ציוצים וסרטונים ויראליים. פונה לקהל שמחפש אקשן וכותרות קצרות.</p>
-            <div>
-                <span class="badge badge-srugim">Hard News</span>
-                <span class="badge badge-srugim">פוליטיקה</span>
-                <span class="badge badge-srugim">וידאו</span>
-                <span class="badge badge-srugim">קליקבייט</span>
-            </div>
+    <div class="container">
+        <!-- Navigation -->
+        <div class="back-links">
+            <a href="index.html" class="back-link">← דף הבית</a>
+            <a href="articles.html" class="back-link">← כל המאמרים</a>
         </div>
 
-        <!-- פרופיל כיפה -->
-        <div class="profile-card profile-kipa">
-            <div class="profile-title color-kipa">
-                <span>🟧 כיפה</span>
+        <article>
+            <!-- Header -->
+            <div class="article-header">
+                <span class="article-category">מקרה מבחן</span>
+                <h1>ניתוח השוואתי: סרוגים מול כיפה</h1>
+                <p class="article-subtitle">ראש בראש: ניתוח ההבדלים בין שני האתרים המובילים במגזר הדתי בהתבסס על נתוני אמת</p>
+                <div class="article-meta">
+                    <span>✍️ ניתוח נתונים אוטומטי</span>
+                    <span>📅 פברואר 2026</span>
+                    <span>⏱️ 5 דקות קריאה</span>
+                </div>
             </div>
-            <span class="tagline">"המגזין הקהילתי-משפחתי"</span>
-            <p>אתר "רך" יותר. משלב חדשות עם המון לייף-סטייל: מתכונים, רכילות (האח הגדול/המירוץ למיליון), מזג אוויר ויהדות. אסטרטגיית SEO אגרסיבית.</p>
-            <div>
-                <span class="badge badge-kipa">מגזין</span>
-                <span class="badge badge-kipa">קהילה</span>
-                <span class="badge badge-kipa">ברנז'ה</span>
-                <span class="badge badge-kipa">SEO</span>
+
+            <div class="article-content">
+                <p>
+                    בפברואר 2026 ביצענו סריקה רוחבית של שני אתרי החדשות המובילים במגזר הדתי-לאומי: <strong>סרוגים</strong> ו<strong>כיפה</strong>.
+                    הניתוח התבסס על השוואה של כותרות, תקצירים ותגיות באותם תאריכים ובאותם נושאים.
+                    הממצאים חושפים הבדלים מהותיים באסטרטגיית התוכן, בסגנון העריכה ובקהל היעד.
+                </p>
+
+                <!-- Profiles -->
+                <div class="profiles-grid">
+                    <div class="profile-card profile-srugim">
+                        <div class="profile-title color-srugim">🟦 סרוגים</div>
+                        <p style="font-weight: bold; margin-bottom: 10px;">"הצהובון הפוליטי-מגזרי"</p>
+                        <p style="font-size: 0.9em; margin-bottom: 15px;">
+                            אתר מהיר, עצבני ופוליטי מאוד. מתמקד בסקופים, ציוצים וסרטונים ויראליים. פונה לקהל שמחפש אקשן וכותרות קצרות.
+                        </p>
+                        <div>
+                            <span class="badge badge-srugim">Hard News</span>
+                            <span class="badge badge-srugim">פוליטיקה</span>
+                            <span class="badge badge-srugim">וידאו</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-card profile-kipa">
+                        <div class="profile-title color-kipa">🟧 כיפה</div>
+                        <p style="font-weight: bold; margin-bottom: 10px;">"המגזין הקהילתי-משפחתי"</p>
+                        <p style="font-size: 0.9em; margin-bottom: 15px;">
+                            אתר "רך" יותר. משלב חדשות עם המון לייף-סטייל: מתכונים, רכילות (האח הגדול), מזג אוויר ויהדות. אסטרטגיית SEO אגרסיבית.
+                        </p>
+                        <div>
+                            <span class="badge badge-kipa">מגזין</span>
+                            <span class="badge badge-kipa">קהילה</span>
+                            <span class="badge badge-kipa">מתכונים</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="section-title">ראש בראש: אותה כתבה, גישה שונה</h2>
+
+                <!-- Battle 1 -->
+                <div class="battle-card">
+                    <div class="battle-header">📍 נושא: הסדרת חוות גלעד</div>
+                    <div class="battle-content">
+                        <div class="battle-side">
+                            <strong class="color-srugim">סרוגים</strong>
+                            <div class="headline">"היסטוריה בשומרון: חוות גלעד הופכת ליישוב רשמי לאחר 24 שנים"</div>
+                            <div class="analysis-box">
+                                <strong>הגישה:</strong> ממלכתית-היסטורית. מיקוד בתוצאה הסופית ובניצחון המאבק.
+                            </div>
+                        </div>
+                        <div class="battle-side">
+                            <strong class="color-kipa">כיפה</strong>
+                            <div class="headline">"'רגע היסטורי': המפגש המרגש של מייסדי חוות גלעד עם יוסי דגן"</div>
+                            <div class="analysis-box">
+                                <strong>הגישה:</strong> אישית-רגשית. מיקוד ב"מפגש המרגש" ובאנשים.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Battle 2 -->
+                <div class="battle-card">
+                    <div class="battle-header">📺 נושא: עימות טלוויזיוני (סגל ועודה)</div>
+                    <div class="battle-content">
+                        <div class="battle-side">
+                            <strong class="color-srugim">סרוגים</strong>
+                            <div class="headline">"צפו: עמית סגל כפי שעוד לא ראיתם"</div>
+                            <div class="analysis-box">
+                                <strong>הגישה:</strong> בידורית ופוליטית. מטרת העל: צפיות בווידאו ופרשנות מיידית ("הבחירות הוכרעו").
+                            </div>
+                        </div>
+                        <div class="battle-side">
+                            <strong class="color-kipa">כיפה</strong>
+                            <div class="headline">"אחרי הפיצוץ ב'הפטריוטים': ערוץ 14 לא האמין שזה יקרה לו | רייטינג"</div>
+                            <div class="analysis-box">
+                                <strong>הגישה:</strong> ברנז'ה ועסקים. בחינת האירוע דרך טבלאות הרייטינג.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Battle 3 -->
+                <div class="battle-card">
+                    <div class="battle-header">⚠️ נושא: זיהום אוויר חריג</div>
+                    <div class="battle-content">
+                        <div class="battle-side">
+                            <strong class="color-srugim">סרוגים</strong>
+                            <div class="headline">"למשך 24 שעות: משרד הבריאות באזהרה חמורה"</div>
+                            <div class="analysis-box">
+                                <strong>הסגנון:</strong> Clickbait (פיתיון). לא מפרטים בכותרת מה האזהרה כדי להכריח כניסה.
+                            </div>
+                        </div>
+                        <div class="battle-side">
+                            <strong class="color-kipa">כיפה</strong>
+                            <div class="headline">"אל תצאו מהבתים: האזהרה החריגה של משרד הבריאות לילדים ונשים בהיריון"</div>
+                            <div class="analysis-box">
+                                <strong>הסגנון:</strong> שירות לציבור. הכותרת נותנת את ההוראה המרכזית ("אל תצאו").
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="conclusion">
+                    <h3 style="color: #1e3c72; margin-bottom: 10px;">סיכום ומסקנות</h3>
+                    <p>
+                        אם אתם מחפשים <strong>אקשן פוליטי, כותרות מהירות וסרטונים ויראליים</strong> – סרוגים הוא הבחירה המובהקת. הוא מרגיש כמו "פיד טוויטר" שהפך לאתר חדשות.
+                    </p>
+                    <p style="margin-top: 15px;">
+                        לעומת זאת, אם אתם מחפשים <strong>תוכן מגוון יותר, סיפורים אנושיים, רכילות מגזרית ומתכונים</strong> – כיפה מספק חוויה רחבה יותר ופחות "לחוצה", אם כי עמוסה בתגיות לקידום בגוגל.
+                    </p>
+                </div>
+
             </div>
-        </div>
+        </article>
+
+        <!-- Footer -->
+        <footer>
+            <p style="color: #666; margin-bottom: 15px;">© 2026 Israel Public Consciousness Space</p>
+            <div style="display: flex; gap: 20px; justify-content: center;">
+                <a href="articles.html" style="color: #1e3c72; text-decoration: none;">← חזרה למאמרים</a>
+                <a href="index.html" style="color: #1e3c72; text-decoration: none;">← דף הבית</a>
+            </div>
+        </footer>
     </div>
-
-    <!-- השוואות ראש בראש -->
-    <h2 class="section-title">ראש בראש: אותה כתבה, גישה שונה</h2>
-
-    <div class="battle-section">
-
-        <!-- מקרה א: חוות גלעד -->
-        <div class="battle-card">
-            <div class="battle-header">
-                <span>📍 נושא: הסדרת חוות גלעד לאחר 24 שנים</span>
-            </div>
-            <div class="battle-content">
-                <div class="battle-side">
-                    <span class="side-label color-srugim">סרוגים (ID 1296837)</span>
-                    <div class="headline">"היסטוריה בשומרון: חוות גלעד הופכת ליישוב רשמי לאחר 24 שנים"</div>
-                    <div class="analysis">
-                        <strong>הגישה:</strong> ממלכתית-היסטורית.<br>
-                        המיקוד הוא בתוצאה הסופית ובניצחון המאבק הלאומי.
-                    </div>
-                </div>
-                <div class="battle-side">
-                    <span class="side-label color-kipa">כיפה (ID 1219565)</span>
-                    <div class="headline">"'רגע היסטורי': המפגש המרגש של מייסדי חוות גלעד עם יוסי דגן"</div>
-                    <div class="analysis">
-                        <strong>הגישה:</strong> אישית-רגשית.<br>
-                        המיקוד הוא ב"מפגש המרגש", באנשים (יוסי דגן והמייסדים) ובציטוטים אישיים.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- מקרה ב: העימות בטלוויזיה -->
-        <div class="battle-card">
-            <div class="battle-header">
-                <span>📺 נושא: העימות בין עמית סגל לאיימן עודה</span>
-            </div>
-            <div class="battle-content">
-                <div class="battle-side">
-                    <span class="side-label color-srugim">סרוגים (ID 1296862)</span>
-                    <div class="headline">"צפו: עמית סגל כפי שעוד לא ראיתם" / "הבחירות הוכרעו תוך 3 דקות"</div>
-                    <div class="analysis">
-                        <strong>הגישה:</strong> בידורית ופוליטית.<br>
-                        מטרת העל: צפיות בווידאו ופרשנות פוליטית נחרצת ("הבחירות הוכרעו").
-                    </div>
-                </div>
-                <div class="battle-side">
-                    <span class="side-label color-kipa">כיפה (ID 1219564)</span>
-                    <div class="headline">"אחרי הפיצוץ ב'הפטריוטים': ערוץ 14 לא האמין שזה יקרה לו | רייטינג"</div>
-                    <div class="analysis">
-                        <strong>הגישה:</strong> ברנז'ה ועסקים.<br>
-                        בוחנים את האירוע דרך טבלאות הרייטינג והתחרות בין הערוצים.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- מקרה ג: אזהרת משרד הבריאות -->
-        <div class="battle-card">
-            <div class="battle-header">
-                <span>⚠️ נושא: זיהום אוויר חריג</span>
-            </div>
-            <div class="battle-content">
-                <div class="battle-side">
-                    <span class="side-label color-srugim">סרוגים (ID 1296840)</span>
-                    <div class="headline">"למשך 24 שעות: משרד הבריאות באזהרה חמורה"</div>
-                    <div class="analysis">
-                        <strong>הסגנון:</strong> Clickbait (פיתיון).<br>
-                        לא כתוב בכותרת *מה* האזהרה, כדי להכריח כניסה לכתבה.
-                    </div>
-                </div>
-                <div class="battle-side">
-                    <span class="side-label color-kipa">כיפה (ID 1219572)</span>
-                    <div class="headline">"אל תצאו מהבתים: האזהרה החריגה של משרד הבריאות לילדים ונשים בהיריון"</div>
-                    <div class="analysis">
-                        <strong>הסגנון:</strong> שירות לציבור.<br>
-                        הכותרת נותנת את ההוראה המרכזית ("אל תצאו") ומפרטת למי זה מיועד.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- סיכום -->
-    <div class="summary-footer">
-        <h2 style="margin-top: 0;">סיכום הממצאים</h2>
-        <div class="summary-grid">
-            <div class="summary-col">
-                <h3>🔍 סגנון התקצירים (Summary)</h3>
-                <ul>
-                    <li><strong>סרוגים:</strong> תקצירים קטועים ("..."), דרמטיים מאוד ("התפתחות דרמטית", "מסר נחרץ"). מתפקדים כטיזר בלבד.</li>
-                    <li><strong>כיפה:</strong> פסקאות שלמות, סיפוריות יותר. לעיתים כוללות 2-3 משפטים שבונים נרטיב (במיוחד במתכונים וכתבות מגזין).</li>
-                </ul>
-            </div>
-            <div class="summary-col">
-                <h3>🎯 אסטרטגיית תוכן</h3>
-                <ul>
-                    <li><strong>סרוגים:</strong> כמות גדולה של אייטמים קצרים. פירוק ראיון אחד ל-3 כתבות שונות. דגש חזק על טוויטר ווידאו.</li>
-                    <li><strong>כיפה:</strong> תמהיל רחב. לצד החדשות יש המון תוכן "רך" (מתכונים לשבת, רכילות ריאליטי). שימוש בולט בתגיות SEO בתוך הטקסט.</li>
-                </ul>
-            </div>
-        </div>
-        <p style="text-align: center; margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
-            נוצר ע"י ניתוח נתוני CSV אוטומטיים - פברואר 2026
-        </p>
-    </div>
-
-</div>
-
 </body>
 </html>
