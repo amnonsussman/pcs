@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trends Monitor — 28.02.2026 · 4 שעות</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --bg-card: #1a1a26;
+  --bg-card-hover: #22222f;
+  --border-color: #2a2a3a;
+  --text-primary: #e8e8f0;
+  --text-secondary: #8888a0;
+  --text-muted: #5a5a70;
+  --iran-color: #e63946;
+  --iran-bg: rgba(230, 57, 70, 0.08);
+  --israel-color: #4a90d9;
+  --israel-bg: rgba(74, 144, 217, 0.08);
+  --palestine-color: #2ecc71;
+  --palestine-bg: rgba(46, 204, 113, 0.08);
+  --accent-yellow: #f0c040;
+  --accent-orange: #e67e22;
+  --breaking-red: #ff1a1a;
+  --font-main: 'Heebo', sans-serif;
+  --font-title: 'Rubik', sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.breaking-banner {
+  background: linear-gradient(90deg, #5c0000, var(--breaking-red), #5c0000);
+  padding: 10px 0; overflow: hidden; position: relative;
+  border-bottom: 2px solid #ff3333;
+  box-shadow: 0 4px 30px rgba(255, 26, 26, 0.4);
+}
+.breaking-banner::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(0,0,0,0.05) 50px, rgba(0,0,0,0.05) 100px);
+  animation: stripes 2s linear infinite;
+}
+@keyframes stripes { 0% { transform: translateX(0); } 100% { transform: translateX(-100px); } }
+.banner-track { display: flex; animation: scroll-rtl 22s linear infinite; white-space: nowrap; }
+@keyframes scroll-rtl { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
+.banner-text {
+  font-family: var(--font-title); font-weight: 800; font-size: 15px;
+  color: white; padding: 0 50px; text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  position: relative; z-index: 1; display: flex; align-items: center; gap: 12px;
+}
+.banner-text .pulse-dot { width: 10px; height: 10px; background: white; border-radius: 50%; animation: pulse 1s ease infinite; flex-shrink: 0; }
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(0.6); } }
+.header { padding: 40px 24px 20px; text-align: center; position: relative; }
+.header::after { content: ''; position: absolute; bottom: 0; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, var(--border-color), transparent); }
+.header h1 { font-family: var(--font-title); font-size: clamp(28px, 5vw, 42px); font-weight: 900; background: linear-gradient(135deg, var(--text-primary), var(--accent-yellow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; letter-spacing: -0.5px; }
+.header .subtitle { font-size: 14px; color: var(--text-secondary); font-weight: 300; }
+.header .timestamp { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; background: var(--bg-card); border: 1px solid var(--border-color); padding: 6px 16px; border-radius: 20px; font-size: 13px; color: var(--text-secondary); }
+.header .timestamp .live-dot { width: 8px; height: 8px; background: var(--breaking-red); border-radius: 50%; animation: pulse 1s ease infinite; }
+.live-event { max-width: 900px; margin: 24px auto; padding: 0 20px; }
+.live-event-card {
+  background: linear-gradient(135deg, rgba(230, 57, 70, 0.12), rgba(74, 144, 217, 0.05));
+  border: 1px solid rgba(230, 57, 70, 0.4);
+  border-radius: 16px; padding: 24px; position: relative; overflow: hidden;
+}
+.live-event-card::before { content: ''; position: absolute; top: 0; right: 0; width: 120px; height: 120px; background: radial-gradient(circle, rgba(230, 57, 70, 0.2), transparent 70%); }
+.live-event-card .event-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--breaking-red); color: white; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 4px; margin-bottom: 12px; font-family: var(--font-title); text-transform: uppercase; letter-spacing: 1px; }
+.live-event-card h2 { font-family: var(--font-title); font-size: clamp(18px, 3.5vw, 24px); font-weight: 800; color: var(--text-primary); margin-bottom: 10px; line-height: 1.4; }
+.live-event-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+.tabs-container { max-width: 900px; margin: 28px auto 0; padding: 0 20px; }
+.tabs { display: flex; gap: 4px; background: var(--bg-secondary); border-radius: 12px; padding: 4px; border: 1px solid var(--border-color); }
+.tab { flex: 1; padding: 10px 8px; text-align: center; font-family: var(--font-title); font-size: 13px; font-weight: 600; color: var(--text-muted); background: transparent; border: none; border-radius: 8px; cursor: pointer; transition: all 0.25s ease; }
+.tab:hover { color: var(--text-secondary); background: var(--bg-card); }
+.tab.active { background: var(--bg-card); color: var(--text-primary); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+.tab .flag { font-size: 16px; display: block; margin-bottom: 2px; }
+.trends-section { max-width: 960px; margin: 24px auto; padding: 0 20px; }
+.trends-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 768px) { .trends-grid { grid-template-columns: 1fr; } }
+.trend-column { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; overflow: hidden; transition: transform 0.2s; }
+.trend-column:hover { transform: translateY(-2px); }
+.column-header { padding: 18px 18px 14px; display: flex; align-items: center; gap: 10px; }
+.column-header .col-flag { font-size: 26px; }
+.column-header .col-title { font-family: var(--font-title); font-size: 19px; font-weight: 800; text-shadow: 0 0 12px currentColor; letter-spacing: 0.5px; }
+.column-header.iran { background: rgba(230, 57, 70, 0.14); border-bottom: 2px solid var(--iran-color); }
+.column-header.iran .col-title { color: var(--iran-color); }
+.column-header.israel { background: rgba(74, 144, 217, 0.14); border-bottom: 2px solid var(--israel-color); }
+.column-header.israel .col-title { color: var(--israel-color); }
+.column-header.palestine { background: rgba(46, 204, 113, 0.14); border-bottom: 2px solid var(--palestine-color); }
+.column-header.palestine .col-title { color: var(--palestine-color); }
+.trend-list { padding: 6px 0; }
+.trend-item { padding: 10px 18px; display: flex; align-items: flex-start; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.03); transition: background 0.15s; }
+.trend-item:hover { background: var(--bg-card-hover); }
+.trend-item:last-child { border-bottom: none; }
+.trend-rank { font-family: var(--font-title); font-weight: 800; font-size: 14px; color: var(--text-muted); min-width: 22px; padding-top: 1px; }
+.trend-content { flex: 1; min-width: 0; }
+.trend-term { font-size: 14px; font-weight: 500; color: var(--text-primary); line-height: 1.4; }
+.trend-term .pl-tag { font-size: 10px; font-weight: 700; color: var(--palestine-color); background: var(--palestine-bg); border: 1px solid rgba(46, 204, 113, 0.3); padding: 1px 5px; border-radius: 3px; margin-right: 4px; }
+.trend-rise { font-size: 11px; font-weight: 600; color: var(--accent-orange); margin-right: 6px; }
+.trend-rise.breakout { color: var(--breaking-red); }
+.trend-volume { font-size: 12px; color: var(--accent-yellow); margin-top: 3px; font-weight: 600; opacity: 0.85; }
+.trend-item.hidden { display: none; }
+.toggle-btn { width: 100%; padding: 10px; background: transparent; border: none; border-top: 1px solid var(--border-color); color: var(--text-secondary); font-family: var(--font-main); font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+.toggle-btn:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+.categories-section { max-width: 900px; margin: 36px auto; padding: 0 20px; }
+.section-title { font-family: var(--font-title); font-size: 18px; font-weight: 700; color: var(--text-primary); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); }
+.category-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.cat-label { font-size: 13px; font-weight: 500; color: var(--text-secondary); min-width: 120px; text-align: left; }
+.cat-bar-container { flex: 1; height: 28px; background: var(--bg-secondary); border-radius: 6px; overflow: hidden; display: flex; }
+.cat-segment { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: white; transition: width 0.8s ease; min-width: 30px; }
+.cat-segment.iran { background: var(--iran-color); }
+.cat-segment.israel { background: var(--israel-color); }
+.cat-segment.palestine { background: var(--palestine-color); }
+.analysis-section { max-width: 900px; margin: 36px auto; padding: 0 20px; }
+.analysis-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 768px) { .analysis-grid { grid-template-columns: 1fr; } }
+.analysis-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 22px; }
+.analysis-card h3 { font-family: var(--font-title); font-size: 17px; font-weight: 800; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); }
+.analysis-card.iran { border-right: 3px solid var(--iran-color); }
+.analysis-card.israel { border-right: 3px solid var(--israel-color); }
+.analysis-card.palestine { border-right: 3px solid var(--palestine-color); }
+.analysis-card.iran h3 { color: var(--iran-color); }
+.analysis-card.israel h3 { color: var(--israel-color); }
+.analysis-card.palestine h3 { color: var(--palestine-color); }
+.analysis-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.85; }
+.analysis-card p strong { color: var(--text-primary); font-weight: 700; background: rgba(240, 192, 64, 0.1); padding: 1px 5px; border-radius: 3px; }
+.insights-section { max-width: 900px; margin: 36px auto; padding: 0 20px; }
+.insight-item { background: var(--bg-card); border: 1px solid var(--border-color); border-right: 3px solid var(--accent-yellow); border-radius: 10px; padding: 18px 22px; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 14px; }
+.insight-icon { font-size: 22px; flex-shrink: 0; padding-top: 2px; }
+.insight-text { font-size: 14px; color: var(--text-secondary); line-height: 1.85; }
+.insight-text strong { color: var(--text-primary); font-weight: 700; display: block; font-size: 15px; margin-bottom: 4px; }
+.footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--border-color); margin-top: 40px; }
+.footer p { font-size: 12px; color: var(--text-muted); }
+.footer .footer-brand { font-family: var(--font-title); font-weight: 700; font-size: 14px; color: var(--text-secondary); margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<div class="breaking-banner">
+  <div class="banner-track">
+    <span class="banner-text"><span class="pulse-dot"></span> מבזק — גורמים ישראליים ואמריקאיים: חמינאי נהרג ● 150 טילים מאיראן — 89 פצועים בישראל ● תקיפה איראנית על 6 מדינות ערב ● הרוג באבו דאבי ● 200+ הרוגים 700+ פצועים באיראן ● פגיעה בביה״ס בנות — 85 ילדות ● 8 מדינות סגרו מרחב אווירי ● דובאי סגור</span>
+    <span class="banner-text"><span class="pulse-dot"></span> מבזק — גורמים ישראליים ואמריקאיים: חמינאי נהרג ● 150 טילים מאיראן — 89 פצועים בישראל ● תקיפה איראנית על 6 מדינות ערב ● הרוג באבו דאבי ● 200+ הרוגים 700+ פצועים באיראן ● פגיעה בביה״ס בנות — 85 ילדות ● 8 מדינות סגרו מרחב אווירי ● דובאי סגור</span>
+  </div>
+</div>
+
+<header class="header">
+  <h1>📡 Trends Monitor</h1>
+  <div class="subtitle">מעקב מגמות חיפוש — איראן · ישראל · פלסטין</div>
+  <div class="timestamp">
+    <span class="live-dot"></span>
+    28 בפברואר 2026 · סקאלה: 4 שעות · ~21:30 IST · Google Trends
+  </div>
+</header>
+
+<div class="live-event">
+  <div class="live-event-card">
+    <div class="event-badge"><span class="pulse-dot" style="width:6px;height:6px;"></span> אירוע חי — מתעדכן</div>
+    <h2>💀 חמינאי ככל הנראה נהרג — איראן תוקפת בחזרה — המזרח התיכון בלהבות</h2>
+    <p>
+      4 גורמי ביטחון ישראליים ובכיר אמריקאי מאשרים: חמינאי נהרג בתקיפה ישראלית על מתחם מגוריו בטהרן, יחד עם 5–10 בכירים נוספים כולל מפקד משמרות המהפכה. איראן טרם אישרה.
+      בתגובה — איראן שיגרה 150 טילים בליסטיים לעבר ישראל (89 פצועים, אחד קשה), ותוקפת בסיסים אמריקאיים ב-6 מדינות: בחריין, קטאר, כוויית, אמירויות, ירדן, סעודיה.
+      הרוג אחד באבו דאבי. שדה התעופה של דובאי נסגר לזמן בלתי מוגבל. 8 מדינות סגרו מרחב אווירי.
+      באיראן: 200+ הרוגים, 700+ פצועים. דיווחים על פגיעה בבית ספר יסודי לבנות במינאב — לפחות 85 ילדות נהרגו.
+      תורים לאספקה בטהרן — לחם, ביצים, מים ודלק אוזלים. אינטרנט מנותק חלקית.
+    </p>
+  </div>
+</div>
+
+<div class="tabs-container">
+  <div class="tabs">
+    <button class="tab active" onclick="filterTrends('all')"><span class="flag">🌍</span> כל המדינות</button>
+    <button class="tab" onclick="filterTrends('iran')"><span class="flag">🇮🇷</span> איראן</button>
+    <button class="tab" onclick="filterTrends('israel')"><span class="flag">🇮🇱</span> ישראל</button>
+    <button class="tab" onclick="filterTrends('palestine')"><span class="flag">🇵🇸</span> פלסטין</button>
+  </div>
+</div>
+
+<div class="trends-section">
+  <div class="trends-grid">
+
+    <!-- IRAN -->
+    <div class="trend-column" data-country="iran">
+      <div class="column-header iran"><span class="col-flag">🇮🇷</span><span class="col-title">איראן</span></div>
+      <div class="trend-list" id="iran-list">
+        <div class="trend-item"><span class="trend-rank">1</span><div class="trend-content"><div class="trend-term">האם חמינאי מת? <span class="trend-rise breakout">↑ פריצה</span></div><div class="trend-volume">500K+ חיפושים</div></div></div>
+        <div class="trend-item"><span class="trend-rank">2</span><div class="trend-content"><div class="trend-term">מקלטים ומרחבים מוגנים טהרן <span class="trend-rise breakout">↑ פריצה</span></div><div class="trend-volume">420K+ חיפושים</div></div></div>
+        <div class="trend-item"><span class="trend-rank">3</span><div class="trend-content"><div class="trend-term">בית ספר בנות מינאב — 85 הרוגות <span class="trend-rise breakout">↑ פריצה</span></div><div class="trend-volume">380K+ חיפושים</div></div></div>
+        <div class="trend-item"><span class="trend-rank">4</span><div class="trend-content"><div class="trend-term">לחם מים ביצים — איפה קונים <span class="trend-rise">↑ 6,200%</span></div><div class="trend-volume">300K+ חיפושים</div></div></div>
+        <div class="trend-item hidden"><span class="trend-rank">5</span><div class="trend-content"><div class="trend-term">הבטחה נאמנה 4 — תגובת איראן <span class="trend-rise">↑ 4,800%</span></div><div class="trend-volume">260K+ חיפושים</div></div></div>
+        <div class="trend-item hidden"><span class="trend-rank">6</span><div class="trend-content"><div class="trend-term">סגירת בתי ספר יום ראשון <span class="trend-rise">↑ 3,500%</span></div><div class="trend-volume">200K+ חיפושים</div></div></div>
+        <div class="trend-item hidden"><span class="trend-rank">7</span><div class="trend-content"><div class="trend-term">תחנות דלק פתוחות — תורים <span class="trend-rise">↑ 2,900%</span></div><div class="trend-volume">150K+ חיפושים</div></div></div>
+        <div class="trend-item hidden"><span class="trend-rank">8</span><div class="trend-content"><div class="trend-term">רצא פהלווי — שינוי משטר <span class="trend-rise">↑ 2,400%</span></div><div class="trend-volume">120K+ חיפושים</div></div></div>
+        <div class="trend-item hidden"><span class="trend-rank">9</span><div class="trend-content"><div class="trend-term">אינטרנט מנותק — VPN <span class="trend-rise">↑ 1,800%</span></div><div class="trend-volume">90K+ חיפושים</div></div></div>
+        <div class="trend-item hidden"><span class="trend-rank">10</span><div class="trend-content"><div class="trend-term">משמרות המהפכה — כניעה או מוות <span class="trend-rise">↑ 1,200%</span></div><div class="trend-volume">65K+ חיפושים</div></div></div>
+      </div>
+      <button class="toggle-btn" onclick="toggleList('iran-list', this)">הצג עוד ▼</button>
+    </div>
+
+    <!-- ISRAEL -->
+    <div class="trend-column" data-country="israel">
+      <div class="column-header israel"><span class="col-flag">🇮🇱</span><span class="col-title">ישראל</span></div>
+      <div class="trend-list" id="israel-list">
+        <div class="trend-item"><span class="trend-rank">1</span><div class="trend-content"><div class="trend-term">חמינאי חוסל — אישור <span class="trend-rise breakout">↑ פריצה</span></div><div class="trend-volume">500K+ חיפושים</div></div></div>
+        <div class="trend-item"><span class="trend-rank">2</span><div class="trend-content"><div class="trend-term">150 טילים מאיראן — יירוטים <span class="trend-rise breakout">↑ פריצה</span></div><div class="trend-volume">450K+ חיפושים</div></div></div>
+        <div class="trend-item"><span class="trend-rank">3</span><div class="trend-content"><div class="trend-term">כיפת ברזל וחץ — ביצועים <span class="trend-rise breakout">↑ פריצה</span></div><div class="trend-volume">400K+ חיפושים</div></div></div>
+        <div class="trend-item"><span class="trend-rank">4</span><div class="trend-content"><div class="trend-term">מתי נפתח מרחב אווירי בן גוריון <span class="trend-rise">↑ 5,500%</span></div><div class="trend-volume">320K+ חיפושים</div></div></div>
+        <div class="trend-item hidden"><span class="trend-rank">5</span><div class="trend-content"><div class="trend-term">שברי טילים נפלו במרכז <span class="trend-rise">↑ 4,100%</span></div><div class="trend-volume">250K+ חיפושים</div></div></div>
+        <div class="trend-item hidden"><span class="trend-rank">6</span><div class="trend-content"><div class="trend-term">הנחיות פיקוד העורף — עדכון <span class="trend-rise">↑ 3,200%</span></div><div class="trend-volume">200K+ חיפושים</div></div></div>
+        <div class="trend-item hidden"><span class="trend-rank">7</span><div class="trend-content"><div class="trend-term"><span class="pl-tag">PL</span> שברי טילים בגדה — חברון שכם <span class="trend-rise">↑ 2,600%</span></div><div class="trend-volume">150K+ חיפושים</div></div></div>
+        <div class="trend-item hidden"><span class="trend-rank">8</span><div class="trend-content"><div class="trend-term">איראנים חוגגים ברחובות <span class="trend-rise">↑ 2,000%</span></div><div class="trend-volume">130K+ חיפושים</div></div></div>
+        <div class="trend-item hidden"><span class="trend-rank">9</span><div class="trend-content"><div class="trend-term">טיסות מבוטלות — מתי חוזרים <span class="trend-rise">↑ 1,500%</span></div><div class="trend-volume">95K+ חיפושים</div></div></div>
+        <div class="trend-item hidden"><span class="trend-rank">10</span><div class="trend-content"><div class="trend-term"><span class="pl-tag">PL</span> כוננות בתי חולים פלסטין <span class="trend-rise">↑ 1,100%</span></div><div class="trend-volume">70K+ חיפושים</div></div></div>
+      </div>
+      <button class="toggle-btn" onclick="toggleList('israel-list', this)">הצג עוד ▼</button>
+    </div>
+
+    <!-- PALESTINE -->
+    <div class="trend-column" data-country="palestine">
+      <div class="column-header palestine"><span class="col-flag">🇵🇸</span><span class="col-title">פלסטין</span></div>
+      <div class="trend-list" id="palestine-list">
+        <div class="trend-item"><span class="trend-rank">1</span><div class="trend-content"><div class="trend-term">שברי טילים איראניים בגדה <span class="trend-rise breakout">↑ פריצה</span></div><div class="trend-volume">180K+ חיפושים</div></div></div>
+        <div class="trend-item"><span class="trend-rank">2</span><div class="trend-content"><div class="trend-term">בתי ספר סגורים עד יום שני <span class="trend-rise breakout">↑ פריצה</span></div><div class="trend-volume">140K+ חיפושים</div></div></div>
+        <div class="trend-item"><span class="trend-rank">3</span><div class="trend-content"><div class="trend-term">מצב חירום מלא — בתי חולים <span class="trend-rise">↑ 4,500%</span></div><div class="trend-volume">110K+ חיפושים</div></div></div>
+        <div class="trend-item"><span class="trend-rank">4</span><div class="trend-content"><div class="trend-term">בית ספר בנות איראן — 85 ילדות <span class="trend-rise">↑ 3,800%</span></div><div class="trend-volume">90K+ חיפושים</div></div></div>
+        <div class="trend-item hidden"><span class="trend-rank">5</span><div class="trend-content"><div class="trend-term">מלחמת עולם שלישית <span class="trend-rise">↑ 3,200%</span></div><div class="trend-volume">75K+ חיפושים</div></div></div>
+        <div class="trend-item hidden"><span class="trend-rank">6</span><div class="trend-content"><div class="trend-term">רמדאן תחת אש — מטחי טילים <span class="trend-rise">↑ 2,400%</span></div><div class="trend-volume">60K+ חיפושים</div></div></div>
+        <div class="trend-item hidden"><span class="trend-rank">7</span><div class="trend-content"><div class="trend-term">נפילות חברון בית לחם רמאללה <span class="trend-rise">↑ 1,800%</span></div><div class="trend-volume">45K+ חיפושים</div></div></div>
+        <div class="trend-item hidden"><span class="trend-rank">8</span><div class="trend-content"><div class="trend-term">דובאי שדה תעופה סגור <span class="trend-rise">↑ 1,500%</span></div><div class="trend-volume">35K+ חיפושים</div></div></div>
+        <div class="trend-item hidden"><span class="trend-rank">9</span><div class="trend-content"><div class="trend-term">ציר ההתנגדות — הצהרה <span class="trend-rise">↑ 1,100%</span></div><div class="trend-volume">28K+ חיפושים</div></div></div>
+        <div class="trend-item hidden"><span class="trend-rank">10</span><div class="trend-content"><div class="trend-term">מחירי דלק ומזון עולים <span class="trend-rise">↑ 800%</span></div><div class="trend-volume">20K+ חיפושים</div></div></div>
+      </div>
+      <button class="toggle-btn" onclick="toggleList('palestine-list', this)">הצג עוד ▼</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- CATEGORY BARS -->
+<div class="categories-section">
+  <h2 class="section-title">📊 השוואת קטגוריות — 4 שעות אחרונות</h2>
+  <div class="category-row"><span class="cat-label">🪖 ביטחון וצבא</span><div class="cat-bar-container"><div class="cat-segment iran" style="width:35%">35%</div><div class="cat-segment israel" style="width:48%">48%</div><div class="cat-segment palestine" style="width:17%">17%</div></div></div>
+  <div class="category-row"><span class="cat-label">💀 אבדות ונפגעים</span><div class="cat-bar-container"><div class="cat-segment iran" style="width:52%">52%</div><div class="cat-segment israel" style="width:22%">22%</div><div class="cat-segment palestine" style="width:26%">26%</div></div></div>
+  <div class="category-row"><span class="cat-label">🏥 חירום והישרדות</span><div class="cat-bar-container"><div class="cat-segment iran" style="width:40%">40%</div><div class="cat-segment israel" style="width:28%">28%</div><div class="cat-segment palestine" style="width:32%">32%</div></div></div>
+  <div class="category-row"><span class="cat-label">🏛️ מנהיגות ומשטר</span><div class="cat-bar-container"><div class="cat-segment iran" style="width:55%">55%</div><div class="cat-segment israel" style="width:33%">33%</div><div class="cat-segment palestine" style="width:12%">12%</div></div></div>
+  <div class="category-row"><span class="cat-label">✈️ תעופה וניידות</span><div class="cat-bar-container"><div class="cat-segment iran" style="width:30%">30%</div><div class="cat-segment israel" style="width:40%">40%</div><div class="cat-segment palestine" style="width:30%">30%</div></div></div>
+  <div style="display:flex;gap:16px;justify-content:center;margin-top:12px;">
+    <span style="font-size:11px;color:var(--iran-color);">● איראן</span>
+    <span style="font-size:11px;color:var(--israel-color);">● ישראל</span>
+    <span style="font-size:11px;color:var(--palestine-color);">● פלסטין</span>
+  </div>
+</div>
+
+<!-- ANALYSIS -->
+<div class="analysis-section">
+  <h2 class="section-title">🔍 ניתוח דפוסים לפי מדינה — 4 שעות אחרונות</h2>
+  <div class="analysis-grid">
+    <div class="analysis-card iran">
+      <h3>🇮🇷 איראן</h3>
+      <p>
+        🔴 דפוס דומיננטי: <strong>קריסת מנהיגות + בהלת הישרדות</strong>.
+        "האם חמינאי מת?" הוא החיפוש #1 — הציבור לא מקבל תשובות, המשטר שותק והאינטרנט מנותק חלקית.
+        חיפושי לחם, מים ותחנות דלק מצביעים על <strong>אוכלוסייה במצב הישרדות</strong> — מדפים ריקים בסופרמרקטים בטהרן.
+        "בית ספר מינאב" (85 ילדות נהרגו) מייצר <strong>גל זעזוע</strong> ואבל עמוק.
+        <strong>רצא פהלווי</strong> עולה — חלק מהאיראנים כבר מחפשים את החלופה למשטר.
+      </p>
+    </div>
+    <div class="analysis-card israel">
+      <h3>🇮🇱 ישראל</h3>
+      <p>
+        🔵 דפוס דומיננטי: <strong>מעקב תוצאות + הגנה אזרחית</strong>.
+        "חמינאי חוסל" הוא החיפוש #1 — הישראלים עוקבים בזמן אמת אחרי תוצאות המבצע.
+        150 טילים + <strong>ביצועי כיפת ברזל וחץ</strong> — איזון בין גאווה ופחד.
+        "מתי נפתח מרחב אווירי" — <strong>מי שתקוע בחו״ל</strong> ומי שביטל טיסה מחפש עדכון.
+        "איראנים חוגגים ברחובות" — תמונות שמחזקות את הנרטיב ש<strong>"עשינו את הדבר הנכון"</strong>.
+      </p>
+    </div>
+    <div class="analysis-card palestine">
+      <h3>🇵🇸 פלסטין</h3>
+      <p>
+        🟢 דפוס דומיננטי: <strong>נזק קולטרלי + סולידריות</strong>.
+        שברי טילים נופלים <strong>בחברון, בית לחם, רמאללה ושכם</strong> — הגדה המערבית היא שדה פגיעה.
+        "בית ספר בנות איראן" בטופ 4 — <strong>סולידריות</strong> עם ילדות שנהרגו.
+        "רמדאן תחת אש" — החודש הקדוש מתנהל תחת מטחי טילים ונפילות.
+        בתי חולים ב<strong>כוננות מלאה</strong> — תשתית שכבר לפני האסקלציה הייתה במצב קריטי.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- INSIGHTS -->
+<div class="insights-section">
+  <h2 class="section-title">💡 תובנות מההשוואה — 4 שעות</h2>
+
+  <div class="insight-item">
+    <span class="insight-icon">💀</span>
+    <div class="insight-text">
+      <strong>שאלה אחת — שתי תשובות:</strong>
+      באיראן מחפשים "האם חמינאי מת?" — שאלה קיומית ללא מענה מהמשטר. בישראל מחפשים "חמינאי חוסל" — הנחת עבודה. אותו אדם, אותו אירוע — אבל באיראן זו חרדה כאוטית ובישראל זו תוצאה מבצעית.
+    </div>
+  </div>
+
+  <div class="insight-item">
+    <span class="insight-icon">🎒</span>
+    <div class="insight-text">
+      <strong>ילדים בחזית — בשלוש מדינות:</strong>
+      באיראן — 85 ילדות נהרגו בבית ספר במינאב. בפלסטין — בתי ספר סגורים עד יום שני, שברי טילים בחצרות. בישראל — ילדים בממ״דים. ב-4 השעות האלה, ילדים בכל מקום שילמו מחיר.
+    </div>
+  </div>
+
+  <div class="insight-item">
+    <span class="insight-icon">🛒</span>
+    <div class="insight-text">
+      <strong>הישרדות מידית vs. אי-נוחות:</strong>
+      באיראן מחפשים לחם, מים ותחנות דלק — צרכים בסיסיים, תורים בסופרמרקטים, מדפים ריקים. בישראל מחפשים מתי נפתח שדה התעופה — אי-נוחות. הפער בין "איפה קונים ביצים" ל"מתי חוזרים לטוס" מספר את כל ההבדל.
+    </div>
+  </div>
+
+  <div class="insight-item">
+    <span class="insight-icon">🌊</span>
+    <div class="insight-text">
+      <strong>העימות כבר אזורי — 8 מדינות:</strong>
+      ב-4 שעות, 8 מדינות סגרו מרחב אווירי. דובאי — שדה התעופה העמוס בעולם — נסגר לזמן בלתי מוגבל. בחריין, קטאר, כוויית, אמירויות, ירדן, סעודיה — כולם תחת מתקפה איראנית. המילה "מלחמת עולם שלישית" נכנסה לטופ 5 בפלסטין.
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-brand">Trends Monitor</div>
+  <p>נתונים מבוססים על Google Trends · 28.02.2026 · סקאלה: 4 שעות אחרונות (~21:30 IST)</p>
+  <p style="margin-top:4px;">אמנון זוסמן · הנתונים נאספו ועובדו לצורכי מעקב ומחקר בלבד</p>
+</footer>
+
+<script>
+function toggleList(listId, btn) {
+  const list = document.getElementById(listId);
+  const hiddenItems = list.querySelectorAll('.trend-item.hidden');
+  const visibleExtra = list.querySelectorAll('.trend-item.was-hidden');
+  if (visibleExtra.length > 0) {
+    visibleExtra.forEach(item => { item.classList.add('hidden'); item.classList.remove('was-hidden'); });
+    btn.textContent = 'הצג עוד ▼';
+  } else {
+    hiddenItems.forEach(item => { item.classList.remove('hidden'); item.classList.add('was-hidden'); });
+    btn.textContent = 'הצג פחות ▲';
+  }
+}
+function filterTrends(country) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.closest('.tab').classList.add('active');
+  document.querySelectorAll('.trend-column').forEach(col => {
+    col.style.display = (country === 'all' || col.dataset.country === country) ? '' : 'none';
+  });
+  document.querySelector('.trends-grid').style.gridTemplateColumns = country === 'all' ? 'repeat(3, 1fr)' : '1fr';
+}
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.cat-segment').forEach(seg => {
+        const w = seg.style.width; seg.style.width = '0';
+        requestAnimationFrame(() => { setTimeout(() => { seg.style.width = w; }, 100); });
+      });
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.cat-bar-container').forEach(bar => observer.observe(bar));
+</script>
+</body>
+</html>
