@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>דוח מודיעין מבצעי: הסלמה אזורית</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212; /* Dark Mode for Night/War Room vibe */
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #1e1e1e;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .header {
+            background: linear-gradient(90deg, #b71c1c, #880e4f); /* Red gradient for alert */
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 { margin: 0; font-size: 24px; text-transform: uppercase; letter-spacing: 1px; }
+        .timestamp { background: rgba(0,0,0,0.3); padding: 5px 15px; border-radius: 20px; font-weight: bold; font-family: monospace; }
+
+        .group-title {
+            background-color: #333;
+            color: #90caf9;
+            padding: 10px 20px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #444;
+            margin-top: 0;
+        }
+
+        table { width: 100%; border-collapse: collapse; }
+        
+        td { padding: 15px 20px; border-bottom: 1px solid #333; vertical-align: top; }
+        tr:last-child td { border-bottom: none; }
+
+        .country-col { width: 15%; font-weight: bold; font-size: 1.1em; color: #fff; }
+        .trends-col { width: 40%; }
+        .intel-col { width: 45%; color: #bdbdbd; font-size: 0.95em; line-height: 1.5; border-right: 1px solid #333; }
+
+        /* Chips for keywords */
+        .chip {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin: 2px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+        
+        .chip.critical { background-color: #ffcdd2; color: #b71c1c; border: 1px solid #e57373; } /* נפילות/מוות */
+        .chip.rumor { background-color: #fff9c4; color: #f57f17; border: 1px solid #fdd835; } /* שמועות */
+        .chip.alert { background-color: #e1bee7; color: #4a148c; border: 1px solid #ba68c8; } /* קפריסין/אירופה */
+        .chip.routine { background-color: #37474f; color: #cfd8dc; border: 1px solid #546e7a; } /* ספורט */
+
+        .flag { font-size: 1.2em; margin-left: 8px; }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div>
+            <h1>דוח מודיעין מבצעי: "בוקר של הסלמה"</h1>
+            <p style="margin:5px 0 0; opacity:0.8;">מוקד: פגיעות בישראל, כאוס באיראן, והחזית החדשה בקפריסין</p>
+        </div>
+        <div class="timestamp">02.03.2026 | 05:02 IST</div>
+    </div>
+
+    <table>
+        <!-- קבוצה: המדינות המתעמתות -->
+        <tr><td colspan="3" class="group-title">🔥 המדינות המתעמתות (ליבת הסכסוך)</td></tr>
+        
+        <tr>
+            <td class="country-col"><span class="flag">🇮🇱</span> ישראל</td>
+            <td class="trends-col">
+                <span class="chip critical">נפילה בבית שמש (#3)</span>
+                <span class="chip critical">נפילה בירושלים (#4)</span>
+                <span class="chip critical">צור יצחק</span>
+                <span class="chip routine">תענית אסתר</span>
+            </td>
+            <td class="intel-col">
+                <strong>פגיעות בעורף:</strong> המעבר מחיפוש כללי של אזעקות לחיפוש "נפילה ב..." מעיד על אירועי אמת עם נזק או נפגעים בבירה ובבית שמש בשעות האחרונות. העורף דרוך אך שומר על מסורת (תענית אסתר).
+            </td>
+        </tr>
+
+        <tr>
+            <td class="country-col"><span class="flag">🇮🇷</span> איראן</td>
+            <td class="trends-col">
+                <span class="chip critical">עלירזה עראפי (+1000%)</span>
+                <span class="chip critical">בית חולים גנדי</span>
+                <span class="chip rumor">נתניהו</span>
+                <span class="chip routine">ארסנל/צ'לסי</span>
+            </td>
+            <td class="intel-col">
+                <strong>בורסת היורשים:</strong> השם <em>עלירזה עראפי</em> (בכיר דתי) עוקף את מוג'תבא, מה שמעיד על מאבק כוחות פוליטי/דתי חריף. חיפושים על "בית חולים גנדי" עשויים לרמז על הימצאות בכירים שם או תקיפה באזור.
+            </td>
+        </tr>
+
+        <!-- קבוצה: מדינות ערב -->
+        <tr><td colspan="3" class="group-title">💬 מדינות ערב (גל שמועות)</td></tr>
+
+        <tr>
+            <td class="country-col"><span class="flag">🇱🇧</span> לבנון</td>
+            <td class="trends-col">
+                <span class="chip rumor">הריגת נתניהו (مقتل نتنياهو)</span>
+                <span class="chip alert">חדשות לבנון</span>
+                <span class="chip alert">Al Jazeera Live</span>
+            </td>
+            <td class="intel-col">
+                <strong>לוחמה פסיכולוגית:</strong> שמועה על מות נתניהו נפוצה מאוד (מקום 8), כנראה ניסיון להרים מורל. חיפושים גבוהים של ערוצי חדשות (אל ג'זירה, MTV) מעידים על פאניקה וציפייה לתגובה ישראלית.
+            </td>
+        </tr>
+
+        <tr>
+            <td class="country-col"><span class="flag">🇯🇴</span> ירדן</td>
+            <td class="trends-col">
+                <span class="chip routine">אדאן אל-מגרב</span>
+                <span class="chip rumor">הריגת נתניהו (#5)</span>
+            </td>
+            <td class="intel-col">
+                השמועות חוצות גבולות ומגיעות לירדן בעוצמה גבוהה. ירדן ממוקדת דת (רמדאן) ושמועות.
+            </td>
+        </tr>
+
+        <tr>
+            <td class="country-col"><span class="flag">🇸🇦</span> סעודיה</td>
+            <td class="trends-col">
+                <span class="chip rumor">הריגת נתניהו (#10)</span>
+                <span class="chip routine">קריקט (הודו)</span>
+            </td>
+            <td class="intel-col">
+                השמועה הגיעה גם לממלכה, אך בעוצמה נמוכה יותר. הסעודים עדיין מתעניינים יותר בספורט.
+            </td>
+        </tr>
+
+        <tr>
+            <td class="country-col"><span class="flag">🇵🇸</span> עזה/פלסטין</td>
+            <td class="trends-col">
+                <span class="chip critical">צור יצחק</span>
+                <span class="chip alert">קפריסין (מקום 9)</span>
+                <span class="chip routine">מחיר הזהב</span>
+            </td>
+            <td class="intel-col">
+                <strong>מודיעין טקטי:</strong> העזתים בודקים את מיקום הנפילות בישראל ("צור יצחק"). הופעת "קפריסין" ברשימה מרמזת על עניין בנתיבי מילוט או חדשות על תקיפה שם.
+            </td>
+        </tr>
+
+        <!-- קבוצה: גובלות באיראן -->
+        <tr><td colspan="3" class="group-title">⛰️ המעטפת האיראנית</td></tr>
+
+        <tr>
+            <td class="country-col"><span class="flag">🇵🇰</span> פקיסטן</td>
+            <td class="trends-col">
+                <span class="chip critical">CIA (#7)</span>
+                <span class="chip routine">קריקט נשים</span>
+            </td>
+            <td class="intel-col">
+                חיפוש חריג אחרי "CIA" בפקיסטן עשוי להעיד על תיאוריות קונספירציה לגבי המעורבות האמריקאית בכאוס באיראן.
+            </td>
+        </tr>
+
+        <tr>
+            <td class="country-col"><span class="flag">🇦🇿</span> אזרבייג'ן</td>
+            <td class="trends-col">
+                <span class="chip routine">קארבאח (כדורגל)</span>
+                <span class="chip routine">ארסנל</span>
+            </td>
+            <td class="intel-col">
+                אזרבייג'ן "התקררה" מעט מבחינה פוליטית ביחס לדוח הקודם וחזרה לעסוק בכדורגל.
+            </td>
+        </tr>
+
+        <!-- קבוצה: מזרח הים התיכון -->
+        <tr><td colspan="3" class="group-title">🌊 מזרח הים התיכון (החזית החדשה?)</td></tr>
+
+        <tr>
+            <td class="country-col"><span class="flag">🇨🇾</span> קפריסין</td>
+            <td class="trends-col">
+                <span class="chip alert">Cyprus News (#1)</span>
+                <span class="chip routine">חדשות פנרבחצ'ה</span>
+            </td>
+            <td class="intel-col">
+                <strong>מוקד עולמי:</strong> האי נמצא בראש הכותרות של עצמו. הציבור המקומי מחפש חדשות באובססיביות, מה שמעיד על אירוע חריג או איום קונקרטי.
+            </td>
+        </tr>
+
+        <tr>
+            <td class="country-col"><span class="flag">🇹🇷</span> טורקיה</td>
+            <td class="trends-col">
+                <span class="chip routine">פנרבחצ'ה (500K)</span>
+                <span class="chip routine">זמני סהור (רמדאן)</span>
+            </td>
+            <td class="intel-col">
+                טורקיה שקועה עמוק ברמדאן ובליגה המקומית. ההתעניינות במלחמה ירדה משמעותית ביחס לאתמול.
+            </td>
+        </tr>
+
+        <!-- קבוצה: מערב אירופה -->
+        <tr><td colspan="3" class="group-title">🇪🇺 אירופה (דאגה לקפריסין)</td></tr>
+
+        <tr>
+            <td class="country-col"><span class="flag">🇩🇪</span> גרמניה</td>
+            <td class="trends-col">
+                <span class="chip alert">Zypern (קפריסין)</span>
+                <span class="chip alert">Zypern Angriff (התקפה על קפריסין)</span>
+            </td>
+            <td class="intel-col">
+                <strong>אינדיקציה קריטית:</strong> החיפוש "התקפה על קפריסין" בגרמניה הוא "האקדח המעשן". אירופה מבינה שהמלחמה זלגה לאדמת האיחוד האירופי (או קרוב אליה מאוד).
+            </td>
+        </tr>
+
+        <tr>
+            <td class="country-col"><span class="flag">🇬🇧</span> אנגליה</td>
+            <td class="trends-col">
+                <span class="chip alert">Cyprus News (#6)</span>
+                <span class="chip routine">כדורגל</span>
+            </td>
+            <td class="intel-col">
+                גם בבריטניה (לה בסיסים בקפריסין) יש עניין גובר בחדשות מהאי, מעבר לעניין הרגיל בספורט.
+            </td>
+        </tr>
+
+        <tr>
+            <td class="country-col"><span class="flag">🇫🇷</span> צרפת</td>
+            <td class="trends-col">
+                <span class="chip alert">Chypre (#8)</span>
+                <span class="chip routine">ליגה צרפתית</span>
+            </td>
+            <td class="intel-col">
+                קפריסין נכנסת לטופ 10 גם בצרפת, מה שמאשר שהאירוע שם תופס תשומת לב כלל-אירופית.
+            </td>
+        </tr>
+
+    </table>
+    
+    <div style="padding: 15px; background-color: #263238; color: #b0bec5; font-size: 0.85em; text-align: center; border-top: 1px solid #37474f;">
+        מערכת ניטור בזמן אמת | נתונים גולמיים: Google Trends | עיבוד: AI Analysis
+    </div>
+</div>
+
+</body>
+</html>
