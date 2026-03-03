@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דוח סיכום - בחירות ונתניהו</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --anti-blue: #0d6efd; /* כחול - נגד */
+            --pro-red: #dc3545;   /* אדום - בעד */
+            --neutral: #6c757d;   
+            --header-bg: #212529;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* כותרת */
+        .header-section {
+            background-color: var(--header-bg);
+            color: white;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            border-bottom: 5px solid var(--anti-blue);
+        }
+        .header-title { font-weight: 800; font-size: 2.2rem; }
+        .header-subtitle { color: #adb5bd; font-size: 1.1rem; }
+        .header-author { font-size: 0.9rem; color: #6c757d; font-style: italic; margin-top: 5px; }
+
+        /* כרטיסים */
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+            height: 100%;
+            border-top: 4px solid transparent;
+        }
+        .card-blue { border-top-color: var(--anti-blue); }
+        .card-red { border-top-color: var(--pro-red); }
+        .card-dark { border-top-color: #343a40; }
+
+        .stat-val { font-size: 2.5rem; font-weight: 700; color: #212529; }
+        .stat-lbl { font-size: 0.9rem; color: #6c757d; font-weight: 500; }
+
+        /* אזור גרפים */
+        .chart-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            margin-bottom: 20px;
+        }
+
+        /* סקשן הערכה */
+        .prediction-box {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f3f5 100%);
+            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+        }
+        .badge-score { font-size: 0.9em; padding: 5px 10px; border-radius: 20px; }
+        .bg-score-bad { background-color: #ffe6e6; color: #dc3545; }
+        .bg-score-good { background-color: #e6f7ff; color: #0d6efd; }
+
+    </style>
+</head>
+<body>
+
+    <!-- כותרת -->
+    <div class="header-section text-center">
+        <div class="container">
+            <h1 class="header-title">דוח הלוך רוח: נתניהו והבחירות</h1>
+            <div class="header-subtitle">ניתוח נתונים מסכם (327 תגובות)</div>
+            <div class="header-author">מאת אמנון זוסמן</div>
+        </div>
+    </div>
+
+    <div class="container pb-5">
+
+        <!-- שורת סיכום עליונה -->
+        <div class="row g-4 mb-4">
+            <!-- סה"כ תגובות -->
+            <div class="col-md-3">
+                <div class="stat-card card-dark">
+                    <div class="stat-val">327</div>
+                    <div class="stat-lbl">סך כל התגובות שנבדקו</div>
+                </div>
+            </div>
+
+            <!-- דומיננטיות נגד -->
+            <div class="col-md-3">
+                <div class="stat-card card-blue">
+                    <div class="stat-val text-primary">88%</div>
+                    <div class="stat-lbl">אחוז המתנגדים (נפח שיח)</div>
+                </div>
+            </div>
+
+            <!-- סה"כ לייקים למתנגדים -->
+            <div class="col-md-3">
+                <div class="stat-card card-blue">
+                    <div class="stat-val text-success">8,642</div>
+                    <div class="stat-lbl">לייקים למחנה ה"נגד"<br><span class="small text-muted">(קונצנזוס רחב)</span></div>
+                </div>
+            </div>
+
+            <!-- יחס שלילי לתומכים -->
+            <div class="col-md-3">
+                <div class="stat-card card-red">
+                    <div class="stat-val text-danger">90%</div>
+                    <div class="stat-lbl">אחוז הדיסלייקים לתגובות "בעד"<br><span class="small text-muted">(על כל 10 אינטראקציות, 9 שליליות)</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- גרפים מרכזיים -->
+        <div class="row mb-5">
+            <!-- גרף עוגה: נפח -->
+            <div class="col-lg-4">
+                <div class="chart-box h-100 text-center">
+                    <h5 class="fw-bold mb-3">חלוקת נפח התגובות</h5>
+                    <div style="height: 250px;">
+                        <canvas id="volumeChart"></canvas>
+                    </div>
+                    <p class="mt-3 text-muted small">
+                        המיעוט האדום (33 תגובות) כמעט נעלם לעומת הרוב הכחול (287 תגובות).
+                    </p>
+                </div>
+            </div>
+
+            <!-- גרף ברים: איכות האינטראקציה -->
+            <div class="col-lg-8">
+                <div class="chart-box h-100">
+                    <h5 class="fw-bold mb-3">איכות המעורבות: הסכמה (לייקים) מול התנגדות (דיסלייקים)</h5>
+                    <canvas id="engagementChart" height="120"></canvas>
+                    <div class="mt-3 p-2 bg-light border rounded small">
+                        <strong>פרשנות:</strong> העמודה הירוקה העצומה בצד שמאל מראה את התמיכה האדירה שמקבלים מתנגדי נתניהו. בצד ימין (בעד), העמודה האדומה (דיסלייקים) גבוהה פי 9 מהירוקה.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ניתוח והערכה -->
+        <div class="row">
+            <div class="col-12">
+                <div class="prediction-box">
+                    <h3 class="fw-bold mb-4"><i class="fas fa-search-dollar me-2"></i>  תחת ההנחה שכ-30 אחוז מצופי וינט הם תומכי הקואליציה וכ-70 אחוז הינם מהמתנגדים.</h3>
+                       <div class="row">
+                        <div class="col-md-6 border-end">
+                            <h5 class="text-primary fw-bold">המחנה הכחול (מתנגדים)</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>שליטה בנפח:</strong> 287 תגובות (88%). זהו נתון גבוה משמעותית מהצפוי (70%).</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>לכידות:</strong> 8,642 לייקים. המגיבים מחזקים אחד את השני.</li>
+                                <li class="mb-2"><i class="fas fa-bolt text-warning me-2"></i><strong>מוטיבציה:</strong> המסה הקריטית מעידה על רצון עז להביע עמדה ולהשפיע.</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 ps-4">
+                            <h5 class="text-danger fw-bold">המחנה האדום (תומכים)</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-times text-danger me-2"></i><strong>היעדרות:</strong> רק 33 תגובות (10%). איפה ה-30% הצפויים? הם שותקים.</li>
+                                <li class="mb-2"><i class="fas fa-thumbs-down text-danger me-2"></i><strong>דחייה חברתית:</strong> 897 דיסלייקים. כל ניסיון תמיכה נתקל ב"קיר" של התנגדות.</li>
+                                <li class="mb-2"><i class="fas fa-comment-slash text-muted me-2"></i><strong>ויכוח עקר:</strong> המעורבות המילולית הגבוהה (יחסית לגודלם) מעידה שהם מושכים אש ולא תמיכה.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    <div class="alert alert-secondary mb-0">
+                        <strong>בשורה התחתונה:</strong> הנתונים מצביעים על דמורליזציה עמוקה בצד התומך בנתניהו בפורום זה. הפער בין הציפייה (30% נוכחות) למציאות (10% נוכחות ו-90% סנטימנט שלילי עליהם) מעיד שהבייס הימני בוחר לא להשתתף במשחק כרגע.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4 text-muted small">
+            נוצר בתאריך 03.03.2026 | מבוסס על קובץ: ביבי-בחירות.csv
+        </div>
+
+    </div>
+
+    <script>
+        // נתונים מקובץ ה-CSV
+        // בעד: נפח 33, לייקים 103, דיסלייקים 897
+        // נגד: נפח 287, לייקים 8642, דיסלייקים 520
+        // נייטרלי: נפח 7, לייקים 4, דיסלייקים 22
+
+        // גרף עוגה (נפח)
+        const ctxVol = document.getElementById('volumeChart').getContext('2d');
+        new Chart(ctxVol, {
+            type: 'doughnut',
+            data: {
+                labels: ['נגד נתניהו', 'בעד נתניהו', 'נייטרלי'],
+                datasets: [{
+                    data: [287, 33, 7],
+                    backgroundColor: ['#0d6efd', '#dc3545', '#6c757d'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+
+        // גרף ברים (אינטראקציה)
+        const ctxEng = document.getElementById('engagementChart').getContext('2d');
+        new Chart(ctxEng, {
+            type: 'bar',
+            data: {
+                labels: ['מחנה ה"נגד"', 'מחנה ה"בעד"'],
+                datasets: [
+                    {
+                        label: 'לייקים (הסכמה)',
+                        data: [8642, 103],
+                        backgroundColor: '#198754' // ירוק
+                    },
+                    {
+                        label: 'דיסלייקים (התנגדות)',
+                        data: [520, 897],
+                        backgroundColor: '#dc3545' // אדום
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
