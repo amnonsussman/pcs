@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>מרחב התודעה הציבורית - לוגריתמי</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+  body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f8ff;
+    margin:0;
+    line-height:1.75;
+    color:#1b1f2a;
+  }
+  .header{
+    background:linear-gradient(90deg,#1f4e8c,#3b6fb6);
+    color:#fff;
+    padding:56px 18px;
+    text-align:center;
+  }
+  .header h1{ font-size:42px; margin:0; }
+  .header h2{
+    font-size:22px;
+    font-weight:normal;
+    margin:16px auto 0;
+    max-width:980px;
+  }
+  .author{
+    color:#d6e4ff;
+    margin-top:14px;
+    font-size:16px;
+  }
+
+  .content{
+    max-width:980px;
+    margin:34px auto;
+    background:#fff;
+    padding:44px;
+    box-shadow:0 0 14px rgba(0,0,0,0.09);
+    border-radius:14px;
+  }
+
+  h3{
+    color:#1f4e8c;
+    border-bottom:3px solid #2f5fb3;
+    padding-bottom:8px;
+    margin-top:44px;
+  }
+
+  .lead{
+    font-size:18px;
+    margin-top:0;
+  }
+
+  .quote{
+    background:#eef4ff;
+    border-right:5px solid #2f5fb3;
+    padding:14px 18px;
+    margin:18px 0 28px;
+    border-radius:10px;
+  }
+
+  .note{
+    background:#f6f9ff;
+    border:1px solid #d9e3f5;
+    padding:12px 14px;
+    border-radius:10px;
+    margin:16px 0;
+    color:#23314d;
+  }
+
+  .chartbox{
+    margin:18px 0 14px;
+    padding:14px 14px 10px;
+    background:#fbfdff;
+    border:1px solid #d9e3f5;
+    border-radius:12px;
+  }
+
+  .metrics{
+    margin:0 0 24px;
+    padding:12px 14px;
+    background:#f7faff;
+    border:1px solid #e2ecff;
+    border-radius:12px;
+    color:#23314d;
+  }
+
+  .metrics strong{ color:#1f4e8c; }
+
+  .muted{ color:#5c6b86; font-size:14px; }
+
+  .footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid #e7eefc;
+  }
+
+  @media (max-width: 900px){
+    .content{ padding:26px; margin:18px 12px; }
+    .header h1{ font-size:36px; }
+    .header h2{ font-size:20px; }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>מרחב התודעה הציבורית</h1>
+  <h2>כך נראה השיח הפוליטי בישראל בזמן מלחמה: שלושה מקרי מבחן במדור התגובות של Ynet</h2>
+  <div class="author">מאת: אמנון זוסמן · 4.3.2026</div>
+</div>
+
+<div class="content">
+
+  <p class="lead">
+    חשוב לזכור כי הנתונים שנבחנו כאן נאספו ביום הרביעי למלחמה הנוכחית,
+    אשר בשלב זה נתפסת כהצלחה צבאית ומדינית, בין היתר בזכות שיתוף הפעולה עם ארצות הברית —
+    שותפות שנזקפת במידה רבה לזכותו של ראש הממשלה נתניהו.
+  </p>
+
+  <p class="lead">
+    לעומת תקופות קודמות, בחודשים האחרונים מסתמנת תזוזה:
+    מעבר מרוב ביקורתי מוחלט כלפי נתניהו לרוב ביקורתי גדול אך לא מוחלט.
+    בתקופה הקרובה נעקוב אחר השינויים הללו כדי לזהות מגמות.
+  </p>
+
+  <div class="quote">
+    <strong>הערה לגבי הגרפים (סקלה לוגריתמית):</strong><br/>
+    כדי לאפשר השוואה ויזואלית בין אלפי לייקים ("ויכוח שקט") לבין עשרות תגובות בודדות,
+    הצירים בגרף מוצגים בקפיצות של פי 10 (1, 10, 100, 1,000 וכו').<br/>
+    המספרים המופיעים כשתעברו עם העכבר על העמודות הם <strong>המספרים האמיתיים המוחלטים</strong>.
+  </div>
+
+  <div class="quote">
+    <strong>שלושת המדדים בגרף (בכל כתבה):</strong><br/>
+    1) <strong>תגובות</strong> – נפח השיח הגלוי (“הקול הרועש”).<br/>
+    2) <strong>ויכוח מילולי</strong> – תגובות משנה (“העימות בפועל”).<br/>
+    3) <strong>ויכוח שקט</strong> – “מעורבות שקטה / קליקים תומכים” = לייקים למחנה + דיסלייקים למחנה הנגדי (“הקהל השקט”).<br/>
+    <span class="muted">נייטרלי: לא נספר בכלל (לא בגרפים ולא באחוזים).</span>
+  </div>
+
+  <h3>מדוע דווקא Ynet: חשיפה ציבורית גבוהה (Google Trends)</h3>
+  <p>
+    להלן אינדיקציה לחשיפה יחסית באמצעות Google Trends (חציון לאורך חלון המדידה בקובץ שהועלה).
+    זו אינה “אמת מוחלטת” אלא מדד השוואתי יציב בתוך החלון.
+  </p>
+
+  <div class="chartbox">
+    <canvas id="exposureChart"></canvas>
+    <div class="muted">מקור: multiTimeline (45).csv שהועלה לשיחה; חישוב חציון לכל ערוץ.</div>
+  </div>
+
+  <div class="note">
+    <strong>הערת הגדרה למחנה בכתבת בן־גביר:</strong>
+    “בעד” = בעד בן גביר / נגד היועמ״שית. “נגד” = נגד בן גביר / בעד היועמ״שית.
+  </div>
+
+  <!-- ======================= ARTICLE 1 ======================= -->
+  <h3>מקרה 1: ניסיון נתניהו לקדם הקדמת בחירות</h3>
+
+  <div class="chartbox">
+    <canvas id="chart_elections"></canvas>
+  </div>
+
+  <div class="metrics">
+    <div><strong>תגובות (ללא נייטרלי):</strong> נגד 287 (89.7%) · בעד 33 (10.3%)</div>
+    <div><strong>ויכוח מילולי (תגובות משנה):</strong> נגד 0 (0.0%) · בעד 0 (0.0%) <span class="muted">— אין נתון בסיכום שהועבר</span></div>
+    <div><strong>ויכוח שקט (מעורבות שקטה / קליקים תומכים):</strong> נגד 9,539 (93.9%) · בעד 623 (6.1%)</div>
+  </div>
+
+  <!-- ======================= ARTICLE 2 ======================= -->
+  <h3>מקרה 2: נתניהו וההתקהלות אצל החרדים</h3>
+
+  <div class="chartbox">
+    <canvas id="chart_haredi"></canvas>
+  </div>
+
+  <div class="metrics">
+    <div><strong>תגובות:</strong> נגד 184 (79.7%) · בעד 47 (20.3%)</div>
+    <div><strong>ויכוח מילולי (תגובות משנה):</strong> נגד 26 (37.7%) · בעד 43 (62.3%)</div>
+    <div><strong>ויכוח שקט (מעורבות שקטה / קליקים תומכים):</strong> נגד 3,832 (87.1%) · בעד 566 (12.9%)</div>
+  </div>
+
+  <!-- ======================= ARTICLE 3 ======================= -->
+  <h3>מקרה 3: דרישת היועמ״שית לפטר את בן גביר</h3>
+
+  <div class="chartbox">
+    <canvas id="chart_bengvir"></canvas>
+  </div>
+
+  <div class="metrics">
+    <div><strong>תגובות:</strong> נגד 436 (53.0%) · בעד 387 (47.0%)</div>
+    <div><strong>ויכוח מילולי (תגובות משנה):</strong> נגד 110 (39.4%) · בעד 169 (60.6%)</div>
+    <div><strong>ויכוח שקט (מעורבות שקטה / קליקים תומכים):</strong> נגד 12,135 (67.8%) · בעד 5,753 (32.2%)</div>
+  </div>
+
+  <div class="footer">
+    <h3>סיכום</h3>
+    <p>
+      בשלוש הכתבות הללו — כולן באותו אתר, באותו יום — מתקבלים שלושה מבני שיח שונים:
+      מהתנגדות חריפה סביב “הקדמת בחירות”, דרך “מקלחת” גם כאשר האירוע עצמו אינו קיצוני (נתניהו–חרדים),
+      ועד עימות מוסדי שמייצר זירת קרב דו־מחנית יותר (בן־גביר).
+    </p>
+    <p class="muted">
+      בדוחות הבאים, אחרי שהסגנון הכמותי יתייצב, אפשר להוסיף שכבה רביעית: נרטיבים —
+      ולחשב לכל נרטיב את אותם שלושה מדדים.
+    </p>
+  </div>
+
+</div>
+
+<script>
+  // ===== עזרי פורמט =====
+  function fmt(n){
+    // החזרה של מספר עם פסיקים
+    return n.toLocaleString('en-US');
+  }
+
+  // ===== צבעים לפי מדד (נגד = כהה, בעד = חיוור) =====
+  // מדד 1: תגובות
+  const C1_AGAINST = '#2f5fb3';
+  const C1_PRO     = '#9fb9e9';
+  // מדד 2: ויכוח מילולי (תגובות משנה)
+  const C2_AGAINST = '#1f4e8c';
+  const C2_PRO     = '#a9c2ef';
+  // מדד 3: ויכוח שקט (מעורבות שקטה / קליקים תומכים)
+  const C3_AGAINST = '#3b6fb6';
+  const C3_PRO     = '#b8cff6';
+
+  // ===== גרף חשיפה: חציון חלון המדידה =====
+  // נשאר ליניארי כיוון שהערכים קטנים וקרובים (1-16)
+  new Chart(document.getElementById('exposureChart'),{
+    type:'bar',
+    data:{
+      labels:['Ynet','אתרי ימין יחד','וואלה','הארץ+מעריב'],
+      datasets:[{
+        label:'חשיפה יחסית (חציון חלון המדידה)',
+        data:[16,8,6,1],
+        backgroundColor:C1_AGAINST
+      }]
+    },
+    options:{
+      plugins:{ legend:{ display:false }},
+      scales:{ y:{ beginAtZero:true } }
+    }
+  });
+
+  // ===== פונקציית גרף “3 מדדים × 2 מחנות” בסקלה לוגריתמית =====
+  function triMetricChart(canvasId, titleText, valuesAgainst, valuesPro){
+    const ctx = document.getElementById(canvasId);
+
+    const labels = ['תגובות', 'ויכוח מילולי', 'ויכוח שקט'];
+
+    const colorsAgainst = [C1_AGAINST, C2_AGAINST, C3_AGAINST];
+    const colorsPro     = [C1_PRO,     C2_PRO,     C3_PRO];
+
+    return new Chart(ctx,{
+      type:'bar',
+      data:{
+        labels,
+        datasets:[
+          {
+            label:'נגד',
+            data: valuesAgainst,
+            backgroundColor: colorsAgainst
+          },
+          {
+            label:'בעד',
+            data: valuesPro,
+            backgroundColor: colorsPro
+          }
+        ]
+      },
+      options:{
+        plugins:{
+          legend:{ position:'bottom' },
+          tooltip:{
+            callbacks:{
+              title: (items)=> items[0].label,
+              // כאן אנו מציגים את הערך המקורי (parsed.y)
+              label: (item)=> `${item.dataset.label}: ${fmt(item.parsed.y)}`
+            }
+          }
+        },
+        scales:{
+          y:{ 
+            // --- שינוי לוגריתמי ---
+            type: 'logarithmic',
+            // מינימום 1 כדי שעמודות קטנות לא יעלמו או ישברו את הגרף
+            min: 1, 
+            ticks: {
+              // פילטר כדי להציג רק מספרים שלמים עגולים בציר
+              callback: function(value, index, values) {
+                if(value === 100000 || value === 10000 || value === 1000 || value === 100 || value === 10 || value === 1){
+                   return value.toLocaleString();
+                }
+                return null;
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  // ===== נתונים (נייטרלי לא נכנס לגרפים בכלל) =====
+  
+  // כתבה 1: הקדמת בחירות
+  triMetricChart(
+    'chart_elections',
+    'הקדמת בחירות',
+    [287, 0, 9539],
+    [33,  0, 623]
+  );
+
+  // כתבה 2: נתניהו והחרדים
+  triMetricChart(
+    'chart_haredi',
+    'נתניהו והחרדים',
+    [184, 26, 3832],
+    [47,  43, 566]
+  );
+
+  // כתבה 3: בן גביר
+  triMetricChart(
+    'chart_bengvir',
+    'בן גביר',
+    [436, 110, 12135],
+    [387, 169, 5753]
+  );
+</script>
+
+</body>
+</html>
