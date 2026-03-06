@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>סדר עולמי חדש-ישן</title>
+  <style>
+    :root {
+      --bg: #f5f0e6;
+      --paper: #fbf8f2;
+      --ink: #1f1a17;
+      --muted: #6d6258;
+      --line: #d8cbb8;
+      --accent: #6f4e37;
+      --accent-soft: #a98467;
+      --shadow: 0 12px 30px rgba(41, 30, 22, 0.12);
+      --maxw: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,0.65), transparent 35%),
+        linear-gradient(180deg, #efe7d7 0%, var(--bg) 24%, #f4efe5 100%);
+      color: var(--ink);
+      line-height: 1.82;
+    }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+    }
+
+    .hero,
+    .section,
+    .closing,
+    .footer-note {
+      background: rgba(251,248,242,0.94);
+      border: 1px solid rgba(111,78,55,0.14);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 38px 28px 28px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.78), rgba(251,248,242,0.94));
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(169,132,103,0.10), transparent 35%, rgba(111,78,55,0.07));
+      pointer-events: none;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: #231b16;
+    }
+
+    .subtitle {
+      margin: 12px 0 0;
+      font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+      color: #433831;
+    }
+
+    .byline {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .intro {
+      margin-top: 22px;
+      font-size: 1.14rem;
+      color: #2f2925;
+    }
+
+    .opening-figure,
+    .card {
+      background: var(--paper);
+      border: 1px solid rgba(111,78,55,0.14);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(41, 30, 22, 0.08);
+    }
+
+    .opening-figure {
+      margin-top: 24px;
+    }
+
+    .opening-figure img,
+    .card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: sepia(35%) saturate(90%) contrast(105%) brightness(0.95);
+    }
+
+    .no-filter {
+      filter: none !important;
+    }
+
+    .figure-body,
+    .card-body {
+      padding: 16px 16px 18px;
+    }
+
+    .figure-body h3,
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.26rem;
+      color: #2b2019;
+    }
+
+    .figure-body p,
+    .card p {
+      margin: 0;
+      color: #453b35;
+      font-size: 1rem;
+    }
+
+    .lead-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      margin-top: 22px;
+      align-items: start;
+    }
+
+    .quote-card,
+    .map-card,
+    .parallel-col {
+      background: rgba(255,255,255,0.62);
+      border: 1px solid rgba(111,78,55,0.12);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .quote-card {
+      font-size: 1.12rem;
+      color: #342b25;
+    }
+
+    .quote-card strong,
+    .map-card h3,
+    .parallel-col h3,
+    .section-kicker {
+      color: var(--accent);
+    }
+
+    .map-card h3,
+    .parallel-col h3 {
+      margin: 0 0 12px;
+      font-size: 1.12rem;
+    }
+
+    .mini-list,
+    .steps {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-list li,
+    .steps li {
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(169,132,103,0.08);
+      border: 1px solid rgba(111,78,55,0.10);
+      font-size: 0.98rem;
+    }
+
+    .section,
+    .closing {
+      margin-top: 28px;
+      padding: 26px 22px 28px;
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      color: #2a211c;
+    }
+
+    .section-kicker {
+      margin: 0 0 8px;
+      font-size: 0.98rem;
+      letter-spacing: 0.03em;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .full-width {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .bridge {
+      margin-top: 22px;
+      padding: 18px;
+      border-right: 4px solid var(--accent-soft);
+      background: rgba(169,132,103,0.09);
+      border-radius: 18px;
+      color: #352d28;
+      font-size: 1.06rem;
+    }
+
+    .parallel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .steps li {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .num {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, var(--accent-soft), var(--accent));
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: bold;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .steps strong {
+      display: block;
+      margin-bottom: 2px;
+      color: #2b2019;
+      font-size: 1.02rem;
+    }
+
+    .closing p {
+      margin: 0 0 16px;
+      font-size: 1.08rem;
+      color: #352c26;
+    }
+
+    .closing p:last-child { margin-bottom: 0; }
+
+    .footer-note {
+      margin-top: 22px;
+      padding: 16px 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 860px) {
+      .lead-grid,
+      .gallery,
+      .parallel {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 30px 18px 22px;
+      }
+
+      .section,
+      .closing {
+        padding: 22px 16px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <h1>סדר עולמי חדש-ישן</h1>
+      <p class="subtitle">האם האנושות מתקדמת — או חוזרת לעידן הפיאודלי?</p>
+      <p class="byline">מאמר מאת: אמנון זוסמן · מרץ 2026</p>
+
+      <figure class="opening-figure">
+        <img class="no-filter" src="images/open_pic.jpg" alt="מעבר מן העולם הפיאודלי אל העולם הדיגיטלי" />
+        <figcaption class="figure-body">
+          <h3>מן הטירה והאדמה אל השרתים והמודלים</h3>
+          <p>אם בעבר הקרקע הייתה מקור הכוח, היום התשתית הדיגיטלית תופסת את מקומה. החץ ההיסטורי עולה קדימה — אבל ייתכן שהמבנה החברתי שמתחתיו מוכר לנו הרבה יותר משנדמה.</p>
+        </figcaption>
+      </figure>
+
+      <p class="intro">העולם המודרני סיפר לעצמו סיפור של שחרור: יותר ידע, יותר ניידות, יותר עצמאות. אבל ייתכן שמתחת לשפה החדשה של חדשנות, פלטפורמות ובינה מלאכותית, נבנה מחדש סדר עתיק בהרבה — סדר שבו מעטים מחזיקים בתשתית, שכבות ביניים מפעילות אותה, ורבים תלויים בה מבלי להבין כיצד היא פועלת.</p>
+
+      <p class="intro" style="margin-top:12px;">האם ההיררכיה המוכרת של מלכים, רוזנים, אומנים, איכרים ופשוטי עם חוזרת בצורה מודרנית בעקבות מהפכת הבינה המלאכותית?</p>
+
+      <div class="lead-grid">
+        <div class="quote-card">
+          <strong>הרעיון המרכזי:</strong><br>
+          אולי הבעיה איננה עצם קיומה של היררכיה, אלא השאלה מי מעצב אותה, מי נהנה ממנה, ועד כמה האדם הפשוט יכול להבין את חוקיה ולנוע בתוכה.<br><br>
+          ייתכן גם שההיררכיה עצמה איננה רק תוצר של מוסדות פוליטיים או כלכליים. ייתכן שהיא מבטאת מוטיב עמוק יותר במבנה החברה האנושית — משהו בסיסי בגנטיקה החברתית של ההומו־סאפיינס, שחוזר ומופיע בצורות שונות לאורך ההיסטוריה.
+        </div>
+        <aside class="map-card">
+          <h3>מפת המאמר</h3>
+          <ul class="mini-list">
+            <li>העולם הישן: הכתר, החרב, המלאכה, האדמה ופשוטי העם</li>
+            <li>העולם החדש: מודלי יסוד, פלטפורמות, מהנדסים, משתמשי כלים וההמון המחובר</li>
+            <li>ההקבלה: האם זהו סדר חדש — או גלגול חדש של מבנה עתיק?</li>
+            <li>ההבדל המכריע: דמוקרטיה, זמן פנוי והחובה לשמור על חברה ליברלית</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="section-kicker">חלק ראשון</p>
+      <h2 class="section-title">העולם הישן: חמש שכבות של כוח, עבודה ותלות</h2>
+      <div class="gallery">
+        <article class="card">
+          <img src="images/kings_clergy.jpg" alt="מלכים, אצולה בכירה ואנשי כמורה" />
+          <div class="card-body">
+            <h3>1. העליונים — הכתר, החרב והצלב</h3>
+            <p>בראש הסדר עמדו המלך, האצולה הבכירה ואנשי הכמורה. הם החזיקו בקרקע, בלגיטימציה ובמערכת הכללים. הכוח היה גלוי, סמלי ומרוכז.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="images/nobles_knights.jpg" alt="האצולה הזוטרה ואנשי החרב" />
+          <div class="card-body">
+            <h3>2. הרוזנים ואנשי החרב</h3>
+            <p>הם לא היו המלכים, אך שלטו בשטח. היו להם סמכות, כוח צבאי ומעמד חברתי — כל עוד נשבעו נאמנות למי שמעליהם.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="images/artisans.jpg" alt="אומנים ובעלי מלאכה" />
+          <div class="card-body">
+            <h3>3. האומנים — משתמשי הכלים</h3>
+            <p>האומנים החזיקו בידע מעשי. הם ידעו לבנות, לתקן, לייצר ולהפעיל כלים מורכבים — אך לא החזיקו במבנה הכולל שבתוכו פעלו.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="images/farmers.jpg" alt="עובדי חקלאות" />
+          <div class="card-body">
+            <h3>4. עובדי האדמה</h3>
+            <p>החקלאים נשאו את העולם הישן על גבם. הם סיפקו מזון, יציבות והמשכיות. בלי עבודתם, לא היה ארמון, לא כנסייה ולא צבא.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="gallery full-width" style="margin-top:18px;">
+        <article class="card">
+          <img src="images/workers.jpg" alt="פשוטי העם ועמל יומיומי" />
+          <div class="card-body">
+            <h3>5. פשוטי העם — נושאי המערכת על גבם</h3>
+            <p>הרוב הגדול חי בתוך המערכת, אך לא שלט בה. הוא עבד, נשא, בנה ושרד — בעוד ההבנה, הסמכות והשליטה נותרו ברמות העליונות יותר.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="bridge">הסדר הזה נראה לנו רחוק, כמעט פרימיטיבי. ובכל זאת, כאשר בוחנים את הכלכלה הדיגיטלית החדשה, קשה להתעלם מן הדמיון: גם בה יש בעלי תשתית, גם בה יש שכבות ביצוע ותיווך, וגם בה יש ציבור רחב שחי בתוך מערכת שאין לו שליטה של ממש עליה.</div>
+    </section>
+
+    <section class="section">
+      <p class="section-kicker">חלק שני</p>
+      <h2 class="section-title">העולם החדש: שכבות הכוח של עידן הבינה המלאכותית</h2>
+      <p>המהפכה הדיגיטלית הוצגה במשך שנים כמהפכה של שוויון. האינטרנט, כך נאמר לנו, יפתח את הידע לכולם. הטכנולוגיה תאפשר לכל אדם ליצור, ללמוד ולהתבטא. ובמידה רבה — זה אכן קרה.</p>
+      <p>אבל במקביל, מתחת לפני השטח, הולך ומתגבש מבנה חדש של כוח ותלות. מבנה שבו השליטה אינה נובעת מקרקע או מצבאות, אלא משליטה בתשתיות חישוב, מודלים ונתונים.</p>
+      <p>כאשר מתבוננים בעולם הבינה המלאכותית המתפתח במהירות, ניתן לזהות בו שכבות ברורות.</p>
+
+      <div class="gallery">
+        <article class="card">
+          <img class="no-filter" src="images/llm_lords.jpg" alt="בעלי מודלי היסוד" />
+          <div class="card-body">
+            <h3>1. בעלי מודלי היסוד — מחזיקי התשתית</h3>
+            <p>קבוצה קטנה יחסית של חברות ומנהיגים מחזיקה במודלי ה־LLM הגדולים. מי שמחזיק במודלים הללו מחזיק למעשה בתשתית שעליה נבנות שכבות רבות של העולם הדיגיטלי החדש.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="images/middle_age_logos.jpg" alt="קבלני הביצוע של העידן החדש" />
+          <div class="card-body">
+            <h3>2. קבלני הביצוע של המערכת</h3>
+            <p>מעל התשתית הזו פועלות חברות שמפתחות כלים, שירותים ומוצרים. הן אינן מחזיקות תמיד בתשתית הבסיסית של המודלים, אך הן שולטות בכלים שבאמצעותם משתמש העולם הרחב ביכולות החדשות.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="no-filter" src="images/modern_knights.jpg" alt="אנשי תוכנה ו-AI כאבירים החדשים" />
+          <div class="card-body">
+            <h3>3. האבירים החדשים — אנשי התוכנה וה־AI</h3>
+            <p>המערכת כולה אינה יכולה לפעול בלי האנשים שמבינים כיצד לבנות אותה ולהפעיל אותה. מהנדסי תוכנה, חוקרי AI ומדעני נתונים הם האדריכלים והמבצעים של העולם החדש.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="no-filter" src="images/old_modern_artist.jpg" alt="משתמש מקצועי בכלי AI" />
+          <div class="card-body">
+            <h3>4. האומנים החדשים — משתמשי הכלים</h3>
+            <p>מתחת לשכבת המפתחים נמצאת קבוצה הולכת וגדלה של אנשים שמסוגלים להשתמש בכלים החדשים בצורה יצירתית. הם אינם בונים את התשתית, אך הם יודעים להפעיל אותה כדי ליצור ערך.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="gallery full-width" style="margin-top:18px;">
+        <article class="card">
+          <img class="no-filter" src="images/youngs_with_celolars.jpg" alt="ההמון המחובר של העידן הדיגיטלי" />
+          <div class="card-body">
+            <h3>5. האנאלפביתים של העולם החדש</h3>
+            <p>רוב גדול עוד יותר של אנשים משתמש בטכנולוגיה החדשה — אך כמעט ואינו מבין כיצד היא פועלת. הם צורכים, מתקשרים ומשתמשים במכשירים חכמים, אך המנגנונים שמפעילים את העולם הדיגיטלי נותרים עבורם מסתוריים.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="bridge">כאשר מביטים במבנה הזה מן הצד, קשה שלא להרגיש שהוא מוכר בצורה מסוימת. שכבה קטנה מחזיקה בתשתית. שכבות ביניים מפעילות ומנהלות את המערכת. ורבים חיים בתוכה מבלי לשלוט בה באמת. ייתכן שהדמיון הזה איננו מקרי.</div>
+    </section>
+
+    <section class="section">
+      <p class="section-kicker">חלק שלישי</p>
+      <h2 class="section-title">האם חזרנו לפיאודליזם?</h2>
+      <div class="parallel">
+        <div class="parallel-col">
+          <h3>המבנה ההיסטורי</h3>
+          <ol class="steps">
+            <li><div class="num">1</div><div><strong>מלכים וכמורה</strong>מחזיקים בלגיטימציה, בקרקע ובחוק.</div></li>
+            <li><div class="num">2</div><div><strong>רוזנים ודוכסים</strong>חזקים מאוד, אך תלויים בריבון.</div></li>
+            <li><div class="num">3</div><div><strong>אבירים, פקידים ואנשי שירות</strong>מפעילים את המערכת בפועל.</div></li>
+            <li><div class="num">4</div><div><strong>אומנים ובעלי מלאכה</strong>יוצרים ערך בעזרת מיומנות וכלים.</div></li>
+            <li><div class="num">5</div><div><strong>איכרים ופשוטי העם</strong>נושאים את המערכת על גבם ותלויים בה.</div></li>
+          </ol>
+        </div>
+
+        <div class="parallel-col">
+          <h3>העולם החדש</h3>
+          <ol class="steps">
+            <li><div class="num">1</div><div><strong>בעלי חברות ה־LLM</strong>מחזיקים בתשתית הידע החדשה, במודלים ובשערי הגישה.</div></li>
+            <li><div class="num">2</div><div><strong>הפלטפורמות וקבלני הביצוע</strong>שולטים בכלים שדרכם העולם משתמש בתשתית.</div></li>
+            <li><div class="num">3</div><div><strong>אנשי התוכנה וה־AI</strong>האבירים, הפקידים והאדריכלים של הסדר החדש.</div></li>
+            <li><div class="num">4</div><div><strong>היודעים להשתמש בכלים</strong>האומנים החדשים: מעצבים, כותבים, חוקרים, יזמים ועובדים חכמים.</div></li>
+            <li><div class="num">5</div><div><strong>ההמון המחובר</strong>משתמש בטכנולוגיה החדשה מדי יום, אך לרוב מבלי להבין את המבנה שמאחוריה.</div></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="bridge">ההשוואה איננה מושלמת, וההיסטוריה אינה חוזרת על עצמה בדיוק. אבל ייתכן שעידן הבינה המלאכותית איננו מבטל היררכיות — אלא בונה אותן מחדש בצורה טכנולוגית. הטירות הוחלפו בשרתים, והאדמה הוחלפה במודלים.</div>
+    </section>
+
+    <section class="section">
+      <p class="section-kicker">חלק רביעי</p>
+      <h2 class="section-title">הציבור החופשי של העידן הדיגיטלי</h2>
+      <div class="gallery full-width">
+        <article class="card">
+          <img class="no-filter" src="images/free_people_in_the_beach.jpg" alt="אנשים חופשיים בחוף הים" />
+          <div class="card-body">
+            <h3>פשוטי העם — אבל אזרחים חופשיים</h3>
+            <p>בניגוד לאיכרי ימי הביניים, רוב אזרחי המדינות המודרניות אינם צמיתים. הם נהנים מזמן פנוי, מניידות חברתית, ומכוח פוליטי במסגרת המשטר הדמוקרטי. החברה המודרנית יצרה עבור חלק גדול מן האוכלוסייה לא רק יותר נוחות, אלא גם יותר פנאי — זמן לחיים, לתרבות, ללמידה ולבחירה.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="bridge">אבל דווקא כאן טמונה האחריות הגדולה: אם הציבור הרחב נהנה מן השפע שמייצרות המערכות הדיגיטליות, אך מפסיק להתעניין באופן שבו הן פועלות ובכוח שהן מרכזות — מבני כוח חדשים עלולים להתחזק מבלי להיתקל באיזון ובביקורת.</div>
+    </section>
+
+    <section class="closing">
+      <h2 class="section-title" style="margin-top:0;">אז האם האנושות מתקדמת — או חוזרת אחורה?</h2>
+      <p>ההשוואה בין העולם הפיאודלי לבין מבנה הכוח של עידן הבינה המלאכותית איננה מושלמת. ההיסטוריה לעולם אינה חוזרת בדיוק על עצמה. ובכל זאת, הדמיון בין שתי המערכות מעורר מחשבה.</p>
+      <p>בימי הביניים מקור הכוח היה הקרקע. מי שהחזיק בקרקע שלט בכלכלה, בביטחון ובחוק. בעולם החדש, מקור הכוח איננו עוד האדמה אלא התשתית הדיגיטלית: מודלים, מחשוב, נתונים ושערי גישה. מי שמחזיק בתשתיות הללו מחזיק במידה רבה גם בכוח לעצב את הכללים של המערכת כולה.</p>
+      <p>אבל יש גם הבדל עמוק בין התקופות. בעולם הפיאודלי הניידות החברתית הייתה מוגבלת מאוד. האיכר נולד איכר ומת איכר. בעולם הדיגיטלי החדש, לפחות לעת עתה, עדיין קיימת אפשרות תנועה בין השכבות. אדם יכול ללמוד, להבין את הכלים החדשים, ולהפוך ממשתמש פסיבי למשתמש יוצר — ולעיתים אפילו למי שבונה את המערכות עצמן.</p>
+      <p>במובן זה, הדמוקרטיות הליברליות הן אולי ההבדל החשוב ביותר בין העולם החדש לבין העולם הפיאודלי. הן מאפשרות לציבור הרחב להישאר לא רק צרכן של הטכנולוגיה, אלא גם גורם שמפקח על הכוח שהיא מייצרת.</p>
+      <p>אם כך, השאלה האמיתית איננה האם תהיה היררכיה, אלא איזו היררכיה תיווצר: האם היא תהיה סגורה ומרוכזת בידי מעטים, או פתוחה מספיק כדי לאפשר תנועה, למידה ופיקוח אזרחי.</p>
+      <p><strong>ייתכן שהעולם הדיגיטלי לא ביטל את הפיאודליזם — אלא רק החליף את הטירות בשרתים, ואת האדמה במודלים. אבל בניגוד לימי הביניים, עדיין עומדת בפני החברה האנושית האפשרות לבחור כיצד לאזן את הכוח הזה — ולשמור על דמוקרטיה ליברלית חיה, חופשית וערנית.</strong></p>
+    </section>
+
+    <div class="footer-note">
+      הערת עבודה: אם שם קובץ תמונת הפתיחה או תמונת פשוטי העם שונה אצלך, צריך רק לעדכן את ערכי ה-src המתאימים בתיקיית images.
+    </div>
+  </main>
+</body>
+</html>
