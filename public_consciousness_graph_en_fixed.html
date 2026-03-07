@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>The Public Consciousness Space in Israel</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0e1a;
+  --surface:#111827;
+  --surface2:#1e293b;
+  --border:#2a3a52;
+  --text:#e2e8f0;
+  --text-dim:#94a3b8;
+  --accent:#60a5fa;
+  --concept:#a78bfa;
+  --metric:#34d399;
+  --issue:#f87171;
+  --technology:#60a5fa;
+  --project:#fbbf24;
+  --solution:#2dd4bf;
+  --skill:#f472b6;
+}
+html,body{
+  width:100%;height:100%;overflow:hidden;
+  font-family:'Noto Sans',sans-serif;
+  background:var(--bg);color:var(--text);
+}
+
+/* Top bar */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 24px;
+  background:linear-gradient(180deg,rgba(10,14,26,0.97) 0%,rgba(10,14,26,0.85) 100%);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.topbar h1{
+  font-size:18px;font-weight:700;
+  background:linear-gradient(135deg,var(--accent),var(--concept));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.topbar .subtitle{font-size:12px;color:var(--text-dim);margin-top:2px}
+
+/* Filters */
+.filters{
+  display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+}
+.filter-btn{
+  padding:5px 14px;border-radius:20px;
+  font-family:inherit;font-size:12px;font-weight:600;
+  border:1.5px solid var(--border);
+  background:transparent;color:var(--text-dim);
+  cursor:pointer;transition:all 0.25s ease;
+  white-space:nowrap;
+}
+.filter-btn:hover{border-color:var(--text-dim);color:var(--text)}
+.filter-btn.active{color:#fff}
+.filter-btn[data-type="concept"].active{border-color:var(--concept);background:rgba(167,139,250,0.15);color:var(--concept)}
+.filter-btn[data-type="metric"].active{border-color:var(--metric);background:rgba(52,211,153,0.15);color:var(--metric)}
+.filter-btn[data-type="issue"].active{border-color:var(--issue);background:rgba(248,113,113,0.15);color:var(--issue)}
+.filter-btn[data-type="technology"].active{border-color:var(--technology);background:rgba(96,165,250,0.15);color:var(--technology)}
+.filter-btn[data-type="project"].active{border-color:var(--project);background:rgba(251,191,36,0.15);color:var(--project)}
+.filter-btn[data-type="solution"].active{border-color:var(--solution);background:rgba(45,212,191,0.15);color:var(--solution)}
+.filter-btn[data-type="skill"].active{border-color:var(--skill);background:rgba(244,114,182,0.15);color:var(--skill)}
+.filter-btn[data-type="all"].active{border-color:var(--accent);background:rgba(96,165,250,0.15);color:var(--accent)}
+
+/* Graph area */
+#graph-container{
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  padding-top:56px;
+}
+svg{width:100%;height:100%;display:block}
+
+/* Edges */
+.edge{stroke-width:1.2;opacity:0.35;transition:opacity 0.4s ease}
+.edge.dependency{stroke-dasharray:none}
+.edge.related{stroke-dasharray:6,4}
+.edge.faded{opacity:0.04}
+.edge.highlighted{opacity:0.85;stroke-width:2.5}
+
+/* Nodes */
+.node{cursor:pointer}
+.node circle{
+  stroke-width:2.5;
+  transition:all 0.3s ease;
+  filter:drop-shadow(0 0 8px rgba(0,0,0,0.4));
+}
+.node:hover circle{
+  filter:drop-shadow(0 0 16px rgba(255,255,255,0.15));
+  stroke-width:3.5;
+}
+.node text{
+  font-family:'Noto Sans',sans-serif;
+  font-weight:600;
+  fill:var(--text);
+  paint-order:stroke;
+  stroke:var(--bg);
+  stroke-width:3.5px;
+  stroke-linejoin:round;
+  pointer-events:none;
+  transition:opacity 0.4s ease;
+}
+.node.faded circle{opacity:0.08}
+.node.faded text{opacity:0.06}
+.node.highlighted circle{
+  filter:drop-shadow(0 0 20px rgba(255,255,255,0.25));
+  stroke-width:4;
+}
+
+/* Side panel */
+.side-panel{
+  position:fixed;top:56px;left:0;bottom:0;width:380px;
+  background:linear-gradient(180deg,var(--surface) 0%,var(--bg) 100%);
+  border-right:1px solid var(--border);
+  padding:28px 24px;
+  transform:translateX(-100%);
+  transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  z-index:90;
+  overflow-y:auto;
+  backdrop-filter:blur(16px);
+}
+.side-panel.open{transform:translateX(0)}
+.side-panel .close-btn{
+  position:absolute;top:16px;left:16px;
+  width:32px;height:32px;border-radius:50%;
+  background:var(--surface2);border:1px solid var(--border);
+  color:var(--text-dim);font-size:18px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s;
+}
+.side-panel .close-btn:hover{background:var(--border);color:var(--text)}
+
+.panel-type{
+  display:inline-block;padding:4px 12px;border-radius:12px;
+  font-size:12px;font-weight:700;margin-bottom:16px;
+}
+.panel-title{font-size:22px;font-weight:800;margin-bottom:12px;line-height:1.4}
+.panel-desc{font-size:15px;line-height:1.8;color:var(--text-dim);margin-bottom:24px}
+.panel-connections{border-top:1px solid var(--border);padding-top:16px}
+.panel-connections h3{font-size:13px;color:var(--text-dim);font-weight:600;margin-bottom:12px}
+.conn-item{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:8px 0;border-bottom:1px solid rgba(42,58,82,0.4);
+  font-size:13px;line-height:1.6;
+}
+.conn-dot{
+  width:8px;height:8px;border-radius:50%;
+  margin-top:7px;flex-shrink:0;
+}
+.conn-label{font-weight:600;color:var(--text)}
+.conn-desc{color:var(--text-dim);font-size:12px;margin-top:2px}
+.conn-type-tag{
+  font-size:10px;padding:1px 6px;border-radius:6px;
+  background:var(--surface2);color:var(--text-dim);
+  margin-right:6px;
+}
+
+/* Zoom controls */
+.zoom-controls{
+  position:fixed;bottom:24px;right:24px;
+  display:flex;flex-direction:column;gap:6px;z-index:80;
+}
+.zoom-btn{
+  width:40px;height:40px;border-radius:12px;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--text);font-size:20px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s;font-family:inherit;
+}
+.zoom-btn:hover{background:var(--surface2);border-color:var(--text-dim)}
+
+/* Legend */
+.legend{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  display:flex;gap:16px;z-index:80;
+  background:rgba(17,24,39,0.85);backdrop-filter:blur(8px);
+  padding:8px 20px;border-radius:20px;border:1px solid var(--border);
+}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-dim)}
+.legend-dot{width:10px;height:10px;border-radius:50%}
+.legend-line{width:20px;height:0;border-top:2px solid var(--text-dim)}
+.legend-line.dashed{border-top-style:dashed}
+
+/* Tooltip */
+.tooltip{
+  position:fixed;pointer-events:none;z-index:200;
+  background:var(--surface);border:1px solid var(--border);
+  padding:8px 14px;border-radius:10px;
+  font-size:12px;color:var(--text);
+  box-shadow:0 8px 32px rgba(0,0,0,0.4);
+  opacity:0;transition:opacity 0.2s;
+  max-width:280px;
+}
+.tooltip.visible{opacity:1}
+
+/* Intro overlay */
+.intro-overlay{
+  position:fixed;top:0;left:0;right:0;bottom:0;z-index:500;
+  background:rgba(10,14,26,0.92);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity 0.5s ease;
+}
+.intro-overlay.hidden{opacity:0;pointer-events:none}
+.intro-card{
+  max-width:560px;padding:40px;text-align:center;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:24px;box-shadow:0 24px 64px rgba(0,0,0,0.5);
+}
+.intro-card h2{
+  font-size:26px;font-weight:800;margin-bottom:16px;
+  background:linear-gradient(135deg,var(--accent),var(--concept));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.intro-card p{font-size:15px;line-height:1.8;color:var(--text-dim);margin-bottom:24px}
+.intro-card button{
+  padding:12px 36px;border-radius:14px;
+  background:linear-gradient(135deg,var(--accent),var(--concept));
+  border:none;color:#fff;font-family:inherit;font-size:15px;font-weight:700;
+  cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;
+}
+.intro-card button:hover{transform:scale(1.04);box-shadow:0 8px 24px rgba(96,165,250,0.3)}
+
+@media(max-width:600px){
+  .side-panel{width:100%}
+  .filters{gap:4px}
+  .filter-btn{font-size:11px;padding:4px 10px}
+  .legend{flex-wrap:wrap;gap:8px}
+}
+</style>
+</head>
+<body>
+
+<div class="intro-overlay" id="introOverlay">
+  <div class="intro-card">
+    <h2>The Public Consciousness Space in Israel</h2>
+    <div style="font-size:14px;color:var(--accent);font-weight:600;margin-bottom:14px">By Amnon Sussman</div>
+    <p>An interactive knowledge graph showing the complex network of actors, platforms, influence mechanisms, and feedback loops that shape the public consciousness space in Israel.<br/><br/>
+    Click nodes to explore • Filter by type • Drag to reorganize</p>
+    <button onclick="document.getElementById('introOverlay').classList.add('hidden')">Enter Graph</button>
+  </div>
+</div>
+
+<div class="topbar">
+  <div>
+    <h1>The Public Consciousness Space in Israel</h1>
+    <div class="subtitle">Amnon Sussman · 32 nodes · 70 links · Interactive knowledge graph</div>
+  </div>
+  <div class="filters" id="filters"></div>
+</div>
+
+<div id="graph-container">
+  <svg id="graph"></svg>
+</div>
+
+<div class="side-panel" id="sidePanel">
+  <button class="close-btn" id="closePanel">✕</button>
+  <div id="panelContent"></div>
+</div>
+
+<div class="zoom-controls">
+  <button class="zoom-btn" id="zoomIn">+</button>
+  <button class="zoom-btn" id="zoomOut">−</button>
+  <button class="zoom-btn" id="zoomReset" style="font-size:13px">⟲</button>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-line"></div> Dependency</div>
+  <div class="legend-item"><div class="legend-line dashed"></div> Relation</div>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+<div class="copyright-fixed">© 2026 Amnon Sussman. All rights reserved.</div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────
+const graphData = {
+  nodes: [
+    {id:"public-sphere-israel",label:"Public Consciousness Space",type:"concept",description:"The arena in which citizens, institutions, platforms, and political actors struggle over the interpretation of reality, the public agenda, and legitimacy."},
+    {id:"public-opinion",label:"Public Opinion",type:"metric",description:"The accumulation of public attitudes, sentiments, and preferences toward events, institutions, and political actors."},
+    {id:"trust",label:"Public Trust",type:"metric",description:"The degree of trust the public places in institutions, media, experts, and circulating information."},
+    {id:"polarization",label:"Polarization",type:"issue",description:"The deepening of identity, political, and emotional divides between groups in Israeli society."},
+    {id:"media-mainstream",label:"Mainstream Media",type:"technology",description:"News channels, newspapers, radio, and news sites operating within an institutional and professional framework."},
+    {id:"social-platforms",label:"Social Platforms",type:"technology",description:"Digital platforms through which information, emotions, and narratives spread rapidly and interactively."},
+    {id:"algorithms",label:"Algorithms",type:"technology",description:"Ranking, recommendation, and distribution mechanisms that determine what is shown to whom and with what intensity."},
+    {id:"narratives",label:"Narratives",type:"concept",description:"Interpretive frameworks that organize events, identities, and threats into a meaningful public story."},
+    {id:"frames",label:"Framing",type:"concept",description:"The way an event or issue is presented so that some aspects are emphasized while others are downplayed."},
+    {id:"agenda-setting",label:"Agenda Setting",type:"concept",description:"The process through which certain issues gain greater visibility and centrality in public discourse."},
+    {id:"political-actors",label:"Political Actors",type:"project",description:"Parties, elected officials, advisers, and messaging teams working to shape public attitudes."},
+    {id:"state-institutions",label:"State Institutions",type:"project",description:"Government ministries, the judiciary, security forces, and public bodies that shape legitimacy and official information."},
+    {id:"security-events",label:"Security Events",type:"issue",description:"Wars, attacks, operations, and security threats that rapidly reshape discourse, emotion, and public attention."},
+    {id:"collective-trauma",label:"Collective Trauma",type:"issue",description:"A shared public experience of threat, loss, and injury that affects sensitivity to messages, identity, and memory."},
+    {id:"identity-groups",label:"Identity Groups",type:"concept",description:"Social, religious, national, class-based, and ideological groups that interpret reality through identity."},
+    {id:"communities",label:"Online Communities",type:"concept",description:"Partially or fully organized digital publics that develop shared language, affinity, and discourse boundaries."},
+    {id:"influencers",label:"Influencers",type:"project",description:"Figures with high attention capital who can mediate, shape, and escalate public discourse."},
+    {id:"bots-coordinated",label:"Bots and Coordinated Campaigns",type:"issue",description:"Automated or coordinated accounts used to amplify messages artificially, redirect attention, or create the impression of a majority."},
+    {id:"disinformation",label:"Disinformation",type:"issue",description:"The intentional spread of misleading or false information for political, cognitive, or emotional impact."},
+    {id:"misinformation",label:"Misinformation",type:"issue",description:"The spread of inaccurate information without deliberate intent to deceive, yet with real public effects."},
+    {id:"fact-checking",label:"Fact-Checking",type:"solution",description:"Journalistic, civic, and technological mechanisms designed to evaluate claims and slow the spread of falsehoods."},
+    {id:"journalistic-ethics",label:"Journalistic Ethics",type:"solution",description:"Professional norms of verification, balance, responsibility, and the distinction between fact and interpretation."},
+    {id:"civic-resilience",label:"Civic Resilience",type:"solution",description:"A social capacity to cope with information overload, anxiety, manipulation, and conflict without institutional or communal breakdown."},
+    {id:"civil-society",label:"Civil Society",type:"project",description:"NGOs, civic initiatives, protest organizations, and action communities involved in producing meaning and public influence."},
+    {id:"protests",label:"Public Protest",type:"project",description:"פעולה קולקטיבית הממירה עמדות ורגשות ציבוריים לנוכחות במרחב הפיזי והתקשורתי."},
+    {id:"experts",label:"Experts",type:"skill",description:"Researchers, commentators, professionals, and other figures perceived as holders of authoritative knowledge."},
+    {id:"emotion-fear-anger",label:"Fear and Anger",type:"concept",description:"Core emotions that drive attention, sharing, identification, and escalation in public discourse."},
+    {id:"attention-economy",label:"Attention Economy",type:"concept",description:"The ongoing competition for users' time, emotion, and attention."},
+    {id:"platform-governance",label:"Platform Governance",type:"solution",description:"The rules, enforcement mechanisms, and system design choices that shape content, visibility, and behavior on digital platforms."},
+    {id:"regulation",label:"Regulation",type:"solution",description:"State or public intervention that sets boundaries, transparency requirements, and accountability for the digital and media sphere."},
+    {id:"ai-generated-content",label:"AI-Generated Content",type:"technology",description:"Text, images, audio, or video created by AI systems, reshaping the economics of production and trust."},
+    {id:"memory-symbols",label:"Collective Memory and Symbols",type:"concept",description:"Events, rituals, images, and national symbols that feed public interpretation and political meaning."},
+    {id:"legitimacy",label:"Legitimacy",type:"metric",description:"The degree of public acceptance granted to institutions, policies, leaders, or discursive practices."},
+    {id:"participation",label:"Civic Participation",type:"metric",description:"Public involvement in debate, voting, protest, civic initiatives, and the circulation of content."}
+  ],
+  edges: [
+    {source:"public-sphere-israel",target:"media-mainstream",type:"related",description:"Partly relies on mediation by mainstream media."},
+    {source:"public-sphere-israel",target:"social-platforms",type:"related",description:"Is shaped through social platforms as spaces of distribution and discourse."},
+    {source:"public-sphere-israel",target:"public-opinion",type:"related",description:"Both produces and reflects public opinion."},
+    {source:"media-mainstream",target:"agenda-setting",type:"dependency",description:"Influences the public agenda."},
+    {source:"social-platforms",target:"agenda-setting",type:"dependency",description:"Compete with traditional media over defining what matters."},
+    {source:"algorithms",target:"social-platforms",type:"dependency",description:"Operate the exposure and distribution logic of platforms."},
+    {source:"algorithms",target:"attention-economy",type:"related",description:"Maximize attention through content matching and recommendations."},
+    {source:"attention-economy",target:"emotion-fear-anger",type:"related",description:"Rewards content that triggers fear, anger, and emotional arousal."},
+    {source:"emotion-fear-anger",target:"polarization",type:"related",description:"Increase reactivity, camp-based identity, and escalation."},
+    {source:"narratives",target:"frames",type:"related",description:"Are constructed through different framings of the same reality."},
+    {source:"frames",target:"public-opinion",type:"related",description:"Guide how the public interprets events and actors."},
+    {source:"agenda-setting",target:"public-opinion",type:"related",description:"Shapes what the public perceives as important and urgent."},
+    {source:"political-actors",target:"narratives",type:"related",description:"Promote narratives in order to shape reality and mobilize support."},
+    {source:"political-actors",target:"social-platforms",type:"dependency",description:"Use platforms to distribute messages, target audiences, and mobilize."},
+    {source:"political-actors",target:"media-mainstream",type:"related",description:"Operate through interviews, briefings, and leaks to shape the agenda."},
+    {source:"state-institutions",target:"legitimacy",type:"related",description:"Their legitimacy depends on public perceptions of authority and credibility."},
+    {source:"trust",target:"legitimacy",type:"dependency",description:"Public trust feeds the legitimacy of institutions and policies."},
+    {source:"media-mainstream",target:"trust",type:"related",description:"Can strengthen or erode trust depending on coverage quality and perceived bias."},
+    {source:"social-platforms",target:"trust",type:"related",description:"Can broaden exposure while also eroding trust through overload, noise, and suspicion."},
+    {source:"disinformation",target:"trust",type:"related",description:"Erodes trust in information sources and institutions."},
+    {source:"misinformation",target:"public-opinion",type:"related",description:"Distorts perception even without malicious intent."},
+    {source:"bots-coordinated",target:"disinformation",type:"dependency",description:"Serve to spread and amplify disinformation."},
+    {source:"bots-coordinated",target:"social-platforms",type:"dependency",description:"Operate within social platforms and depend on their exposure structures."},
+    {source:"fact-checking",target:"disinformation",type:"related",description:"Aims to expose, slow, and refute misleading information."},
+    {source:"fact-checking",target:"misinformation",type:"related",description:"Helps correct errors and inaccurate circulation."},
+    {source:"journalistic-ethics",target:"media-mainstream",type:"dependency",description:"Provides the normative foundation for mainstream media practice."},
+    {source:"journalistic-ethics",target:"trust",type:"related",description:"Can strengthen trust when seen and applied consistently."},
+    {source:"security-events",target:"emotion-fear-anger",type:"dependency",description:"Produce shock, fear, anger, and emotional urgency."},
+    {source:"security-events",target:"agenda-setting",type:"dependency",description:"Push other issues aside and concentrate public attention."},
+    {source:"security-events",target:"collective-trauma",type:"dependency",description:"May deepen collective trauma."},
+    {source:"collective-trauma",target:"narratives",type:"related",description:"Charges narratives with emotional intensity and vulnerable memory."},
+    {source:"memory-symbols",target:"narratives",type:"related",description:"Provide historical and emotional raw material for public stories."},
+    {source:"identity-groups",target:"narratives",type:"related",description:"Adopt and shape narratives according to identity affiliations."},
+    {source:"identity-groups",target:"polarization",type:"related",description:"Identity boundaries can deepen polarization when they harden into closed camps."},
+    {source:"communities",target:"identity-groups",type:"related",description:"Often organize around shared identities, values, and interests."},
+    {source:"communities",target:"social-platforms",type:"dependency",description:"Form, expand, and persist through digital infrastructures."},
+    {source:"influencers",target:"communities",type:"related",description:"Mediate language, style, and positions within online communities."},
+    {source:"influencers",target:"agenda-setting",type:"related",description:"Can push issues toward the center of public attention."},
+    {source:"experts",target:"trust",type:"related",description:"Can strengthen trust when perceived as professional and independent."},
+    {source:"experts",target:"media-mainstream",type:"related",description:"Appear as commentators and authoritative sources in media discourse."},
+    {source:"civil-society",target:"participation",type:"dependency",description:"Increases civic involvement through organization, education, and mobilization."},
+    {source:"civil-society",target:"protests",type:"related",description:"At times organizes or mediates public protest."},
+    {source:"protests",target:"media-mainstream",type:"related",description:"Feed coverage, interpretation, and struggles over framing."},
+    {source:"protests",target:"social-platforms",type:"dependency",description:"Use platforms for mobilization, documentation, and message circulation."},
+    {source:"protests",target:"public-opinion",type:"related",description:"May shift attitudes or at least demonstrate the intensity of disagreement."},
+    {source:"polarization",target:"trust",type:"related",description:"Tends to erode intergroup trust and trust in shared institutions."},
+    {source:"polarization",target:"legitimacy",type:"related",description:"May undermine mutual recognition of the legitimacy of rivals and institutions."},
+    {source:"civic-resilience",target:"trust",type:"dependency",description:"Civic resilience depends on minimum levels of trust and recovery capacity."},
+    {source:"civic-resilience",target:"fact-checking",type:"related",description:"Draws on verification and slower reactivity to stabilize discourse."},
+    {source:"civic-resilience",target:"polarization",type:"related",description:"Aims to reduce escalation and increase the ability to sustain disagreement."},
+    {source:"platform-governance",target:"social-platforms",type:"dependency",description:"Defines rules of enforcement, visibility, and content prioritization on platforms."},
+    {source:"platform-governance",target:"disinformation",type:"related",description:"Can reduce or enable spread depending on the level of enforcement."},
+    {source:"regulation",target:"platform-governance",type:"dependency",description:"Provides the normative and legal framework for platform governance."},
+    {source:"regulation",target:"media-mainstream",type:"related",description:"Sets some of the formal rules of accountability and transparency."},
+    {source:"ai-generated-content",target:"disinformation",type:"related",description:"May make the production of misleading content cheaper and faster at scale."},
+    {source:"ai-generated-content",target:"trust",type:"related",description:"Challenges the ability to distinguish between authentic, edited, and fabricated content."},
+    {source:"ai-generated-content",target:"fact-checking",type:"related",description:"Requires more advanced verification tools and detection methods."},
+    {source:"memory-symbols",target:"collective-trauma",type:"related",description:"Memory and symbols preserve, and at times reactivate, traumatic experiences."},
+    {source:"state-institutions",target:"security-events",type:"related",description:"Manage, interpret, and communicate security events to the public."},
+    {source:"state-institutions",target:"trust",type:"related",description:"Trust in them is shaped by performance, transparency, and public communication."},
+    {source:"public-opinion",target:"participation",type:"dependency",description:"Attitudes and emotions are sometimes translated into political and civic engagement."},
+    {source:"participation",target:"public-sphere-israel",type:"related",description:"Civic participation feeds and expands the public sphere."},
+    {source:"narratives",target:"legitimacy",type:"related",description:"Some narratives justify institutions, leaders, or actions while undermining others."},
+    {source:"algorithms",target:"polarization",type:"related",description:"May reinforce homophily, filter bubbles, and escalation."},
+    {source:"social-platforms",target:"influencers",type:"dependency",description:"Enable audience accumulation, emotional authority, and rapid distribution."},
+    {source:"media-mainstream",target:"experts",type:"related",description:"Grants experts visibility, a platform, and public authority."},
+    {source:"civil-society",target:"civic-resilience",type:"related",description:"Strengthens solidarity, mediation, and social recovery capacity."},
+    {source:"fact-checking",target:"trust",type:"related",description:"May restore trust when it is transparent, consistent, and understandable to the public."},
+    {source:"identity-groups",target:"memory-symbols",type:"related",description:"Different groups interpret symbols and collective memory in different ways."},
+    {source:"political-actors",target:"legitimacy",type:"related",description:"Struggle for public recognition of the justice of their cause and their authority to act."}
+  ]
+};
+
+// ─── CONFIG ──────────────────────────────────────────────
+const typeColors = {
+  concept:"#a78bfa", metric:"#34d399", issue:"#f87171",
+  technology:"#60a5fa", project:"#fbbf24", solution:"#2dd4bf", skill:"#f472b6"
+};
+const typeLabels = {
+  concept:"Concept", metric:"Metric", issue:"Issue",
+  technology:"Technology", project:"Actor", solution:"Solution", skill:"Skill"
+};
+const typeOrder = ["all","concept","metric","issue","technology","project","solution","skill"];
+
+// ─── COMPUTE DEGREE ─────────────────────────────────────
+const degreeMap = {};
+graphData.nodes.forEach(n => degreeMap[n.id] = 0);
+graphData.edges.forEach(e => {
+  degreeMap[e.source] = (degreeMap[e.source]||0) + 1;
+  degreeMap[e.target] = (degreeMap[e.target]||0) + 1;
+});
+const maxDegree = Math.max(...Object.values(degreeMap));
+const radiusScale = d => 12 + (degreeMap[d.id] / maxDegree) * 22;
+
+// ─── FILTERS ────────────────────────────────────────────
+const filtersEl = document.getElementById("filters");
+let activeFilter = "all";
+
+typeOrder.forEach(t => {
+  const btn = document.createElement("button");
+  btn.className = "filter-btn" + (t === "all" ? " active" : "");
+  btn.dataset.type = t;
+  btn.textContent = t === "all" ? "All" : typeLabels[t];
+  if (t !== "all") btn.style.setProperty("--c", typeColors[t]);
+  btn.addEventListener("click", () => {
+    activeFilter = t;
+    filtersEl.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    applyFilter();
+  });
+  filtersEl.appendChild(btn);
+});
+
+function applyFilter() {
+  nodeG.classed("faded", d => activeFilter !== "all" && d.type !== activeFilter);
+  edgeG.classed("faded", d => {
+    if (activeFilter === "all") return false;
+    const s = typeof d.source === "object" ? d.source : graphData.nodes.find(n=>n.id===d.source);
+    const t = typeof d.target === "object" ? d.target : graphData.nodes.find(n=>n.id===d.target);
+    return s.type !== activeFilter && t.type !== activeFilter;
+  });
+}
+
+// ─── SVG + ZOOM ─────────────────────────────────────────
+const svg = d3.select("#graph");
+const width = window.innerWidth;
+const height = window.innerHeight - 56;
+
+const zoomBehavior = d3.zoom()
+  .scaleExtent([0.3, 4])
+  .on("zoom", e => container.attr("transform", e.transform));
+
+svg.call(zoomBehavior);
+const container = svg.append("g");
+
+// Arrow markers
+const defs = svg.append("defs");
+Object.entries(typeColors).forEach(([type, color]) => {
+  defs.append("marker")
+    .attr("id", "arrow-" + type)
+    .attr("viewBox", "0 0 10 6")
+    .attr("refX", 10).attr("refY", 3)
+    .attr("markerWidth", 8).attr("markerHeight", 6)
+    .attr("orient", "auto")
+    .append("path")
+    .attr("d", "M0,0 L10,3 L0,6 Z")
+    .attr("fill", color)
+    .attr("opacity", 0.5);
+});
+
+// ─── SIMULATION ─────────────────────────────────────────
+const simulation = d3.forceSimulation(graphData.nodes)
+  .force("link", d3.forceLink(graphData.edges).id(d => d.id).distance(140).strength(0.4))
+  .force("charge", d3.forceManyBody().strength(-420))
+  .force("center", d3.forceCenter(width / 2, height / 2))
+  .force("collision", d3.forceCollide().radius(d => radiusScale(d) + 20))
+  .force("x", d3.forceX(width / 2).strength(0.04))
+  .force("y", d3.forceY(height / 2).strength(0.04));
+
+// ─── EDGES ──────────────────────────────────────────────
+const edgeG = container.append("g").attr("class","edges")
+  .selectAll("line")
+  .data(graphData.edges)
+  .join("line")
+  .attr("class", d => "edge " + d.type)
+  .attr("stroke", d => {
+    const s = graphData.nodes.find(n => n.id === (typeof d.source === "object" ? d.source.id : d.source));
+    return s ? typeColors[s.type] : "#475569";
+  })
+  .attr("marker-end", d => {
+    const s = graphData.nodes.find(n => n.id === (typeof d.source === "object" ? d.source.id : d.source));
+    return s ? "url(#arrow-" + s.type + ")" : "";
+  });
+
+// Edge tooltip
+const tooltip = document.getElementById("tooltip");
+edgeG.on("mouseenter", (event, d) => {
+  tooltip.textContent = d.description;
+  tooltip.classList.add("visible");
+}).on("mousemove", event => {
+  tooltip.style.left = event.clientX + 12 + "px";
+  tooltip.style.top = event.clientY - 8 + "px";
+}).on("mouseleave", () => {
+  tooltip.classList.remove("visible");
+});
+
+// ─── NODES ──────────────────────────────────────────────
+const nodeG = container.append("g").attr("class","nodes")
+  .selectAll("g")
+  .data(graphData.nodes)
+  .join("g")
+  .attr("class", "node")
+  .call(d3.drag()
+    .on("start", (e, d) => { if (!e.active) simulation.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+    .on("drag", (e, d) => { d.fx = e.x; d.fy = e.y; })
+    .on("end", (e, d) => { if (!e.active) simulation.alphaTarget(0); d.fx = null; d.fy = null; })
+  );
+
+nodeG.append("circle")
+  .attr("r", d => radiusScale(d))
+  .attr("fill", d => typeColors[d.type])
+  .attr("stroke", d => typeColors[d.type])
+  .attr("stroke-opacity", 0.3)
+  .attr("fill-opacity", 0.85);
+
+nodeG.append("text")
+  .text(d => d.label)
+  .attr("dy", d => radiusScale(d) + 16)
+  .attr("text-anchor", "middle")
+  .attr("font-size", d => Math.max(10, 11 + (degreeMap[d.id] / maxDegree) * 3));
+
+// ─── CLICK TO FOCUS ─────────────────────────────────────
+let selectedNode = null;
+const sidePanel = document.getElementById("sidePanel");
+const panelContent = document.getElementById("panelContent");
+
+nodeG.on("click", (event, d) => {
+  event.stopPropagation();
+  selectedNode = d;
+
+  // Find neighbors
+  const neighborIds = new Set();
+  neighborIds.add(d.id);
+  graphData.edges.forEach(e => {
+    const sid = typeof e.source === "object" ? e.source.id : e.source;
+    const tid = typeof e.target === "object" ? e.target.id : e.target;
+    if (sid === d.id) neighborIds.add(tid);
+    if (tid === d.id) neighborIds.add(sid);
+  });
+
+  nodeG.classed("faded", n => !neighborIds.has(n.id));
+  nodeG.classed("highlighted", n => n.id === d.id);
+  edgeG.classed("faded", e => {
+    const sid = typeof e.source === "object" ? e.source.id : e.source;
+    const tid = typeof e.target === "object" ? e.target.id : e.target;
+    return sid !== d.id && tid !== d.id;
+  });
+  edgeG.classed("highlighted", e => {
+    const sid = typeof e.source === "object" ? e.source.id : e.source;
+    const tid = typeof e.target === "object" ? e.target.id : e.target;
+    return sid === d.id || tid === d.id;
+  });
+
+  // Build connections list
+  const connections = graphData.edges.filter(e => {
+    const sid = typeof e.source === "object" ? e.source.id : e.source;
+    const tid = typeof e.target === "object" ? e.target.id : e.target;
+    return sid === d.id || tid === d.id;
+  }).map(e => {
+    const sid = typeof e.source === "object" ? e.source.id : e.source;
+    const tid = typeof e.target === "object" ? e.target.id : e.target;
+    const otherId = sid === d.id ? tid : sid;
+    const other = graphData.nodes.find(n => n.id === otherId);
+    const direction = sid === d.id ? "→" : "←";
+    return {other, direction, edge: e};
+  });
+
+  const color = typeColors[d.type];
+  panelContent.innerHTML = `
+    <div class="panel-type" style="background:${color}22;color:${color};border:1px solid ${color}44">
+      ${typeLabels[d.type]}
+    </div>
+    <div class="panel-title">${d.label}</div>
+    <div class="panel-desc">${d.description}</div>
+    <div class="panel-connections">
+      <h3>${connections.length} Connections</h3>
+      ${connections.map(c => `
+        <div class="conn-item">
+          <div class="conn-dot" style="background:${typeColors[c.other.type]}"></div>
+          <div>
+            <div class="conn-label">${c.direction} ${c.other.label}
+              <span class="conn-type-tag">${c.edge.type === "dependency" ? "Dependency" : "Relation"}</span>
+            </div>
+            <div class="conn-desc">${c.edge.description}</div>
+          </div>
+        </div>
+      `).join("")}
+    </div>
+  `;
+  sidePanel.classList.add("open");
+});
+
+svg.on("click", () => {
+  resetSelection();
+});
+
+document.getElementById("closePanel").addEventListener("click", () => {
+  resetSelection();
+});
+
+function resetSelection() {
+  selectedNode = null;
+  sidePanel.classList.remove("open");
+  nodeG.classed("faded", false).classed("highlighted", false);
+  edgeG.classed("faded", false).classed("highlighted", false);
+  applyFilter();
+}
+
+// ─── TICK ───────────────────────────────────────────────
+simulation.on("tick", () => {
+  edgeG
+    .attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+    .attr("x2", d => {
+      const dx = d.target.x - d.source.x;
+      const dy = d.target.y - d.source.y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      const r = radiusScale(d.target);
+      return dist > 0 ? d.target.x - (dx/dist) * (r + 4) : d.target.x;
+    })
+    .attr("y2", d => {
+      const dx = d.target.x - d.source.x;
+      const dy = d.target.y - d.source.y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      const r = radiusScale(d.target);
+      return dist > 0 ? d.target.y - (dy/dist) * (r + 4) : d.target.y;
+    });
+
+  nodeG.attr("transform", d => `translate(${d.x},${d.y})`);
+});
+
+// ─── ZOOM CONTROLS ──────────────────────────────────────
+document.getElementById("zoomIn").addEventListener("click", () => {
+  svg.transition().duration(300).call(zoomBehavior.scaleBy, 1.4);
+});
+document.getElementById("zoomOut").addEventListener("click", () => {
+  svg.transition().duration(300).call(zoomBehavior.scaleBy, 0.7);
+});
+document.getElementById("zoomReset").addEventListener("click", () => {
+  svg.transition().duration(500).call(zoomBehavior.transform, d3.zoomIdentity.translate(0, 0).scale(1));
+});
+
+// ─── RESIZE ─────────────────────────────────────────────
+window.addEventListener("resize", () => {
+  simulation.force("center", d3.forceCenter(window.innerWidth / 2, (window.innerHeight - 56) / 2));
+  simulation.alpha(0.3).restart();
+});
+</script>
+</body>
+</html>
