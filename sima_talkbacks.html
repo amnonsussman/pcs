@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>השתלטות על המיקרופון, אובדן הקהל — ניתוח תגובות הקהל</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f3f3;
+      margin: 0;
+      padding: 0;
+      color: #222;
+      line-height: 1.85;
+    }
+    .page {
+      max-width: 980px;
+      margin: 28px auto;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 42px 54px 46px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 38px;
+      line-height: 1.25;
+      color: #111;
+    }
+    h2.subtitle {
+      margin: 14px 0 12px;
+      font-size: 24px;
+      line-height: 1.5;
+      font-weight: 600;
+      color: #444;
+    }
+    .meta {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 28px;
+      border-bottom: 1px solid #e6e6e6;
+      padding-bottom: 16px;
+    }
+    p {
+      font-size: 22px;
+      margin: 0 0 22px;
+      text-align: justify;
+    }
+    .lead {
+      font-size: 24px;
+    }
+    .section-title {
+      margin: 34px 0 16px;
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+    .graph-title {
+      font-size: 19px;
+      font-weight: 700;
+      margin: 10px 0 10px;
+      color: #222;
+    }
+    .graph {
+      border-top: 1px solid #e7e7e7;
+      padding-top: 12px;
+      margin: 6px 0 24px 0;
+      margin-right: 16px;
+      width: fit-content;
+    }
+    .row {
+      direction: ltr;
+      display: grid;
+      grid-template-columns: 180px 22px 180px 210px 34px 110px;
+      align-items: center;
+      column-gap: 10px;
+      margin: 8px 0;
+      width: fit-content;
+    }
+    .poszone, .negzone {
+      white-space: nowrap;
+      letter-spacing: 2px;
+      font-family: "Courier New", monospace;
+      font-size: 22px;
+      min-height: 26px;
+    }
+    .poszone { text-align: right; }
+    .negzone { text-align: left; }
+    .axis {
+      text-align: center;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 1;
+      color: #555;
+    }
+    .label {
+      direction: rtl;
+      text-align: right;
+      white-space: nowrap;
+      font-size: 21px;
+      font-weight: 600;
+    }
+    .marker {
+      direction: rtl;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .value {
+      direction: ltr;
+      text-align: left;
+      font-size: 21px;
+      font-weight: 700;
+    }
+    .row-compare {
+      direction: ltr;
+      display: grid;
+      grid-template-columns: 210px 34px 300px 110px;
+      align-items: center;
+      column-gap: 10px;
+      margin: 8px 0;
+      width: fit-content;
+    }
+    .row-compare .label {
+      direction: rtl;
+      text-align: right;
+      white-space: nowrap;
+      font-size: 21px;
+      font-weight: 600;
+    }
+    .bar-wrap {
+      display: flex;
+      align-items: center;
+      height: 26px;
+    }
+    .bar-fill {
+      height: 22px;
+      border-radius: 3px;
+      min-width: 4px;
+    }
+    .bar-fill.anti { background: #8fb7e8; }
+    .bar-fill.pro  { background: #e7a3a3; }
+    .anti { color: #8fb7e8; }
+    .pro { color: #e7a3a3; }
+    .note {
+      font-size: 17px;
+      color: #666;
+      margin-top: -8px;
+      margin-bottom: 22px;
+    }
+    .summary-box {
+      margin-top: 30px;
+      padding: 22px 24px;
+      background: #fafafa;
+      border: 1px solid #e7e7e7;
+      border-radius: 10px;
+    }
+    .summary-box h3 {
+      margin: 0 0 12px;
+      font-size: 24px;
+    }
+    .summary-box p {
+      margin: 0 0 14px;
+      font-size: 21px;
+    }
+    @media (max-width: 900px) {
+      .page {
+        margin: 0;
+        border-radius: 0;
+        padding: 24px 18px 32px;
+      }
+      h1 { font-size: 31px; }
+      h2.subtitle { font-size: 21px; }
+      p { font-size: 20px; }
+      .label, .value { font-size: 18px; }
+      .row {
+        grid-template-columns: 120px 18px 120px 145px 26px 72px;
+        column-gap: 6px;
+      }
+      .row-compare {
+        grid-template-columns: 145px 26px 180px 72px;
+        column-gap: 6px;
+      }
+      .poszone, .negzone {
+        font-size: 16px;
+        letter-spacing: 1px;
+      }
+      .graph-title { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>השתלטות על המיקרופון, אובדן הקהל</h1>
+    <h2 class="subtitle">ניתוח נתוני האמת מאחורי התגובות לסימה קדמון במדור התגובות של YNET</h2>
+    <div class="meta">אמנון זוסמן | 8 במרץ 2026</div>
+
+    <p class="lead">
+      כתבתה של סימה קדמון על המלחמה, על מכונת הרעל, על נתניהו ועל שאלת תכליתה של המלחמה,
+      יצרה זירה ציבורית טעונה במיוחד. זו לא הייתה עוד כתבה נקודתית על שר כזה או אחר,
+      אלא טור רחב יותר, עקרוני יותר, שנגע בלב המאבק על מסגור המלחמה, על אחריות ההנהגה
+      ועל תפקידה של התקשורת. דווקא משום כך, תגובות הקהל לכתבה הזו מעניינות במיוחד:
+      הן חושפות לא רק עמדות, אלא גם הבדל חריף בין מי שכותב הרבה לבין מי שמעניק לגיטימציה.
+    </p>
+
+    <p>
+      במדגם שנבדק נספרו 235 תגובות מסווגות, מהן 174 תגובות רמה 1 ו־61 תגובות רמה 2.
+      לאחר איחוד הקטגוריות לשני מחנות בלבד, התקבלה חלוקה ברורה: 149 תגובות למחנה
+      תומך הממשלה, הכולל גם את מתנגדי סימה קדמון, מול 78 תגובות למחנה מתנגד לממשלה,
+      ורק 8 תגובות לא ברורות. כבר מן הנתון הזה עולה תמונה של יתרון בולט למחנה התומך
+      בממשלה בזירת הכתיבה עצמה. אבל כאן בדיוק מתחיל הסיפור, ולא מסתיים.
+    </p>
+
+    <div class="section-title">יתרון ברור בנפח התגובות</div>
+
+    <p>
+      במבט ראשון נדמה כי המחנה התומך בממשלה שלט ללא קושי בשדה התגובות. כאשר בודקים רק
+      את תגובות רמה 1, כלומר את התגובות הראשיות שאינן חלק מוויכוחי המשך, נרשמו 125 תגובות
+      של תומכי הממשלה מול 46 תגובות בלבד של מתנגדי הממשלה. זהו פער חד מאוד, המלמד על
+      נוכחות גבוהה, דריכות פוליטית, ונכונות רבה יותר של המחנה התומך להיכנס במהירות לזירה
+      ולהיאבק על מסגור הכתבה. במונחים של שדה הקרב התגובתי, המחנה הזה הגיע מאורגן יותר,
+      קולני יותר, ורעב יותר לנוכחות.
+    </p>
+
+    <div class="graph-title">גרף טקסטואלי — נפח תגובות רמה 1</div>
+    <div class="graph">
+      <div class="row-compare">
+        <div class="label">מתנגדי הממשלה</div>
+        <div class="marker anti">□</div>
+        <div class="bar-wrap"><div class="bar-fill anti" style="width:36.8%"></div></div>
+        <div class="value anti">46</div>
+      </div>
+      <div class="row-compare">
+        <div class="label">תומכי הממשלה</div>
+        <div class="marker pro">▪▪</div>
+        <div class="bar-wrap"><div class="bar-fill pro" style="width:100%"></div></div>
+        <div class="value pro">125</div>
+      </div>
+    </div>
+
+    <div class="section-title">מהי המעורבות השקטה</div>
+
+    <p>
+      כדי להבין את יחסי הכוחות האמיתיים, חובה לעבור מן המעגל הרועש אל "המעורבות השקטה" —
+      אותם אלפי קוראים שאינם כותבים, אך מצביעים בלייקים ודיסלייקים. בעוד שבזירת הכתיבה
+      נספרו 235 תגובות בלבד, בזירת ההצבעה נרשמו כ-4,305 אינטראקציות. זהו המדד ללגיטימציה
+      הציבורית, וכאן התמונה מתהפכת לחלוטין.
+    </p>
+
+    <p>
+      המדד החושפני ביותר הוא "המאזן הערכי" (לייקים פחות דיסלייקים). בתגובות רמה 1,
+      מחנה מתנגדי הממשלה — שהיה במיעוט מספרי בולט בכתיבה — זכה למאזן חיובי מובהק של
+      425+. לעומתו, מחנה תומכי הממשלה, ששלט בנפח המילים, סיים עם מאזן שלילי צורב של
+      475-. המשמעות חדה: התגובות של תומכי הממשלה עוררו דחייה עצומה (1,659 דיסלייקים)
+      לעומת הזדהות. המחנה המגוייס הצליח לתפוס את המיקרופון, אך הקהל באולם הצביע נגדו.
+    </p>
+
+    <div class="graph-title">גרף טקסטואלי — מאזן לייקים פחות דיסלייקים, תגובות רמה 1</div>
+    <div class="graph">
+      <div class="row">
+        <div class="poszone anti">□□□□□□□□□</div>
+        <div class="axis">|</div>
+        <div class="negzone"></div>
+        <div class="label">מתנגדי הממשלה</div>
+        <div class="marker anti">□</div>
+        <div class="value">425+</div>
+      </div>
+      <div class="row">
+        <div class="poszone"></div>
+        <div class="axis">|</div>
+        <div class="negzone pro">▪▪▪▪▪▪▪▪▪▪</div>
+        <div class="label">תומכי הממשלה</div>
+        <div class="marker pro">▪▪</div>
+        <div class="value">475-</div>
+      </div>
+    </div>
+
+    <p>
+      גם כאשר מפרקים את המאזן הזה למרכיביו, מתקבלת אותה תמונה. תומכי הממשלה קיבלו אמנם
+      1,184 לייקים בתגובות רמה 1, אך גם 1,659 דיסלייקים — כלומר הם עוררו יותר דחייה
+      מהזדהות. מתנגדי הממשלה, לעומתם, קיבלו 714 לייקים מול 289 דיסלייקים בלבד. כלומר,
+      היו פחות מהם, אך התגובות שלהם התקבלו הרבה יותר טוב.
+    </p>
+
+    <div class="graph-title">גרף טקסטואלי — לייקים, תגובות רמה 1</div>
+    <div class="graph">
+      <div class="row-compare">
+        <div class="label">מתנגדי הממשלה</div>
+        <div class="marker anti">□</div>
+        <div class="bar-wrap"><div class="bar-fill anti" style="width:60.3%"></div></div>
+        <div class="value anti">714</div>
+      </div>
+      <div class="row-compare">
+        <div class="label">תומכי הממשלה</div>
+        <div class="marker pro">▪▪</div>
+        <div class="bar-wrap"><div class="bar-fill pro" style="width:100%"></div></div>
+        <div class="value pro">1,184</div>
+      </div>
+    </div>
+
+    <div class="graph-title">גרף טקסטואלי — דיסלייקים, תגובות רמה 1</div>
+    <div class="graph">
+      <div class="row-compare">
+        <div class="label">מתנגדי הממשלה</div>
+        <div class="marker anti">□</div>
+        <div class="bar-wrap"><div class="bar-fill anti" style="width:17.4%"></div></div>
+        <div class="value anti">289</div>
+      </div>
+      <div class="row-compare">
+        <div class="label">תומכי הממשלה</div>
+        <div class="marker pro">▪▪</div>
+        <div class="bar-wrap"><div class="bar-fill pro" style="width:100%"></div></div>
+        <div class="value pro">1,659</div>
+      </div>
+    </div>
+
+    <div class="section-title">גם בכלל המדגם: אותו דפוס</div>
+
+    <p>
+      כאשר מרחיבים את המבט לכלל התגובות, כולל תגובות ההמשך, מתגלה אותו כיוון בסיסי.
+      תומכי הממשלה מגיעים ל־149 תגובות, לעומת 78 תגובות של מתנגדי הממשלה. אבל מבחינת
+      המאזן הערכי, התמונה נשארת כמעט סימטרית בכיוון הפוך: למחנה המתנגד מאזן חיובי של
+      475+, ולמחנה התומך מאזן שלילי של 478-. כלומר, גם כאשר מוסיפים את שכבת הוויכוחים
+      המשניים, לא נעלם הפער בין שליטה בנפח לבין שליטה בלגיטימציה.
+    </p>
+
+    <div class="graph-title">גרף טקסטואלי — נפח תגובות, כלל המדגם</div>
+    <div class="graph">
+      <div class="row-compare">
+        <div class="label">מתנגדי הממשלה</div>
+        <div class="marker anti">□</div>
+        <div class="bar-wrap"><div class="bar-fill anti" style="width:52.3%"></div></div>
+        <div class="value anti">78</div>
+      </div>
+      <div class="row-compare">
+        <div class="label">תומכי הממשלה</div>
+        <div class="marker pro">▪▪</div>
+        <div class="bar-wrap"><div class="bar-fill pro" style="width:100%"></div></div>
+        <div class="value pro">149</div>
+      </div>
+    </div>
+
+    <div class="graph-title">גרף טקסטואלי — מאזן לייקים פחות דיסלייקים, כלל המדגם</div>
+    <div class="graph">
+      <div class="row">
+        <div class="poszone anti">□□□□□□□□□</div>
+        <div class="axis">|</div>
+        <div class="negzone"></div>
+        <div class="label">מתנגדי הממשלה</div>
+        <div class="marker anti">□</div>
+        <div class="value">475+</div>
+      </div>
+      <div class="row">
+        <div class="poszone"></div>
+        <div class="axis">|</div>
+        <div class="negzone pro">▪▪▪▪▪▪▪▪▪▪</div>
+        <div class="label">תומכי הממשלה</div>
+        <div class="marker pro">▪▪</div>
+        <div class="value">478-</div>
+      </div>
+    </div>
+
+    <div class="section-title">איך זה שונה מכתבות אחרות על נתניהו ושריו</div>
+
+    <p>
+      כאן עולה נקודה רחבה יותר. בהשוואה לכתבות אחרות על נתניהו או על שריו, במיוחד כאלה
+      הממוקדות באירוע אישי, בעימות נקודתי או במחדל של דמות מסוימת, הכתבה הזו מציגה תבנית
+      בולטת יותר של שליטה תומכת־ממשלה בנפח התגובות. נדמה שכאשר הדיון איננו עוסק רק בדמות
+      ספציפית מן הליכוד אלא בשאלות רחבות יותר של מלחמה, תקשורת, מכונת רעל, מחנה ותכלית,
+      המחנה התומך בממשלה מצליח בימים אלה להתגייס מהר יותר, לכתוב יותר, ולהשתלט ביתר
+      קלות על הזירה המילולית.
+    </p>
+
+    <p>
+      זו איננה הוכחה לבוטים, וגם לא בהכרח ראיה למנגנון אוטומטי. אבל זו בהחלט אינדיקציה
+      לכך שבנושאים מחנאיים, לא־אישיים, תומכי הממשלה מפגינים כיום יתרון ארגוני או לפחות
+      יתרון נוכחות. הם אינם בהכרח הרוב בקרב הקוראים, אך הם נראים לעין הרבה יותר. כאשר
+      מתרכזים רק בתגובות עצמן, עלול להיווצר רושם של שליטה מוחלטת. כאשר מוסיפים את מדד
+      המעורבות השקטה, הרושם הזה מתאזן ואף מתהפך.
+    </p>
+
+    <div class="section-title">מסקנת האירוע</div>
+
+    <p>
+      זהו לב הממצא מן הכתבה הזו: יש להבחין בין מי ששולט בזירת הכתיבה לבין מי שנהנה מאמון
+      יחסי של הקהל. במקרה של כתבת סימה קדמון, המחנה התומך בממשלה הצליח להחזיק את הבמה.
+      הוא היה רועש יותר, יוזם יותר, מהיר יותר. אבל המחנה המתנגד לממשלה היה אהוד יותר
+      במישור השקט — זה שנמדד בלייקים, בדיסלייקים, ובהפרש ביניהם.
+    </p>
+
+    <p>
+      במילים פשוטות: תומכי הממשלה ניצחו בכמות, מתנגדי הממשלה ניצחו באיכות הקבלה. זהו
+      פער חשוב מאוד, משום שהוא מזכיר שהרעש הדיגיטלי איננו תמיד המדד הנכון לדעת הקהל.
+      לעיתים קרובות יותר, דווקא השכבה השקטה — הקוראים שאינם כותבים אך מדרגים — מספרת
+      את הסיפור הציבורי האמיתי.
+    </p>
+
+    <div class="summary-box">
+      <h3>סיכום ומחשבה להמשך</h3>
+      <p>
+        הכתבה הזו מראה שתומכי הממשלה אינם נעדרים מ־Ynet. להפך: כשהם חשים שיש להם על מה
+        להילחם, הם נוכחים, מגיבים, וממלאים את שדה התגובות בעוצמה. אבל דווקא הממצא הזה
+        מחדד את השאלה המטרידה יותר: אם זה כך, למה בכתבות פוליטיות אחרות — במיוחד כאלה
+        העוסקות ישירות בנתניהו או בשריו — המגמות נראות לעיתים הפוכות לגמרי? ייתכן שהפער
+        איננו בשאלה האם המחנה הזה קיים, אלא מתי הוא מתעורר, מה מפעיל אותו, ואילו זירות
+        נתפסות בעיניו ככאלה שחייבים להיאבק עליהן.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
