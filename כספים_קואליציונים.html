@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>קיר של זעם: לאן נעלמו תומכי הממשלה ממדור התגובות של Ynet?</title>
+  <style>
+    :root {
+      --bg-color: #f0f2f5;
+      --card-bg: #ffffff;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --title-color: #111827;
+      --anti-gov-color: #3b82f6; /* כחול - מתנגדי ממשלה */
+      --pro-gov-color: #ef4444; /* אדום - תומכי ממשלה */
+      --border-color: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans Hebrew", sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      padding: 50px;
+      border: 1px solid var(--border-color);
+    }
+
+    h1.main-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--title-color);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    h2.subtitle {
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .author-section {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .author-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--title-color);
+    }
+
+    .publish-date {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-right: 12px;
+    }
+
+    h3.section-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--title-color);
+      margin: 40px 0 20px;
+      padding-bottom: 8px;
+      border-bottom: 3px solid #e5e7eb;
+      display: inline-block;
+    }
+
+    p {
+      font-size: 1.15rem;
+      margin-bottom: 20px;
+    }
+
+    .highlight {
+      font-weight: 700;
+      color: var(--title-color);
+    }
+
+    /* Data Visualization Styles */
+    .data-box {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 30px 0;
+    }
+
+    .data-box-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .bar-chart-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .bar-label {
+      width: 140px;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .bar-container {
+      flex-grow: 1;
+      background: #e2e8f0;
+      height: 28px;
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      position: relative;
+    }
+
+    .bar-fill {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding-right: 12px;
+      color: white;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    .bar-fill.anti {
+      background-color: var(--anti-gov-color);
+    }
+
+    .bar-fill.pro {
+      background-color: var(--pro-gov-color);
+    }
+
+    .bar-value {
+      width: 80px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding-right: 16px;
+    }
+
+    /* Insights List */
+    .insights-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .insights-list li {
+      margin-bottom: 24px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      border-right: 4px solid var(--title-color);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .insights-list h4 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+      color: var(--title-color);
+    }
+
+    .insights-list p {
+      margin-bottom: 0;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 15px;
+        padding: 30px 20px;
+      }
+      h1.main-title { font-size: 2rem; }
+      h2.subtitle { font-size: 1.15rem; }
+      .bar-chart-row { flex-direction: column; align-items: flex-start; }
+      .bar-label { margin-bottom: 8px; }
+      .bar-container { width: 100%; margin-bottom: 8px; }
+      .bar-value { width: auto; text-align: right; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1 class="main-title">קיר של זעם: לאן נעלמו תומכי הממשלה ממדור התגובות של Ynet?</h1>
+      <h2 class="subtitle">ניתוח נתוני האמת מאחורי הכתבה על חלוקת המיליארדים לישיבות ולהתנחלויות חושף תמונה חסרת תקדים: מתנגדי הממשלה שולטים ב-95% מנפח השיח, בעוד תומכיה נעלמו כמעט לחלוטין ורוסקו בזירת הלייקים. האם יש גבול למשמעת המחנאית בשעת מלחמה?</h2>
+      
+      <div class="author-section">
+        <span class="author-name">אמנון זוסמן</span>
+        <span class="publish-date"> | 10 במרץ 2026</span>
+      </div>
+    </header>
+
+    <article>
+      <p>כתבות העוסקות בתקציב המדינה, ובייחוד בחלוקת כספים סקטוריאליים בעת מלחמה, נוטות לעורר אמוציות עזות. הכתבה שעסקה ב"מיליארדים לישיבות, להתנחלויות ולחינוך הדתי" הציתה את שדה התגובות ב-Ynet, אך בניגוד לזירות פוליטיות אחרות (כמו במקרים של עיתונאים ביקורתיים או עימותים פרסונליים מול ראש הממשלה) שבהן מתנהל קרב נוכחות עז – כאן התגלתה תמונה שונה לחלוטין.</p>
+      
+      <p>הניתוח, המבוסס על סיווג של 332 תגובות מזוהות, חושף חזית אחידה של זעם מצד הקוראים, לצד היעדרות מופגנת וקריסה דיגיטלית של קולות תומכי הממשלה. חלוקת הנתונים שומטת את הקרקע תחת כל מראית עין של "קרב שקול".</p>
+
+      <h3 class="section-title">המיקרופון: 95% שליטה בנפח התגובות</h3>
+      <p>במבט על זירת הכתיבה – אותם מגיבים שבחרו להקליד, לנסח ולהשמיע קול – ניכר יתרון אבסולוטי ומוחץ למחנה מתנגדי הממשלה. מתוך 332 התגובות, 315 היו נגד (95%), ורק 17 תגובות (5%) ניסו להגן על המהלך.</p>
+      <p>השיח בזירה זו מאופיין בטרמינולוגיה חריפה של שעת משבר. מוטיבים חוזרים כמו "שוד", "ביזה", "פרזיטים", "משתמטים", והשוואות תכופות למשטרים חשוכים ("איראן זה כאן") שלטו בכיפה. מנגד, 17 התגובות הבודדות של תומכי הממשלה נבלעו לחלוטין. מדובר בנוקאאוט דיגיטלי.</p>
+
+      <div class="data-box">
+        <div class="data-box-title">נפח התגובות (כתיבה אקטיבית)</div>
+        <div class="bar-chart-row">
+          <div class="bar-label">מתנגדי הממשלה</div>
+          <div class="bar-container">
+            <div class="bar-fill anti" style="width: 95%;">95%</div>
+          </div>
+          <div class="bar-value">315 תגובות</div>
+        </div>
+        <div class="bar-chart-row">
+          <div class="bar-label">תומכי הממשלה</div>
+          <div class="bar-container">
+            <div class="bar-fill pro" style="width: 5%;">5%</div>
+          </div>
+          <div class="bar-value">17 תגובות</div>
+        </div>
+      </div>
+
+      <h3 class="section-title">המעורבות השקטה: תבוסה מוחצת בקהל</h3>
+      <p>לעיתים קרובות, מחנה אחד כותב בקולניות, אך "המעורבות השקטה" – אלפי הקוראים שאינם כותבים אלא רק מחלקים לייקים ודיסלייקים – מאזנת את התמונה ומעניקה לגיטימציה למחנה השני. <span class="highlight">לא בכתבה הזו.</span></p>
+      <p>זירת ההצבעות, שכללה קרוב ל-6,000 אינטראקציות, לא רק אישרה את קולות הזעם, אלא העצימה אותם לממדים בלתי נתפסים. בעוד שתגובות הביקורת זכו לתמיכה אדירה של 4,877 לייקים (מאזן ערכי של פלוס 4,299), תומכי הממשלה ספגו פי שניים יותר דיסלייקים (183) מאשר לייקים (97).</p>
+
+      <div class="data-box">
+        <div class="data-box-title">המאזן הערכי (לייקים פחות דיסלייקים)</div>
+        <div class="bar-chart-row">
+          <div class="bar-label">מתנגדי הממשלה</div>
+          <div class="bar-container">
+            <div class="bar-fill anti" style="width: 100%;">+4,299</div>
+          </div>
+          <div class="bar-value">חיובי מובהק</div>
+        </div>
+        <div class="bar-chart-row">
+          <div class="bar-label">תומכי הממשלה</div>
+          <div class="bar-container">
+            <!-- ייצוג שלילי, לכן הבר מינימלי למטרות ויזואליות -->
+            <div class="bar-fill pro" style="width: 5%;"></div>
+          </div>
+          <div class="bar-value">-86 (שלילי)</div>
+        </div>
+      </div>
+
+      <h3 class="section-title">אז לאן באמת נעלמו תומכי הממשלה?</h3>
+      <p>מניתוחי עבר (כגון הכתבות על עיתונאים או עימותים מול ראש הממשלה) אנו יודעים שמחנה תומכי הממשלה קיים, פעיל ויודע להתגייס כשיש צורך. אז מדוע הוא השתתק לחלוטין כשהנושא היה כספים קואליציוניים בזמן מלחמה? הנתונים מצביעים על מספר הסברים מרכזיים:</p>
+
+      <ul class="insights-list">
+        <li>
+          <h4>1. דיסוננס קוגניטיבי: התנגשות בין זהות למציאות</h4>
+          <p>מחנה תומכי הממשלה מורכב ממאות אלפי אזרחים עובדים, משלמי מיסים ומשרתים במילואים. בזמן שהם חווים על בשרם את הנטל הכלכלי והביטחוני, העברת מיליארדים למגזרים שלא נושאים בנטל השירות יוצרת קונפליקט פנימי קשה. קשה להגן פומבית על חלוקה סקטוריאלית כשאתה או ילדיך נמצאים בחזית. השתיקה כאן היא תוצר של מבוכה ואי-נוחות.</p>
+        </li>
+        <li>
+          <h4>2. היעדר "אויב שבטי"</h4>
+          <p>תומכי הממשלה מתעוררים בעוצמה כאשר הם מזהים מטרת תקיפה ברורה – תקשורת, מערכת המשפט או פוליטיקאים יריבים. בדיון על כסף וסדרי עדיפויות בתקציב, אין אויב חיצוני להילחם בו. הדרייב האמוציונלי להגן על חלוקה בירוקרטית שנויה במחלוקת חלש משמעותית מהדרייב לתקוף אליטה יריבה.</p>
+        </li>
+        <li>
+          <h4>3. שבירת חוזה הסולידריות</h4>
+          <p>מלחמה מייצרת ציפייה ציבורית עזה לשותפות גורל. פוליטיקה מגזרית נתפסת כעת כחציית קו אדום מוסרי. גם תומך ממשלה מובהק מתקשה למצוא טיעון מוסרי שיצדיק חלוקת מיליארדים לישיבות למניעת נשירה, בזמן שיש עקורים ברחבי הארץ. כשאין טיעון חזק – עדיף לשתוק.</p>
+        </li>
+        <li>
+          <h4>4. הם לא נעלמו, הם הצטרפו למחאה השקטה</h4>
+          <p>ההסבר המרתק ביותר מסתתר אולי במספר הלייקים. כמעט 4,900 לייקים לתגובות נגד הממשלה מעידים על קונצנזוס חריג. סביר להניח שחלק ניכר מאותם אלפי לייקים אנונימיים הגיע ממצביעי ימין ותומכי ממשלה מסורתיים, שאינם רוצים לכתוב תגובה ארסית בגלוי, אך "בחושך" של זירת ההצבעות – הם לחצו "לייק" למבקרים.</p>
+        </li>
+      </ul>
+
+      <h3 class="section-title">סיכום</h3>
+      <p>שדה התגובות חושף קונצנזוס ציבורי נדיר ומעביר מסר חד: יש גבול למשמעת המחנאית. כשממשלה פוגעת בכיס, בנטל ובחוזה הבסיסי של הציבור המשרת בשעת מלחמה – גם התומכים הנלהבים ביותר מניחים את המיקרופון, ומשאירים את הבמה הדיגיטלית (ואת הלייקים) בידי המבקרים. במקרה הזה, הרעש הדיגיטלי והשכבה השקטה מספרים בדיוק את אותו הסיפור.</p>
+    </article>
+  </div>
+
+</body>
+</html>
