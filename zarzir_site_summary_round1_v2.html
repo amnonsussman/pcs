@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>זרזיר – טבלת סיכום בין אתרים ונספחים</title>
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      --ink: #1f2a37;
+      --muted: #5b6777;
+      --line: #dbe3ef;
+      --accent: #244a7c;
+      --accent-soft: #e8f0fb;
+      --good: #dff5e8;
+      --good-ink: #166534;
+      --warn: #fff0d6;
+      --warn-ink: #92400e;
+      --bad: #fde5e5;
+      --bad-ink: #991b1b;
+      --shadow: 0 10px 24px rgba(27, 39, 53, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, "Noto Sans Hebrew", "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #eef4fb 0%, var(--bg) 240px);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    .wrap {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 28px 18px 64px;
+    }
+    .hero {
+      background: linear-gradient(135deg, var(--accent) 0%, #2d5b95 100%);
+      color: white;
+      border-radius: 22px;
+      padding: 28px 28px 22px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 34px;
+      line-height: 1.15;
+    }
+    .sub {
+      margin: 0;
+      font-size: 18px;
+      opacity: 0.95;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 18px 0 22px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 18px 18px 16px;
+    }
+    .card h2, .card h3 {
+      margin: 0 0 10px;
+      color: var(--accent);
+    }
+    .lead {
+      font-size: 18px;
+      margin: 0;
+    }
+    .pillrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+    .badge.good { background: var(--good); color: var(--good-ink); }
+    .badge.warn { background: var(--warn); color: var(--warn-ink); }
+    .badge.bad { background: var(--bad); color: var(--bad-ink); }
+    .badge.neutral { background: var(--accent-soft); color: var(--accent); }
+    .section-title {
+      margin: 26px 0 12px;
+      font-size: 24px;
+      color: var(--accent);
+    }
+    .note {
+      color: var(--muted);
+      margin-top: 8px;
+      font-size: 14px;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 900px;
+    }
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: right;
+    }
+    th {
+      background: #f1f6fd;
+      color: var(--accent);
+      font-size: 14px;
+      position: sticky;
+      top: 0;
+    }
+    tr:last-child td { border-bottom: none; }
+    .callout {
+      background: #fff;
+      border-right: 6px solid var(--accent);
+      border-radius: 18px;
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+      margin: 18px 0 8px;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+    ul.clean {
+      margin: 0;
+      padding-right: 20px;
+    }
+    ul.clean li { margin-bottom: 8px; }
+    .footer {
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    @media (max-width: 980px) {
+      .grid, .two-col {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 28px; }
+      .sub { font-size: 16px; }
+    }
+  
+    .subtitle {
+      text-align: center;
+      font-size: 15px;
+      color: #475569;
+      margin: -6px 0 24px;
+      font-weight: 500;
+    }
+
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>זרזיר – טבלת סיכום בין אתרים ונספחים</h1>
+      <div class="subtitle">אמנון זוסמן | 13.03.2026</div>
+      <p class="sub">סיבוב ראשון על השיח סביב נפילת הטיל ביישוב הערבי־בדואי זרזיר, בהשוואה בין Ynet, ישראל היום, ואתרי ימין שנאספו בקובץ המסווג.</p>
+      <div class="pillrow">
+        <span class="badge neutral">מבוסס על הקבצים שהועלו לשיחה</span>
+        <span class="badge good">Ynet: חומר מלא יחסית</span>
+        <span class="badge warn">ישראל היום: מדגם חלקי</span>
+        <span class="badge warn">אתרי ימין: דורשים סינון נוסף</span>
+      </div>
+    </section>
+
+    <div class="grid">
+      <div class="card">
+        <h2>המסקנה המרכזית</h2>
+        <p class="lead">ב־<strong>Ynet</strong> האירוע נקרא בעיקר כטרגדיה אנושית־אזרחית. ב־<strong>ישראל היום</strong> (במדגם שהודבק) הוא נקרא בעיקר דרך מיגון, ניסוח וציניות. ב־<strong>אתרי הימין</strong> הוא נבלע מהר לתוך פוליטיקה, ביטחון ומאבק־זהויות.</p>
+      </div>
+      <div class="card">
+        <h2>מה הכי בולט בנתונים</h2>
+        <p class="lead">ב־Ynet תגובות אמפתיות קיבלו חיזוק גדול מאוד, בעוד שתגובות עוינות או לועגות ספגו הרבה יותר דיסלייקים מלייקים. באשכול אתרי הימין, רק חלק קטן מהתגובות הייחודיות נותר קשור ישירות לאירוע אחרי ניקוי.</p>
+      </div>
+      <div class="card">
+        <h2>איך לקרוא את הדף</h2>
+        <p class="lead">הטבלה הראשית נותנת תמונת־על לפי אתר. הנספחים מציגים את בסיסי הספירה, ההיגיון הסיווגי, וההסתייגויות המתודולוגיות כדי שהמסקנות יישארו שקופות וזהירות.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">טבלת סיכום ראשית</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>אתר</th>
+            <th>סוג חומר</th>
+            <th>היקף החומר ששימש</th>
+            <th>ניקיון / אמינות</th>
+            <th>מוקד שיח דומיננטי</th>
+            <th>יחס לנפגעי זרזיר</th>
+            <th>אינדיקציית קהל</th>
+            <th>שורה תחתונה</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+    <tr>
+      <td><strong>Ynet</strong></td>
+      <td>CSV מלא</td>
+      <td>198 שורות; 108 תגובות ראשיות; 90 תגובות משנה; 72 תגובות ראשיות עם טקסט</td>
+      <td><span class="badge good">גבוהה</span></td>
+      <td>אמפתיה, החלמה, שיקום, אזרחות משותפת</td>
+      <td>חיובי מאוד</td>
+      <td>הקהל הפעיל מחזק תגובות אמפתיות ודוחה תגובות עוינות</td>
+      <td>האירוע נקרא קודם כול כטרגדיה אנושית־אזרחית, ורק אחר כך כפוליטיקה.</td>
+    </tr>
+    
+    <tr>
+      <td><strong>ישראל היום</strong></td>
+      <td>טקסט גולמי חלקי</td>
+      <td>כ־16 תגובות גלויות במדגם שהודבק לשיחה</td>
+      <td><span class="badge warn">בינונית־נמוכה</span></td>
+      <td>מיגון, ניסוח הכותרת, הערות טכניות, קצת ציניות וקצת פוליטיקה</td>
+      <td>דל יחסית</td>
+      <td>אות קהל חלש; המדגם קטן ורועש</td>
+      <td>פחות &#x27;חיבוק&#x27;, יותר דיון טכני־ציני וצדדי.</td>
+    </tr>
+    
+    <tr>
+      <td><strong>ערוץ 7</strong></td>
+      <td>CSV מסווג מתוך אשכול אתרי ימין</td>
+      <td>84 תגובות ייחודיות אחרי ניקוי; 10 רלוונטיות מובהקות לאירוע</td>
+      <td><span class="badge warn">בינונית־נמוכה</span></td>
+      <td>הסטת הדיון להרצוג/נתניהו/משפט, האשמת אויבים, ולעיתים האשמת הנפגעים</td>
+      <td>מעורב אך ברובו קר ומותנה</td>
+      <td>יש לייקים דווקא להסטות פוליטיות; תגובת חמלה קיימת אך אינה דומיננטית</td>
+      <td>האירוע נבלע במהירות במלחמת הזהויות הכללית.</td>
+    </tr>
+    
+    <tr>
+      <td><strong>C14</strong></td>
+      <td>CSV מסווג מתוך אשכול אתרי ימין</td>
+      <td>15 תגובות ייחודיות; 6 רלוונטיות מובהקות לאירוע</td>
+      <td><span class="badge warn">בינונית־נמוכה</span></td>
+      <td>הסלמה ביטחונית, תסכול העורף, וביקורת על ניהול המלחמה</td>
+      <td>משני</td>
+      <td>מעט סימני קהל; הקו העיקרי הוא ביטחוני ולא אמפתי</td>
+      <td>האירוע ממוסגר כאות אזהרה אסטרטגי, לא כמרחב הזדהות.</td>
+    </tr>
+    
+    <tr>
+      <td><strong>סרוגים</strong></td>
+      <td>CSV מסווג מתוך אשכול אתרי ימין</td>
+      <td>11 תגובות ייחודיות; 3 רלוונטיות מובהקות לאירוע</td>
+      <td><span class="badge warn">נמוכה</span></td>
+      <td>ויכוח על חומרת הפגיעה: מזעור מול תיקון</td>
+      <td>מעורב</td>
+      <td>אין כמעט נתוני קהל שימושיים</td>
+      <td>מופיע ויכוח פנימי אם זו &#x27;לא קטסטרופה&#x27; או פגיעה שיש להתייחס אליה ברצינות.</td>
+    </tr>
+    
+    <tr>
+      <td><strong>כיפה</strong></td>
+      <td>CSV מסווג מתוך אשכול אתרי ימין</td>
+      <td>תגובה ייחודית אחת בלבד; ללא בסיס אמיתי להסקה</td>
+      <td><span class="badge bad">נמוכה מאוד</span></td>
+      <td>לא מספיק חומר</td>
+      <td>לא ניתן לקבוע</td>
+      <td>לא ניתן לקבוע</td>
+      <td>האתר קיים טכנית בקובץ, אך אין חומר מספק לניתוח.</td>
+    </tr>
+    
+    <tr>
+      <td><strong>אשכול אתרי הימין (מסונן)</strong></td>
+      <td>איחוד ערוץ 7, C14, סרוגים וכיפה</td>
+      <td>111 תגובות ייחודיות אחרי ניקוי; 19 בלבד (כ־17%) נראות קשורות ישירות לאירוע</td>
+      <td><span class="badge warn">בינונית</span></td>
+      <td>פוליטיזציה, ביטחוניזציה, והזזת המוקד מהנפגעים אל זהות/הנהגה/אויב</td>
+      <td>נמוך יחסית</td>
+      <td>הקובץ דורש סינון נוסף לפני השוואה כמותית קשיחה</td>
+      <td>במרחב הימני האירוע פחות &#x27;מחזיק&#x27; כטרגדיה עצמאית, ויותר נבלע במאבק־העל.</td>
+    </tr>
+    
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <strong>קריאת־על פרשנית:</strong>
+      Ynet מייצר כאן מרחב תגובה שמדגיש חיי אזרחים, שיקום, ואזרחות משותפת. לעומת זאת, במרחבי הימין, אותו אירוע בדיוק מתקשה להישאר אירוע עצמאי; הוא נשאב במהירות אל היררכיות של נאמנות, חשד, נקמה, מנהיגות, משפט, והמלחמה הרחבה.
+    </div>
+
+    <h2 class="section-title">נספח א׳ – מתודולוגיה קצרה והסתייגויות</h2>
+    <div class="card">
+      <ul class="clean">
+        <li>ב־Ynet עבדתי על קובץ CSV מובנה, והפרדתי בין תגובות ראשיות לבין תגובות משנה.</li>
+        <li>באתרי הימין הורדתי כפילויות לפי שילוב של אתר + מחבר + תוכן, ולכן מספר התגובות הייחודיות קטן משמעותית מהמספר הגולמי.</li>
+        <li>בישראל היום עבדתי רק על הטקסט שהודבק לשיחה; זהו <strong>לא</strong> קובץ מלא ולכן אין להשוות אותו אחד־לאחד ל־Ynet.</li>
+        <li>בחלק מהנספחים מופיעים <strong>תגים חופפים</strong> ולא סיווג יחיד קשיח; תגובה יכולה להיות גם אמפתית וגם אזרחית, או גם ביטחונית וגם פוליטית.</li>
+        <li>לכן הדף הזה הוא <strong>סיבוב ראשון</strong> טוב להצגה ולהמשך עבודה, אך לא עדיין מאמר כמותי סופי.</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">נספח ב׳ – Ynet: בסיס מספרי</h2>
+    <div class="two-col">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>מדד</th><th>ערך</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>סך כל השורות בקובץ</td><td>198</td></tr><tr><td>תגובות ראשיות</td><td>108</td></tr><tr><td>תגובות משנה</td><td>90</td></tr><tr><td>תגובות ראשיות עם טקסט ממשי</td><td>72</td></tr><tr><td>לייקים בתגובות ראשיות לא־ריקות</td><td>842</td></tr><tr><td>דיסלייקים בתגובות ראשיות לא־ריקות</td><td>433</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>פענוח מהיר</h3>
+        <ul class="clean">
+          <li>כמות החומר ב־Ynet היא הגדולה והנקייה ביותר מבין המקורות שקיבלתי כאן.</li>
+          <li>הנתון החשוב ביותר הוא לא רק מה נכתב, אלא גם איך הקהל מגיב למה שנכתב.</li>
+          <li>שם רואים בצורה חדה שהמרחב הפעיל דוחף כלפי אמפתיה והזדהות, ולא כלפי לעג או דה־לגיטימציה.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:16px;">
+      <table>
+        <thead>
+          <tr>
+            <th>תגית תוכן</th>
+            <th>מספר תגובות</th>
+            <th>לייקים</th>
+            <th>דיסלייקים</th>
+            <th>הערה</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>אמפתיה והחלמה</td><td>30</td><td>491</td><td>15</td><td>רפואה שלמה, היו חזקים, הלב איתכם</td></tr><tr><td>אזרחות משותפת</td><td>12</td><td>238</td><td>25</td><td>משרתים בצה״ל, שכנים, אחים שלנו</td></tr><tr><td>ביטחוני/טכני</td><td>19</td><td>198</td><td>87</td><td>ממ״ד, ירוט, חלון, מיגון</td></tr><tr><td>ביקורת פוליטית</td><td>12</td><td>187</td><td>93</td><td>ממשלה, נתניהו, ניהול המלחמה</td></tr><tr><td>עוינות או לעג</td><td>8</td><td>43</td><td>165</td><td>דה־לגיטימציה, לעג, זלזול</td></tr><tr><td>אויב/איראן/חיזבאללה</td><td>5</td><td>97</td><td>67</td><td>הפניית כעס ישירה לאויב</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">התגיות בנספח זה חופפות ונגזרו בסיבוב ראשון על תגובות ראשיות לא־ריקות. הן מיועדות להמחשת הדפוס, לא כתחליף לסיווג קשיח יחיד.</p>
+
+    <h2 class="section-title">נספח ג׳ – ישראל היום: מה עולה מן המדגם</h2>
+    <div class="two-col">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>פרמטר</th><th>ממצא</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>מצב החומר</td><td>קטע תגובות חלקי שהודבק לשיחה, לא קובץ מלא</td></tr><tr><td>מספר תגובות גלויות שנקראו</td><td>כ־16</td></tr><tr><td>רעש חריג</td><td>כ־6 תגובות של אותו כותב לא־קוהרנטי יחסית</td></tr><tr><td>מוקד בולט</td><td>מיגון, חלון, ניסוח הכותרת, צדק/האשמה</td></tr><tr><td>אמפתיה ישירה</td><td>מעט מאוד</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>קריאה פרשנית</h3>
+        <ul class="clean">
+          <li>במדגם שהודבק בולטת ירידה חדה בשפת החיבוק וההזדהות.</li>
+          <li>השיח נע סביב ממ״ד, חלון, ניסוח הכותרת, והאשמות צדדיות.</li>
+          <li>מאחר שהמדגם חלקי ורועש, נכון להציג את הממצאים כאן בזהירות יחסית.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="section-title">נספח ד׳ – אתרי הימין: תמונת סינון</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>אתר</th>
+            <th>תגובות ייחודיות אחרי ניקוי</th>
+            <th>תגובות שנראות קשורות ישירות לאירוע</th>
+            <th>טון בולט לאחר הסינון</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>ערוץ 7</td><td>84</td><td>10</td><td>הסטה פוליטית + דה־לגיטימציה + מעט חמלה</td></tr><tr><td>C14</td><td>15</td><td>6</td><td>ביטחוני/ניצי + תסכול העורף</td></tr><tr><td>סרוגים</td><td>11</td><td>3</td><td>מזעור הנזק מול תגובת־נגד מתקנת</td></tr><tr><td>כיפה</td><td>1</td><td>0</td><td>אין בסיס להסקה</td></tr><tr><td>סך הכול</td><td>111</td><td>19</td><td>רק כ־17% מהתגובות הייחודיות נראות קשורות ישירות לאירוע</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card" style="margin-top:16px;">
+      <h3>מה המשמעות של הסינון הזה</h3>
+      <ul class="clean">
+        <li>הבעיה איננה רק טכנית. עצם העובדה שרק חלק קטן מהתגובות נשאר צמוד לאירוע היא בעצמה ממצא פרשני.</li>
+        <li>באתרי הימין השיח נמשך במהירות מן האירוע עצמו אל הקרב הרחב יותר על ביבי, הרצוג, המשפט, "השמאל", וניהול המלחמה.</li>
+        <li>לכן נכון להבחין בין <strong>עוצמת הרגש</strong> לבין <strong>כיוונו</strong>: יש רגש, אבל הוא מופנה לעיתים קרובות החוצה – אל אויבים, אל הנהגה, או אל מאבקי זהות – ולא פנימה אל הפצועים ותושבי המקום.</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">נספח ה׳ – משפטי סיכום לשימוש מיידי</h2>
+    <div class="card">
+      <ul class="clean">
+        <li><strong>Ynet:</strong> האירוע בזרזיר זוכה למסגור אזרחי־אמפתי רחב, והקהל הפעיל מחזק את הקו הזה.</li>
+        <li><strong>ישראל היום:</strong> במדגם שהוצג, השיח פחות מחבק ויותר טכני, צדדי ולעיתים ציני.</li>
+        <li><strong>אתרי הימין:</strong> האירוע מתקשה לעמוד כטרגדיה עצמאית, ונשאב לתוך שיח רחב יותר של נאמנות, אויב, הנהגה ומשפט.</li>
+        <li><strong>מסקנת ביניים:</strong> זהו לא רק הבדל בעמדה פוליטית, אלא הבדל בצורה שבה מרחבי־תגובה שונים מחליטים מהו בכלל "הסיפור" של האירוע.</li>
+      </ul>
+    </div>
+
+    <p class="footer">הדף מבוסס על הקבצים שהועלו לשיחה ועל הטקסט שהודבק בה. זהו מסמך עבודה מעוצב לשלב הסיכום הראשוני, לפני צירוף מקורות נוספים.</p>
+  </div>
+</body>
+</html>
