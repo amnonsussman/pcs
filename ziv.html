@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ניתוח תגובות קוראי C14 לפרשת זיו אגמון</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --paper: #ffffff;
+      --ink: #17212b;
+      --muted: #58677a;
+      --line: #dbe4ee;
+      --accent: #154a8a;
+      --accent-2: #2f6bb1;
+      --soft: #eaf2fb;
+      --warn: #8c4d1f;
+      --warn-bg: #fff5ec;
+      --good: #245c46;
+      --good-bg: #eef8f3;
+      --shadow: 0 18px 40px rgba(20, 40, 70, 0.10);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top right, rgba(47,107,177,0.10), transparent 28%),
+        linear-gradient(180deg, #f7faff 0%, var(--bg) 100%);
+      color: var(--ink);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.75;
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 42px 22px 60px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #113a6b 0%, #275d9c 58%, #4c84c7 100%);
+      color: white;
+      border-radius: 30px;
+      padding: 34px 34px 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -60px -80px auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .kicker {
+      display: inline-block;
+      padding: 7px 14px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 999px;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 38px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 19px;
+      opacity: 0.95;
+      margin-bottom: 18px;
+      max-width: 820px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      font-size: 14px;
+      opacity: 0.95;
+    }
+
+    .meta span {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 7px 12px;
+      border-radius: 999px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 10px 24px rgba(30, 55, 90, 0.06);
+    }
+
+    .stats {
+      grid-column: span 12;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .stat {
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px;
+    }
+
+    .stat .num {
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .stat .label {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .summary {
+      grid-column: span 7;
+    }
+
+    .summary p {
+      margin: 0 0 14px;
+      font-size: 18px;
+    }
+
+    .side {
+      grid-column: span 5;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .side h3, .section-title {
+      margin: 0 0 10px;
+      font-size: 24px;
+      color: var(--accent);
+    }
+
+    .note {
+      background: var(--soft);
+      border-right: 5px solid var(--accent-2);
+    }
+
+    .method {
+      background: #fbfcfe;
+    }
+
+    .narratives {
+      grid-column: span 12;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .narrative-card {
+      padding: 24px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+      box-shadow: 0 10px 24px rgba(30, 55, 90, 0.05);
+    }
+
+    .narrative-card h4 {
+      margin: 0 0 10px;
+      font-size: 21px;
+      color: var(--accent);
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      border: 1px solid #cfe0f5;
+      background: #f3f8ff;
+      color: #234f86;
+    }
+
+    .quote {
+      margin-top: 12px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #f7fafc;
+      border: 1px solid #e5edf5;
+      color: #394a5c;
+      font-size: 15px;
+    }
+
+    .takeaways {
+      grid-column: span 12;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+    }
+
+    .bullet-list {
+      margin: 0;
+      padding-right: 18px;
+    }
+
+    .bullet-list li {
+      margin-bottom: 12px;
+    }
+
+    .alert {
+      background: var(--warn-bg);
+      border-right: 5px solid var(--warn);
+    }
+
+    .success {
+      background: var(--good-bg);
+      border-right: 5px solid var(--good);
+    }
+
+    .footer {
+      margin-top: 24px;
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .summary, .side, .narratives, .takeaways, .stats {
+        grid-column: span 12;
+      }
+      .stats, .cards, .takeaways {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 30px; }
+      .subtitle { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="kicker">דוח תגובות • C14 • פרשת זיו אגמון</div>
+      <h1>ניתוח תגובות קוראי C14 לפרשת זיו אגמון</h1>
+      <div class="subtitle">קריאה מהירה של מצב הרוח בקהל הימני־ליכודי בעקבות החשיפה</div>
+      <div class="meta">
+        <span>מיועד להעברה לרונן צור</span>
+        <span>עיבוד ועריכה: אמנון זוסמן</span>
+        <span>25 במרץ 2026</span>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="stats">
+        <div class="stat">
+          <div class="num">146</div>
+          <div class="label">תגובות גולמיות במדגם שהועבר</div>
+        </div>
+        <div class="stat">
+          <div class="num">≈110</div>
+          <div class="label">תגובות ייחודיות לאחר ניכוי כפילויות ברורות</div>
+        </div>
+        <div class="stat">
+          <div class="num">1</div>
+          <div class="label">תמה מרכזית: כעס פנימי על “החצר” סביב נתניהו</div>
+        </div>
+      </div>
+
+      <div class="card summary">
+        <h2 class="section-title">תמצית מנהלים</h2>
+        <p><strong>השורה התחתונה:</strong> בקהל הקוראים של C14 הפרשה אינה נקלטת בעיקר כעוד מתקפה תקשורתית מבחוץ, אלא כעוד הוכחה לכך שסביב ראש הממשלה פועלת קבוצה מנותקת, יהירה ולעיתים אף מזלזלת בציבור הליכודי עצמו.</p>
+        <p>מרכז הכובד בתגובות אינו הגנה על זיו אגמון, אלא <strong>הפניית כעס כלפי נתניהו, מנגנון המינויים שלו, והדמויות הרעשניות שסביבו</strong>. במילים אחרות: האירוע הופך במהירות מחשיפה על אדם אחד לדיון רחב יותר על אופייה של הלשכה ועל הפער בין “העם הליכודי” לבין המעגל הקרוב לצמרת.</p>
+        <p>לצד זה יש גם זרם מוכר של תגובות שמסבירות את הפרשה דרך מסגרת של <strong>“חדירת שמאלנים”, “בוגדים”, או “עוד אדם שהסתנן ללשכה”</strong>. זהו מנגנון הגנה פוליטי קלאסי, אך הוא אינו מוחק את עוצמת התסכול הפנימי שעולה מן השטח.</p>
+      </div>
+
+      <div class="side">
+        <div class="card note">
+          <h3>המשמעות הפוליטית</h3>
+          <p>התגובות אינן משדרות רק כעס על אמירה פוגענית. הן משקפות <strong>משבר אמון פנימי</strong> בין חלק מן הבסיס הליכודי לבין מערך האנשים הסובב את נתניהו. מבחינה תקשורתית, זהו סיפור של <strong>ניתוק, יהירות וחוסר כבוד</strong> — לא רק של “פליטת פה”.</p>
+        </div>
+
+        <div class="card method">
+          <h3>איך לקרוא את המדגם</h3>
+          <p>המסמך מבוסס על קריאה מהירה של תגובות שהועברו ישירות לניתוח, כולל זיהוי כפילויות ודפוסים חוזרים. זהו <strong>ניתוח איכותני־פוליטי</strong>, שמטרתו לזהות מגמות ונרטיבים בולטים, לא סקר סטטיסטי מייצג.</p>
+        </div>
+      </div>
+
+      <div class="narratives">
+        <div class="card">
+          <h2 class="section-title">ארבעת הנרטיבים המרכזיים</h2>
+          <div class="cards">
+
+            <div class="narrative-card">
+              <div class="tag">הנרטיב הדומיננטי</div>
+              <h4>1. “הבעיה היא לא רק אגמון — אלא החצר של נתניהו”</h4>
+              <p>זהו הקו הבולט ביותר במדגם. מגיבים רבים תופסים את הפרשה כסימפטום לבעיה רחבה יותר: אנשים סביב ראש הממשלה שמדברים מלמעלה, אינם מחוברים לבסיס הליכודי, ואינם מכבדים את הציבור שמחזיק את התנועה.</p>
+              <div class="quote">תגובות אופייניות: “מה שנהיה מהמפלגה הזאת זה בושה”; “אנשים שלא סופרים את הציבור”; “הוא חי מעל העם”.</div>
+            </div>
+
+            <div class="narrative-card">
+              <div class="tag">כעס ממוקד בהנהגה</div>
+              <h4>2. “נתניהו שוב נכשל במינויים”</h4>
+              <p>כאן האש עולה מדרגה אחת למעלה. לא רק ביקורת על אגמון עצמו, אלא האשמה חוזרת כלפי נתניהו על בחירת אנשים לא נכונים, חוסר שיקול דעת, ותבנית קבועה של מקורבים שמתפוצצים לבסוף לציבור בפנים.</p>
+              <div class="quote">תגובות אופייניות: “חולשתו של נתניהו כל השנים — המינויים”; “לא היה מינוי אחד שהצליח”; “די, צריך אלטרנטיבה בתוך הליכוד”.</div>
+            </div>
+
+            <div class="narrative-card">
+              <div class="tag">מסגרת הגנה מחנאית</div>
+              <h4>3. “עוד שמאלן, עוד בוגד, עוד מסתנן ללשכה”</h4>
+              <p>חלק מהתגובות מפרשות את האירוע לא כהתפרקות פנימית של המחנה, אלא כהוכחה לכך שאנשי שמאל חודרים אל סביבת נתניהו ומבזים את המחנה מבפנים. זו שפה פוליטית ותיקה של “אנחנו מול הם”.</p>
+              <div class="quote">תגובות אופייניות: “עוד שמאלן גזען”; “שמאלנים הסתננו”; “בוגד ארור”; “נחש ארסי ליד נתניהו”.</div>
+            </div>
+
+            <div class="narrative-card">
+              <div class="tag">מיעוט אבל בולט</div>
+              <h4>4. “הוא רק אמר בקול מה שרבים חושבים”</h4>
+              <p>מיעוט מן המגיבים מצמצם את חומרת הפרשה, ולעיתים אף מעניק לגיטימציה לאמירות עצמן. אך במדגם הזה זהו קו משני, ולעיתים הוא גם נתקל בהתנגדות ובדיסלייקים מצד אחרים.</p>
+              <div class="quote">תגובות אופייניות: “מה לא נכון במה שהוא אמר?”; “אז אמר”; “לא חידש”.</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="takeaways">
+        <div class="card alert">
+          <h2 class="section-title">מה בולט במיוחד לעין מקצועית</h2>
+          <ul class="bullet-list">
+            <li><strong>הסיפור אינו נתפס רק כגזענות אישית</strong>, אלא כהשתקפות של יחס מזלזל מצד המעגל הקרוב לצמרת כלפי הבסיס הליכודי.</li>
+            <li><strong>הכעס חוצה שני מסלולים במקביל:</strong> כעס על אגמון כאדם, וכעס עמוק יותר על נתניהו כממנה וכמי שאחראי לאופי האנשים סביבו.</li>
+            <li><strong>הדמויות כמו ואטורי ואמסלם מוזכרות</strong> לא כהגנה על הליכוד, אלא כסמל לסגנון צורם, רועש ומביך שהרחיק חלק מן המגיבים.</li>
+            <li><strong>היסוד העדתי קיים מאוד</strong>, אך התגובות אינן מתכנסות לקו אחד: יש פגיעה, יש עלבון, ויש גם דחייה של תגובות גזעניות בוטות.</li>
+          </ul>
+        </div>
+
+        <div class="card success">
+          <h2 class="section-title">ניסוח קצר שאפשר להעביר הלאה</h2>
+          <p>תגובות קוראי C14 מלמדות כי פרשת זיו אגמון לא נתפסת רק כמעידה אישית, אלא כעדות נוספת לניתוק בין חלק מהמעגל הקרוב לנתניהו לבין הציבור הליכודי. עיקר הכעס הופנה לא רק כלפי אגמון, אלא גם כלפי נתניהו עצמו, מנגנון המינויים שלו, והסגנון של דמויות בולטות בליכוד שנתפסות כרעשניות, יהירות ומביכות. לצד זאת ניכר גם זרם שממסגר את הפרשה כעוד חדירה של “אנשי שמאל” ללשכה, וכן מיעוט שטוען כי אגמון רק ביטא בקול רם דברים שרבים חושבים ממילא.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      המסמך נבנה על בסיס חומר גלם שהועבר לניתוח באותה שיחה. מטרתו לספק תמונת מצב מהירה, בהירה וייצוגית להעברה לאיש תקשורת או למקבל החלטות.
+    </div>
+  </div>
+</body>
+</html>
