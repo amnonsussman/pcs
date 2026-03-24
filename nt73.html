@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>דוח ניתוח מדיה - אמנון זוסמן</title>
+    <title>דוח אנליסט מדיה - אמנון זוסמן</title>
     <style>
         :root {
             --bg-color: #0d1117;
@@ -42,18 +42,8 @@
             margin-bottom: 30px;
         }
 
-        h1 {
-            color: var(--danger);
-            font-size: 2.2em;
-            margin: 0;
-        }
-
-        .analyst-name {
-            font-size: 1.3em;
-            color: var(--accent);
-            margin-top: 10px;
-            font-weight: bold;
-        }
+        h1 { color: var(--danger); font-size: 2.2em; margin: 0; }
+        .analyst-name { font-size: 1.3em; color: var(--accent); margin-top: 10px; font-weight: bold; }
 
         .intro-section {
             background: #21262d;
@@ -63,7 +53,6 @@
             border-right: 4px solid var(--accent);
         }
 
-        /* עיצוב אזור התמונה והקישור צד-בצד */
         .link-container {
             display: flex;
             align-items: center;
@@ -75,15 +64,10 @@
         }
 
         .reel-thumbnail {
-            width: 120px; /* גודל קטן כפי שבוקש */
+            width: 120px;
             height: auto;
             border-radius: 8px;
             border: 1px solid var(--accent);
-            box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
-        }
-
-        .link-text {
-            flex: 1;
         }
 
         .reel-link {
@@ -95,12 +79,6 @@
             border: 1px solid var(--accent);
             padding: 5px 15px;
             border-radius: 5px;
-            transition: 0.3s;
-        }
-
-        .reel-link:hover {
-            background: var(--accent);
-            color: #000;
         }
 
         .stats-container {
@@ -118,40 +96,24 @@
             border-bottom: 4px solid var(--danger);
         }
 
-        .stat-value {
-            font-size: 2em;
-            font-weight: 800;
-            color: var(--text-bright);
-            display: block;
+        .stat-value { font-size: 2em; font-weight: 800; color: var(--text-bright); display: block; }
+
+        .conclusions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
-        .stat-label {
-            font-size: 0.85em;
-            color: #8b949e;
-        }
-
-        .analysis-section {
+        .conclusion-item {
             background: #1c2128;
-            padding: 25px;
+            padding: 20px;
             border-radius: 12px;
-            margin-bottom: 30px;
-            border-right: 6px solid var(--danger);
+            border-right: 4px solid var(--danger);
         }
 
-        h2 { color: var(--warning); margin-top: 0; }
+        .conclusion-item h3 { color: var(--warning); margin-top: 0; font-size: 1.1em; }
 
-        .sentiment-bar-container {
-            background: #30363d;
-            height: 25px;
-            border-radius: 12px;
-            overflow: hidden;
-            display: flex;
-            margin: 15px 0;
-        }
-
-        .bar-neg { width: 85%; background: var(--danger); }
-        .bar-neu { width: 10%; background: var(--warning); }
-        .bar-pos { width: 5%; background: var(--success); }
+        @media (max-width: 768px) { .conclusions-grid { grid-template-columns: 1fr; } }
 
         .footer {
             text-align: center;
@@ -161,6 +123,8 @@
             border-top: 1px solid #30363d;
             padding-top: 20px;
         }
+
+        .highlight { color: var(--warning); font-weight: bold; }
     </style>
 </head>
 <body>
@@ -169,22 +133,21 @@
     <div class="header">
         <h1>דוח ניתוח הסברה: איום הטילים האיראני</h1>
         <div class="analyst-name">אנליסט: אמנון זוסמן</div>
-        <p>מרץ 2026</p>
+        <p>תאריך: 24 במרץ 2026</p>
     </div>
 
     <div class="intro-section">
         <h2>על הריל (Reel) של נתניהו</h2>
         <p>
-            בסרטון שפורסם אתמול, פונה ראש הממשלה נתניהו לקהל הבינלאומי באנגלית. המסר המרכזי הוא אזהרה למדינות אירופה מפני יכולות הטילים של איראן, תוך ניסיון לרתום את דעת הקהל המערבית לתמיכה בפעולות ישראל.
+            בסרטון שפורסם אתמול, פונה ראש הממשלה נתניהו לקהל הבינלאומי באנגלית. המסר המרכזי הוא אזהרה למדינות אירופה מפני יכולות הטילים של איראן. הסרטון הופץ באופן נרחב וצבר תהודה עולמית חריגה בתוך פחות מ-24 שעות.
         </p>
 
-        <!-- אזור התמונה והקישור המוטמע -->
         <div class="link-container">
-            <img src="reel-image.jpg" alt="Netanyahu Reel Thumbnail" class="reel-thumbnail">
+            <img src="reel-image.jpg" alt="Netanyahu Reel" class="reel-thumbnail">
             <div class="link-text">
-                <strong>הוראת הקישור:</strong> ניתן לצפות בסרטון המלא בקישור להלן כדי להבין את הנרטיב המוצג:
+                <strong>הוראת הקישור:</strong> ניתן לצפות בסרטון המלא ובשיח סביבו כאן:
                 <br>
-                <a href="https://www.facebook.com/watch/?v=2017375562532399" class="reel-link" target="_blank">לצפייה ב-Facebook Reel</a>
+                <a href="https://www.facebook.com/watch/?v=2017375562532399" class="reel-link" target="_blank">מעבר ל-Facebook Reel</a>
             </div>
         </div>
     </div>
@@ -196,11 +159,11 @@
         </div>
         <div class="stat-card">
             <span class="stat-value">166,000</span>
-            <span class="stat-label">קליקים / מעורבות</span>
+            <span class="stat-label">קליקים / אינטראקציות</span>
         </div>
         <div class="stat-card">
             <span class="stat-value">~35,000,000</span>
-            <span class="stat-label">הערכת חשיפה (Reach)</span>
+            <span class="stat-label">הערכת חשיפה (Views)</span>
         </div>
         <div class="stat-card">
             <span class="stat-value">85%</span>
@@ -208,31 +171,41 @@
         </div>
     </div>
 
-    <div class="analysis-section">
-        <h2>ניתוח ויראליות מול אפקטיביות</h2>
-        <p>
-            על אף הוויראליות העצומה (כ-35 מיליון חשיפות משוערות), הניתוח מעלה כי מדובר בוויראליות עוינת. 
-            יחס התגובות לקליקים (1:3) מעיד על רמת "בעירה" גבוהה במיוחד של קהלים המתנגדים למסר. 
-            הנרטיב של נתניהו נתקל ב"אנטי-נרטיב" מאורגן הממוקד באירועים הומניטריים באיראן ובעזה, מה שמייצר כשל הסברתי בקרב קהל היעד המערבי.
-        </p>
-    </div>
-
-    <div class="analysis-section" style="border-right-color: var(--warning);">
-        <h2>התפלגות סנטימנט (מדגם מייצג)</h2>
-        <div class="sentiment-bar-container">
-            <div class="bar-neg"></div>
-            <div class="bar-neu"></div>
-            <div class="bar-pos"></div>
+    <h2>מסקנות האנליסט</h2>
+    <div class="conclusions-grid">
+        <div class="conclusion-item">
+            <h3>1. מלכודת הוויראליות העוינת</h3>
+            <p>האלגוריתם הפיץ את הסרטון בגלל כמות התגובות, אך התגובות ברובן הן "צפיית זעם". כתוצאה מכך, המסר הישראלי הוגש על מגש של כסף דווקא לקהלים עוינים שמשתמשים בו כפלטפורמה לתקיפה.</p>
         </div>
-        <p>
-            <span style="color:var(--danger)">■ עוין (85%)</span> | 
-            <span style="color:var(--warning)">■ ניטרלי/ספקני (10%)</span> | 
-            <span style="color:var(--success)">■ תומך (5%)</span>
-        </p>
+
+        <div class="conclusion-item">
+            <h3>2. חניקת נרטיב קהל היעד</h3>
+            <p>קהל היעד המערבי (אירופה/ארה"ב) "טובע" בתוך ים של תגובות מה-Global South. הצופה הניטרלי נחשף לסביבה רעילה שפוגעת באמינות המידע המועבר בסרטון.</p>
+        </div>
+
+        <div class="conclusion-item">
+            <h3>3. כישלון בניהול סדר היום</h3>
+            <p>נתניהו מנסה לדבר על איום עתידי, אך הקהל כופה עליו לדבר על העבר (עזה/איראן). ההסברה הישראלית נגררת למגננה במקום להוביל תודעה.</p>
+        </div>
+
+        <div class="conclusion-item">
+            <h3>4. השתלטות עוינת על הנכס הדיגיטלי</h3>
+            <p>החזרה העקבית על נרטיב "בית הספר במנאב" מעידה על קמפיין מאורגן. חשבון ה-Facebook של רה"מ הפך ללוח מודעות של תעמולת הצד השני.</p>
+        </div>
+
+        <div class="conclusion-item" style="border-right-color: var(--accent);">
+            <h3>5. משבר האמון במציג: האם השליח מכשיל את המסר?</h3>
+            <p>האמון הבינלאומי בנתניהו נמצא בשפל חסר תקדים. השימוש בו כמסביר הראשי מעורר אנטגוניזם אוטומטי. עולה השאלה: מדוע שר החוץ או גורם מקצועי אינם מובילים את הקמפיין? ייתכן שמדובר ב"ריל פנימי" שנועד לצריכה פוליטית בישראל, אך הוצג כקמפיין עולמי - מה שיצר נזק הסברתי בחו"ל.</p>
+        </div>
+
+        <div class="conclusion-item" style="border-right-color: var(--success);">
+            <h3>6. השורה התחתונה</h3>
+            <p>הריל השיג מספרים מרשימים של חשיפה, אך ברמת האפקטיביות ההסברתית מדובר <span class="highlight">בנזק תדמיתי מובהק.</span> ויראליות ללא אמון היא רק רעש המגביר את הבידוד המדיני של ישראל.</p>
+        </div>
     </div>
 
     <div class="footer">
-        הדוח הופק על ידי חברת <strong>סילברטל און ליין בע"מ</strong>
+        הדוח הופק עבור המערכת על ידי חברת <strong>סילברטל און ליין בע"מ</strong>
     </div>
 </div>
 
