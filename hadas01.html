@@ -29,7 +29,7 @@
             align-items: center;
         }
         h1 { color: #1a73e8; margin: 0; font-size: 24px; }
-        .date { font-size: 14px; color: #666; }
+        .date { font-size: 14px; color: #666; margin-top: 5px; }
         
         .summary-grid {
             display: grid;
@@ -56,6 +56,13 @@
             padding: 20px;
             border-radius: 8px;
             line-height: 1.6;
+        }
+        .video-description {
+            background: #f8f9fa;
+            border-right: 5px solid #6c757d;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-style: italic;
         }
         .insight-tag {
             display: inline-block;
@@ -88,7 +95,14 @@
             border-top: 1px solid #eee;
             padding-top: 20px;
         }
-        .tech-note { font-style: italic; color: #555; }
+        .video-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .video-link:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -96,17 +110,27 @@
 <div class="container">
     <header>
         <div>
-            <h1>דו"ח ניתוח זירה: הדס קליין | קבוצת הניצחון</h1>
-            <div class="date">תאריך ניתוח: 27 במרץ, 2026 | מוגש ל: רונן צור</div>
+            <h1>דו"ח ניתוח זירה: תגגובות לסרטון מהראיון של הדס קליין במעריב מה-28-01-2026/h1>
+            <div class="date">
+                <strong>מוגש ל:</strong> רונן צור ע"י אמנון זוסמן | 
+                <strong>תאריך:</strong> 27 במרץ, 2026
+            </div>
         </div>
         <div style="text-align: left; font-weight: bold; color: #1a73e8;">
             DATA ANALYSIS UNIT
         </div>
     </header>
 
+    <section>
+        <h2>על הסרטון המנותח</h2>
+        <div class="video-description">
+            הסרטון מציג ראיון בלעדי ושבירת שתיקה של הדס קליין (מעריב אונליין). במוקד הסרטון: חשיפת פרטים על שיחתה החשאית עם הנשיא הרצוג, ספקותיה לגבי מניעיו, ועדכונים על מאבקה המשפטי ("חמ"ל דיבה") מול מסיתים ברשת. הסרטון מהווה צומת מרכזי בנרטיב של קליין כדמות הנלחמת באופן עצמאי במנגנוני לחץ פוליטיים וממלכתיים כאחד.
+        </div>
+    </section>
+
     <section class="summary-grid">
         <div class="card">
-            <h3>חשיפת סרטון מוקד</h3>
+            <h3>חשיפת סרטון</h3>
             <div class="value">49,000</div>
             <p>צפיות (Organic Reach)</p>
         </div>
@@ -130,7 +154,7 @@
     <section>
         <h2>תמצית אסטרטגית - Executive Summary</h2>
         <div class="analysis-box">
-            הדס קליין ממצבת את עצמה כראש החץ של המאבק מול <span class="machine-poison">"מכונת הרעל"</span>. הנתונים מראים פער אדיר לטובתה במישור ה<b>חשיפה (Reach)</b> – תוכן התמיכה מגיע לפי 25 יותר אנשים מאשר תוכן ההכפשה. עם זאת, במישור ה<b>תגובות</b>, מכונת הרעל שומרת על דומיננטיות קולנית שמטרתה לייצר הרתעה ("ספירלת השתיקה").
+            הדס קליין ממצבת את עצמה כראש החץ של המאבק מול <span class="machine-poison">"מכונת הרעל"</span>. הנתונים מראים פער אדיר לטובתה במישור ה<b>חשיפה (Reach)</b> – תוכן התמיכה מגיע לפי 25 יותר אנשים מאשר תוכן ההכפשה. עם זאת, במישור ה<b>תגובות</b>, מכונת הרעל שומרת על דומיננטיות קולנית שמטרתה לייצר הרתעה ואפקט של "ספירלת השתיקה".
         </div>
     </section>
 
@@ -143,8 +167,8 @@
         <div class="analysis-box">
             <span class="insight-tag">ניתוח טקטי:</span><br>
             <ul>
-                <li><span class="machine-poison">וקטור התקיפה:</span> דה-לגיטימציה אישית ("שקרנית", "צאחלה") ותקיפת מוסדות (פרקליטות, נשיאות).</li>
-                <li><span class="victory-group">וקטור ההגנה:</span> תמיכה אמוציונלית חזקה ("לביאה", "גיבורה"). חמ"ל הדיבה מזוהה ככלי ההרתעה המרכזי.</li>
+                <li><span class="machine-poison">וקטור התקיפה:</span> דה-לגיטימציה אישית ("שקרנית", "מרשעת") ותקיפת מוסדות (פרקליטות, נשיאות).</li>
+                <li><span class="victory-group">וקטור ההגנה:</span> תמיכה אמוציונלית חזקה ("לביאה", "גיבורה"). יוזמת חמ"ל הדיבה מזוהה ככלי ההרתעה המרכזי.</li>
             </ul>
         </div>
     </section>
@@ -153,8 +177,8 @@
         <h2>תובנת המפתח: וקטור הנשיא הרצוג</h2>
         <div class="analysis-box" style="border-right: 5px solid #fbbc05;">
             <span class="insight-tag" style="background: #fbbc05;">Insight אסטרטגי:</span><br>
-            המתקפה של הדס קליין על הנשיא הרצוג ("היו לי ספקות לגביו") מהווה <b>נכס הסברתי</b>. 
-            היא מנתקת אותה מהתיוג כ"בובה של המערכת" ומבססת את אמינותה כדוברת אמת ללא מורא. בקרב ה"רוב השקט" שצפה בסרטון, המהלך הזה מחזק את תפיסת העצמאות שלה ומנטרל את טענות הקנוניה.
+            הביקורת הפומבית של הדס קליין על הנשיא הרצוג מהווה <b>נכס הסברתי</b>. 
+            היא מנתקת אותה מהתיוג כ"בובה של המערכת" ומבססת את אמינותה כדוברת אמת ללא מורא שאינה עושה חשבון גם לדמויות קונצנזוס. מהלך זה מחזק את תפיסת העצמאות שלה בקרב ה"רוב השקט" ומנטרל את נרטיב הקנוניה.
         </div>
     </section>
 
@@ -163,17 +187,19 @@
         <div class="analysis-box">
             <ol>
                 <li><b>מינוף הרוב השקט:</b> לייצר כלים לשיתוף תוכן ללא צורך בעימות ישיר עם טרולים בתגובות.</li>
-                <li><b>הבלטת "חמ"ל דיבה":</b> פרסום הצלחות משפטיות ותביעות נגד מסיתים ככלי להרתעת המגיבים.</li>
-                <li><b>ניכוס נרטיב האמינות:</b> הדגשת העובדה שקליין אינה חסה גם על דמויות קונצנזוס (הרצוג) כערובה ליושרתה.</li>
+                <li><b>הבלטת "חמ"ל דיבה":</b> פרסום הצלחות משפטיות כתחמושת הסברתית להרתעת מסיתים.</li>
+                <li><b>ביצור נרטיב האמינות:</b> הדגשת חוסר המורא של קליין (מול נתניהו והרצוג כאחד) כערובה ליושרתה.</li>
             </ol>
         </div>
     </section>
 
     <footer>
-        <div class="tech-note">
-            הנתונים נשלפו באמצעות סקריפט JS ייעודי לניטור אינטראקציות רשת בזמן אמת.
+        <div style="font-style: italic; color: #555; margin-bottom: 10px;">
+            הנתונים נשלפו ונותחו באמצעות סקריפט JS ייעודי לניטור אינטראקציות רשת.
         </div>
-        <p>© 2026 דוח ניתוח נתונים - יחידת המודיעין הדיגיטלית</p>
+        <strong>קישור לסרטון המנותח:</strong><br>
+        <a href="https://www.facebook.com/share/v/1HGXxvVWLU/" class="video-link" target="_blank">לחץ כאן לצפייה בסרטון בפייסבוק</a>
+        <p>© 2026 דו"ח ניתוח נתונים | אמנון זוסמן עבור "קבוצת הניצחון"</p>
     </footer>
 </div>
 
