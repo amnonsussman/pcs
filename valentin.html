@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>הבלדה על ולנטין וולנטינה</title>
+  <style>
+    :root {
+      --bg1: #0f172a;
+      --bg2: #1e293b;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #475569;
+      --accent: #0ea5e9;
+      --accent2: #dc2626;
+      --accent3: #f59e0b;
+      --line: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      color: var(--text);
+      line-height: 1.8;
+    }
+    .wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 38px 18px 60px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 26px;
+      padding: 34px 28px 42px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.24);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 9px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+    }
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: 2.35rem;
+      color: #111827;
+    }
+    .author {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    .intro {
+      background: linear-gradient(180deg, #f8fafc, #fff7ed);
+      border-right: 5px solid var(--accent);
+      border-radius: 16px;
+      padding: 18px 18px;
+      font-size: 1.08rem;
+      margin-bottom: 26px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+    .figure {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 10px;
+    }
+    .figure img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+      border-radius: 14px;
+      background: #e5e7eb;
+    }
+    .caption {
+      color: var(--muted);
+      font-size: .95rem;
+      margin-top: 10px;
+      text-align: center;
+    }
+    .poem {
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+    }
+    .poem-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #111827;
+    }
+    .line {
+      font-size: 1.22rem;
+      margin: 0;
+      white-space: pre-wrap;
+    }
+    .footer {
+      margin-top: 26px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    @media (max-width: 760px) {
+      .grid { grid-template-columns: 1fr; }
+      .card { padding: 26px 18px 34px; }
+      h1 { font-size: 1.8rem; }
+      .line { font-size: 1.08rem; }
+      .figure img { height: 240px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <article class="card">
+      <h1>הבלדה על ולנטין וולנטינה</h1>
+      <div class="author">מאת אמנון זוסמן</div>
+
+      <section class="intro">בחודש האחרון נחשפתי לשני ולנטינים: ד״ר ולנטין, שטיפל בי בבית החולים, ולעומתו דמותה הציבורית של השוטרת ולנטינה, כפי שהיא מצטיירת בעיניי רבים בימים קשים אלו. <br>המפגש הכפול הזה הוליד את הבלדה הקצרה שלפניכם: שתי דמויות עם רקע דומה, שני מסלולים מנוגדים ושתי תחזיות אפשריות לעתידה של מדינתנו האהובה.</section>
+
+      <section class="grid" aria-label="תמונות">
+        <figure class="figure">
+          <img src="images/pic_1.jpg" alt="רופא מטפל בחולה במחלקה האורולוגית" onerror="this.onerror=null;this.src='images/pic_1.png';">
+          <figcaption class="caption"> רופא מטפל בחולה במחלקה האורולוגית</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="images/pic_2.jpg" alt="שוטרת מפילה מפגינה לרצפה" onerror="this.onerror=null;this.src='images/pic_2.png';">
+          <figcaption class="caption"> שוטרת מפילה מפגינה בדרך לרצפה</figcaption>
+        </figure>
+      </section>
+
+      <section class="poem">
+        <div class="poem-title">הבלדה על ולנטין וולנטינה</div>
+        <p class="line"><p class="line">מִן הַשֶּׁלֶג בָּאוּ, בְּגַל הָעֲלִיָּה,<br>וָלֶנְטִין וְוַלֶנְטִינָה, אוֹתָהּ אֳנִיָּה.</p><p class="line">הוּא בָּחַר בִּרְפוּאָה, בְּרִפּוּי ובְּמֹחַ,</p><p class="line">הִיא בָּחֲרָה בְּמַדִּים, בִּפְקֻדָּה ובְּכוֹחַ.</p><p class="line">&nbsp;</p><p class="line">הוּא מְרַסֵּק אֲבָנִים, מְשַׁחְרֵר חֲסִימוֹת,</p><p class="line">הִיא מְפַזֶּרֶת נָשִׁים מְבֻגָּרוֹת שֶׁמּוֹחוֹת.</p><p class="line">הוּא מַחֲזִיר זְרִימָה לַצַּנֶּרֶת שֶׁל הַגּוּף,</p><p class="line">הִיא מַבִּיטָה בָּאֶזְרָח כְּמוֹ חֵפֶץ שָׁקוּף.</p><p class="line">&nbsp;</p><p class="line">לוֹ אֵין שַׂר שֶׁיְּגַבֶּה, רַק חוֹלֶה שֶׁמּוֹדֵה,</p><p class="line">לָהּ יֵשׁ גַּב מִלְּמַעְלָה מִשִּׁלְטוֹן כּוֹפֶה.</p><p class="line">&nbsp;</p><p class="line">הוּא רוֹפֵא שֶׁל כְּאֵב, אִישׁ שָׁקֵט וְנָעִים,</p><p class="line">הִיא פְּנֵי הַמִּשְׁטָר הַקָּם עַל הָאֶזְרָחִים.</p><p class="line">וְכָךְ, בַּמְּדִינָה שֶׁאִבְּדָה מַצְפֵּן, מַצְפּוּן וְכִיווּן,</p><p class="line">הוּא מְטַפֵּל בָּאָדָם, הִיא מַדְגִּישָׁה אֶת הַנִּוּוּן.</p><p class="line">&nbsp;</p><p class="line">אָז לְאָן נִצְעַד לְאֵיזֶה עָתִיד נַגִּיעַ,</p><p class="line">וָלֶנְטִין אוֹ וָלֶנְטִינָה, יִשְׂרָאֵל אוֹ פָּלֵסְתִּינָה ?</p>
+      </section>
+
+    </article>
+  </div>
+</body>
+</html>
