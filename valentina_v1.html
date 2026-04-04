@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דו"ח ניתוח תהודה ציבורית - הקצינה ולנטינה נמץ</title>
+    <style>
+        :root {
+            --primary-color: #1a2a3a;
+            --secondary-color: #2980b9;
+            --danger-color: #c0392b;
+            --success-color: #27ae60;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        header {
+            border-bottom: 3px solid var(--primary-color);
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .header-text h1 { margin: 0; color: var(--primary-color); font-size: 26px; }
+        .header-meta { text-align: left; font-size: 14px; color: #7f8c8d; }
+        
+        .summary-box {
+            background: #e8f4fd;
+            border-right: 6px solid var(--secondary-color);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+        
+        h2 { color: var(--secondary-color); border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 40px; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number { font-size: 28px; font-weight: bold; color: var(--primary-color); }
+        .stat-label { font-size: 14px; color: #666; }
+
+        .chart-section {
+            background: #fafafa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid #eee;
+        }
+        .chart-title { font-weight: bold; margin-bottom: 15px; display: block; font-size: 18px; color: var(--primary-color); }
+        .bar-wrapper { margin-bottom: 15px; }
+        .bar-label { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 14px; }
+        .bar-bg { background: #e0e0e0; height: 28px; border-radius: 14px; overflow: hidden; position: relative; }
+        .bar-fill { height: 100%; border-radius: 14px; transition: width 1s ease-in-out; }
+
+        .footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            font-size: 12px;
+            color: #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="header-text">
+            <h1>דו"ח ניתוח תגובות ומעורבות ציבורית</h1>
+            <p>אירועי הקצינה ולנטינה נמץ והקידום בדרגה</p>
+        </div>
+        <div class="header-meta">
+            <strong>מגיש הדו"ח:</strong> אמנון זוסמן<br>
+            <strong>תאריך הפקה:</strong> 04-04-2026<br>
+            <strong>סטטוס:</strong> סופי - נתונים מאוחדים
+        </div>
+    </header>
+
+    <div class="summary-box">
+        <h2>תמצית מנהלים</h2>
+        <p>
+            הדו"ח מנתח נפח שיח משמעותי של <strong>927 תגובות גולשים</strong>. 
+            מעבר לתוכן המילולי, הדו"ח שם דגש על <strong>סך המעורבות השקטה בקליקים</strong>, העומד על למעלה מ-<strong>15,400 אינטראקציות</strong>. 
+            ממצאי הדו"ח מעידים על פער עצום בין הקולות המילוליים לבין הנטייה המובהקת של הרוב הדומם (הקליקים), המביעים התנגדות חריפה וגורפת להתנהלות המשטרה באירוע זה.
+        </p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">927</div>
+            <div class="stat-label">נפח תגובות מילוליות</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">15,400+</div>
+            <div class="stat-label">סך מעורבות שקטה (קליקים)</div>
+        </div>
+    </div>
+
+    <!-- גרף 1: סיווג תגובות מילוליות -->
+    <section class="chart-section">
+        <span class="chart-title">סיווג תגובות מילוליות</span>
+        <p style="font-size: 13px; color: #666;">חלוקה לפי ניתוח תוכן התגובות (כולל נייטרלי)</p>
+        
+        <div class="bar-wrapper">
+            <div class="bar-label"><span>מתנגדים ומבקרים (Label 1-2)</span><span>72%</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 72%; background: var(--danger-color);"></div></div>
+        </div>
+        
+        <div class="bar-wrapper">
+            <div class="bar-label"><span>תומכים ומצדיקים (Label 8-10)</span><span>18%</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 18%; background: var(--success-color);"></div></div>
+        </div>
+
+        <div class="bar-wrapper">
+            <div class="bar-label"><span>נייטרלי / בירור עובדתי (Label 3-7)</span><span>10%</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 10%; background: #95a5a6;"></div></div>
+        </div>
+    </section>
+
+    <!-- גרף 2: מעורבות שקטה -->
+    <section class="chart-section">
+        <span class="chart-title">מעורבות שקטה (קליקים ללא נייטרלי)</span>
+        <p style="font-size: 13px; color: #666;">
+            נוסחת חישוב: (לייקים למתנגדים + דיסלייקים לתומכים) מול (לייקים לתומכים + דיסלייקים למתנגדים)
+        </p>
+        
+        <div class="bar-wrapper">
+            <div class="bar-label"><span>קליקים תומכים במבקרים (נגד המשטרה)</span><span>94%</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 94%; background: #1a2a3a;"></div></div>
+        </div>
+        
+        <div class="bar-wrapper">
+            <div class="bar-label"><span>קליקים תומכים במשטרה / שוטרת</span><span>6%</span></div>
+            <div class="bar-bg"><div class="bar-fill" style="width: 6%; background: #bdc3c7;"></div></div>
+        </div>
+        <p style="font-size: 12px; font-style: italic; color: #7f8c8d; margin-top: 10px;">
+            * נתון זה משקף את העובדה שהתגובות הביקורתיות קיבלו לייקים באלפים, בעוד שהתגובות התומכות זכו לדיסלייקים המוניים.
+        </p>
+    </section>
+
+    <section>
+        <h2>תובנות מרכזיות</h2>
+        <ul>
+            <li><strong>בידוד עמדת התמיכה:</strong> למרות שקיימות תגובות תומכות (18%), הציבור הרחב (94% מהקליקים) פועל "להשתיק" אותן באמצעות הצבעות נגד.</li>
+            <li><strong>קישור פוליטי:</strong> המונח "משטרת בן גביר" הוא המושג הדומיננטי ביותר בשיח, מה שמעיד על שיוך פוליטי של פעולות השוטרת.</li>
+            <li><strong>התמקדות אישית:</strong> השוטרת ולנטינה נמץ מזוהה בשמה המלא ובמוצאה בתדירות גבוהה מאוד, תוך הצמדת כינויים קשים מתקופות היסטוריות חשוכות.</li>
+        </ul>
+    </section>
+
+    <div class="footer">
+        מוגש ע"י: אמנון זוסמן | תאריך: 04-04-2026 | כל הזכויות שמורות &copy;
+    </div>
+</div>
+
+</body>
+</html>
