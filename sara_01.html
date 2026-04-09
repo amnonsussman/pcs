@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>בסרוגים ניסו לרחם על שרה נתניהו — הקוראים הגיבו בציניות</title>
+  <style>
+    :root{
+      --bg:#f4f1ec;
+      --card:#fffdf9;
+      --ink:#1f2937;
+      --muted:#5b6472;
+      --line:#d8d1c7;
+      --accent:#6b7a90;
+      --accent-soft:#e7edf5;
+      --warn:#8f3d2e;
+      --warn-soft:#f7e8e3;
+      --dark:#223042;
+      --gold:#b38a3b;
+      --shadow:0 14px 38px rgba(32,41,54,0.10);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Arial, "Noto Sans Hebrew", "Rubik", sans-serif;
+      background:
+        radial-gradient(circle at top right, #faf7f2 0%, var(--bg) 45%, #ece7de 100%);
+      color:var(--ink);
+      line-height:1.8;
+    }
+
+    .wrap{
+      max-width:920px;
+      margin:0 auto;
+      padding:36px 20px 60px;
+    }
+
+    .hero{
+      background:linear-gradient(135deg, #fdfcf9 0%, #f2eee7 100%);
+      border:1px solid #e2dbd1;
+      border-top:6px solid var(--warn);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:34px 30px 28px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:auto -80px -80px auto;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(143,61,46,0.10) 0%, rgba(143,61,46,0.03) 55%, transparent 70%);
+      pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      font-size:14px;
+      letter-spacing:.3px;
+      color:var(--warn);
+      background:var(--warn-soft);
+      border:1px solid #e6c5bb;
+      padding:6px 12px;
+      border-radius:999px;
+      margin-bottom:16px;
+      font-weight:700;
+    }
+
+    h1{
+      margin:0 0 14px;
+      font-size:clamp(30px, 4.8vw, 50px);
+      line-height:1.2;
+      color:#182231;
+    }
+
+    .sub{
+      margin:0;
+      font-size:20px;
+      color:var(--muted);
+      max-width:760px;
+    }
+
+    .meta{
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px solid #e7dfd6;
+      color:#6a5d4b;
+      font-size:14px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:22px;
+      margin-top:24px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid #e6e0d7;
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:26px 24px;
+    }
+
+    .card h2{
+      margin:0 0 14px;
+      font-size:24px;
+      color:var(--dark);
+    }
+
+    p{
+      margin:0 0 16px;
+      font-size:20px;
+    }
+
+    .lead{
+      font-size:21px;
+    }
+
+    .pull{
+      background:linear-gradient(180deg, #f8f4ed 0%, #fdfbf8 100%);
+      border-right:5px solid var(--gold);
+      padding:18px 18px 16px;
+      border-radius:16px;
+      color:#3f4a57;
+      font-size:19px;
+      margin:16px 0 18px;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+      margin-top:4px;
+    }
+
+    .stat{
+      background:#faf8f4;
+      border:1px solid #ebe3d8;
+      border-radius:18px;
+      padding:18px 16px;
+      text-align:center;
+    }
+
+    .stat .num{
+      display:block;
+      font-size:34px;
+      line-height:1.1;
+      font-weight:800;
+      color:var(--warn);
+      margin-bottom:6px;
+    }
+
+    .stat .label{
+      color:var(--muted);
+      font-size:16px;
+    }
+
+    .barbox{
+      margin-top:20px;
+      padding-top:8px;
+    }
+
+    .barrow{
+      margin:16px 0;
+    }
+
+    .barlabel{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      font-size:16px;
+      color:#445061;
+      margin-bottom:7px;
+      font-weight:700;
+    }
+
+    .bar{
+      height:16px;
+      background:#ece7df;
+      border-radius:999px;
+      overflow:hidden;
+    }
+
+    .fill{
+      height:100%;
+      border-radius:999px;
+    }
+
+    .neg{background:linear-gradient(90deg,#a24b3a,#c56f5a)}
+    .pos{background:linear-gradient(90deg,#6d8199,#8fa8c4)}
+    .unc{background:linear-gradient(90deg,#8b8f97,#b4b8bf)}
+    .mix{background:linear-gradient(90deg,#b08e49,#d3b16e)}
+
+    .quote{
+      background:var(--accent-soft);
+      border:1px solid #d8e0eb;
+      color:#334155;
+      padding:16px 18px;
+      border-radius:16px;
+      font-size:18px;
+      margin-top:18px;
+    }
+
+    .footer{
+      text-align:center;
+      color:#6b7280;
+      font-size:14px;
+      margin-top:22px;
+    }
+
+    .highlight{
+      color:var(--warn);
+      font-weight:700;
+    }
+
+
+    .meaning-box{
+      margin-top:18px;
+      background:linear-gradient(180deg, #fff7f4 0%, #fdf1ec 100%);
+      border:2px solid #c56f5a;
+      border-right:8px solid #8f3d2e;
+      border-radius:18px;
+      padding:18px 18px 16px;
+      box-shadow:0 10px 28px rgba(143,61,46,0.10);
+    }
+
+    .meaning-box p{
+      margin:0;
+      font-size:21px;
+      color:#4a2e28;
+      font-weight:700;
+    }
+
+    @media (max-width: 780px){
+      .grid{grid-template-columns:1fr}
+      p{font-size:18px}
+      .lead{font-size:19px}
+      .card{padding:22px 18px}
+      .hero{padding:28px 20px 24px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>בסרוגים ניסו לרחם על שרה נתניהו — הקוראים הגיבו בציניות</h1>
+      <p class="sub">
+        כתבה אמפתית על החרדות של שרה נתניהו הפכה לזירה שבה התבלט דווקא הניכור,
+        והקוראים גילו שהדיסוננס שתקוע להם בגרון תקוע גם לרבים אחרים.
+      </p>
+      <div class="meta">אמנון זוסמן · 9 באפריל 2026</div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>הטקסט ניסה לרכך. התגובות חשפו את הפער.</h2>
+        <p class="lead">
+          באתר <span class="highlight">סרוגים</span> — אתר נישה ימני־דתי עם תפוצה של עשרות אלפים בודדים —
+          פורסמה כתבה אמפתית על מצבה הרגשי של שרה נתניהו. המסגור היה רך:
+          דאגה, חרדות, מצב רוח לא טוב, ואפילו אזכור להצעה להדליק משואה.
+        </p>
+        <div class="pull">
+          אבל מי שנכנס לכתבה לא קרא רק את הכתבה. הוא גם ראה מיד את מה שאחרים הרשו לעצמם לכתוב:
+          לא הזדהות, אלא לעג, כעס, דחייה, וציניות חדה.
+        </div>
+        <p>
+          מתוך <strong>57 תגובות</strong>, רק <strong>7 היו חיוביות</strong> כלפי שרה נתניהו.
+          לעומתן, <strong>41 תגובות היו שליליות</strong>, <strong>8 לא ברורות</strong>, ו־<strong>תגובה אחת מעורבת</strong>.
+          במילים אחרות: כ־<strong>72%</strong> מן המגיבים לא קנו את המסגור האמפתי.
+        </p>
+        <p>
+          חלקם לא הסתפקו בביקורת פוליטית. הם דחו את עצם העיסוק בה. במקום להישאב לסיפור על חרדותיה של
+          אשת ראש הממשלה, הם החזירו את מוקד הדיון לציבור: לחיילים, לחטופים, לאזרחים בלי מיגון,
+          למשפחות קורסות ולעסקים שנשחקים. מבחינתם, האמפתיה התבקשה במקום הלא נכון.
+        </p>
+        <div class="meaning-box">
+          <p>
+            המשמעות מעניינת דווקא בגלל הזירה: לא אתר שמאל מובהק, אלא מרחב ימני־דתי, מסורתי,
+            שמחפש בית יהודי־פוליטי. וכשהקורא רואה שעוד רבים מגיבים כמוהו, הוא מבין שהתחושה הפרטית שלו
+            כבר אינה פרטית. הדיסוננס שנתקע לו בגרון מול הנתניהוז — תקוע גם לאחרים.
+          </p>
+        </div>
+      </article>
+
+      <aside class="card">
+        <h2>התפלגות התגובות</h2>
+        <div class="stats">
+          <div class="stat">
+            <span class="num">41</span>
+            <span class="label">תגובות שליליות</span>
+          </div>
+          <div class="stat">
+            <span class="num">7</span>
+            <span class="label">תגובות חיוביות</span>
+          </div>
+          <div class="stat">
+            <span class="num">8</span>
+            <span class="label">לא ברורות</span>
+          </div>
+          <div class="stat">
+            <span class="num">1</span>
+            <span class="label">מעורבת</span>
+          </div>
+        </div>
+
+        <div class="barbox">
+          <div class="barrow">
+            <div class="barlabel"><span>שליליות</span><span>72%</span></div>
+            <div class="bar"><div class="fill neg" style="width:72%;"></div></div>
+          </div>
+          <div class="barrow">
+            <div class="barlabel"><span>חיוביות</span><span>12%</span></div>
+            <div class="bar"><div class="fill pos" style="width:12%;"></div></div>
+          </div>
+          <div class="barrow">
+            <div class="barlabel"><span>לא ברורות</span><span>14%</span></div>
+            <div class="bar"><div class="fill unc" style="width:14%;"></div></div>
+          </div>
+          <div class="barrow">
+            <div class="barlabel"><span>מעורבת</span><span>2%</span></div>
+            <div class="bar"><div class="fill mix" style="width:2%;"></div></div>
+          </div>
+        </div>
+
+        <h2 style="margin-top:26px;">הקהל השקט</h2>
+        <p>
+          גם מי שלא כתב, אלא רק לחץ על אימוג'ים, הלך לאותו כיוון.
+          בתגובות נספרו <strong>594 קליקים</strong> בסך הכול.
+        </p>
+        <div class="quote">
+          <strong>422 קליקים</strong> על תגובות שליליות<br/>
+          <strong>157 קליקים</strong> על תגובות חיוביות<br/>
+          <strong>13</strong> על תגובות לא ברורות<br/>
+          <strong>2</strong> על תגובה מעורבת
+        </div>
+        <p style="margin-top:16px;">
+          זהו לא רק קול המגיבים הפעילים. זו גם <strong>הסכמת הרקע</strong> של מי שלא טרח לנסח,
+          אבל כן סימן באצבע מה מהדהד לו נכון.
+        </p>
+      </aside>
+    </section>
+
+    <div class="footer">
+      קובץ HTML עצמאי בעברית · פריסה RTL · מוכן לפתיחה בדפדפן או להפצה
+    </div>
+  </div>
+</body>
+</html>
