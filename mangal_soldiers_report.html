@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>מה חושבים הגולשים? ניתוח טוקבקים — לוחמות המנגל</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f4f4f4;
+      color: #222;
+      line-height: 1.75;
+      padding: 30px 16px;
+    }
+
+    .article-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+    }
+
+    /* Header */
+    .article-header {
+      background: #1a3a5c;
+      color: #fff;
+      padding: 36px 36px 28px;
+    }
+    .article-header .kicker {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #90bde0;
+      margin-bottom: 10px;
+    }
+    .article-header h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 14px;
+    }
+    .article-header .deck {
+      font-size: 1.05rem;
+      color: #c8dff0;
+      font-weight: 400;
+    }
+    .byline {
+      margin-top: 18px;
+      font-size: 0.85rem;
+      color: #a8c8e0;
+    }
+    .byline strong { color: #fff; }
+
+    /* Body */
+    .article-body {
+      padding: 32px 36px 40px;
+    }
+
+    p { margin-bottom: 1.1rem; }
+
+    h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1a3a5c;
+      margin: 2rem 0 0.8rem;
+      border-right: 4px solid #1a3a5c;
+      padding-right: 10px;
+    }
+
+    /* Stats row */
+    .stats-row {
+      display: flex;
+      gap: 16px;
+      margin: 28px 0;
+      flex-wrap: wrap;
+    }
+    .stat-card {
+      flex: 1;
+      min-width: 150px;
+      border-radius: 8px;
+      padding: 18px 16px;
+      text-align: center;
+    }
+    .stat-card.anti  { background: #fff0f0; border: 2px solid #e05555; }
+    .stat-card.pro   { background: #f0f8ff; border: 2px solid #5588cc; }
+    .stat-card.other { background: #f7f7f7; border: 2px solid #bbb; }
+    .stat-card .big-num {
+      font-size: 2.4rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .stat-card.anti  .big-num { color: #cc3333; }
+    .stat-card.pro   .big-num { color: #2255aa; }
+    .stat-card.other .big-num { color: #777; }
+    .stat-card .label { font-size: 0.82rem; margin-top: 6px; color: #444; font-weight: 600; }
+
+    /* Table */
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.93rem;
+    }
+    .results-table th {
+      background: #1a3a5c;
+      color: #fff;
+      padding: 10px 14px;
+      text-align: center;
+      font-weight: 600;
+    }
+    .results-table th:first-child { text-align: right; }
+    .results-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #e8e8e8;
+      text-align: center;
+    }
+    .results-table td:first-child { text-align: right; font-weight: 600; }
+    .results-table tr:hover { background: #f9f9f9; }
+    .results-table .anti-val { color: #cc3333; font-weight: 700; }
+    .results-table .pro-val  { color: #2255aa; font-weight: 700; }
+
+    /* Quote */
+    .quote-block {
+      margin: 20px 0;
+      padding: 16px 20px;
+      border-right: 5px solid #e05555;
+      background: #fff8f8;
+      border-radius: 0 6px 6px 0;
+      font-style: italic;
+      color: #333;
+    }
+    .quote-block .likes-badge {
+      display: inline-block;
+      background: #e05555;
+      color: #fff;
+      font-size: 0.72rem;
+      font-style: normal;
+      font-weight: 700;
+      border-radius: 4px;
+      padding: 2px 7px;
+      margin-right: 6px;
+    }
+    .quote-block .quote-text { margin-top: 6px; }
+
+    /* Like ratio bar */
+    .like-ratio-wrap { margin: 22px 0; }
+    .like-ratio-label {
+      font-size: 0.82rem;
+      color: #555;
+      margin-bottom: 4px;
+    }
+    .like-ratio-bar {
+      display: flex;
+      height: 22px;
+      border-radius: 4px;
+      overflow: hidden;
+      width: 100%;
+    }
+    .bar-anti  { background: #e05555; }
+    .bar-pro   { background: #5588cc; }
+    .bar-other { background: #bbb; }
+    .bar-legend {
+      display: flex;
+      gap: 18px;
+      margin-top: 6px;
+      font-size: 0.78rem;
+    }
+    .dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-left: 4px; vertical-align: middle; }
+
+    /* Methodology */
+    .methodology-box {
+      background: #f0f4f8;
+      border-radius: 8px;
+      padding: 18px 20px;
+      font-size: 0.85rem;
+      color: #444;
+      margin-top: 28px;
+    }
+    .methodology-box strong { color: #1a3a5c; }
+
+    /* Footer */
+    .article-footer {
+      border-top: 1px solid #eee;
+      padding: 18px 36px;
+      font-size: 0.78rem;
+      color: #888;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="article-wrap">
+
+  <!-- HEADER -->
+  <div class="article-header">
+    <div class="kicker">ניתוח טוקבקים · Political Snapshot</div>
+    <h1>לוחמות המנגל: קהל וינט כנגד</h1>
+    <div class="deck">
+      ניתוח 419 תגובות לכתבה על מאסר לוחמות שהדליקו מנגל בפסח —
+      מדד השקט מציג 82.7% מתנגדי קואליציה, מהציונים הקיצוניים ביותר שנמדדו.
+    </div>
+    <div class="byline">מאת <strong>אמנון זוסמן</strong> · אפריל 2026</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="article-body">
+
+    <p>
+      כשהתפרסמה הכתבה בוינט על לוחמות שנשלחו למחבוש בגלל הדלקת מנגל בחג הפסח,
+      ניתוח הטוקבקים לא השאיר הרבה מקום לספק: קהל וינט — שמאפיין את שכבת הציבור
+      החילוני-מרכזי בישראל — הגיב בסערה אחידה שכמותה לא ראינו לאורך כל המחקר הזה.
+    </p>
+
+    <!-- STAT CARDS -->
+    <div class="stats-row">
+      <div class="stat-card anti">
+        <div class="big-num">82.7%</div>
+        <div class="label">מתנגד קואליציה<br/>(מדד שקט)</div>
+      </div>
+      <div class="stat-card pro">
+        <div class="big-num">0.4%</div>
+        <div class="label">תומך קואליציה<br/>(מדד שקט)</div>
+      </div>
+      <div class="stat-card other">
+        <div class="big-num">419</div>
+        <div class="label">תגובות L1<br/>שנותחו</div>
+      </div>
+    </div>
+
+    <h2>הממצאים</h2>
+
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th>מדד</th>
+          <th>מתנגד קואליציה</th>
+          <th>תומך קואליציה</th>
+          <th>אחר</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>מילולי (ספירת תגובות)</td>
+          <td class="anti-val">64.7%</td>
+          <td class="pro-val">10.3%</td>
+          <td>25.1%</td>
+        </tr>
+        <tr>
+          <td>שקט (weighted by likes)</td>
+          <td class="anti-val">82.7%</td>
+          <td class="pro-val">0.4%</td>
+          <td>16.9%</td>
+        </tr>
+        <tr>
+          <td>סה"כ לייקים</td>
+          <td class="anti-val">11,246</td>
+          <td class="pro-val">53</td>
+          <td>2,284</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- LIKE RATIO BAR -->
+    <div class="like-ratio-wrap">
+      <div class="like-ratio-label">התפלגות הלייקים לפי עמדה:</div>
+      <div class="like-ratio-bar">
+        <div class="bar-anti"  style="width:82.7%"></div>
+        <div class="bar-other" style="width:16.9%"></div>
+        <div class="bar-pro"   style="width:0.4%"></div>
+      </div>
+      <div class="bar-legend">
+        <span><span class="dot" style="background:#e05555"></span>מתנגד קואליציה 82.7%</span>
+        <span><span class="dot" style="background:#bbb"></span>אחר 16.9%</span>
+        <span><span class="dot" style="background:#5588cc"></span>תומך קואליציה 0.4%</span>
+      </div>
+    </div>
+
+    <h2>הקצה הקיצוני של הסקאלה</h2>
+    <p>
+      בהשוואה לנושאים אחרים שנבדקו לאורך ינואר–מרץ 2026, כפייה דתית בצבא
+      מניבה את אחת הפולריזציות החדות ביותר שנמדדו. אפילו חרדים וסמוטריץ' — שגררו 97-96%
+      "שקט מתנגד" — לא הגיעו ל-0.4% תומכים.
+    </p>
+    <p>
+      כדאי להבין את משמעות הפער: הלייקים שקיבלו 43 תגובות "תומכות קואליציה" בסך הכל
+      עמדו על 53 — ואילו 179 אנ-לייקים ספגו אותן תגובות. כלומר, אפילו המיעוט הזעיר
+      שהעז לתמוך — נדחה בבוז על ידי שאר הקהל.
+    </p>
+
+    <h2>קולות מהשטח</h2>
+    <p>חמש התגובות הנצפות ביותר מתוך 271 התגובות האנטי-קואליציוניות:</p>
+
+    <div class="quote-block">
+      <span class="likes-badge">👍 1,057</span>
+      <div class="quote-text">תבוטל הרבנות! הפרדת מדינה מדת! יפוטר יהווה!</div>
+    </div>
+    <div class="quote-block">
+      <span class="likes-badge">👍 778</span>
+      <div class="quote-text">מה קורה לצבא שלנו... הופך למשמרות המהפכה שאנחנו מנסים להשמיד...??!!!!</div>
+    </div>
+    <div class="quote-block">
+      <span class="likes-badge">👍 619</span>
+      <div class="quote-text">צה"ל השתגע. הגיע הזמן להפריד את הדת מהמדינה. איש באמונתו יחיה. כפייה דתית היא דבר אסור. אני רוצה להיות חילונית בארצי.</div>
+    </div>
+    <div class="quote-block">
+      <span class="likes-badge">👍 604</span>
+      <div class="quote-text">די לכפייה הדתית בצבא ובכלל. דווקא אלו שתורמים למדינה, משרתים בצבא ובמג"ב, חוטפים עונשים לא הוגנים ולא מוסריים!</div>
+    </div>
+    <div class="quote-block">
+      <span class="likes-badge">👍 510</span>
+      <div class="quote-text">אחר כך שלא יתפלאו למה חילונים מסרבים להתגייס. פשוט בושה!</div>
+    </div>
+
+    <h2>מה עם התומכים?</h2>
+    <p>
+      43 תגובות סווגו כ"תומך קואליציה" — אך בדיקה מדוקדקת של תוכנן מגלה שרוב
+      אינן תומכות ישירות בהדתה. הן ברוח "כללים הם כללים" — עמדה פרוצדורלית-משמעתית
+      שאינה תמיכה דתית מפורשת. רק מיעוט קטן ("מדינה יהודית, מי שלא מתאים שילך")
+      מייצג עמדה ערכית פרו-דתית מובהקת. כמו כן, לפחות שתי תגובות סווגו בטעות —
+      הן תוקפות את הנגד ה"מלשין" ולמעשה בצד הלוחמות.
+    </p>
+
+    <h2>כשהביקורת הופכת לפרידה: נרטיב "שני הצבאות"</h2>
+    <p>
+      בשוליים של שיח הכפייה הדתית מסתתר נרטיב חריף יותר: קריאה, גלויה או מרומזת,
+      לפיצול — שני צבאות, ובמשתמע שתי מדינות. מבחינה מילולית מדובר במיעוט:
+      15 תגובות מתוך 419, כלומר <strong>3.6% בלבד</strong>. אך מדד המעורבות השקטה
+      — המשקלל לייקים — מספר סיפור שונה: אותן 15 תגובות צברו 1,101 לייקים גולמיים
+      ומייצגות <strong>8.1% מסך כל המעורבות השקטה בדיון</strong>. הפער בין 3.6% ל-8.1%
+      מעיד שהקהל לא רק נחשף לנרטיב הזה — הוא מחמיא לו.
+    </p>
+    <p>
+      הנרטיב מתפתח בשרשרת עולה: מ<strong>ביקורת אזרחית</strong> (הפרדת דת ומדינה),
+      דרך <strong>איום על גיוס</strong> ("לא נתגייס לצבא כזה"),
+      עד <strong>הכרזת פיצול</strong> ("שני צבאות לשתי מדינות?"),
+      ולעיתים גם <strong>מסגור אירני</strong> — השוואת המצב למשמרות המהפכה ולכלאי טהרן.
+      רוב הקהל נעצר בשלב הביקורת; נרטיב הפיצול הוא השיא הרטורי של מי שחש
+      שמוצה ממנו כל שיתוף הפעולה.
+    </p>
+
+    <!-- METHODOLOGY -->
+    <div class="methodology-box">
+      <strong>מתודולוגיה:</strong>
+      נאספו 508 תגובות (419 L1) לכתבה בוינט (מזהה <code>hjq5xbmtwe</code>), אפריל 2026,
+      באמצעות ה-API הציבורי של וינט.
+      הסיווג בוצע באמצעות <strong>GPT-4o-mini</strong> עם prompt מותאם לנושא כפייה דתית בצבא,
+      בשלוש קטגוריות: תומך קואליציה / מתנגד קואליציה / אחר.
+      <strong>מדד מילולי</strong> — אחוז מספירת התגובות.
+      <strong>מדד שקט</strong> — משוקלל לפי (likes − unlikes), לפחות 1.
+      <em>מגבלה: ניתוח כתבה בודדת — אינו מדגם מייצג.</em>
+    </div>
+
+  </div><!-- /article-body -->
+
+  <div class="article-footer">
+    © 2026 אמנון זוסמן · ניתוח Political Snapshot · ynet טוקבקים
+  </div>
+
+</div><!-- /article-wrap -->
+</body>
+</html>
