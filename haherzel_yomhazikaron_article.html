@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>נאום הר הרצל — יום הזיכרון תשפ"ו</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'David', 'Times New Roman', serif;
+      background: #0a0a0a;
+      color: #e8e0d0;
+      line-height: 1.9;
+      font-size: 17px;
+    }
+
+    header {
+      background: linear-gradient(180deg, #1a0000 0%, #0a0a0a 100%);
+      border-bottom: 2px solid #8b0000;
+      padding: 3rem 2rem 2rem;
+      text-align: center;
+    }
+
+    .flag-stripe {
+      height: 4px;
+      background: linear-gradient(90deg, #003791 0%, #ffffff 50%, #003791 100%);
+      margin-bottom: 2rem;
+    }
+
+    header .date {
+      font-size: 0.85rem;
+      color: #888;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.8rem;
+      font-family: Arial, sans-serif;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #f0e8d8;
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    header .subtitle {
+      font-size: 1.1rem;
+      color: #aaa;
+      font-style: italic;
+    }
+
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .lead {
+      font-size: 1.18rem;
+      color: #d4c9b0;
+      border-right: 4px solid #8b0000;
+      padding-right: 1.2rem;
+      margin-bottom: 2.5rem;
+      line-height: 2;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      color: #c0a060;
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #333;
+    }
+
+    p { margin-bottom: 1.3rem; }
+
+    blockquote {
+      background: #111;
+      border-right: 4px solid #c0a060;
+      padding: 1rem 1.5rem;
+      margin: 1.5rem 0;
+      color: #ddd;
+      font-style: italic;
+      font-size: 1.05rem;
+    }
+
+    .data-box {
+      background: #111;
+      border: 1px solid #333;
+      border-top: 3px solid #8b0000;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+      border-radius: 2px;
+    }
+
+    .data-box h3 {
+      font-size: 1rem;
+      color: #c0a060;
+      margin-bottom: 1rem;
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Arial, sans-serif;
+      font-size: 0.92rem;
+    }
+
+    th {
+      text-align: right;
+      color: #888;
+      padding: 0.4rem 0.6rem;
+      border-bottom: 1px solid #333;
+      font-weight: normal;
+    }
+
+    td {
+      padding: 0.5rem 0.6rem;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    td.num { text-align: center; font-variant-numeric: tabular-nums; }
+
+    tr.highlight td { color: #e8c070; }
+
+    .bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0.6rem 0;
+    }
+
+    .bar-label {
+      width: 70px;
+      font-size: 0.85rem;
+      color: #aaa;
+      font-family: Arial, sans-serif;
+      flex-shrink: 0;
+      text-align: left;
+    }
+
+    .bar-track {
+      flex: 1;
+      background: #1e1e1e;
+      height: 22px;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding-right: 8px;
+      font-size: 0.78rem;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      color: #fff;
+      border-radius: 2px;
+    }
+
+    .bar-anti { background: #8b0000; }
+    .bar-pro  { background: #003791; }
+
+    .comment-example {
+      background: #0e0e0e;
+      border: 1px solid #2a2a2a;
+      border-radius: 3px;
+      padding: 0.8rem 1rem;
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
+    }
+
+    .comment-example .votes {
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 0.3rem;
+    }
+
+    .comment-example .votes .up { color: #4caf50; }
+    .comment-example .votes .down { color: #f44336; }
+
+    .insight {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-right: 4px solid #c0a060;
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0;
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+
+    .insight strong { color: #e8c070; }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #555;
+      font-size: 0.8rem;
+      font-family: Arial, sans-serif;
+      border-top: 1px solid #1a1a1a;
+      margin-top: 3rem;
+    }
+
+    .memorial-bar {
+      height: 3px;
+      background: linear-gradient(90deg, #8b0000, #c0a060, #8b0000);
+      margin: 2rem 0;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="flag-stripe"></div>
+  <div class="date">כ"ג בניסן תשפ"ו &nbsp;|&nbsp; 21 באפריל 2026 &nbsp;|&nbsp; יום הזיכרון לחללי מערכות ישראל</div>
+  <h1>"ריסקנו את מכונת ההשמדה"<br>נתניהו נאם בהר הרצל — ומה הגיב הציבור</h1>
+  <div class="subtitle">ניתוח תגובות ציבוריות לנאום ראש הממשלה ביום הקדוש</div>
+  <div style="margin-top:1rem; font-size:0.95rem; color:#aaa; font-family:Arial,sans-serif;">מאת: אמנון זוסמן</div>
+</header>
+
+<main>
+
+  <p class="lead">
+    ביום הזיכרון לחללי מערכות ישראל עלה ראש הממשלה בנימין נתניהו להר הרצל ונשא נאום
+    שהצמיד את שואת העם היהודי למתקפה על איראן. "משטר האייתוללות תכנן שואה נוספת",
+    אמר, "אבל אנחנו ריסקנו את מכונת ההשמדה". המילים נאמרו על רקע קברי הנופלים.
+    בוינט, הפלטפורמה הגדולה בישראל, הגיב הציבור — ובחריפות.
+  </p>
+
+  <h2>הנאום: שואה שמנענו — וטייסים שהקריבו</h2>
+
+  <p>
+    נתניהו בחר להעמיד את המבצע נגד איראן בלב יום הזיכרון. לדבריו, הטייסים שמילאו
+    את המשימה — אלה שתקפו מתקני גרעין ותשתיות צבאיות באיראן — הם ממשיכי דרכם של
+    חללי כל מלחמות ישראל. הוא הסמיך את הפעולה הצבאית לרצף ההיסטורי של ההישרדות
+    היהודית: מהשואה, דרך מלחמת העצמאות, ועד למתקפת הגרעין שנמנעה.
+  </p>
+
+  <blockquote>
+    "משטר האייתוללות תכנן שואה נוספת לעם היהודי — אבל הפעם הייתה לנו מדינה,
+    היה לנו צבא, והיו לנו טייסים שריסקו את מכונת ההשמדה."
+    <br><span style="font-size:0.85rem; color:#888;">— ראש הממשלה בנימין נתניהו, הר הרצל, 21.4.2026</span>
+  </blockquote>
+
+  <p>
+    הנאום עורר מחלוקת מיידית. המבקרים טענו שנתניהו ניצל את היום הקדוש ביותר
+    בלוח השנה הישראלי לצרכים פוליטיים — ושהשוואה לשואה, בפה ראש ממשלה הנמצא
+    תחת כתב אישום, מחמירה את הפגיעה. התומכים המעטים ראו בדבריו גאווה לאומית מוצדקת.
+  </p>
+
+  <div class="memorial-bar"></div>
+
+  <h2>הממצאים: קהל וינט מדבר</h2>
+
+  <p>
+    מתוך <strong>256 תגובות</strong> שהוגשו לכתבה על הנאום ביינט, נותחו 223 תגובות
+    רמה ראשונה (L1). הסיווג נעשה על בסיס המעורבות השקטה של הקהל: תגובה שקיבלה
+    עודף לייקים סווגה כמתנגד קואליציה; תגובה שקיבלה עודף דיסלייקים — כתומך קואליציה.
+  </p>
+
+  <div class="data-box">
+    <h3>verbal — כיוון התגובות</h3>
+    <div class="bar-wrap">
+      <div class="bar-label">מתנגד</div>
+      <div class="bar-track">
+        <div class="bar-fill bar-anti" style="width:92.8%">92.8%</div>
+      </div>
+    </div>
+    <div class="bar-wrap">
+      <div class="bar-label">תומך</div>
+      <div class="bar-track">
+        <div class="bar-fill bar-pro" style="width:2.7%">2.7%</div>
+      </div>
+    </div>
+    <div class="bar-wrap">
+      <div class="bar-label">אחר</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:4.5%; background:#555;">4.5%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="data-box">
+    <h3>silent — מעורבות שקטה (7,841 קליקים)</h3>
+    <table>
+      <tr>
+        <th>מחנה</th>
+        <th>לייקים על תגובות שלו</th>
+        <th>דיסלייקים על הצד השני</th>
+        <th>סה"כ</th>
+        <th>%</th>
+      </tr>
+      <tr class="highlight">
+        <td>מתנגד קואליציה</td>
+        <td class="num">7,507</td>
+        <td class="num">56</td>
+        <td class="num">7,563</td>
+        <td class="num"><strong>96.5%</strong></td>
+      </tr>
+      <tr>
+        <td>תומך קואליציה</td>
+        <td class="num">8</td>
+        <td class="num">270</td>
+        <td class="num">278</td>
+        <td class="num">3.5%</td>
+      </tr>
+    </table>
+  </div>
+
+  <p>
+    מה שמעניין במיוחד: מחנה התומך כמעט לא כתב ולא לייק — הוא בעיקר
+    <em>לחץ דיסלייק</em> על תגובות הצד השני (270 מתוך 278 הקליקים שלו).
+    כלומר, נוכחותו ביום הזיכרון הזה הייתה כמעט כולה רטינה שקטה ולא קול.
+  </p>
+
+  <h2>הקולות הגדולים ביותר</h2>
+
+  <p>עשרת התגובות שקיבלו הכי הרבה לייקים — כולן מתנגדות:</p>
+
+  <div class="comment-example">
+    <div class="votes"><span class="up">▲ 478</span> &nbsp; <span class="down">▼ 11</span></div>
+    "מעניין שהשב"כ מאשר לנתניהו להשתתף בטקסים ארוכים במקום ציבורי פתוח, במקום שאישר ל-7.10 לקרות..."
+  </div>
+
+  <div class="comment-example">
+    <div class="votes"><span class="up">▲ 378</span> &nbsp; <span class="down">▼ 11</span></div>
+    "מצטער על חוסר הממלכיות — אבל אני באופן אישי לא מאמין יותר למילה אחת היוצאת מפיו."
+  </div>
+
+  <div class="comment-example">
+    <div class="votes"><span class="up">▲ 376</span> &nbsp; <span class="down">▼ 9</span></div>
+    "איך גדול מחריבי ישראל, שאחראי לכל כך הרבה מותם של ישראלים, לא מתבייש לנאום."
+  </div>
+
+  <div class="comment-example">
+    <div class="votes"><span class="up">▲ 212</span> &nbsp; <span class="down">▼ 7</span></div>
+    "ושואת שמח תורה שהבאת עלינו — מה איתה?"
+  </div>
+
+  <p>ולעומתן, שש התגובות שסווגו כתומך:</p>
+
+  <div class="comment-example">
+    <div class="votes"><span class="up">▲ 3</span> &nbsp; <span class="down">▼ 18</span></div>
+    "ביבי חזק וברוך, שבזמן כהונתך חיסלת את צוררי ישראל של דורנו — עלה והצלח."
+  </div>
+
+  <div class="comment-example">
+    <div class="votes"><span class="up">▲ 2</span> &nbsp; <span class="down">▼ 6</span></div>
+    "הסמולנים לא מבינים עדיין למה בבחירות הבאות הם יתאדו כנפיחה."
+  </div>
+
+  <div class="memorial-bar"></div>
+
+  <h2>משמעות הממצאים</h2>
+
+  <div class="insight">
+    <strong>פי 27 לטובת המתנגדים.</strong> אחוז התגובות האנטי-קואליציה (92.8%) גבוה
+    פי 1.4 מהממוצע ההיסטורי של נתניהו ביינט (65.1%) — וה-silent gap רחב עוד יותר:
+    96.5% לעומת 92.1% בממוצע. נאום הר הרצל הניב את הביקורת הציבורית החריפה ביותר
+    שנמדדה בפרויקט עד כה.
+  </div>
+
+  <p>
+    <strong>הפרדוקס של יום הזיכרון:</strong> נתניהו בחר את הזירה הסמלית ביותר —
+    הר הרצל, יום הזיכרון, קברי הנופלים — כדי לבסס את לגיטימציית שלטונו.
+    אולם הציבור שנחשף לכתבה השיב בדיוק את ההפך: חלק גדול מהתגובות הפנה את
+    יום הזיכרון עצמו כנגדו — "שמח תורה שהבאת עלינו מה איתה?",
+    "האיש הזה בושה למדינה", "הנרקיסיסט לא יכול פעם אחת לכבד אחרים".
+  </p>
+
+  <p>
+    <strong>הנוכחות השקטה של הצד התומך</strong> — 270 דיסלייקים, 8 לייקים, 6 תגובות —
+    מלמדת על קהל שמרגיש מיעוטי ומבודד בתוך הפלטפורמה. הוא קיים, אך אינו מעז
+    לדבר בקול. ייתכן שמדובר באפקט בית-קפה: כאשר הטון השולט ברור מאוד,
+    המיעוט נסוג לדיסלייק אנונימי.
+  </p>
+
+  <p>
+    <strong>ההשוואה לשואה</strong> — שהייתה המרכז הרטורי של הנאום — לא עברה בשתיקה.
+    הציבור שב וציין את 7 באוקטובר כנגד-טיעון: אם ריסקנו את מכונת ההשמדה,
+    מי אחראי למכונת ה-7 באוקטובר? השאלה הזו, בצורות שונות,
+    חזרה בעשרות תגובות ואספה מאות לייקים.
+  </p>
+
+  <div class="memorial-bar"></div>
+
+  <p style="color:#777; font-size:0.9rem;">
+    הנתונים מבוססים על 256 תגובות שנשלפו מיינט ב-21 באפריל 2026, שעות ספורות
+    לאחר פרסום הכתבה. הסיווג נעשה על בסיס כיוון הלייקים/דיסלייקים — שיטה
+    המשקפת את עמדת קהל הקוראים, לא ניתוח לשוני.
+  </p>
+
+</main>
+
+<footer>
+  מחקר דעת הקהל בישראל — ניתוח סנטימנט פוליטי בוינט &nbsp;|&nbsp; אמנון סוסמן &nbsp;|&nbsp; אפריל 2026
+</footer>
+
+</body>
+</html>
