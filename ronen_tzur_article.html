@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>אינסטגרם כזירת קרב פוליטי — ניתוח תגובות לפוסט רונן צור</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', 'Arial Hebrew', Arial, sans-serif;
+    background: #f5f4f0;
+    color: #1a1a1a;
+    font-size: 17px;
+    line-height: 1.8;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 60px 40px 48px;
+    text-align: center;
+  }
+  header .kicker {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #8899bb;
+    margin-bottom: 18px;
+  }
+  header h1 {
+    font-size: 2.3em;
+    font-weight: 700;
+    line-height: 1.35;
+    max-width: 820px;
+    margin: 0 auto 22px;
+  }
+  header .subtitle {
+    font-size: 1.1em;
+    color: #aab8cc;
+    max-width: 680px;
+    margin: 0 auto 30px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #6677aa;
+    border-top: 1px solid #2a2a4a;
+    padding-top: 20px;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  /* ===== LAYOUT ===== */
+  .wrapper {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 50px 24px 80px;
+  }
+
+  /* ===== SUMMARY BOX ===== */
+  .summary-box {
+    background: #fff;
+    border-right: 5px solid #1a1a2e;
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-bottom: 48px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.06);
+  }
+  .summary-box h3 {
+    font-size: 0.85em;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #8899bb;
+    margin-bottom: 14px;
+  }
+  .summary-box ul {
+    list-style: none;
+    padding: 0;
+  }
+  .summary-box ul li {
+    padding: 5px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.97em;
+  }
+  .summary-box ul li:last-child { border-bottom: none; }
+  .summary-box ul li strong { color: #1a1a2e; }
+
+  /* ===== ARTICLE BODY ===== */
+  section {
+    margin-bottom: 52px;
+  }
+  h2 {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e8e8e8;
+  }
+  p {
+    margin-bottom: 18px;
+    color: #2c2c2c;
+  }
+
+  /* ===== TABLE ===== */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0 32px;
+    font-size: 0.95em;
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,.07);
+  }
+  .data-table thead {
+    background: #1a1a2e;
+    color: #fff;
+  }
+  .data-table thead th {
+    padding: 13px 18px;
+    font-weight: 600;
+    text-align: right;
+  }
+  .data-table tbody tr {
+    border-bottom: 1px solid #f0eee8;
+    transition: background .15s;
+  }
+  .data-table tbody tr:last-child { border-bottom: none; }
+  .data-table tbody tr:hover { background: #faf8f3; }
+  .data-table td {
+    padding: 12px 18px;
+    vertical-align: middle;
+  }
+  .data-table td:nth-child(2),
+  .data-table td:nth-child(3) {
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+  .bar-cell { width: 160px; padding: 12px 18px; }
+  .bar-wrap {
+    background: #eee;
+    border-radius: 4px;
+    height: 10px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: #4466bb;
+  }
+  .bar-fill.support  { background: #2a7a4a; }
+  .bar-fill.personal-s { background: #55aa77; }
+  .bar-fill.oppose   { background: #c04444; }
+  .bar-fill.attack   { background: #e06030; }
+  .bar-fill.other    { background: #999; }
+
+  /* ===== TOTAL ROW ===== */
+  .total-row {
+    background: #f5f4f0;
+    display: flex;
+    gap: 24px;
+    padding: 24px 0;
+    margin: 0 0 40px;
+    border-top: 2px solid #ddd;
+    border-bottom: 2px solid #ddd;
+  }
+  .total-card {
+    flex: 1;
+    text-align: center;
+    padding: 18px 12px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+  .total-card .num {
+    font-size: 2.2em;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .total-card .lbl { font-size: 0.85em; color: #666; }
+  .total-card.pro .num  { color: #2a7a4a; }
+  .total-card.anti .num { color: #c04444; }
+  .total-card.neu .num  { color: #888; }
+
+  /* ===== STYLE TABLE ===== */
+  .style-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.93em;
+    margin: 20px 0 30px;
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,.07);
+  }
+  .style-table th {
+    background: #2c3e6a;
+    color: #fff;
+    padding: 11px 16px;
+    text-align: right;
+  }
+  .style-table td {
+    padding: 11px 16px;
+    border-bottom: 1px solid #f0eee8;
+    text-align: right;
+  }
+  .style-table tr:last-child td { border-bottom: none; }
+  .style-table tr:nth-child(even) { background: #faf8f3; }
+  .style-table td:not(:first-child) { text-align: center; }
+
+  /* ===== QUOTE BLOCK ===== */
+  .quote-block {
+    margin: 28px 0;
+    padding: 22px 28px 22px 20px;
+    border-right: 4px solid #c04444;
+    background: #fff8f6;
+    border-radius: 0 6px 6px 0;
+    font-style: italic;
+    color: #444;
+    font-size: 0.97em;
+  }
+  .quote-block .cite {
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    font-size: 0.85em;
+    color: #999;
+  }
+
+  .quote-block.green {
+    border-right-color: #2a7a4a;
+    background: #f4faf6;
+  }
+
+  /* ===== BOT INDICATOR ===== */
+  .bot-box {
+    background: #fff9ec;
+    border: 1px solid #e8c84a;
+    border-radius: 6px;
+    padding: 22px 26px;
+    margin: 24px 0;
+  }
+  .bot-box h4 {
+    font-size: 0.9em;
+    color: #a07800;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .bot-box ul {
+    padding-right: 20px;
+  }
+  .bot-box ul li {
+    margin-bottom: 8px;
+    font-size: 0.95em;
+    color: #444;
+  }
+  .mono {
+    font-family: 'Courier New', monospace;
+    font-size: 0.88em;
+    background: #f0eedd;
+    padding: 1px 5px;
+    border-radius: 3px;
+    direction: ltr;
+    display: inline-block;
+  }
+
+  /* ===== COMPARE BOX ===== */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 24px 0 32px;
+  }
+  .compare-col {
+    background: #fff;
+    border-radius: 8px;
+    padding: 22px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.07);
+  }
+  .compare-col h4 {
+    font-size: 1em;
+    font-weight: 700;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid;
+  }
+  .compare-col.fb h4  { color: #1877f2; border-color: #1877f2; }
+  .compare-col.insta h4 { color: #c13584; border-color: #c13584; }
+  .compare-col ul { padding-right: 18px; }
+  .compare-col ul li { margin-bottom: 9px; font-size: 0.93em; color: #333; }
+
+  /* ===== CONCLUSION ===== */
+  .conclusion {
+    background: #1a1a2e;
+    color: #dde3f0;
+    border-radius: 8px;
+    padding: 36px 40px;
+    margin-top: 48px;
+    font-size: 1.02em;
+    line-height: 1.9;
+  }
+  .conclusion h2 {
+    color: #fff;
+    border-color: #3a4a6a;
+    margin-bottom: 20px;
+  }
+  .conclusion p {
+    color: #dde3f0;
+  }
+
+  /* ===== FOOTNOTE ===== */
+  footer {
+    text-align: center;
+    font-size: 0.82em;
+    color: #aaa;
+    padding: 30px 20px 50px;
+    border-top: 1px solid #e0ddd6;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.6em; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .total-row { flex-direction: column; }
+    .wrapper { padding: 30px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kicker">מחקר שיח פוליטי · אינסטגרם · יום העצמאות תשפ"ו</div>
+  <h1>אינסטגרם כזירת קרב פוליטי:<br>ניתוח תגובות לפוסט רונן צור על טקס המשואות</h1>
+  <p class="subtitle">322 תגובות, שתי שפות, בוטים — ומה שההבדל בין פייסבוק לאינסטגרם אומר על הפוליטיקה הישראלית</p>
+  <div class="meta">23 באפריל 2026 &nbsp;·&nbsp; מחקר מאת אמנון זוסמן — ניתוח סנטימנט פוליטי ביינט &nbsp;·&nbsp; סיווג ידני מלא</div>
+</header>
+
+<div class="wrapper">
+
+  <!-- SUMMARY -->
+  <div class="summary-box">
+    <h3>עיקרי הממצאים</h3>
+    <ul>
+      <li><strong>49.4%</strong> מהמגיבים תומכים ברונן צור (מסכימים עם הביקורת או תומכים אישית)</li>
+      <li><strong>42.2%</strong> מתנגדים (לא מסכימים עם הביקורת או תוקפים אישית)</li>
+      <li><strong>52% מהמתנגדים</strong> בחרו בתקיפת האדם — לא בהתמודדות עם הטענה</li>
+      <li>פעילות מתואמת (בוטים) מזוהה בצד התוקף — חזרת תבניות זהות בחשבונות שונים</li>
+      <li>הבדל סגנוני מהותי: אינסטגרם = רגש קצר; פייסבוק = ויכוח ארוך</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 1 -->
+  <section>
+    <h2>רקע: הפוסט ומה שעורר אותו</h2>
+    <p>ביום העצמאות ה-78, ב-22 באפריל 2026, פרסם רונן צור פוסט באינסטגרם ובו שתי טענות: הראשונה — שטקס המשואות התנהל בבלגן ואי-סדר; השנייה, החדה יותר — שמשפחת נתניהו ניכסה לעצמה טקס ממלכתי לצרכים פוליטיים ואישיים.</p>
+    <p>הפוסט עורר מיידית תגובת סערה. 322 תגובות הצטברו תוך שעות ספורות — מדד שמשקף נגיעה בעצב חשוף. הפוסט שולב בניתוח ידני מלא, עם סיווג כל תגובה לאחת מחמש קטגוריות.</p>
+  </section>
+
+  <!-- SECTION 2 -->
+  <section>
+    <h2>הממצאים: כמעט חצי-חצי, עם עקיצה</h2>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>עמדה</th>
+          <th>כמות</th>
+          <th>אחוז</th>
+          <th class="bar-cell">ויזואל</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>מסכים עם רונן</td>
+          <td>133</td>
+          <td>41.3%</td>
+          <td class="bar-cell"><div class="bar-wrap"><div class="bar-fill support" style="width:41.3%"></div></div></td>
+        </tr>
+        <tr>
+          <td>תוקף אישית את רונן</td>
+          <td>71</td>
+          <td>22.0%</td>
+          <td class="bar-cell"><div class="bar-wrap"><div class="bar-fill attack" style="width:22%"></div></div></td>
+        </tr>
+        <tr>
+          <td>לא מסכים עם רונן</td>
+          <td>65</td>
+          <td>20.2%</td>
+          <td class="bar-cell"><div class="bar-wrap"><div class="bar-fill oppose" style="width:20.2%"></div></div></td>
+        </tr>
+        <tr>
+          <td>תומך אישית ברונן</td>
+          <td>26</td>
+          <td>8.1%</td>
+          <td class="bar-cell"><div class="bar-wrap"><div class="bar-fill personal-s" style="width:8.1%"></div></div></td>
+        </tr>
+        <tr>
+          <td>אחר / עלבון בין מגיבים</td>
+          <td>27</td>
+          <td>8.4%</td>
+          <td class="bar-cell"><div class="bar-wrap"><div class="bar-fill other" style="width:8.4%"></div></div></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="total-row">
+      <div class="total-card pro">
+        <div class="num">49.4%</div>
+        <div class="lbl">תומכי רונן<br>(מסכים + תומך אישית)</div>
+      </div>
+      <div class="total-card anti">
+        <div class="num">42.2%</div>
+        <div class="lbl">מתנגדי רונן<br>(לא מסכים + תוקף)</div>
+      </div>
+      <div class="total-card neu">
+        <div class="num">8.4%</div>
+        <div class="lbl">ניטרלי / רעש</div>
+      </div>
+    </div>
+
+    <p>השוני האמיתי מסתתר בקטגוריות: כמעט מחצית מהמתנגדים — 71 מתוך 136 — <strong>בחרו בתקיפה אישית של רונן</strong> ולא בהתמודדות עם טענותיו. זהו אינדיקטור איכותי לאופי השיח: חסרי טיעון מחפשים את הפרסון, לא את הטענה.</p>
+
+    <div class="quote-block">
+      "רונן צור חוץ מלהסית נגד ביבי מה עוד אתה עושה"
+      <span class="cite">— דוגמה לתקיפה אישית ללא התייחסות לתוכן</span>
+    </div>
+    <div class="quote-block green">
+      "פולחן המלך — צפון קוריאה. גם צאוצסקו ורעייתו חשבו שהשמש זורחת להם..."
+      <span class="cite">— דוגמה למסכים עם רונן, עם הקשר היסטורי</span>
+    </div>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section>
+    <h2>ניתוח סגנוני: שתי שפות, פוסט אחד</h2>
+    <p>המדידות הסגנוניות חושפות עולמות שונים בתוך אותו פוסט. אורך התגובה הממוצע לפי קטגוריה:</p>
+
+    <table class="style-table">
+      <thead>
+        <tr>
+          <th>קטגוריה</th>
+          <th>אורך ממוצע (תווים)</th>
+          <th>סימני קריאה ממוצע</th>
+          <th>אמוג'י ממוצע</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>תומך אישית ברונן</td>
+          <td>21</td>
+          <td>0.8</td>
+          <td>0.8</td>
+        </tr>
+        <tr>
+          <td>תוקף אישית את רונן</td>
+          <td>58</td>
+          <td>0.3</td>
+          <td>0.3</td>
+        </tr>
+        <tr>
+          <td>לא מסכים עם רונן</td>
+          <td>75</td>
+          <td>0.5</td>
+          <td>1.3</td>
+        </tr>
+        <tr>
+          <td>מסכים עם רונן</td>
+          <td>79</td>
+          <td>0.6</td>
+          <td>0.5</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>תומכי רונן כותבים יותר.</strong> הם מנמקים, מוסיפים הקשר היסטורי, מציינים השוואות. מתנגדיו כותבים קצר — וככל שהתגובה קצרה יותר, כך התוכן רגשי ואישי יותר.</p>
+
+    <p><strong>שפת התקיפה הישירה</strong> מגדירה אוצר מילים ייחודי החוזר שוב ושוב, ממדגם למדגם, מחשבון לחשבון:</p>
+
+    <div class="quote-block">
+      <strong>מילות הקוד השכיחות ביותר בתגובות תוקפות:</strong><br>
+      ממורמר &nbsp;·&nbsp; קנאי &nbsp;·&nbsp; מסית &nbsp;·&nbsp; מפלג &nbsp;·&nbsp; עוכר ישראל &nbsp;·&nbsp; שקרן
+      <span class="cite">מילים אלה אינן מגיבות לתוכן — הן מנסות למחוק את לגיטימציית הדובר</span>
+    </div>
+
+    <p>בצד התומך — ביטויי <strong>כאב קולקטיבי</strong>: "אין לתאר", "בושה", "לא צפינו השנה" — ולצידם <strong>פנטזיית שינוי</strong>: "שנה הבאה נקים כאן מדינה חדשה".</p>
+
+    <p>ראוי לציון: קטגוריית ה"לא מסכים" הציגה את ממוצע האמוג'י הגבוה ביותר (1.3 לתגובה), ובמיוחד אמוג'ים לאומניים: 🇮🇱👑. האמוג'י מחליף טיעון — הוא מסמן שייכות שבטית בלי להגיד דבר.</p>
+  </section>
+
+  <!-- SECTION 4 -->
+  <section>
+    <h2>הבוטים: שאלת ה"פוש"</h2>
+    <p>שני סימנים מרכזיים לפעילות מתואמת עולים מהנתונים:</p>
+
+    <div class="bot-box">
+      <h4>⚠ סימן א' — שמות משתמש חשודים</h4>
+      <ul>
+        <li>חשבונות עם מבנה מספרי-אלפביתי אקראי: <span class="mono">khyymbyalyqbnyshy</span>, <span class="mono">lidor11102008</span>, <span class="mono">tayr8690</span>, <span class="mono">zkzk9512</span></li>
+        <li>שמות כאלה — ללא היסטוריה ציבורית ניכרת — הם חתימת יד של חשבונות שנוצרו לצרכי התגייסות פוליטית ממוקדת</li>
+      </ul>
+    </div>
+
+    <div class="bot-box">
+      <h4>⚠ סימן ב' — חזרתיות הטמפלט</h4>
+      <ul>
+        <li>המילה "ממורמר" מופיעה בעשרות תגובות מחשבונות שונים, ללא קשר זה לזה</li>
+        <li>"קנאי" — אותו הדבר. זוהי חתימה של <strong>קמפיין מתואם</strong>: לא בוט אחד שכותב אלף תגובות, אלא אלף חשבונות שכל אחד כותב מילה אחת</li>
+        <li>כל תגובה בפני עצמה נראית אנושית. הדפוס המצטבר — לא.</li>
+      </ul>
+    </div>
+
+    <p>גם המגיבים עצמם לא עיוורים: <span class="mono">user390755</span> כותב "כמה בוטים התעוררו משינה", ו-<span class="mono">kobi8976</span> מגיב: "68 מנדטים בוטים בעינכם". מעניין שאותו חשבון (<span class="mono">user390755</span>) מופיע גם בתגובת תקיפה על רונן — ממצא שמעורר שאלות על אמינות הפרופיל.</p>
+
+    <p><strong>בוט-אינסטגרם שונה מבוט-פייסבוק:</strong> בפייסבוק — פסקה ארוכה עם נתונים מזויפים; באינסטגרם — "ממורמר" ועלמות. הפלטפורמה מעצבת גם את אסטרטגיית הבוט.</p>
+  </section>
+
+  <!-- SECTION 5 -->
+  <section>
+    <h2>אינסטגרם מול פייסבוק: הבדל תרבותי עמוק</h2>
+    <p>מי שמכיר שיח פוליטי בפייסבוק הישראלי ועוקב גם אחרי אינסטגרם — מגלה שתי תרבויות שונות לחלוטין, גם כשהן מגיבות לאותו אירוע:</p>
+
+    <div class="compare-grid">
+      <div class="compare-col fb">
+        <h4>פייסבוק</h4>
+        <ul>
+          <li>תגובות ארוכות, לעיתים מובנות עם פסקאות</li>
+          <li>תיעוד, קישורים, טיעונים נגדיים</li>
+          <li>שיתוף המוני של פוסטים ומאמרים</li>
+          <li>ניסיון להוכיח — גם בשיח בוטי</li>
+          <li>גסות ארוכה: עלבונות מנומקים</li>
+          <li>בוטים מפיצים תוכן, לא רק מילים בודדות</li>
+          <li>תרבות ויכוח — גם אם מעוותת</li>
+        </ul>
+      </div>
+      <div class="compare-col insta">
+        <h4>אינסטגרם</h4>
+        <ul>
+          <li>תגובות קצרות: 3 מילים או פחות כנורמה</li>
+          <li>ביטוי רגשי גולמי — ללא ניסיון לשכנע</li>
+          <li>אמוג'י לאומניים במקום טיעונים (🇮🇱👑)</li>
+          <li>גסות ישירה: איומי מוות, גידופים מיניים</li>
+          <li>בוטים מפיצים מילת תבנית אחת</li>
+          <li>שיח שבטי — "מי אתה" ולא "מה אמרת"</li>
+          <li>קולות ולא ויכוחים</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>הפרש המהותי ביותר: <strong>הזרמת רגש מול הזרמת מידע.</strong> בפייסבוק — גם כשמישהו תוקף, הוא מנסה לתמוך זאת במשהו. באינסטגרם — לא. "כואב לך הלב" (מתנגד), "אין לתאר 😢" (תומך) — שני הצדדים עובדים בשפת הכאב, לא ההיגיון.</p>
+
+    <p><strong>רמת הסגנון:</strong> ב-322 תגובות נמצאו לפחות 15 קריאות לאלימות או מוות כלפי רונן, ביטויים מיניים וגידופים חמורים. פייסבוק ישראלי גס הוא — אבל גסות האינסטגרם <strong>אנונימית יותר, מהירה יותר, ולא מוגבלת בהיגיון של פרופיל ציבורי.</strong></p>
+  </section>
+
+  <!-- CONCLUSION -->
+  <div class="conclusion">
+    <h2>מסקנה: מה בעצם מודדים?</h2>
+    <p>322 תגובות לפוסט אחד הן מדגם — לא עם ישראל. הפוסט של רונן צור מושך קהל ספציפי: אינסטגרמרים ישראלים פוליטיים, בעיקר מי שעוקב אחריו מראש. בניגוד ל-Ynet, שם 90%+ מהקהל אנטי-קואליציה ברוב הנושאים, באינסטגרם הפוליטי ישנה נוכחות קואליציונית ממשית — ולרוב, מאורגנת יותר.</p>
+    <p>הממצא המעניין אינו ה-49% מול 42%. הממצא המעניין הוא ש<strong>71 מגיבים בחרו לתקוף אדם במקום להתמודד עם טענה</strong>. בתוך 71 תגובות אלו אין ניסיון יחיד לומר: "הטקס לא היה בלגן כי...", או "משפחת נתניהו זכאית להיות שם כי...". רק תקיפת הדובר. זוהי אינה מקריות — זוהי אסטרטגיה.</p>
+    <p>כשהטיעון נגמר, נשארת השתקה.</p>
+  </div>
+
+</div>
+
+<footer>
+  הנתונים מבוססים על 322 תגובות שנאספו ב-23 באפריל 2026 וסווגו ידנית &nbsp;·&nbsp;
+  מחקר דוקטורט — ניתוח סנטימנט פוליטי ביינט
+</footer>
+
+</body>
+</html>
