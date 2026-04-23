@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>מי מגן ועל מה — ניתוח טוקבקים בין שתי כתבות יינט</title>
+  <style>
+    :root {
+      --bg: #f7f4ee;
+      --paper: #fffdf8;
+      --text: #1f2937;
+      --muted: #5b6470;
+      --accent: #1f4b8f;
+      --accent-2: #b98a2c;
+      --red: #8f1f1f;
+      --green: #1f6b3a;
+      --border: #ddd5c7;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #e9eef7 0%, var(--bg) 220px);
+      color: var(--text);
+      font-family: "Noto Sans Hebrew", "Arial", sans-serif;
+      line-height: 1.9;
+    }
+    .wrap { max-width: 980px; margin: 48px auto; padding: 0 24px; }
+    .article {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .hero {
+      padding: 48px 56px 28px;
+      background:
+        radial-gradient(circle at top left, rgba(185,138,44,.16), transparent 30%),
+        radial-gradient(circle at top right, rgba(31,75,143,.14), transparent 32%),
+        linear-gradient(180deg, #fffaf0 0%, #fffdf8 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    h1 {
+      margin: 0 0 16px;
+      font-size: 2.2rem;
+      line-height: 1.25;
+      color: #14213d;
+      letter-spacing: -0.01em;
+    }
+    .subtitle {
+      margin: 0;
+      font-size: 1.13rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      padding: 18px 56px 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+    .meta strong { color: var(--accent); }
+    .content { padding: 28px 56px 56px; font-size: 1.08rem; }
+    p { margin: 0 0 1.15em; text-align: justify; }
+    .lead { font-size: 1.16rem; color: #243243; font-weight: 520; }
+    strong.inline-strong { color: var(--accent); }
+
+    h2.section-title {
+      font-size: 1.3rem;
+      color: var(--accent);
+      margin: 36px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .small-note {
+      margin: 18px 0 26px;
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: #4e5a69;
+      background: #fbf8f1;
+      border: 1px solid #e3dbcd;
+      border-right: 4px solid var(--accent-2);
+      border-radius: 12px;
+    }
+
+    .story-split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin: 16px 0 8px;
+    }
+    .story-card {
+      background: linear-gradient(180deg, #fbfcff 0%, #f4f7fb 100%);
+      border: 1px solid #cfd9ea;
+      border-right: 5px solid var(--accent);
+      border-radius: 14px;
+      padding: 16px 18px;
+      box-shadow: 0 6px 18px rgba(31,75,143,0.06);
+    }
+    .story-card h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      color: #17325f;
+    }
+    .story-card p {
+      margin: 0;
+      font-size: 0.99rem;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 1rem;
+    }
+    .compare-table th {
+      background: var(--accent);
+      color: #fff;
+      padding: 7px 12px;
+      text-align: right;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    .compare-table td {
+      padding: 6px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      line-height: 1.3;
+    }
+    .compare-table tr:nth-child(even) td { background: #f9f6f0; }
+    .compare-table .val-neg { color: var(--red); font-weight: 700; }
+    .compare-table .val-pos { color: var(--green); font-weight: 700; }
+
+    .stat-row {
+      display: flex;
+      gap: 16px;
+      margin: 24px 0;
+      flex-wrap: wrap;
+    }
+    .stat-box {
+      position: relative;
+      flex: 1 1 200px;
+      background: linear-gradient(180deg, #ffffff 0%, #eef3fa 100%);
+      border: 2px solid #bfd0ea;
+      border-radius: 18px;
+      padding: 18px 20px 16px;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(31,75,143,0.10);
+    }
+    .stat-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 6px;
+      border-radius: 18px 18px 0 0;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+    .stat-box .big {
+      font-size: 2.15rem;
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      margin-top: 6px;
+    }
+    .stat-box .big.red { color: var(--red); }
+    .stat-box .big.split { color: var(--accent-2); }
+    .stat-box .label {
+      font-size: 0.93rem;
+      color: #435161;
+      margin-top: 8px;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+    .stat-box .label small {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.82rem;
+      color: #607086;
+      font-weight: 500;
+    }
+
+    .duel-row {
+      display: grid;
+      grid-template-columns: minmax(200px, 1fr) minmax(220px, 1.15fr) minmax(200px, 1fr);
+      gap: 16px;
+      align-items: stretch;
+      margin: 24px 0 18px;
+    }
+    .duel-box {
+      border-radius: 18px;
+      padding: 18px 18px 16px;
+      text-align: center;
+      border: 2px solid;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+      background: #fff;
+    }
+    .duel-box.negative {
+      border-color: #d9b8b8;
+      background: linear-gradient(180deg, #fffafa 0%, #f9eded 100%);
+    }
+    .duel-box.balanced {
+      border-color: #bfd8c8;
+      background: linear-gradient(180deg, #fbfffc 0%, #eef8f1 100%);
+    }
+    .duel-kicker {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .duel-ratio {
+      font-size: 2.35rem;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    .duel-box.negative .duel-ratio { color: var(--red); }
+    .duel-box.balanced .duel-ratio { color: var(--green); }
+    .duel-desc {
+      font-size: 0.93rem;
+      line-height: 1.45;
+      color: #425062;
+      font-weight: 600;
+    }
+    .duel-desc small {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.82rem;
+      color: #607086;
+      font-weight: 500;
+    }
+    .duel-bridge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      padding: 16px 18px;
+      background: linear-gradient(180deg, #f4f7fb 0%, #eef3fa 100%);
+      border: 1px solid #cfd9ea;
+      color: #1c3156;
+      text-align: center;
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .quote-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 20px 0;
+    }
+    .quote-card {
+      background: #fdfaf4;
+      border: 1px solid var(--border);
+      border-right: 4px solid var(--accent-2);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.97rem;
+      line-height: 1.6;
+    }
+    .quote-card.green-side { border-right-color: var(--green); }
+    .quote-card .qmeta {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .insight {
+      margin: 28px 0;
+      padding: 20px 24px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #f4f7fb 0%, #eef3fa 100%);
+      border: 1px solid #cfd9ea;
+      color: #1c3156;
+    }
+    .insight strong { color: var(--accent); }
+
+    .numbers {
+      margin: 28px 0;
+      padding: 20px 22px;
+      border: 1px solid #d9d1c0;
+      border-radius: 18px;
+      background: #fcfaf4;
+    }
+    .numbers h3 { margin: 0 0 10px; font-size: 1.05rem; color: var(--accent); }
+    .numbers ul { margin: 0; padding-right: 1.25rem; }
+    .numbers li { margin: 0.45em 0; }
+
+    .closing {
+      margin-top: 28px;
+      padding: 22px 24px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #f4f7fb 0%, #eef3fa 100%);
+      border: 1px solid #cfd9ea;
+      font-weight: 600;
+      color: #1c3156;
+    }
+    .footer {
+      padding: 22px 56px 40px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.95rem;
+      background: #fffcf6;
+    }
+    .ref {
+      font-size: 0.88rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      margin-top: 32px;
+      padding-top: 14px;
+    }
+    @media (max-width: 760px) {
+      .hero, .content, .footer { padding-right: 22px; padding-left: 22px; }
+      .meta { padding-right: 22px; padding-left: 22px; }
+      h1 { font-size: 1.75rem; }
+      .quote-grid { grid-template-columns: 1fr; }
+      .stat-box .big { font-size: 1.65rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <article class="article">
+
+    <header class="hero">
+      <h1>טקס הדלקת המשואות תשפ"ו — כתבת המשך: ניתוח תגובות ביינט</h1>
+      <p class="subtitle">שתי כתבות, שני דפוסי תגובה כמעט הפוכים, וממצא אחד שמחדד מתי הימין מתגייס — ומתי הוא שותק</p>
+    </header>
+
+    <div class="meta">
+      <div><strong>מאת:</strong> אמנון זוסמן</div>
+      <div><strong>תאריך:</strong> כ״ד בניסן תשפ״ו — 23 באפריל 2026</div>
+    </div>
+
+    <section class="content">
+
+      <p class="lead">שתי כתבות שפורסמו ביינט בהפרש של יום אחד על טקס הדלקת המשואות הניבו <strong class="inline-strong">שתי תמונות כמעט הפוכות</strong>. בכתבת הכאוס הארגוני של הטקס, <strong class="inline-strong">93.2 אחוז מן הקליקים התומכים</strong> הלכו נגד הטקס ומה שהוא מייצג. בכתבת הרב אברהם זרביב, לעומת זאת, הקהל התחלק כמעט שווה בשווה: <strong class="inline-strong">49.2 אחוז מגנה מול 50.8 אחוז מגן</strong>. זהו הפער שמחזיק את המאמר כולו.</p>
+
+      <p>המאמר הקודם, "ארבע קהילות, שתי משואות, מדינה אחת", הראה כי בשדה הפוסטים בפייסבוק כ-80 אחוז מן המגיבים שללו את הטקס שעליו דובר. המאמר הנוכחי מוסיף שכבה מדויקת יותר: <strong class="inline-strong"> מאות רבות של תגובות מילוליות ועשרות אלפי קליקים של ציבור המגיבים של YNET</strong> לשתי כתבות מן ה־22–23 באפריל, ומאפשר לבדוק לא רק מי דיבר — אלא גם מתי מחנה מסוים מגיב או שותק.</p>
+
+      <p> אוספי התגובות שנותחו הם ברובם המכריע אותנטיים. תגובות משוכפלות זוהו והוסרו לפני הניתוח.</p>
+
+      <div class="small-note"><strong>הערת מסגרת:</strong> הבחירה בפייסבוק וביינט אינה מקרית. פייסבוק היא עדיין זירה אזרחית רחבה, במיוחד בקרב קהל בוגר ומעורב פוליטית, ואילו יינט הוא אתר החדשות הכללי הגדול והחשוף ביותר לקהלים מעורבים. שתי הזירות אינן מייצגות את כלל הציבור באופן מושלם, אך הן כן מספקות חלון סביר ורחב אל דעת קהל ישראלית פעילה — גם בדיבור וגם בקליקים.</div>
+
+      <div class="insight">
+        <strong>הממצא החשוב כאן אינו רק ה־93.2 אחוז נגד הטקס, אלא עצם המעבר החד ל־50/50 בכתבת זרביב.</strong> המעבר הזה מצביע על כך שלא מדובר רק בנטייה כללית של האתר או של הקוראים, אלא גם באופי הנושא ובשאלה אם יש לצד הימני טיעון שהוא מוכן לעמוד מאחוריו בפומבי.
+      </div>
+
+      <h2 class="section-title">שתי הכתבות</h2>
+
+      <div class="story-split">
+        <div class="story-card">
+          <h3>כתבה 1 — כאוס הטקס בהר הרצל</h3>
+          <p>הכתבה הראשונה, שפורסמה ב־22 באפריל בידי איתמר אייכנר, עסקה בכאוס הארגוני של טקס הדלקת המשואות: בכירים שלא מצאו מקום ישיבה בקטע המרכזי, בן גביר ואשתו שנדרשו לפנות את כיסאו של נשיא ארגנטינה מילאי, ונתניהו שקיבל מקום בולט בתכניה ובסרטון המסכם.</p>
+        </div>
+        <div class="story-card">
+          <h3>כתבה 2 — הרב אברהם זרביב וההד הבינלאומי</h3>
+          <p>הכתבה השנייה, שפורסמה ב־23 באפריל, עסקה בהרב אברהם זרביב, אחד ממדליקי המשואות, שעמדותיו הקיצוניות — ובכלל זה הריסת בתים בשטחים — זכו לכיסוי נרחב בתקשורת הבינלאומית.</p>
+        </div>
+      </div>
+
+      <h2 class="section-title">הנתונים: תמונה ראשונית</h2>
+
+      <div class="duel-row">
+        <div class="duel-box negative">
+          <div class="duel-kicker">כתבת הכאוס — הטקס</div>
+          <div class="duel-ratio">93% / 7%</div>
+          <div class="duel-desc">מגנה מול מגן באחוזים</div>
+        </div>
+
+        <div class="duel-bridge">
+          <p><strong class="inline-strong">כאן יושב לב ההבדל:</strong> בכתבת הכאוס כמעט לא היה מאבק — הרוב הלך כמעט כולו לצד המגנה. <strong class="inline-strong">בכתבת זרביב, לעומת זאת, נוצר מאבק ממשי</strong>, עם התייצבות כמעט שווה של שני מחנות.</p>
+        </div>
+
+        <div class="duel-box balanced">
+          <div class="duel-kicker">כתבת זרביב</div>
+          <div class="duel-ratio">50% / 50%</div>
+          <div class="duel-desc">מגנה מול מגן באחוזים</div>
+        </div>
+      </div>
+
+      <h2 class="section-title">ההשוואה המלאה</h2>
+
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>מדד</th>
+            <th>כתבת הכאוס — הטקס</th>
+            <th>כתבת זרביב</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>תגובות סה"כ</td>
+            <td>381</td>
+            <td>238</td>
+          </tr>
+          <tr>
+            <td>קליקים תומכים נגד</td>
+            <td class="val-neg">93.2%</td>
+            <td>49.2%</td>
+          </tr>
+          <tr>
+            <td>קליקים תומכים בעד</td>
+            <td>6.8%</td>
+            <td class="val-pos">50.8%</td>
+          </tr>
+          <tr>
+            <td>ממוצע לייקים לתגובה</td>
+            <td>32.1</td>
+            <td>23.6</td>
+          </tr>
+          <tr>
+            <td>ממוצע דיסלייקים לתגובה</td>
+            <td>5.5</td>
+            <td class="val-neg">14.2</td>
+          </tr>
+          <tr>
+            <td>מקסימום לייקים לתגובה בודדת</td>
+            <td>647</td>
+            <td>313</td>
+          </tr>
+          <tr>
+            <td>ממוצע לייקים לתגובה בצד הנגד</td>
+            <td class="val-neg">41.8</td>
+            <td>21.7</td>
+          </tr>
+          <tr>
+            <td>ממוצע לייקים לתגובה בצד הבעד</td>
+            <td>3.5</td>
+            <td class="val-pos">31.5</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>המספר שמזקק את ההבדל הוא <strong class="inline-strong">3.5 מול 31.5</strong>: זהו ממוצע הלייקים לתגובה בצד ה"בעד" בשתי הכתבות. בכתבת הטקס, מי שניסה להגן כמעט שלא קיבל גיבוי. בכתבת זרביב, מי שהגן קיבל בממוצע תמיכה רחבה יותר אפילו מן הצד המגנה. זהו סימן ברור לכך שבכתבת זרביב היה לצד המגן <strong class="inline-strong">קהל תומך ממשי</strong>, לא רק קומץ מגיבים.</p>
+
+      <h2 class="section-title">הנרטיבים: כשהשפה מגלה את הזהות</h2>
+
+      <p>גם השפה עצמה מספרת את הסיפור. בכתבת הכאוס, הצד הנגד נשמע כמעט אחיד: כעס, בוז, תחושת השפלה לאומית ופוליטיזציה של טקס ממלכתי.</p>
+
+      <div class="quote-grid">
+        <div class="quote-card">
+          "הטקס שאורגן על-ידי האפסית רגב נראה מדיוק כמו המשרד שהיא אחראית עליו — הממשלה הזאת חייבת לעוף. הכל בושה וחרפה."
+          <div class="qmeta">+639 / -28 לייקים | כתבת הכאוס</div>
+        </div>
+        <div class="quote-card">
+          "גועל נפש של טקס, ליכודיאדה, סרטון בחירות למנהיג העליון, מחריב ישראל. צפון קוריאה זה פה."
+          <div class="qmeta">+262 / -8 לייקים | כתבת הכאוס</div>
+        </div>
+        <div class="quote-card">
+          "הרמטכ"ל, מפקד חיל האוויר, ראש המוסד, שופטי העליון — לא רצו להיות באותה תמונה עם מואשם בפלילים שאחראי למחדל השביעי."
+          <div class="qmeta">+139 / -8 לייקים | כתבת הכאוס</div>
+        </div>
+        <div class="quote-card">
+          "פחי אשפה — גם את הטקס הקדוש הזה הצליחו להרוס!"
+          <div class="qmeta">+422 / -15 לייקים | כתבת הכאוס</div>
+        </div>
+      </div>
+
+      <p>בכתבת זרביב, לעומת זאת, הוויכוח כבר אינו רק רגשי. הוא נע בין שני צירים ברורים: ביקורת על הנזק המוסרי והבינלאומי, מול הגנה כוחנית־זהותית שמעמידה את זרביב כסמל ליהודי לוחם.</p>
+
+      <div class="quote-grid">
+        <div class="quote-card">
+          "קודם מוציאים שם רע — אחר כך מתלוננים למה העולם חוזר על השם הרע שהוצאנו בעצמנו."
+          <div class="qmeta">+237 / -40 לייקים | כתבת זרביב — מגנה</div>
+        </div>
+        <div class="quote-card">
+          "הפרצוף שלנו בעולם: זרביב, בן גביר עם חבל תלייה על הדש, החייל שמנתץ פסל ישו. ועכשיו תתלוננו למה לא אוהבים אותנו."
+          <div class="qmeta">+212 / -106 לייקים | כתבת זרביב — מגנה</div>
+        </div>
+        <div class="quote-card green-side">
+          "כמה קשה להם שהם כבר לא יכולים לעשות לנו פרוגרומים, מסעות צלב, אינקווזיציות... מסכנים, קשה להם."
+          <div class="qmeta">+313 / -197 לייקים | כתבת זרביב — מגן</div>
+        </div>
+        <div class="quote-card green-side">
+          "זרביב לא הורס בתים — אלא תשתיות טרור. הוא הציל חיי חיילים רבים. מלח הארץ."
+          <div class="qmeta">+270 / -122 לייקים | כתבת זרביב — מגן</div>
+        </div>
+      </div>
+
+      <h2 class="section-title">הממצא המרכזי: הימין נוכח — אבל לא בכל נושא</h2>
+
+      <div class="insight">
+        <strong>כתבת זרביב מראה שהקהל הימני קיים ביינט ומשמיע קול כאשר יש לו דמות, נרטיב וטיעון להגן עליהם.</strong> בכתבת הכאוס, לעומת זאת, כמעט לא נבנה טיעון הגנתי בעל משקל. לכן הפער העצום שם אינו מלמד רק על חוזק המחאה נגד הטקס, אלא גם על חולשת ההגנה עליו.
+      </div>
+
+      <p>אפשר לקרוא את השתיקה בכתבת הכאוס גם כשילוב של כמה סוגי מבוכה: מבוכה של מי שלא מצא תשובה לכאוס הארגוני; מבוכה של תומכי בן גביר לנוכח השפלת מנהיגם בטקס; ומבוכה של דתיים־לאומיים מתונים כשהמבקרים אינם "שמאלנים בלבד" אלא גם דמויות ממלכתיות מובהקות. לא חייבים לקבל את החלוקה הזאת במלואה כדי לראות את התוצאה: <strong class="inline-strong">באותה כתבה ההגנה כמעט קרסה</strong>.</p>
+
+      <h2 class="section-title">מי הם המגנים על זרביב?</h2>
+
+      <p>כאן נחשף קהל מובחן יותר, שאינו "ביביסטי" במובן הרחב, אלא קרוב יותר לבסיס העוצמה של הימין הדתי־לאומי הקיצוני.</p>
+
+      <div class="numbers">
+        <h3>פרופיל מקוצר של "מגני זרביב"</h3>
+        <ul>
+          <li><strong>דמות רבנית־לוחמת:</strong> "כב' הרב", "מלח הארץ", "שילוב תורה וצבא" — זרביב מוצג כמודל יהודי־לוחם, לא רק כאיש ציבור.</li>
+          <li><strong>נרטיב אנטישמיות נצחית:</strong> "פרוגרומים", "מסעות צלב", "אינקווזיציות" — ביקורת חיצונית מתפרשת כהמשך ישיר של רדיפה, לא כתגובה למעשים מסוימים.</li>
+          <li><strong>פנטזיית "היהודי החזק":</strong> סיפוק מוצהר מדמות כוחנית שאינה מתנצלת, מול דחייה של הדימוי היהודי הגלותי והמתגונן.</li>
+          <li><strong>איבה לתקשורת ושפה מוקצנת:</strong> "אל־ג'זירה בעברית", "אנטישמים מבית", "לשטח את כל עזה" — שפה שחורגת מהגנה עניינית אל מאבק זהותי כולל.</li>
+        </ul>
+      </div>
+
+      <p>מכאן גם נובע ממצא משלים: בכתבת הטקס, אפילו הקהל הזה לא התייצב להגנה של ממש. זו אינדיקציה נוספת לכך שהמבוכה סביב הטקס הייתה רחבה יותר מן הוויכוח הפוליטי השגרתי.</p>
+
+      <h2 class="section-title">מה מלמד ההבדל בדיסלייקים</h2>
+
+      <p>גם מדד הדיסלייקים מחזק את ההבחנה: <strong class="inline-strong">5.5 בכתבת הטקס לעומת 14.2 בכתבת זרביב</strong>. בכתבת הטקס נרשמה בעיקר הסכמה רחבה עם קו אחד; בכתבת זרביב נרשמה התנגשות פעילה הרבה יותר, עם לחימה סימטרית יחסית בין שני מחנות. זה ההבדל בין שדה כמעט מוכרע לבין שדה שנאבק על משמעותו.</p>
+
+      <h2 class="section-title">הקשר לממצאי הפייסבוק</h2>
+
+      <p>ממצאי יינט אינם מבטלים את ממצאי הפייסבוק — הם מחדדים אותם. בפייסבוק ראינו רוב שלילי בולט כלפי הטקסים; ביינט אנו רואים שהימין עולה להשמיע קול כאשר הנושא מאפשר לו <strong class="inline-strong">הגנת זהות ברורה</strong>. כאשר הנושא הוא ניהול הטקס של ממשלת נתניהו, גם בשדה השקט וגם בשדה המדבר ההגנה נחלשת מאוד.</p>
+
+      <div class="closing">
+        הנתון המכריע במאמר הזה אינו רק גודל ההתנגדות בכתבת הכאוס, אלא העובדה שבכתבת זרביב נוצר כמעט שוויון. <strong>זהו סימן לכך שלא האתר לבדו קובע את התמונה, אלא גם השאלה אם למחנה מסוים יש עמדה שהוא מסוגל להגן עליה בפומבי.</strong> במילים אחרות: יינט אינו רק זירה שבה רואים מה נאמר — אלא גם זירה שבה רואים מתי מחנה שלם מתקשה לדבר.
+      </div>
+
+      <div class="ref">
+        <strong>מתודולוגיה:</strong> סיווג 381 תגובות לכתבת הטקס בשיטת מאזן לייקים/דיסלייקים (מכנית), וסיווג 238 תגובות לכתבת זרביב בשיטת GPT-4o-mini עם פרומפט מותאם + סיווג ידני של מדגם + שיוך תגובות משניות לפי תגובה ראשית. "קליקים תומכים" = לייקים לצד א' + דיסלייקים לצד ב'.
+      </div>
+
+    </section>
+
+    <footer class="footer">
+      אמנון זוסמן — 23 באפריל 2026. כל הזכויות שמורות.
+    </footer>
+
+  </article>
+</div>
+</body>
+</html>
