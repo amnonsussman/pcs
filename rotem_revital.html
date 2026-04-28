@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>שתי נשים, שתי אמהות, שתי זירות</title>
+  <style>
+    :root {
+      --bg: #f4efe8;
+      --paper: #fffdf8;
+      --ink: #1d2430;
+      --muted: #5d6673;
+      --line: #ddd2c3;
+      --blue: #183b5b;
+      --blue2: #245b84;
+      --gold: #a06b18;
+      --red: #8b2e2e;
+      --green: #28654d;
+      --soft-blue: #e8f1f8;
+      --soft-gold: #fff3d5;
+      --soft-red: #fae8e8;
+      --soft-green: #e8f5ee;
+      --shadow: rgba(23, 36, 49, 0.10);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top right, rgba(160, 107, 24, 0.12), transparent 34rem), linear-gradient(180deg, #f8f3eb 0%, var(--bg) 100%);
+      color: var(--ink);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.75;
+      font-size: 17.5px;
+    }
+    .page { max-width: 1060px; margin: 0 auto; padding: 34px 22px 70px; }
+    header {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #142b43 0%, #1f547c 55%, #7e4b30 100%);
+      color: white;
+      padding: 42px 46px;
+      border-radius: 28px;
+      box-shadow: 0 20px 55px rgba(22, 40, 58, 0.22);
+      margin-bottom: 24px;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      inset: auto -60px -120px auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+    }
+    .eyebrow {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,.36);
+      border-radius: 999px;
+      padding: 5px 14px;
+      font-size: 14px;
+      opacity: .95;
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: 40px;
+      line-height: 1.18;
+      margin: 0 0 12px;
+      font-weight: 850;
+      letter-spacing: -0.5px;
+      max-width: 880px;
+    }
+    .subtitle { font-size: 21px; line-height: 1.55; margin: 0; max-width: 900px; opacity: .94; }
+    .byline { margin-top: 20px; color: rgba(255,255,255,.88); font-size: 15px; }
+    .hero-images { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 24px 0 26px; }
+    figure { margin: 0; background: var(--paper); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; box-shadow: 0 10px 30px var(--shadow); }
+    figure img { width: 100%; height: 380px; object-fit: cover; display: block; background: #ece7df; }
+    figcaption { padding: 13px 16px 15px; color: var(--muted); font-size: 14.5px; background: #fffaf2; border-top: 1px solid var(--line); }
+    .card { background: rgba(255,253,248,0.98); border: 1px solid var(--line); border-radius: 24px; padding: 28px 34px; margin: 22px 0; box-shadow: 0 10px 30px var(--shadow); }
+    .lead { font-size: 20px; color: #24384c; font-weight: 500; }
+    h2 { font-size: 28px; color: var(--blue); line-height: 1.25; margin: 0 0 16px; font-weight: 800; }
+    h3 { font-size: 22px; color: #27445f; margin: 22px 0 9px; line-height: 1.35; }
+    p { margin: 0 0 14px; }
+    strong { font-weight: 800; }
+    .pull { border-right: 7px solid var(--gold); background: var(--soft-gold); border-radius: 18px; padding: 18px 20px; margin: 20px 0; font-size: 19px; font-weight: 700; color: #4b3410; }
+    .takeaway { border-right: 7px solid var(--green); background: var(--soft-green); border-radius: 18px; padding: 18px 20px; margin: 20px 0; font-size: 19px; font-weight: 750; color: #173f30; }
+    .warning { border-right: 7px solid var(--red); background: var(--soft-red); border-radius: 18px; padding: 18px 20px; margin: 20px 0; color: #4b1717; font-weight: 650; }
+    .compare { width: 100%; border-collapse: collapse; margin: 18px 0 8px; border-radius: 18px; overflow: hidden; font-size: 15.5px; }
+    .compare th, .compare td { border: 1px solid #d7dce2; padding: 11px 13px; vertical-align: top; }
+    .compare th { background: #243b53; color: white; font-weight: 800; }
+    .compare tr:nth-child(even) td { background: #faf7f1; }
+    .stat-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 20px 0 6px; }
+    .stat { border-radius: 18px; padding: 18px; border: 1px solid #d3dce6; background: var(--soft-blue); min-height: 120px; }
+    .stat:nth-child(2) { background: var(--soft-gold); border-color: #ead39d; }
+    .stat:nth-child(3) { background: var(--soft-red); border-color: #efc2c2; }
+    .stat b { display: block; font-size: 30px; line-height: 1; margin-bottom: 9px; color: #1e3953; }
+    .stat span { display: block; font-size: 14.5px; color: #4a5662; }
+    .quote { background: #f3f7fb; border-right: 5px solid var(--blue2); border-radius: 16px; padding: 15px 18px; margin: 16px 0; color: #24384c; font-weight: 650; }
+    .section-label { display: inline-block; color: var(--blue); background: var(--soft-blue); border: 1px solid #cbddec; border-radius: 999px; padding: 4px 12px; font-size: 14px; font-weight: 750; margin-bottom: 10px; }
+    footer { margin-top: 26px; padding: 24px 4px 10px; color: var(--muted); border-top: 1px solid var(--line); font-size: 14px; }
+    @media (max-width: 780px) {
+      body { font-size: 16px; }
+      .page { padding: 20px 14px 48px; }
+      header { padding: 30px 24px; border-radius: 22px; }
+      h1 { font-size: 30px; }
+      .subtitle { font-size: 18px; }
+      .hero-images, .stat-grid { grid-template-columns: 1fr; }
+      figure img { height: auto; max-height: 430px; }
+      .card { padding: 22px 20px; border-radius: 20px; }
+      .compare { font-size: 14px; }
+      .compare th, .compare td { padding: 9px 8px; }
+    }
+    @media print {
+      body { background: white; font-size: 15.5px; }
+      .page { max-width: none; padding: 0; }
+      header, .card, figure { box-shadow: none; }
+      .card, figure { page-break-inside: avoid; }
+      figure img { height: 280px; }
+      h2 { page-break-after: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="eyebrow">נייר ניתוח ציבורי בעקבות רצח בנימין זלקה</div>
+      <h1>שתי נשים, שתי אמהות, שתי זירות: בין פוסט של ייאוש לבין פוסט שמפעיל מלחמת מחנות</h1>
+      <p class="subtitle">רוויטל זוארץ ורותם סלע כתבו שתיהן מתוך כאב אזרחי ואימהי. אבל כל אחת הפעילה מנגנון ציבורי אחר: האחת פתחה שער למתנדנדים־מיואשים, והשנייה חשפה את עוצמת תגובת־הנגד של המחנה הלאומני־שמרני.</p>
+      <div class="byline">מאת: אמנון זוסמן · אפריל 2026</div>
+    </header>
+
+    <section class="hero-images">
+      <figure>
+        <img src="revital.jpg" alt="רוויטל זוארץ" />
+        <figcaption>רוויטל זוארץ — דמות פייסבוק מוכרת, כ־5,000 חברים וכ־8,000 עוקבים. הפוסט שלה פעל כפוסט הזדהות והפצה.</figcaption>
+      </figure>
+      <figure>
+        <img src="rotem.jpg" alt="רותם סלע" />
+        <figcaption>רותם סלע — דמות ציבורית מוכרת מאוד. בפוסט הזה היא מקפידה שלא לנצל את הזוהר, אלא לדבר כאמא וכאזרחית מודאגת.</figcaption>
+      </figure>
+    </section>
+
+    <section class="card">
+      <span class="section-label">פתיחה</span>
+      <p class="lead">רצח בנימין זלקה לא נשאר רק אירוע פלילי מזעזע. מהר מאוד הוא הפך למראה חברתית ופוליטית. לא רק השאלה “מי רצח?” עמדה במרכז, אלא השאלה העמוקה יותר: <strong>מי יצר את התנאים שבהם נערים מרשים לעצמם לצאת לרחוב, לדקור, להרוג, ולחשוב שהעולם ימשיך כרגיל.</strong></p>
+      <p>בתוך הזירה הזו הופיעו שני פוסטים של שתי נשים, שתיהן אמהות, שתיהן מוכרות במידה שונה, שתיהן בעלות נוכחות ציבורית וזוהר אישי. הראשונה, רוויטל זוארץ, אינה כוכבת טלוויזיה לאומית, אבל היא דמות פייסבוק חזקה: כ־5,000 חברים וכ־8,000 עוקבים. השנייה, רותם סלע, היא אחת הדמויות המוכרות ביותר בישראל.</p>
+      <div class="pull">רוויטל מייצרת פוסט של הזדהות והפצה. רותם מייצרת פוסט של התנגשות ומלחמת זהות.</div>
+    </section>
+
+    <section class="card">
+      <h2>רוויטל: כשהזעם לא רוצה להיקרא “שמאל”</h2>
+      <p>הפוסט של רוויטל זוארץ היה קטן בהרבה מבחינת חשיפה, אבל חזק מאוד מבחינת איכות ההדהוד. לפי הנתונים שנבדקו, הוא צבר כ־950 רגשונים, כ־300 תגובות ו־237 שיתופים — יחס שיתופים חריג מאוד ביחס לכמות הלייקים. זהו סימן לכך שאנשים לא רק לחצו “אהבתי”; הם רצו לקחת את הטקסט ולהעביר אותו הלאה בשמם.</p>
+      <p>המשמעות הפוליטית של הפוסט של רוויטל אינה בכך שהוא “שמאלני”. להפך: כוחו הוא דווקא בכך שהוא מאפשר לאנשים שמגיעים מהימין, אפילו מהימין “מלא מלא”, לא לעבור למחנה היריב באופן מוצהר, אלא להתיישב באזור ביניים חדש: <strong>מחנה המתנדנדים־מיואשים</strong>.</p>
+      <p>אלה אנשים שאינם בהכרח אומרים “הממשלה אשמה” במובן הליברלי הקלאסי. הם אומרים משהו אחר: כולם אשמים. כל ה־120 אשמים. כל השיטה רקובה. אין ימין ואין שמאל. המדינה לא מגינה עלינו.</p>
+      <p>זהו משפט חשוב מאוד מבחינה פוליטית. הוא אינו הצבעה לליברלים, אבל הוא גם אינו הגנה על הקואליציה. הוא שלב ביניים בדרך להתנתקות רגשית מהמחנה הישן. האדם עדיין אינו אומר “אני עובר צד”, אבל הוא כבר מפסיק לומר “הצד שלי צודק”.</p>
+      <div class="quote">במובן הזה, הפוסט של רוויטל הוא גשר: הוא מאפשר לאנשים לכעוס בלי להחליף מיד תעודת זהות פוליטית.</div>
+      <p>גם הזוהר האישי של רוויטל משחק כאן תפקיד כפול. מצד אחד, היא דמות מושכת תשומת לב, והפוסט שלה נהנה מנוכחות אישית חזקה. מצד שני, דווקא משום שהיא לא פוליטיקאית ולא סמל מחנאי קשיח, אנשים יכולים להזדהות איתה בלי להרגיש שהם נכנעים למחנה השני.</p>
+    </section>
+
+    <section class="card">
+      <h2>רותם: כשהמסר חזק, אבל הדוברת מפעילה אזעקה מחנאית</h2>
+      <p>אצל רותם סלע הסיפור הפוך כמעט לגמרי. המספרים גדולים בהרבה: כ־6,500 לייקים, כ־3,500 עד 3,800 תגובות, וכ־200 שיתופים בלבד. כלומר, הפוסט קיבל חשיפה ואהדה שקטה רחבה, אבל יחס השיתופים נמוך מאוד ביחס לגודל המעורבות.</p>
+      <div class="stat-grid">
+        <div class="stat"><b>6,500</b><span>לייקים / רגשונים — חשיפה ואהדה שקטה רחבה.</span></div>
+        <div class="stat"><b>3,500–3,800</b><span>תגובות — הפוסט הפך לזירת עימות פעילה.</span></div>
+        <div class="stat"><b>200</b><span>שיתופים — הפצה נמוכה יחסית למעורבות.</span></div>
+      </div>
+      <p>רותם גם עשתה בחירה חזותית חשובה. היא לא השתמשה כאן בזוהר המוכר שלה. לא צילום נוצץ, לא הופעה מוקפדת, לא נוכחות של עולם פרסום. להפך: התמונה משדרת רצינות, עייפות, אזרחיות, אימהות. כאילו היא אומרת: <strong>אל תעשו לי לייק על רותם סלע. תקראו את מה שאני אומרת כאמא וכאזרחית ישראלית.</strong></p>
+      <p>אבל כאן בדיוק נכנס הפרדוקס. ככל שרותם ניסתה לנטרל את הזוהר, כך המחנה המתנגד החזיר אותה בכוח אל תפקיד “הסלבית”: מי את בכלל, תמשיכי להנחות, אל תתערבי, את שמאלנית, את חלק מהאליטה. חלק גדול מהתגובות לא התווכחו עם הטיעון שלה אלא עם עצם זכותה לומר אותו.</p>
+    </section>
+
+    <section class="card">
+      <h2>שלושה מחנות בתגובות לרותם</h2>
+      <p>במדגמים שבחנו מתוך שני אוספי התגובות — “הרלוונטיות ביותר” ו“החדשות ביותר” — התמונה התייצבה סביב חלוקה ברורה: כ־60% מהתגובות נעות בצד הלאומני־שמרני/תומך הקואליציה, כ־30% בצד הליברלי/מתנגד הקואליציה, וכ־10% בלבד באזור נייטרלי, מתנדנד או לא ברור.</p>
+      <table class="compare">
+        <thead><tr><th>מחנה / קבוצה</th><th>אומדן במדגמים</th><th>מאפייני תגובות עיקריים</th></tr></thead>
+        <tbody>
+          <tr><td>לאומני־שמרני / תומך קואליציה</td><td>כ־60%</td><td>בג״ץ, שופטים, יועמ״שית, קפלן, דרום תל אביב, מסתננים, התקפה על רותם כסלבית או שמאלנית.</td></tr>
+          <tr><td>ליברלי / מתנגד קואליציה</td><td>כ־30%</td><td>ממשלה, נתניהו, בן גביר, משילות, ביטחון אישי, אלימות שמחלחלת מלמעלה, ביקורת על הבית והסביבה שגידלה.</td></tr>
+          <tr><td>נייטרלי / מתנדנד / לא ברור</td><td>כ־10%</td><td>כאב, פחד, דרישה כללית לענישה או אחריות בלי מוקד אשמה ברור.</td></tr>
+        </tbody>
+      </table>
+      <h3>המחנה הלאומני־שמרני</h3>
+      <p>המחנה הלאומני־שמרני הגיב בשלושה צירים מרכזיים. הראשון: <strong>בג״ץ, מערכת המשפט והיועמ״שית אשמים</strong>. זהו קו ההגנה המרכזי: לא הממשלה, לא בן גביר, לא נתניהו — אלא השופטים שמשחררים, הפרקליטות שמקלה, בג״ץ שמונע, היועמ״שית שמסנדלת.</p>
+      <p>הציר השני הוא <strong>פסילת רותם עצמה</strong>: לא “הטיעון שלך שגוי”, אלא “מי את בכלל”, “סלבית”, “תשתקי”, “את לא מבינה”. זהו לא ויכוח מדיניות אלא תגובת זהות. רותם נתפסת כנציגת האליטה הליברלית־תקשורתית, ולכן עצם הופעתה בזירה מעוררת מתקפת נגד.</p>
+      <p>הציר השלישי הוא <strong>דרום תל אביב, מסתננים וצביעות האליטות</strong>. כאן המחנה השמרני עושה מהלך מתוחכם: הוא לוקח את הטענה של רותם על “בעיה של אחרים” ומחזיר אותה נגדה. אתם התעלמתם מדרום תל אביב, אתם הגנתם על מסתננים, אתם קראתם לשפי פז גזענית, ועכשיו כשהאלימות הגיעה לבית הקפה שלכם — פתאום אתם מתעוררים.</p>
+      <h3>המחנה הליברלי</h3>
+      <p>מנגד, המחנה הליברלי בתגובות פעל בכמה צירים. הראשון הוא <strong>אחריות הממשלה והמשילות</strong>. אם בן גביר הבטיח ביטחון אישי, אם נתניהו שולט שנים, אם הממשלה מחזיקה במשרדי החינוך, המשטרה, הרווחה והביטחון — אי אפשר להפנות את כל האחריות רק לבית המשפט.</p>
+      <p>הציר השני הוא <strong>האלימות מחלחלת מלמעלה</strong>. השפה הציבורית, ההסתה, האלימות המילולית, פולחן הכוח, והלגיטימציה לדמויות כוחניות — כל אלה נתפסים כחלק מהאקלים שבו נערים לומדים שאין גבול.</p>
+      <p>הציר השלישי הוא <strong>החינוך מהבית וההורים</strong>. במקרה רגיל זו הייתה יכולה להיות תגובה ניטרלית: “הכול מתחיל בבית”. אבל במקרה הזה, מכיוון שקבוצת הנערים ומשפחותיהם מזוהות פוליטית־זהותית, ביקורת על ההורים, הבית והסביבה שגידלה אותם מתפקדת גם כביקורת על קבוצת הזהות של המחנה הביביסטי־לאומני.</p>
+    </section>
+
+    <section class="card">
+      <h2>למה ההתנגדות לרותם מפתיעה — ולמה היא הגיונית</h2>
+      <p>הפער בין כ־6,500 לייקים לבין כ־2,200 תגובות שמתנגדות למסר של רותם באמת מפתיע. לכאורה, אם כל כך הרבה אנשים לחצו לייק, היינו מצפים לזירת תגובות אוהדת יותר.</p>
+      <p>אבל זה ההבדל בין <strong>תמיכה שקטה</strong> לבין <strong>התנגדות קולנית</strong>. לייק הוא פעולה קלה: אדם רואה את רותם, מזדהה עם הכאב, מסכים שהאלימות מפחידה, ולוחץ. תגובה היא פעולה אחרת לגמרי. היא דורשת כניסה לזירה, ניסוח, עימות, ולעיתים גם רצון “להחזיר מלחמה”.</p>
+      <div class="warning">התגובות אינן מייצגות בהכרח את כל הקהל שנחשף לפוסט. הן מייצגות את מי שהרגיש צורך להתערב — ובפוסט של רותם, מי שהרגיש צורך להתערב היה בעיקר המחנה שראה בפוסט התקפה עליו.</div>
+      <p>לכן לא נכון לומר שהפוסט נכשל. הוא הצליח מאוד ביצירת נראות, אהדה שקטה והצבת טענה ציבורית. אבל הוא לא הפך לטקסט שאנשים רבים רצו לשתף בשמם. הוא הפך לזירה שבה המחנה היריב בא להגן על עצמו.</p>
+    </section>
+
+    <section class="card">
+      <h2>רוויטל פותחת שער; רותם מפעילה אזעקה</h2>
+      <p>כאן נמצא ההבדל העמוק בין שני הפוסטים. רוויטל מדברת בשפה שמאפשרת לאנשי ימין מאוכזבים להישאר בתוך הזהות שלהם ועדיין לכעוס. היא לא מכריחה אותם לומר “ביבי אשם”. היא מאפשרת להם לומר “כל השיטה אשמה”. לכן היא מושכת מתנדנדים־מיואשים, אנשים שאולי הגיעו מהימין המלא, אבל כבר אינם מסוגלים להגן על המציאות שנוצרה.</p>
+      <p>רותם, לעומת זאת, תוקפת את נקודת הליבה של המחנה: משילות וביטחון. היא לא אומרת “כולם אשמים” אלא מפנה אצבע אל מי שאמור היה להיות חזק בזה. לכן התגובה אליה אינה ייאוש אלא התגוננות. המחנה השמרני לא מתנדנד אצלה; הוא מתבצר.</p>
+      <div class="takeaway">כדי להגיע אל מתנדנדים מהימין, לא תמיד נכון להתחיל בהאשמה ישירה. לעיתים האשמה ישירה מפעילה מיד את מערכת החיסון המחנאית. הפוסט של רוויטל עקף את מערכת החיסון הזו. הפוסט של רותם פגע בה ישירות — ולכן עורר תגובת נגד חזקה.</div>
+    </section>
+
+    <section class="card">
+      <h2>סיכום: שתי נשים, שתי פונקציות פוליטיות</h2>
+      <p>שתי הנשים כתבו מתוך כאב. שתיהן כתבו כאמהות. שתיהן כתבו כאזרחיות שמבינות שמשהו עמוק השתבש. אבל הפוסטים שלהן מילאו תפקידים שונים לגמרי.</p>
+      <p>רוויטל יצרה <strong>מרחב של הזדהות</strong>. רותם יצרה <strong>מרחב של התנגשות</strong>.</p>
+      <p>רוויטל נתנה לשבר לדבר בלי לדרוש הכרעה מחנאית מיידית. רותם הכריחה את המחנות להכריע.</p>
+      <p>רוויטל חשפה את מחנה המתנדנדים־מיואשים: אנשים שאולי באו מהימין, אולי אפילו מהימין “מלא מלא”, אבל מרגישים שהמדינה, הפוליטיקה והמנהיגים כולם בגדו בהם. רותם חשפה את עוצמת מנגנון ההגנה של המחנה הלאומני־שמרני: ברגע שהטענה מופנית אל הממשלה, אל בן גביר ואל נתניהו, הזירה מתמלאת בבג״ץ, יועמ״שית, קפלן, מסתננים, סלבס ו“תשתקי”.</p>
+      <div class="takeaway">רוויטל מראה שיש סדק. רותם מראה כמה מהר המחנה מנסה לאטום אותו.</div>
+    </section>
+
+    <footer>
+      <p>מסמך ניתוח לעבודה פנימית ולהמשך עיבוד. מבוסס על נתונים שנאספו מתגובות ושיתופים ציבוריים בפייסבוק סביב רצח בנימין זלקה, ועל מדגמים איכותניים מתוך שני אוספי תגובות: “הרלוונטיות ביותר” ו“החדשות ביותר”.</p>
+      <p>מאת: אמנון זוסמן · אפריל 2026</p>
+    </footer>
+  </main>
+</body>
+</html>
