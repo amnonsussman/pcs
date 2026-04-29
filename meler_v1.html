@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>אירופה: כשמלחמות הקודש הפכו למלחמות על כדור ברשת</title>
+  <style>
+    :root {
+      --bg: #f6f1e8;
+      --paper: #fffdf8;
+      --ink: #1d1d1f;
+      --muted: #6c6258;
+      --line: #d8c7ad;
+      --gold: #b8812f;
+      --blue: #172a55;
+      --red: #8f2d2d;
+      --green: #245c49;
+      --quote-bg: #f1eadc;
+      --danger-bg: #fff2ef;
+      --danger-line: #b64040;
+      --calm-bg: #edf5f1;
+      --calm-line: #2c745e;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #efe4d1 0%, var(--bg) 18%, var(--bg) 100%);
+      color: var(--ink);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.82;
+      font-size: 18px;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 44px 24px 70px;
+    }
+
+    article {
+      background: var(--paper);
+      border: 1px solid rgba(126, 98, 58, 0.24);
+      border-radius: 28px;
+      box-shadow: 0 24px 60px rgba(60, 43, 21, 0.13);
+      overflow: hidden;
+    }
+
+    header.hero {
+      padding: 52px 48px 34px;
+      background:
+        radial-gradient(circle at top left, rgba(184,129,47,0.25), transparent 34%),
+        linear-gradient(135deg, #201a17 0%, #172a55 62%, #2b1f19 100%);
+      color: #fff;
+      border-bottom: 6px solid var(--gold);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 5px 12px;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 999px;
+      font-size: 14px;
+      letter-spacing: .03em;
+      opacity: 0.95;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(34px, 6vw, 60px);
+      line-height: 1.08;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      font-size: clamp(19px, 2.4vw, 25px);
+      line-height: 1.65;
+      max-width: 850px;
+      margin: 0;
+      color: #f4ead9;
+    }
+
+    .byline {
+      margin-top: 24px;
+      color: #eadac1;
+      font-size: 16px;
+    }
+
+    .content {
+      padding: 34px 48px 56px;
+    }
+
+    h2 {
+      margin: 46px 0 16px;
+      font-size: 29px;
+      color: var(--blue);
+      line-height: 1.25;
+      border-right: 6px solid var(--gold);
+      padding-right: 14px;
+    }
+
+    p { margin: 0 0 18px; }
+
+    .lead p:first-child::first-letter {
+      font-size: 3.2em;
+      float: right;
+      line-height: 0.95;
+      padding-left: 8px;
+      color: var(--gold);
+      font-weight: 800;
+    }
+
+    .image-slot {
+      max-width: 760px;
+      margin: 28px auto 34px;
+      border: 0;
+      background: transparent;
+      border-radius: 20px;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .image-slot img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 520px;
+      object-fit: contain;
+      border-radius: 20px;
+      box-shadow: 0 14px 34px rgba(45, 34, 19, 0.16);
+      background: #f7f0e4;
+    }
+
+    .caption {
+      display: none;
+    }
+
+    .quote-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin: 28px 0 34px;
+    }
+
+    blockquote {
+      margin: 0;
+      padding: 20px 22px 18px;
+      border-radius: 18px;
+      background: var(--quote-bg);
+      border-right: 6px solid var(--gold);
+      position: relative;
+      box-shadow: 0 10px 22px rgba(80, 55, 22, 0.07);
+    }
+
+    blockquote::before {
+      content: "”";
+      position: absolute;
+      top: -18px;
+      right: 16px;
+      font-size: 70px;
+      color: rgba(184,129,47,0.35);
+      font-family: Georgia, serif;
+    }
+
+    blockquote p {
+      margin: 0 0 10px;
+      font-size: 19px;
+      font-weight: 650;
+    }
+
+    blockquote cite {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      font-style: normal;
+    }
+
+    .calm blockquote {
+      background: var(--calm-bg);
+      border-right-color: var(--calm-line);
+    }
+
+    .danger blockquote {
+      background: var(--danger-bg);
+      border-right-color: var(--danger-line);
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin: 30px 0;
+    }
+
+    .card {
+      border-radius: 22px;
+      padding: 22px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: #fff;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.05);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      line-height: 1.25;
+    }
+
+    .card p { margin-bottom: 0; }
+
+    .card.calm-card {
+      background: #eef7f2;
+      border-color: rgba(44,116,94,0.35);
+    }
+
+    .card.danger-card {
+      background: #fff1ef;
+      border-color: rgba(182,64,64,0.35);
+    }
+
+    .closing {
+      margin-top: 42px;
+      padding: 30px 28px;
+      background: linear-gradient(135deg, #172a55, #1e3e36);
+      color: #fff;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .closing p {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .closing .final-line {
+      font-size: 24px;
+      font-weight: 800;
+      color: #ffe8b8;
+      margin-top: 20px;
+    }
+
+    .sources {
+      margin-top: 40px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .sources h2 {
+      font-size: 20px;
+      border: 0;
+      padding: 0;
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    .sources ol { margin: 0; padding-right: 22px; }
+    .sources li { margin-bottom: 8px; }
+    a { color: #184f82; }
+
+    @media (max-width: 760px) {
+      header.hero { padding: 36px 24px 28px; }
+      .content { padding: 28px 22px 44px; }
+      .quote-grid,
+      .comparison { grid-template-columns: 1fr; }
+      body { font-size: 17px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { padding: 0; }
+      article { box-shadow: none; border: 0; border-radius: 0; }
+      header.hero { color: #111; background: #fff; border-bottom: 2px solid #999; }
+      .subtitle, .byline { color: #222; }
+      a { color: #111; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <article>
+      <header class="hero">
+        <div class="eyebrow">מסה פוליטית־פילוסופית בעקבות משחק כדורגל</div>
+        <h1>אירופה: כשמלחמות הקודש הפכו למלחמות על כדור ברשת</h1>
+        <p class="subtitle">המשחק בין פריז סן־ז׳רמן לבאיירן מינכן הזכיר כיצד אותה אירופה, שידעה להפוך דת, תורות גזע, כבוד ולאומיות למוות המוני, הצליחה — לפחות ברגעיה היפים — להפוך את אותם יצרים עצמם לכדורגל: חוקים, יריבות מכבדת, גבולות לכוח ושמחה אנושית משותפת.</p>
+        <div class="byline">מאת: אמנון זוסמן</div>
+      </header>
+
+      <div class="content">
+        <section class="lead">
+          <p>היו הרבה סיבות לראות במשחק בין פריז סן־ז׳רמן לבאיירן מינכן אחד ממשחקי הכדורגל הגדולים של השנים האחרונות. תשעה שערים, קצב מסחרר, כישרון נדיר, מהפכים רגשיים, ושתי קבוצות שלא באו לשמור על תוצאה אלא לשחק עד הקצה. אבל דווקא משום שהמשחק היה כל כך סוער, כל כך כוחני וכל כך תחרותי, הוא הזכיר משהו עמוק יותר: לא רק כמה רחוק הגיע הכדורגל, אלא כמה רחוק יכולה להגיע תרבות שמצליחה לרסן את יצרי המלחמה של האדם — בלי למחוק אותם.</p>
+
+          <p>כי על הדשא בפריז לא נפגשו רק שתי קבוצות. נפגש שם פסיפס אנושי מרהיב: צרפתים, גרמנים, אנגלים, פורטוגלים, גאורגים, קולומביאנים, אפריקאים־אירופים, מוסלמים, נוצרים, חילונים, מהגרים ובני מהגרים — כולם בתוך טקס מודרני אחד. מותר להיאבק, מותר להתנגש, מותר לרצות לנצח בכל הכוח — אבל רק בתוך גבולות. יש חוקים, יש שופט, יש זמן קצוב, ויש בסוף הכרה בכך שהיריב אינו אויב שיש למחוק, אלא מי שמאפשר למשחק להיות גדול.</p>
+        </section>
+
+        <figure class="image-slot">
+          <img src="images/PIC 1.jpg" alt="שחקני פריז סן־ז׳רמן ובאיירן מינכן מברכים זה את זה לאחר המשחק" data-candidates="images/PIC 1.jpg|images/PIC 1.JPG|images/PIC1.jpg|images/PIC1.JPG|images/pic1.jpg|images/pic1.png|images/PIC 1.png" />
+        </figure>
+
+        <h2>ממלחמה למשחק</h2>
+        <p>וזה בדיוק המקום שבו הכדורגל מפסיק להיות רק ספורט, והופך לסימן היסטורי. כי לפני שמונים שנה בלבד, אירופה עוד שכבה בין חורבות. אותה יבשת שידעה לייצר פילוסופיה, מוזיקה, מדע, אמנות ומשפט, ידעה גם להפוך דת, לאומיות, תורות גזע וכבוד פגוע למכונות מוות. מיליונים לא מתו מפני שבני אדם לא ידעו להתחרות; הם מתו מפני שהתחרות על זהות, אדמה, עליונות וזיכרון יצאה מכל גבול.</p>
+
+        <p>הכדורגל האירופי, ברגעיו הגדולים, מציע תיקון חלקי אך עמוק לאותו דחף. הוא אינו מבטל את השבטיות. להפך: הוא משתמש בה. הוא נותן לה צבעים, דגלים, המנונים, צעיפים, אצטדיונים ושירה. אבל הוא עושה דבר מכריע: הוא מכניס אותה לתוך מערכת חוקים. הוא אומר לאדם: מותר לך להשתייך, מותר לך לרצות לנצח, מותר לך לכאוב בהפסד ולהשתכר משמחה בניצחון — אבל אסור לך למחוק את היריב.</p>
+
+        <p>המשחק בין פריז לבאיירן היה כמעט מלחמה במובן הרגשי של המילה: התקפות, תגובות נגד, לחץ, פחד, התפרצות, שבריריות, גבורה, טעויות ועמידה מחדש על הרגליים. אבל זו הייתה מלחמה שעברה תרבות. מלחמה בלי הרוגים, בלי כיבוש, בלי נקמה, בלי שדות חרוכים. מלחמה שבה הכדור ברשת מחליף את הדם באדמה.</p>
+
+        <div class="quote-grid calm">
+          <blockquote>
+            <p>“You have to congratulate the opponents, the players.”</p>
+            <cite>לואיס אנריקה, מאמן פריז סן־ז׳רמן, לאחר המשחק</cite>
+          </blockquote>
+          <blockquote>
+            <p>“The best match I have ever coached.”</p>
+            <cite>לואיס אנריקה, בתיאור המשחק</cite>
+          </blockquote>
+        </div>
+
+        <p>דווקא משום שהמשחק היה עוצמתי כל כך, הוא המחיש את ההבדל בין יצר לבין תרבות. היצר רוצה לנצח. התרבות שואלת איך. היצר רוצה להכניע. התרבות מציבה גבול. היצר רוצה להפוך את היריב לאיום. התרבות מזכירה שבלעדיו אין משחק, אין דרמה, אין התעלות, ואין משמעות לניצחון.</p>
+
+        <h2>דת הכדורגל</h2>
+        <p>במובן עמוק, הכדורגל האירופי הפך למעין דת אזרחית. יש לו מקדשים — האצטדיונים; יש לו טקסים — ההמנונים, הצעיפים, הצבעים והכניסה למגרש; יש לו קהילות מאמינים; יש לו גיבורים, קדושים, נביאים, חטאים ורגעי גאולה. אנשים נוסעים אחריו בין מדינות, בוכים בגללו, שרים בשבילו, מורישים אותו לילדיהם, וחווים דרכו שייכות כמעט דתית.</p>
+
+        <p>אבל בנקודה אחת “דת הכדורגל” מציעה תיקון היסטורי מעניין לדתות וללאומיות שהבעירו את אירופה בעבר: היא אינה דורשת מן היריב להיעלם. להפך. בלי יריב אין משחק. בלי באיירן אין פ.ס.ז׳ גדולה. בלי פ.ס.ז׳ אין באיירן גדולה. היריב אינו כופר שיש למחוק, אלא שותף הכרחי לטקס.</p>
+
+        <p>זו אולי אחת הסיבות לכך שהכדורגל, דווקא משום שהוא כל כך שבטי, יכול להיות גם כל כך הומאני. הוא מאפשר לאדם להאמין בצבעים שלו, לשיר בשם הקבוצה שלו, להזדהות עם עיר, עם מועדון, עם היסטוריה ועם סמל — אבל בתוך גבולות. יש חוקים. יש שופט. יש מערכת ענישה. יש ערעור. יש VAR. יש מוסדות. יש הכרה בכך שגם הכוח הגדול ביותר חייב לעבור דרך מערכת משפט של המשחק.</p>
+
+        <p>כמובן, גם הדת הזאת אינה נקייה. יש בה כסף מוגזם, שחיתות, גזענות ביציעים, אלימות אוהדים ופולחן כוכבים. אבל ברגעיה היפים היא עדיין מציעה משהו נדיר: אמונה חזקה בלי מלחמת קודש. שבטיות בלי מחיקת האחר. תשוקה לניצחון בלי היתר להשפלה. לא עולם בלי יצרי מלחמה, אלא עולם שבו יצרי המלחמה עברו עידון.</p>
+
+        <h2>הפסיפס האנושי שעל הדשא</h2>
+        <p>גם גיבורי המשחק עצמם סיפרו את הסיפור. לא רק בכדורגל ששיחקו, אלא בעצם נוכחותם על המגרש. אירופה של 2026 אינה אירופה של דם טהור, שפה אחת וזהות אחת. היא אירופה של תנועה, הגירה, ערבוב, זיכרונות קולוניאליים, משפחות שחצו גבולות, ילדים שנולדו במדינה אחת ונושאים בתוכם יבשות אחרות.</p>
+
+        <p>על הדשא בפריז עמדו שחקנים שמייצגים עולם כזה: צרפתים בני מהגרים, אנגלים, גרמנים, פורטוגלים, גאורגים, קולומביאנים, אפריקאים־אירופים, מוסלמים, נוצרים וחילונים. לא כולם חושבים אותו דבר, לא כולם באים מאותו עולם, לא כולם נושאים אותו זיכרון. אבל במשך תשעים דקות הם היו חלק מאותה שפה.</p>
+
+        <p>וזו שפה חשובה במיוחד אחרי המאה העשרים. כי לפני שמונים שנה בלבד, חלקים גדולים מאירופה עוד היו שבויים בדמיון פוליטי שראה בערבוב האנושי סכנה, בטוהר הגזעי אידיאל, ובאחר איום. המשחק בפריז הציג תמונה הפוכה: לא טוהר, אלא פסיפס; לא פחד מן האחר, אלא תלות בו; לא דירוג של בני אדם, אלא שיתוף פעולה בתוך תחרות.</p>
+
+        <div class="quote-grid calm">
+          <blockquote>
+            <p>“Two great teams that attack.”</p>
+            <cite>עוסמאן דמבלה, על אופי המשחק ועל גדולת שתי הקבוצות</cite>
+          </blockquote>
+          <blockquote>
+            <p>“Unbelievable.”</p>
+            <cite>וינסנט קומפאני, מאמן באיירן מינכן, בתיאור המשחק</cite>
+          </blockquote>
+        </div>
+
+        <p>היופי לא היה רק בכך ששחקנים ממוצאים שונים שיחקו יחד. היופי היה בכך שהם נזקקו זה לזה כדי ליצור את הרגע. אף גיבור לא עמד לבדו. כל שער היה תוצאה של תנועה משותפת, קריאת משחק, מסירה, ריצה, אמון, תגובה. הכישרון הפרטי זרח, אבל רק בתוך מארג קבוצתי. אולי זו אחת האמיתות ההומאניות הגדולות שהכדורגל מלמד: אדם יכול להיות מבריק, אבל הוא נעשה גדול באמת רק בתוך מערכת יחסים.</p>
+
+        <figure class="image-slot">
+          <img src="images/PIC 2.jpg" alt="רגע מן המשחק בין פריז סן־ז׳רמן לבאיירן מינכן הממחיש יריבות עזה בתוך גבולות" data-candidates="images/PIC 2.jpg|images/PIC 2.JPG|images/PIC2.jpg|images/PIC2.JPG|images/pic2.jpg|images/pic2.png|images/PIC 2.png" />
+        </figure>
+
+        <h2>אירופה מול טראמפיזם: שתי תפיסות של כוח</h2>
+        <p>וכאן המשחק בפריז יוצא מן המגרש ונכנס אל הפוליטיקה של זמננו. כי מול אירופה הזאת — פגומה, מבולבלת, מפוחדת לעיתים, אבל עדיין מנסה להפוך כוח לתרבות — עומדת היום תפיסת כוח אחרת: טראמפיזם אמריקאי, שמחזיר אל מרכז הבמה את שפת העסקה, האיום, ההשפלה והניצחון החד־צדדי.</p>
+
+        <p>בטראמפיזם, העולם נתפס פחות כמערכת של בריתות, חוקים ומוסדות, ויותר כזירת התמקחות בין חזקים לחלשים. בעל ברית אינו בהכרח שותף היסטורי, אלא מי שצריך “לשלם”. יריב אינו תמיד מתחרה שיש לכבד, אלא מישהו שצריך לכופף. החוק אינו תמיד גבול לכוח, אלא לעיתים מכשול שיש לעקוף. הכבוד אינו הדדי, אלא היררכי: מי למעלה, מי למטה, מי מכניע ומי נכנע.</p>
+
+        <p>ואילו במשחק בין פריז סן־ז׳רמן לבאיירן מינכן ראינו שוב ושוב תמונה הפוכה: תחרות עזה מאוד, כמעט מלחמתית בעוצמתה, אך כזו שנשארת בתוך מסגרת של כבוד. השחקנים נאבקו על כל כדור, לא ויתרו לשנייה, ובכל זאת בסיום דיברו בשפת הערכה, הכרה וכבוד. זה בדיוק הרגע שבו הכוח אינו נעלם, אלא עובר עידון.</p>
+
+        <div class="comparison">
+          <div class="card calm-card">
+            <h3>כוח שעבר תרבות</h3>
+            <p>היריב גדול, ולכן הניצחון גדול. החוקים אינם מפריעים למשחק — הם מאפשרים אותו. הכוח אינו מתבטל, אלא מקבל צורה: זמן, מגרש, שופט, גבול והכרה הדדית.</p>
+          </div>
+          <div class="card danger-card">
+            <h3>כוח שמבקש טוטאליות</h3>
+            <p>היריב אינו שותף לדרמה אלא אובייקט להכנעה. השפה אינה שפת גבולות אלא שפת מחיקה: השמדה, חורבות, תקופת האבן, איום שהכול יימחק.</p>
+          </div>
+        </div>
+
+        <p>כדי להבין את ההבדל, כדאי להניח זו מול זו את שפת המשחק ואת שפת הכוח הפוליטי הטוטאלי. מצד אחד, מאמנים ושחקנים שמדברים על קצב, אומץ, כבוד ליריב ושתי קבוצות גדולות. מצד אחר, מנהיגים שמדברים בשפת חורבן מוחלט.</p>
+
+        <div class="quote-grid danger">
+          <blockquote>
+            <p>“Completely and totally obliterated.”</p>
+            <cite>דונלד טראמפ, על מתקני הגרעין של איראן לאחר תקיפה אמריקאית</cite>
+          </blockquote>
+          <blockquote>
+            <p>“Return Lebanon to the Stone Age.”</p>
+            <cite>ישראל כץ, באיום כלפי לבנון וחיזבאללה</cite>
+          </blockquote>
+          <blockquote>
+            <p>“Turn them into rubble.”</p>
+            <cite>בנימין נתניהו, על מקומות שבהם חמאס פרוס, מסתתר ופועל</cite>
+          </blockquote>
+          <blockquote>
+            <p>“Every Hamas member is a dead man.”</p>
+            <cite>בנימין נתניהו, לאחר הקמת ממשלת החירום באוקטובר 2023</cite>
+          </blockquote>
+        </div>
+
+        <p>אין כאן ניסיון להשוות משחק כדורגל למלחמה ממשית, או להתעלם מהצורך של מדינות להגן על עצמן. ישראל, בוודאי אחרי אסונות שחוותה, אינה יכולה להרשות לעצמה תמימות. אבל המאמר הזה אינו שואל אם צריך כוח. הוא שואל איזו שפה אנחנו בוחרים לתת לכוח, ואיזה יעד אנחנו מציבים לו: הגנה על חיים, או התמכרות לדימוי של מחיקה.</p>
+
+        <p>במובן הזה, המשחק בין פריז לבאיירן היה שיעור הפוך. הוא הראה שהכוח אינו נעלם כאשר מציבים לו גבולות. להפך: לפעמים הוא נעשה יפה יותר. התקפה יפה אינה פחות חזקה מפני שהיא חוקית. ניצחון אינו קטן יותר מפני שהיריב זוכה לכבוד. דרמה אינה נחלשת מפני שיש שופט. בלי החוקים, בלי הגבולות ובלי ההכרה ההדדית, אין משחק גדול — יש רק אלימות.</p>
+
+        <h2>ישראל: בין דת הכוח לדת המשחק</h2>
+        <p>ובסוף, כמו תמיד, השאלה חוזרת אלינו, לישראל.</p>
+
+        <p>איפה אנחנו רוצים להיות בתוך המאבק התרבותי הזה? האם בצד של פוליטיקה שמקדשת כוח עירום, השפלה, נאמנות למנהיג וזלזול במוסדות? האם בצד של אמריקה הטראמפיסטית, שמלמדת את העולם לחשוב במונחים של עסקה, איום, כניעה וניצחון חד־צדדי? או שאולי דווקא מאירופה הפגומה, המבולבלת, הרב־תרבותית, יש לנו משהו עמוק ללמוד?</p>
+
+        <p>בישראל התרגלו חלקים גדולים מן הימין לדבר על אירופה בבוז. אירופה “חלשה”, אירופה “מתאבדת”, אירופה “נכבשת בידי האסלאם”, אירופה “לא מבינה את המזרח התיכון”. לפעמים יש בטענות האלה גרעין ממשי של חרדה ושל ביקורת. אירופה אכן מתמודדת עם הגירה, עם אסלאם פוליטי, עם אלימות, עם אנטישמיות, עם פחדים לאומיים ועם משברים של זהות. אבל זו רק חצי תמונה.</p>
+
+        <p>החצי השני הוא שאותה אירופה, שידעה במשך מאות שנים להפוך דת, לאום, כבוד, גזע ואדמה למלחמות מחרידות, הצליחה לבנות גם מרחבים שבהם אותם יצרים עצמם עוברים עידון. לא ביטול של השבטיות, אלא ריסון שלה. לא מחיקת הזהויות, אלא הכנסה שלהן לתוך חוקים. לא עולם בלי יריבות, אלא עולם שבו היריבות כבר אינה חייבת להסתיים במוות.</p>
+
+        <p>המשחק בין פריז סן־ז׳רמן לבאיירן מינכן היה דוגמה נדירה לרגע כזה. שתי קבוצות, שתי מסורות, פסיפס אנושי מרהיב, תשוקה אדירה לניצחון — ובכל זאת, בסוף, שפה של כבוד. לא מפני שהשחקנים חלשים. להפך. מפני שהכוח שלהם עבר דרך תרבות. דרך חוק. דרך שופט. דרך הכרה ביריב.</p>
+
+        <p>וזו בדיוק השאלה הישראלית: האם אנחנו רוצים ללמוד מן הכוח המרוסן הזה, או להמשיך להתפעל מן הכוחנות שאינה מרסנת את עצמה?</p>
+
+        <p>כי ישראל זקוקה לכוח. אין כאן תמימות. מדינה קטנה, מוקפת איומים, אינה יכולה להרשות לעצמה לוותר על כוח צבאי, ביטחוני ומדיני. אבל השאלה אינה אם צריך כוח. השאלה היא איזה סוג של כוח. כוח שיודע לשמור על גבולותיו, או כוח שמתמכר לעצמו. כוח שמגן על חיים, או כוח שמחפש השפלה. כוח שמבין את חשיבות החוק, או כוח שרואה בחוק מטרד. כוח שיודע לכבד יריב, או כוח שמוכרח להפוך כל יריב לאויב מוחלט.</p>
+
+        <p>במובן הזה, הכדורגל האירופי של אתמול אינו רק בידור. הוא מראה. הוא מציב בפני ישראל אפשרות תרבותית אחרת: להיות חזקה בלי להיות גסה; להיות תחרותית בלי להיות משחיתה; להיות נאמנה לעצמה בלי למחוק את האחר; להגן על הבית בלי להפוך את כל העולם לשדה קרב.</p>
+
+        <div class="closing">
+          <p>ישראל צריכה לשאול את עצמה לאיזו דת היא רוצה להשתייך.</p>
+          <p>לדת שמקדשת את הכוח עד שהוא שוכח את האדם, או לדת שמלמדת את הכוח להבין את ייעודו.</p>
+          <p>לא כוח שמטרתו להביס את היריב עד היעלמותו, אלא כוח שמטרתו להגן על החיים, לאפשר קיום משותף, להציב גבולות לאלימות, ולפתוח מרחב שבו גם יריבים יכולים להישאר בני אדם.</p>
+          <p>כי גדולתו האמיתית של כוח אינה מתחילה ברגע שבו הוא מוחץ את האחר, וגם לא רק ברגע שבו הוא יודע לעצור. היא מתחילה ברגע שבו הוא מבין בשביל מה הוא קיים.</p>
+          <p class="final-line">לא כדי להפוך את העולם לשדה קרב, אלא כדי לאפשר לבני אדם לחיות בו בלי להפוך זה את זה לאויבים נצחיים.</p>
+        </div>
+
+        <section class="sources">
+          <h2>מקורות לציטוטים ולפרטי המשחק</h2>
+          <ol>
+            <li>Reuters, סיקור המשחק: <a href="https://www.reuters.com/sports/soccer/holders-psg-edge-bayern-5-4-record-breaking-semi-final-first-leg-2026-04-28/">Holders PSG edge Bayern 5-4 in record-breaking semi-final first leg</a></li>
+            <li>The Guardian, ציטוטים וניתוח לאחר המשחק: <a href="https://www.theguardian.com/football/2026/apr/29/champions-league-paris-saint-germain-bayern-munich-luis-enrique-vincent-kompany">‘The best match I have coached’: Luis Enrique thrilled by PSG’s 5-4 win over Bayern Munich</a></li>
+            <li>The Star / Reuters, ציטוט לואיס אנריקה על ברכה ליריבים ולשחקנים: <a href="https://www.thestar.com.my/sport/football/2026/04/29/soccer-holders-psg-edge-bayern-5-4-in-record-breaking-semi-final-first-leg">Soccer-Holders PSG edge Bayern 5-4 in record-breaking semi-final first leg</a></li>
+            <li>New Straits Times, ציטוטי דמבלה ואחרים: <a href="https://www.nst.com.my/sports/football/2026/04/1428576/psg-v-bayern-champions-league-semi-final-who-said-what">PSG v Bayern Champions League semi-final: Who said what</a></li>
+            <li>Al Jazeera, נאום טראמפ לאחר תקיפת מתקני הגרעין באיראן: <a href="https://www.aljazeera.com/news/2025/6/22/full-speech-donald-trumps-address-to-nation-after-attack-on-iran">Full speech: Donald Trump’s address to nation after attack on Iran</a></li>
+            <li>Daily Sabah, ציטוט ישראל כץ על “תקופת האבן”: <a href="https://www.dailysabah.com/mideast/2017/12/14/israel-will-return-lebanon-to-stone-age-intel-minister-threatens">Israel will return Lebanon to Stone Age, intel minister threatens</a></li>
+            <li>משרד ראש הממשלה, הצהרת נתניהו מ־7 באוקטובר 2023: <a href="https://www.gov.il/en/pages/statement-by-pm-netanyahu-7-oct-2023">Statement by Prime Minister Benjamin Netanyahu</a></li>
+            <li>Times of Israel, ציטוט נתניהו על חמאס לאחר הקמת ממשלת החירום: <a href="https://www.timesofisrael.com/liveblog_entry/netanyahu-every-member-of-hamas-is-a-dead-man/">Netanyahu: Every member of Hamas is a dead man</a></li>
+          </ol>
+        </section>
+      </div>
+    </article>
+  </div>
+
+  <script>
+    document.querySelectorAll('img[data-candidates]').forEach(function(img) {
+      const candidates = img.dataset.candidates.split('|');
+      let index = candidates.indexOf(img.getAttribute('src'));
+      if (index < 0) index = 0;
+      img.onerror = function() {
+        index += 1;
+        if (index < candidates.length) {
+          img.src = candidates[index];
+        } else {
+          img.style.display = 'none';
+        }
+      };
+    });
+  </script>
+</body>
+</html>
