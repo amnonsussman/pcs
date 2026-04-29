@@ -133,6 +133,38 @@
       background: #f7f0e4;
     }
 
+
+
+    .image-slot figcaption {
+      margin-top: 0.65rem;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: #5b4a42;
+      font-weight: 700;
+      text-align: center;
+    }
+
+
+    /* תיקון לתמונה הראשונה: הקובץ כולל שוליים לבנים גדולים, לכן מוצג חיתוך עדין מלמעלה */
+    .image-slot.first-image {
+      max-width: 690px;
+      margin-top: 22px;
+      margin-bottom: 30px;
+    }
+
+    .image-slot.first-image img {
+      height: 245px;
+      width: 100%;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 18px;
+    }
+
+    .image-slot.first-image figcaption {
+      margin-top: 0.45rem;
+      padding: 0 10px;
+      font-size: 1rem;
+    }
     .caption {
       display: none;
     }
@@ -284,10 +316,10 @@
   <div class="page">
     <article>
       <header class="hero">
-        <div class="eyebrow">מסה פוליטית־פילוסופית בעקבות משחק כדורגל</div>
-        <h1>אירופה: כשמלחמות הקודש הפכו למלחמות על כדור ברשת</h1>
-        <p class="subtitle">המשחק בין פריז סן־ז׳רמן לבאיירן מינכן הזכיר כיצד אותה אירופה, שידעה להפוך דת, תורות גזע, כבוד ולאומיות למוות המוני, הצליחה — לפחות ברגעיה היפים — להפוך את אותם יצרים עצמם לכדורגל: חוקים, יריבות מכבדת, גבולות לכוח ושמחה אנושית משותפת.</p>
-        <div class="byline">מאת: אמנון זוסמן</div>
+        <div class="eyebrow">לזכרו של ידידנו אבי מלר - מסה פוליטית־פילוסופית בעקבות משחק הכדורגל בין פריז לבאיירן</div>
+        <h1>אירופה מציגה סדר עולמי נגדי לסדר העולמי של טראמפ: <br>משנים את מלחמות הדת והשליטה למלחמות על כדור ברשת</h1>
+        <p class="subtitle">המשחק בין פריז סן־ז׳רמן לבאיירן מינכן מזכיר לנו כיצד אותה אירופה, שידעה להפוך דת, תורות גזע, כבוד ולאומיות למוות המוני, הצליחה — לפחות ברגעיה היפים — להפוך את אותם יצרים עצמם לכדורגל: חוקים, יריבות מכבדת, גבולות לכוח ושמחה אנושית משותפת.</p>
+        <div class="byline"> מאת: אמנון זוסמן ובני מילר</div>
       </header>
 
       <div class="content">
@@ -297,8 +329,9 @@
           <p>כי על הדשא בפריז לא נפגשו רק שתי קבוצות. נפגש שם פסיפס אנושי מרהיב: צרפתים, גרמנים, אנגלים, פורטוגלים, גאורגים, קולומביאנים, אפריקאים־אירופים, מוסלמים, נוצרים, חילונים, מהגרים ובני מהגרים — כולם בתוך טקס מודרני אחד. מותר להיאבק, מותר להתנגש, מותר לרצות לנצח בכל הכוח — אבל רק בתוך גבולות. יש חוקים, יש שופט, יש זמן קצוב, ויש בסוף הכרה בכך שהיריב אינו אויב שיש למחוק, אלא מי שמאפשר למשחק להיות גדול.</p>
         </section>
 
-        <figure class="image-slot">
+        <figure class="image-slot first-image">
           <img src="images/PIC 1.jpg" alt="שחקני פריז סן־ז׳רמן ובאיירן מינכן מברכים זה את זה לאחר המשחק" data-candidates="images/PIC 1.jpg|images/PIC 1.JPG|images/PIC1.jpg|images/PIC1.JPG|images/pic1.jpg|images/pic1.png|images/PIC 1.png" />
+          <figcaption>לא אויבים, אלא שותפים לתחרות — ומכבדים זה את זה.</figcaption>
         </figure>
 
         <h2>ממלחמה למשחק</h2>
@@ -352,6 +385,7 @@
 
         <figure class="image-slot">
           <img src="images/PIC 2.jpg" alt="רגע מן המשחק בין פריז סן־ז׳רמן לבאיירן מינכן הממחיש יריבות עזה בתוך גבולות" data-candidates="images/PIC 2.jpg|images/PIC 2.JPG|images/PIC2.jpg|images/PIC2.JPG|images/pic2.jpg|images/pic2.png|images/PIC 2.png" />
+          <figcaption>כולם כפופים לחוק, נשמעים ומכבדים את מערכת המשפט של המשחק.</figcaption>
         </figure>
 
         <h2>אירופה מול טראמפיזם: שתי תפיסות של כוח</h2>
