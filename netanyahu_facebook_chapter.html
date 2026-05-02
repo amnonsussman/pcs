@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>נתניהו — הבוקר שלי: זירת פייסבוק</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #f4ede0;
+  --paper2: #efe5d3;
+  --paper3: #e7d8bd;
+  --ink: #16130f;
+  --soft: #514a40;
+  --muted: #84796a;
+  --rule: #2b241d;
+  --red: #b1372f;
+  --green: #2d5e4a;
+  --gold: #c69749;
+  --blue: #315f88;
+  --violet: #6d4d83;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 78% 8%, rgba(49,95,136,.08), transparent 35%),
+    radial-gradient(circle at 18% 80%, rgba(177,55,47,.06), transparent 38%),
+    repeating-linear-gradient(0deg, rgba(0,0,0,.018) 0, rgba(0,0,0,.018) 1px, transparent 1px, transparent 4px),
+    var(--paper);
+  color: var(--ink);
+  font-family: 'Frank Ruhl Libre', Georgia, serif;
+  line-height: 1.85;
+}
+.header {
+  border-bottom: 4px double var(--rule);
+  padding: 34px 28px 30px;
+  text-align: center;
+}
+.kicker {
+  font-family: 'Heebo', sans-serif;
+  letter-spacing: .12em;
+  font-size: 13px;
+  color: var(--red);
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+h1 {
+  font-size: clamp(36px, 6vw, 62px);
+  line-height: 1.05;
+  margin: 0;
+  font-weight: 900;
+}
+.subhead {
+  max-width: 920px;
+  margin: 16px auto 0;
+  font-size: clamp(19px, 2.2vw, 25px);
+  color: var(--soft);
+  line-height: 1.55;
+}
+.trilogy {
+  display: inline-block;
+  margin: 26px auto 0;
+  padding: 14px 28px 16px;
+  border-top: 2px solid var(--red);
+  border-bottom: 2px solid var(--red);
+  font-size: clamp(22px, 3vw, 33px);
+  font-weight: 900;
+  color: var(--red);
+  background: rgba(255,255,255,.22);
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+}
+.trilogy-chapter {
+  width: fit-content;
+  max-width: 90%;
+  margin: 12px auto 0;
+  padding: 8px 22px 10px;
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-weight: 900;
+  color: var(--ink);
+  border-right: 5px solid var(--red);
+  border-left: 5px solid var(--red);
+  background: rgba(49,95,136,.13);
+}
+.byline {
+  font-family: 'Heebo', sans-serif;
+  margin-top: 22px;
+  color: var(--soft);
+  font-size: 15px;
+}
+.byline strong { color: var(--ink); }
+.meta {
+  border-bottom: 1px solid var(--rule);
+  padding: 12px 24px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 13px;
+  color: var(--soft);
+}
+.meta strong { color: var(--ink); }
+main {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 48px 0 72px;
+}
+.article {
+  max-width: 840px;
+  margin: 0 auto;
+}
+h2 {
+  font-size: clamp(30px, 4.2vw, 45px);
+  line-height: 1.18;
+  text-align: center;
+  margin: 58px 0 24px;
+  font-weight: 900;
+}
+h3 {
+  font-size: 25px;
+  line-height: 1.25;
+  margin: 38px 0 14px;
+  font-weight: 900;
+}
+p {
+  font-size: 19px;
+  margin: 0 0 22px;
+}
+strong.num {
+  font-family: 'Heebo', sans-serif;
+  color: var(--red);
+  font-weight: 900;
+}
+.chapter-title {
+  margin: 70px auto 28px;
+  padding: 34px 22px;
+  text-align: center;
+  border-top: 5px solid var(--rule);
+  border-bottom: 5px solid var(--rule);
+  background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(0,0,0,.035));
+}
+.chapter-title .label {
+  font-family: 'Heebo', sans-serif;
+  color: var(--red);
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+.chapter-title .title {
+  font-size: clamp(46px, 7vw, 76px);
+  line-height: 1;
+  font-weight: 900;
+  margin: 8px 0 10px;
+}
+.chapter-title .caption {
+  font-size: clamp(20px, 2.4vw, 28px);
+  color: var(--soft);
+  line-height: 1.45;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin: 34px 0;
+}
+.stat {
+  background: var(--paper2);
+  padding: 22px 12px;
+  text-align: center;
+}
+.stat .n {
+  font-family: 'Heebo', sans-serif;
+  font-size: 31px;
+  line-height: 1;
+  font-weight: 900;
+  color: var(--red);
+  direction: ltr;
+}
+.stat .t {
+  font-family: 'Heebo', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--soft);
+  margin-top: 10px;
+}
+.pullquote {
+  margin: 40px 0;
+  padding: 22px 28px;
+  border-right: 6px solid var(--blue);
+  background: var(--paper2);
+  font-size: 27px;
+  line-height: 1.45;
+  font-weight: 700;
+  color: var(--ink);
+}
+.card {
+  margin: 38px 0;
+  padding: 26px;
+  background: var(--paper2);
+  border: 1px solid rgba(43,36,29,.45);
+}
+.card-title {
+  font-family: 'Heebo', sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--red);
+  letter-spacing: .06em;
+  margin-bottom: 10px;
+}
+.chart {
+  margin-top: 20px;
+}
+.bar-row {
+  display: grid;
+  grid-template-columns: 190px 1fr 86px;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+.bar-row:last-child { border-bottom: 0; }
+.bar-label {
+  font-family: 'Heebo', sans-serif;
+  font-weight: 900;
+  color: var(--ink);
+  font-size: 14px;
+}
+.bar-track {
+  height: 30px;
+  background: rgba(0,0,0,.08);
+  position: relative;
+  overflow: hidden;
+}
+.bar {
+  height: 100%;
+}
+.bar.support { background: var(--green); }
+.bar.health { background: var(--gold); }
+.bar.political { background: var(--red); }
+.bar.moral { background: var(--blue); }
+.bar.unclear { background: var(--violet); }
+.bar-num {
+  font-family: 'Heebo', sans-serif;
+  text-align: left;
+  direction: ltr;
+  font-weight: 900;
+  color: var(--ink);
+}
+.note {
+  font-family: 'Heebo', sans-serif;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+  margin-top: 16px;
+}
+.examples {
+  display: grid;
+  gap: 12px;
+  margin: 24px 0;
+}
+.example {
+  background: rgba(255,255,255,.28);
+  border-right: 4px solid var(--violet);
+  padding: 14px 18px;
+  font-family: 'Heebo', sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+}
+.example.health { border-right-color: var(--gold); }
+.example.pol { border-right-color: var(--red); }
+.example.pos { border-right-color: var(--green); }
+.example.moral { border-right-color: var(--blue); }
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin: 30px 0;
+}
+.mini {
+  background: var(--paper2);
+  padding: 20px;
+  border: 1px solid rgba(43,36,29,.35);
+}
+.mini h3 {
+  margin: 0 0 10px;
+  font-size: 22px;
+}
+.coda {
+  margin: 56px 0 0;
+  padding: 30px 32px;
+  background: linear-gradient(180deg, var(--paper2), var(--paper3));
+  border: 1px solid var(--rule);
+  border-right: 7px solid var(--red);
+}
+.footer {
+  border-top: 4px double var(--rule);
+  text-align: center;
+  padding: 28px;
+  color: var(--muted);
+  font-family: 'Heebo', sans-serif;
+  font-size: 13px;
+}
+@media (max-width: 760px) {
+  .stats, .two-col { grid-template-columns: 1fr; }
+  p { font-size: 17px; }
+  .bar-row { grid-template-columns: 1fr; gap: 7px; }
+  .bar-num { text-align: right; }
+  .trilogy { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="kicker">מאי 2026 · ניתוח תגובות ברשתות חברתיות</div>
+  <h1>“נתניהו — הבוקר שלי”</h1>
+  <div class="subhead">סרטון תדמית המבקש להציג את ראש ממשלת ישראל כחזק, חד ובריא</div>
+  <div class="trilogy">טרילוגיה של ניתוח תגובות משתמשי אינסטגרם, פייסבוק וטיקטוק</div>
+  <div class="trilogy-chapter">פרק פייסבוק</div>
+  <div class="byline">מאת: <strong>אמנון זוסמן</strong></div>
+</header>
+
+<div class="meta">
+  <span>פרק נוכחי: <strong>פייסבוק</strong></span>
+  <span>סוג זירה: <strong>ישראלית · פוליטית · מילולית</strong></span>
+  <span>מוקד: <strong>בריאות, אמון, משפט, 7 באוקטובר ומחנות</strong></span>
+</div>
+
+<main>
+<article class="article">
+
+<h2>מבוא: סרטון הבריאות של נתניהו</h2>
+
+<p>אתמול, <strong class="num">1.5.2026</strong>, פרסם בנימין נתניהו סרטון קצר בשם <strong>“הבוקר שלי”</strong>, שבו הוא מציג את עצמו מתאמן, פעיל, חד ובריא. הסרטון הופיע על רקע פרסומים ושאלות ציבוריות סביב מצבו הבריאותי, ובכלל זה טיפולים רפואיים שעבר. לכן אין לראות בו רק רגע קליל מחדר הכושר, אלא גם פעולה תקשורתית: ניסיון להציג חיוניות, כשירות ושליטה.</p>
+
+<p>אולם מרגע שהסרטון פורסם, הוא כבר לא נשאר רק בשליטת המסר המקורי. הוא הופץ בשלוש זירות חברתיות מרכזיות — אינסטגרם, פייסבוק וטיקטוק — וכל אחת מהן הפגישה אותו עם קהל אחר, שפה אחרת ודפוס תגובה אחר.</p>
+
+<div class="stats">
+  <div class="stat"><div class="n">63K</div><div class="t">רגשות בפוסט הרשמי בפייסבוק</div></div>
+  <div class="stat"><div class="n">9.3K</div><div class="t">תגובות בפוסט הרשמי</div></div>
+  <div class="stat"><div class="n">2.3K</div><div class="t">שיתופים בפוסט הרשמי</div></div>
+  <div class="stat"><div class="n">707</div><div class="t">תגובות במדגם שנאסף</div></div>
+</div>
+
+<p>באינסטגרם הסרטון זכה לחשיפה עצומה: <strong class="num">מיליוני צפיות</strong>, כ־<strong class="num">330,000 לייקים</strong> וכ־<strong class="num">30,000 תגובות</strong>. בטיקטוק הוא עבר את רף <strong class="num">מיליון הצפיות</strong>, עם למעלה מ־<strong class="num">150,000 לייקים</strong> ולמעלה מ־<strong class="num">200,000 שיתופים</strong>. בפייסבוק, הפוסט הרשמי עצמו הציג כ־<strong class="num">63,000 רגשות</strong>, כ־<strong class="num">9,300 תגובות</strong> וכ־<strong class="num">2,300 שיתופים</strong>, ובמדגם שנאסף נותחו <strong class="num">707 תגובות</strong>.</p>
+
+<p>ההבדלים בין הפלטפורמות אינם רק הבדלים בהיקפי החשיפה, אלא הבדלים בסוג הקהל ובאופן שבו הסרטון נקרא. בפייסבוק ניכר קהל ישראלי יותר, מבוגר יותר ופוליטי יותר; קהל שמכיר את נתניהו מתוך ההיסטוריה הפנימית של ישראל — משפטו, ממשלותיו, המלחמה, 7 באוקטובר, שאלות אמון ושחיקה שלטונית. לכן בפייסבוק הסרטון נקרא בעיקר כסרטון של <strong>נתניהו האדם והפוליטיקאי</strong>.</p>
+
+<p>באינסטגרם ובטיקטוק, לעומת זאת, התמונה רחבה ואוניברסלית יותר. באינסטגרם בולט קהל רב־לשוני ורב־לאומי, שבו חלק מן המגיבים אינם מתייחסים לנתניהו דרך הפוליטיקה הישראלית, אלא דרך מה שהוא מסמל עבורם: ישראל, איראן, פלסטין, כוח מדינתי, מאבק אזורי או הזדהות עם מחנה גיאו־פוליטי. בטיקטוק ניכרת שכבה צעירה ומהירה יותר, שבה הסרטון נקלט לא פעם כפריט תוכן אלגוריתמי: דימוי קצר, מוזר, מצחיק, כריזמטי או מעורר תגובה מיידית.</p>
+
+<p>מכאן נובעת שאלת היסוד של הטרילוגיה: האם התגובות הן תגובות לנתניהו עצמו, או לישראל כפי שהיא מתגלמת בו? האם הקהל מגיב לאדם בן 76 שמבקש להציג חיוניות ובריאות, או למנהיג ישראלי שמייצג בעיני רבים את המדינה כולה? והאם כל פלטפורמה יוצרת תשובה אחרת: פייסבוק מחזירה את נתניהו אל הזירה הישראלית־פנימית; אינסטגרם מרחיבה אותו לסמל בין־לאומי; וטיקטוק מפרקת אותו לאותות קצרים של גיל, כוח, אירוניה, הערצה ולעג.</p>
+
+<p>הטרילוגיה שלפנינו אינה מבקשת לקבוע מהו מצבו הבריאותי של נתניהו, ואינה מבקשת להביע עמדה פוליטית בעדו או נגדו. מטרתה היא לבחון כיצד אותו סרטון נקרא בשלוש רשתות שונות, על ידי קהלים שונים ובשפות תגובה שונות: מילים, אימוג׳ים, ממים, סטיקרים, לייקים, שיתופים ותגובות חזותיות.</p>
+
+<section class="chapter-title">
+  <div class="label">הפרק הנוכחי</div>
+  <div class="title">זירת פייסבוק</div>
+  <div class="caption">כשהסרטון חוזר מן הזירה הגלובלית אל הפוליטיקה הישראלית</div>
+</section>
+
+<p>אם באינסטגרם נתניהו הופך לעיתים לסמל של ישראל בעולם, ואם בטיקטוק הוא הופך לאובייקט אלגוריתמי קצר, בפייסבוק הוא חוזר להיות דמות פוליטית ישראלית מלאה. כאן הסרטון אינו רק “מנהיג מתאמן” או “Big Yahu”. כאן הוא מיד מתחבר לשאלות של אמון, אחריות, משפט, 7 באוקטובר, גיוס חרדים, מלחמה, שחיקה שלטונית ומחנות פוליטיים.</p>
+
+<div class="pullquote">בפייסבוק הסרטון אינו מתנתק מן ההקשר. להפך: כל פריים נמשך חזרה אל הזיכרון הפוליטי הישראלי.</div>
+
+<h2>פייסבוק כזירה ישראלית־פוליטית</h2>
+
+<p>במדגם הפייסבוק שנאסף מופיעים כמה סוגי מרחבים בו־זמנית: הפוסט הרשמי של נתניהו, שיתופים בקבוצות תומכות, ושיתופים או דיונים בזירות ביקורתיות. לכן פייסבוק אינה קהל אחד. היא זירת התנגשות בין קהלים ישראליים שמכירים היטב את נתניהו, את הביוגרפיה הפוליטית שלו ואת המחלוקות סביבו.</p>
+
+<p>התגובות אינן רק קצרות וחזותיות, כפי שראינו בטיקטוק. רבות מהן משפטיות, פוליטיות ומוסריות יותר. גם כאשר הן קצרות, הן נשענות על מטען מקומי כבד: “משפט”, “כלא”, “7 באוקטובר”, “חרדים”, “חיילים”, “הפקרה”, “בייס”, “קפלן”, “שמאל”, “בחירות”. זו שפה ישראלית פנימית, כמעט בלתי ניתנת לתרגום מלא לקהל זר.</p>
+
+<h2>מפת התגובות: אהדה, סקפטיות ופוליטיזציה</h2>
+
+<div class="card">
+  <div class="card-title">חלוקה איכותנית של תגובות פייסבוק במדגם הגלוי</div>
+  <p>הגרף מבוסס על <strong class="num">703 תגובות גלויות</strong> מתוך האוסף שהועבר. הסיווג הוא איכותני־היוריסטי: הוא נועד להראות את צורת התגובה ואת הנושאים המרכזיים, לא לקבוע מדד מייצג לכלל משתמשי פייסבוק.</p>
+  <div class="chart">
+
+    <div class="bar-row">
+      <div class="bar-label">אהדה וברכות</div>
+      <div class="bar-track"><div class="bar support" style="width:45.4%"></div></div>
+      <div class="bar-num">319 (45%)</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">סקפטיות כלפי הסרטון / הבריאות</div>
+      <div class="bar-track"><div class="bar health" style="width:12.2%"></div></div>
+      <div class="bar-num">86 (12%)</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">ביקורת פוליטית־ישראלית</div>
+      <div class="bar-track"><div class="bar political" style="width:8.8%"></div></div>
+      <div class="bar-num">62 (9%)</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">קריאה לכבוד / הסתייגות מביזוי</div>
+      <div class="bar-track"><div class="bar moral" style="width:2.8%"></div></div>
+      <div class="bar-num">20 (3%)</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">אחר / ויכוח מחנאי / לא מסווג</div>
+      <div class="bar-track"><div class="bar unclear" style="width:30.7%"></div></div>
+      <div class="bar-num">216 (31%)</div>
+    </div>
+  </div>
+  <div class="note">בפייסבוק ניכרת כמות גדולה של אהדה וברכות, אך בשכבת התגובות בעלות המעורבות הגבוהה בולטות גם סקפטיות כלפי הסרטון והחיבור המיידי לפוליטיקה הישראלית. לכן הפייסבוק אינו “בעד” או “נגד” בלבד — הוא זירה של התנגשות פרשנויות.</div>
+</div>
+
+<h2>שכבת האהדה: בריאות, מלכות ונאמנות</h2>
+
+<p>כמו בשתי הזירות האחרות, גם בפייסבוק קיימת שכבה רחבה של תגובות אהדה. חלקן קצרות מאוד: “בריאות”, “אלוף”, “אין עליך”, “אוהבים אותך”, “מלך”. אחרות משלבות ברכה דתית, נאמנות פוליטית והזדהות אישית.</p>
+
+<div class="examples">
+  <div class="example pos">“אהוב שלנו. שתהיה בריא וחזק לעוד הרבה שנים.”</div>
+  <div class="example pos">“מקסים מקסים מקסים, ראש הממשלה שלי ושל מדינת ישראל הדמוקרטית.”</div>
+  <div class="example pos">“אלוף רק בריאות איש יקר, תבורך מפי עליון.”</div>
+</div>
+
+<p>האהדה בפייסבוק ישראלית יותר מזו שבטיקטוק. היא אינה רק “good workout” או “chill guy”. היא קשורה לשייכות למחנה, לתחושת תודה, לאמונה דתית, ולתפיסה שנתניהו הוא מנהיג אישי ולא רק דמות ציבורית.</p>
+
+<h2>שכבת הסקפטיות: הסרטון כראיה לחשש</h2>
+
+<p>לצד האהדה, מופיעה שכבה חזקה של תגובות סקפטיות כלפי עצם הסרטון. כאן הסרטון אינו מרגיע את החששות אלא לעיתים מחזק אותם. תגובות רבות אינן שואלות אם נתניהו בריא, אלא מדוע היה צורך להוכיח זאת דווקא כך.</p>
+
+<div class="examples">
+  <div class="example health">“היועצים בפאניקה מהתדמית של החולה והחלש.”</div>
+  <div class="example health">“מנסה להילחם בתדמית החלש והקשיש שבריאותו רופפת. לא משכנע בלשון המעטה.”</div>
+  <div class="example health">“תראו אני בריא! תראו! ציפור!”</div>
+  <div class="example health">“רואים את הזיוף מרחוק.”</div>
+</div>
+
+<p>זו נקודה מרכזית: בפייסבוק, סרטון תדמית אינו מתקבל בהכרח כראיה. הוא יכול להיקרא גם כסימן למצוקה תדמיתית. עצם המאמץ להוכיח חיוניות הופך, בעיני חלק מן המגיבים, להוכחה שיש בעיה.</p>
+
+<h2>החיבור לפוליטיקה הישראלית</h2>
+
+<p>בפייסבוק, הסרטון כמעט אינו נשאר בגבולות הבריאות. במהירות הוא נקשר למשפט נתניהו, לכלא, ל־7 באוקטובר, לגיוס חרדים, לניהול המדינה, למלחמה, לחיילים ולתחושת אחריות או הפקרה. זו הזירה שבה נתניהו חוזר להיות “נתניהו של ישראל”, לא סמל בינלאומי ולא דמות טיקטוקית.</p>
+
+<div class="examples">
+  <div class="example pol">“אתה מבצע את התרגיל לא נכון, בדיוק באותו האופן שבו אתה מנהל את המדינה.”</div>
+  <div class="example pol">“תכין את הגוף לכלא.”</div>
+  <div class="example pol">“ראש ממשלת השביעי באוקטובר.”</div>
+  <div class="example pol">“חרדים גם צריכים להתגייס?”</div>
+</div>
+
+<p>כאן נמצא ההבדל הגדול מן האינסטגרם. באינסטגרם נתניהו מתפקד לעיתים כייצוג של ישראל כלפי חוץ. בפייסבוק הוא נבחן דרך ההיסטוריה הפוליטית הפנימית שלו: לא רק “מה הוא מסמל”, אלא “מה הוא עשה, מה הוא לא עשה, ומה הוא חייב לציבור”.</p>
+
+<h2>הקול המוסרי: מותר לבקר, אבל האם מותר לבזות?</h2>
+
+<p>אחת התגובות הבולטות בפייסבוק אינה תומכת בנתניהו במובן פוליטי, אך גם אינה מקבלת את הלעג לבריאותו. היא מנסחת עמדה מוסרית: גם כאשר יש חילוקי דעות חריפים, אין בהכרח הצדקה לביזוי אדם בשל מצב רפואי או גיל.</p>
+
+<div class="examples">
+  <div class="example moral">“לפני הכל הוא אדם מבוגר קצת כבוד... ברור שהוא חייב לנו תשובות ועוד כראש ממשלה, אבל לצחוק ולבזות בשל מצב רפואי זה לא מרים לאף צד.”</div>
+</div>
+
+<p>התגובה הזו חשובה משום שהיא מציגה סוג שלישי של קהל: לא רק תומכים ולא רק מתנגדים, אלא מי שמנסה לקבוע גבול נורמטיבי לשיחה. בפייסבוק, בניגוד לטיקטוק, הוויכוח אינו רק על הסרטון אלא גם על כללי השיח סביבו.</p>
+
+<h2>מחנות, תגובות־נגד והוויכוח על הלגיטימיות</h2>
+
+<p>שכבה נוספת בפייסבוק היא שיח המחנות עצמו. מגיבים אינם רק עונים לנתניהו; הם עונים זה לזה. תומכים תוקפים “שמאל”, “קפלן”, “אנרכיסטים” ו“ממורמרים”; מתנגדים תוקפים את ה“בייס”, את האמונה בסרטון ואת הנאמנות האישית. כך נוצר דיון כפול: על הסרטון עצמו, ועל הקהל שמאמין או לא מאמין לו.</p>
+
+<p>במובן הזה, פייסבוק היא הזירה שבה הסרטון מפעיל את מנגנון המחנות המוכר ביותר. הסרטון אינו רק תוכן לצפייה; הוא סיבה להתייצבות. מי שתומך מברך ומגן. מי שמתנגד מפרק את הסרטון. ומי שנמצא באמצע מנסה לעיתים להזכיר שמדובר גם באדם מבוגר ובמצב רפואי.</p>
+
+<div class="two-col">
+  <div class="mini">
+    <h3>מה פייסבוק מוסיף לטרילוגיה?</h3>
+    <p>הוא מחזיר את הסרטון מן הגלובלי אל המקומי: נתניהו אינו רק סמל של ישראל, אלא דמות ישראלית טעונה, עם היסטוריה פוליטית שכל מגיב מכיר.</p>
+  </div>
+  <div class="mini">
+    <h3>מה פייסבוק מחסיר?</h3>
+    <p>כמעט אין בו את האוניברסליות הטיקטוקית או האינסטגרמית. פחות שפות, פחות ממים גלובליים, יותר פוליטיקה ישראלית מילולית.</p>
+  </div>
+</div>
+
+<h2>פייסבוק מול אינסטגרם וטיקטוק</h2>
+
+<p>שלוש הזירות מציגות שלושה סוגי נתניהו. באינסטגרם — נתניהו כסמל של ישראל בעולם. בטיקטוק — נתניהו כדמות תוכן ויראלית. בפייסבוק — נתניהו כדמות פוליטית ישראלית, שנמדדת על פי אמון, אחריות, בריאות, משפט וזיכרון ציבורי.</p>
+
+<p>לכן, בפייסבוק לא מספיק לשאול אם הסרטון הצליח או נכשל. צריך לשאול אצל מי. עבור תומכיו, הוא מאשר דימוי של מנהיג חזק וראוי. עבור מתנגדיו, הוא נראה לעיתים כפעולת הסחה או כמאמץ תדמיתי שקוף. עבור מגיבים מוסריים יותר, הוא מעורר שאלה אחרת: האם ביקורת פוליטית צריכה להיעצר במקום שבו מתחיל ביזוי רפואי או אישי.</p>
+
+<div class="coda">
+<h3>סיכום זירת פייסבוק</h3>
+<p>זירת פייסבוק מלמדת שסרטון הבריאות של נתניהו נקרא בעיקר בתוך ההקשר הישראלי. בניגוד לאינסטגרם, שבה הסרטון נפתח לקהל רב־לאומי ולסמלים גיאו־פוליטיים, ובניגוד לטיקטוק, שבה הוא הופך לאובייקט אלגוריתמי קצר, בפייסבוק הסרטון נבחן דרך ההיסטוריה הפוליטית המקומית של נתניהו.</p>
+<p>השיחה בפייסבוק כוללת אהדה וברכות, אך גם סקפטיות חזקה כלפי הסרטון והחיבור המיידי שלו לשאלות של אמון, משפט, 7 באוקטובר, גיוס חרדים וניהול המדינה. מעל הכול, פייסבוק מציגה את נתניהו לא כסמל מופשט של ישראל ולא כדמות ויראלית, אלא כדמות פוליטית ישראלית שממשיכה לפצל את הקהל סביב כל מחווה, כל סרטון וכל משפט.</p>
+<p>במאמר המסכם של הטרילוגיה אפשר יהיה לראות כיצד אותו סרטון עצמו מייצר שלוש קריאות שונות: בעולם — סמל; בטיקטוק — מם; ובפייסבוק — מבחן אמון ישראלי.</p>
+</div>
+
+</article>
+</main>
+
+<footer class="footer">
+  פרק פייסבוק · מתוך הטרילוגיה “נתניהו — הבוקר שלי” · מאת אמנון זוסמן · מאי 2026
+</footer>
+</body>
+</html>
