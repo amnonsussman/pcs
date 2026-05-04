@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>תקיפת הנזירה בירושלים והמאבק על משמעות הסרטון</title>
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --paper:#ffffff;
+      --ink:#182033;
+      --muted:#5d6678;
+      --blue:#173b73;
+      --blue2:#2e65ad;
+      --softblue:#e8f0fb;
+      --red:#9f2f2f;
+      --redsoft:#fff0ef;
+      --gold:#b7791f;
+      --goldsoft:#fff7e6;
+      --green:#2f6b4f;
+      --greensoft:#eaf6ef;
+      --line:#d9e2ef;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#e8f0fb 0%, var(--bg) 280px);
+      color:var(--ink);
+      font-family: "Arial", "Noto Sans Hebrew", "David", sans-serif;
+      line-height:1.72;
+    }
+    .page{
+      max-width:980px;
+      margin:0 auto;
+      padding:34px 22px 60px;
+    }
+    header{
+      background:linear-gradient(135deg,#123668,#235b9b);
+      color:white;
+      border-radius:28px;
+      padding:40px 42px;
+      box-shadow:0 18px 45px rgba(20,54,100,.22);
+      margin-bottom:28px;
+      position:relative;
+      overflow:hidden;
+    }
+    header:before{
+      content:"";
+      position:absolute;
+      inset:auto -70px -90px auto;
+      width:260px;height:260px;border-radius:50%;
+      background:rgba(255,255,255,.10);
+    }
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(32px,5vw,52px);
+      line-height:1.12;
+      letter-spacing:-.8px;
+    }
+    .subtitle{
+      font-size:clamp(18px,2.3vw,24px);
+      line-height:1.45;
+      opacity:.94;
+      margin:0 0 22px;
+      max-width:820px;
+    }
+    .byline{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      color:#eaf2ff;
+      font-size:16px;
+    }
+    .pill{
+      border:1px solid rgba(255,255,255,.35);
+      background:rgba(255,255,255,.12);
+      border-radius:999px;
+      padding:6px 14px;
+      white-space:nowrap;
+    }
+    .card{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:28px 32px;
+      margin:22px 0;
+      box-shadow:0 10px 30px rgba(28,54,87,.08);
+    }
+    .lead{
+      font-size:20px;
+      color:#202a3f;
+    }
+    h2{
+      margin:0 0 14px;
+      color:var(--blue);
+      font-size:28px;
+      line-height:1.25;
+      letter-spacing:-.3px;
+    }
+    h3{
+      color:#1b4d87;
+      font-size:21px;
+      margin:22px 0 8px;
+    }
+    p{margin:0 0 16px}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin:18px 0 6px;
+    }
+    .metric{
+      background:var(--softblue);
+      border:1px solid #cbdcf5;
+      border-radius:18px;
+      padding:16px;
+      min-height:116px;
+    }
+    .metric strong{
+      display:block;
+      color:var(--blue);
+      font-size:25px;
+      margin-bottom:4px;
+    }
+    .metric span{
+      color:var(--muted);
+      font-size:15px;
+    }
+    .compare{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:16px;
+      margin-top:18px;
+    }
+    .compare .box{
+      border-radius:20px;
+      padding:20px 18px;
+      border:1px solid var(--line);
+      background:#fbfdff;
+    }
+    .compare .box:nth-child(1){border-top:6px solid var(--blue2)}
+    .compare .box:nth-child(2){border-top:6px solid var(--green)}
+    .compare .box:nth-child(3){border-top:6px solid var(--red)}
+    .box-title{
+      font-weight:700;
+      color:#142747;
+      font-size:19px;
+      margin-bottom:8px;
+    }
+    .highlight{
+      background:var(--goldsoft);
+      border:2px solid #f1c56d;
+      border-right:10px solid var(--gold);
+      border-radius:22px;
+      padding:24px 28px;
+      margin:26px 0;
+      box-shadow:0 10px 30px rgba(160,111,22,.10);
+    }
+    .highlight h2{
+      color:#7b4b07;
+      margin-bottom:12px;
+    }
+    .highlight p{
+      font-size:20px;
+      font-weight:700;
+      color:#513400;
+    }
+    .warning{
+      background:var(--redsoft);
+      border:1px solid #f0b9b2;
+      border-right:8px solid var(--red);
+      border-radius:20px;
+      padding:22px 26px;
+      margin-top:18px;
+    }
+    .warning h3{
+      color:var(--red);
+      margin-top:0;
+    }
+    .quote{
+      background:#f8fbff;
+      border-right:6px solid var(--blue2);
+      padding:18px 22px;
+      border-radius:18px;
+      color:#20324f;
+      font-size:19px;
+      margin:18px 0;
+    }
+    .footer{
+      color:var(--muted);
+      font-size:14px;
+      border-top:1px solid var(--line);
+      padding-top:18px;
+      margin-top:32px;
+    }
+    ul{
+      margin:10px 0 0;
+      padding:0 22px 0 0;
+    }
+    li{margin-bottom:8px}
+    .small{
+      color:var(--muted);
+      font-size:15px;
+    }
+    @media(max-width:800px){
+      header{padding:30px 24px}
+      .card{padding:24px 20px}
+      .grid,.compare{grid-template-columns:1fr}
+      .lead{font-size:18px}
+      .highlight p{font-size:18px}
+    }
+    @media print{
+      body{background:#fff}
+      .page{max-width:100%;padding:0}
+      header,.card,.highlight,.warning{box-shadow:none}
+      header{border-radius:0}
+      .card,.highlight,.warning{break-inside:avoid}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>תקיפת הנזירה בירושלים - הנזק התדמיתי, וצדיק אחד שהציל אותנו ממפולת </h1>
+      <p class="subtitle">תקיפת הנזירה בירושלים, תגובות הקהל האמריקאי, והמעבר ממיינסטרים חדשותי לשיח גלובלי אנטי־ישראלי</p>
+      <div class="byline">
+        <span class="pill">מאת: אמנון זוסמן</span>
+        <span class="pill">4 במאי 2026</span>
+      </div>
+    </header>
+
+    <section class="card lead">
+      <p>
+        בימים האחרונים הופץ בעולם רצף תיעודים מטריד מירושלים וסביבתה: תקיפת נזירה צרפתייה סמוך לעיר העתיקה, יריקות והתנכלויות לאנשי דת נוצרים, פגיעה בסמלים נוצריים, ושריפת רכוש של פלסטינים. מתוך אוסף האירועים הזה, האירוע שהתבלט במיוחד היה סרטון התקיפה של הנזירה: אדם רץ לעברה, מפיל אותה לקרקע, ולאחר מכן נראה עימות עם אדם אחר שמגיע למקום.
+      </p>
+      <p>
+        דווקא הדמות השנייה — האיש שרץ לעבר התוקף ובא לסייע לנזירה — יצרה מעין <strong>“הצלה חלקית” לתדמיתה של ישראל</strong>. היא מנעה מחלק מן הקהל הבינלאומי לראות בסרטון רק עדות לחברה אלימה ואדישה, ואפשרה לו לראות בתמונה גם אדם אחד שפועל נכון, ברגע שבו אחרים עומדים מנגד.
+      </p>
+      <p><strong>אבל ההצלה הזו הייתה חלקית בלבד.</strong></p>
+      <p>
+        מסמך זה מתמקד בשלב הראשון בזירות האמריקאיות והגלובליות שנבדקו עד כה; בימים הקרובים ייכתב מסמך המשך דומה, שיתמקד בדעת הקהל האירופית סביב האירוע.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>שלוש זירות, שלושה קהלים</h2>
+      <p>
+        הבדיקה התמקדה בשלוש זירות תגובה: פוסט של <strong>ABC World News Tonight with David Muir</strong>, פוסט של <strong>AP</strong>, וסרטון של <strong>Al Jazeera</strong> באינסטגרם. שלוש הזירות אינן מייצגות אותו קהל: ABC ו־AP מייצגות במידה רבה קהל אמריקאי מיינסטרימי; אל־ג׳זירה מייצגת קהל גלובלי, צעיר יותר, פרו־פלסטיני יותר, ולעיתים אקטיביסטי בהרבה.
+      </p>
+
+      <div class="grid">
+        <div class="metric">
+          <strong>ABC</strong>
+          <span>כ־5,800 תגובות בפוסט; מדגם שנאסף: 1,319 תגובות.</span>
+        </div>
+        <div class="metric">
+          <strong>AP</strong>
+          <span>כ־730 אלף צפיות, כ־3,800 רגשונים וכ־1,700 תגובות; מדגם: 416 תגובות.</span>
+        </div>
+        <div class="metric">
+          <strong>Al Jazeera</strong>
+          <span>סרטון אינסטגרם עם מסגור רחב של “ירושלים הכבושה”; מדגם תגובות גלובלי ורב־לשוני.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>ABC ודיוויד מיור: אמריקה המיינסטרימית רואה את הסרטון</h2>
+      <p>
+        הפוסט של David Muir / ABC היה משמעותי משום שהוא לא הופיע בשולי הרשת, אלא בלב החדשות האמריקאיות. הקהל של ABC אינו קהל אקטיביסטי מובהק; זהו קהל חדשותי רחב, אמריקאי, מבוגר יחסית, הנחשף לאירוע דרך מגיש מרכזי ומהדורת ערב מרכזית.
+      </p>
+      <p>
+        כבר במדגם שנאסף הופיעו שלושה נרטיבים מרכזיים: שאלת טשטוש פניו וזהותו של התוקף; שאלת העוברים והשבים — מי עזר ומי לא; ושאלת הברית האמריקאית עם ישראל.
+      </p>
+      <div class="quote">
+        הקהל האמריקאי של ABC לא הסתפק בזעזוע. הוא שאל: למה פני התוקף מטושטשות? למה לא אומרים במפורש מי הוא? האם התקשורת מגינה עליו? ומה בדיוק אמריקה מגבה כשהיא מגבה את ישראל?
+      </div>
+      <p>
+        כאן הופיעה גם שכבה של שיח אמריקאי פנימי: טד קרוז, טראמפ, טאקר קרלסון, השגריר האמריקאי, הסיוע לישראל, והפער בין תמיכת נוצרים אוונגליסטים בישראל לבין העובדה שהקורבן היא נזירה נוצרייה.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>AP: האיש עם התיק משנה את הסיפור</h2>
+      <p>
+        בפוסט של AP הנתונים היו קטנים יותר אך חשובים מאוד: כ־730 אלף צפיות, כ־3,800 רגשונים וכ־1,700 תגובות. מתוך התגובות נאסף מדגם של 416 תגובות. בתמונת הרגשונים ניכר כי הכעס היה הרגש הדומיננטי, לצד עצב ולייקים.
+      </p>
+      <p>
+        אבל ההבדל הגדול לעומת ABC היה סדר הנרטיבים. ב־AP, שלוש התגובות החזקות ביותר עסקו באדם שהתערב — “Backpack Man”. הוא הפך לגיבור המוסרי של הסרטון. בעיני מגיבים רבים, הוא היה האדם היחיד שהגיב כפי שאדם אמור להגיב.
+      </p>
+      <p>
+        וכאן נמצאת נקודת המפתח: ב־AP לא התפתחה בעיקר מתקפה חזיתית נגד ישראל כולה. כן היו תגובות קשות נגד ישראל, נגד דתיות קיצונית, נגד טשטוש זהות התוקף, ונגד מה שנתפס כיחס מועדף כלפי ישראל. אבל נוכחותו של האדם שהתערב בלמה חלק מן ההכללה. הסרטון סיפר לקהל: יש תוקף, יש אדישות, אבל יש גם אדם שפועל נכון.
+      </p>
+      <div class="quote">
+        זוהי “ההצלה החלקית” של תדמית ישראל. לא משום שהאירוע פחות חמור, אלא משום שהתיעוד כלל גם דמות אנושית מאזנת.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>אל־ג׳זירה: כשהאירוע הופך לכתב אישום</h2>
+      <p>
+        הסרטון של אל־ג׳זירה פועל אחרת לגמרי. הוא אינו מציג רק את תקיפת הנזירה, אלא משלב אותה בתוך אוסף אירועים רחב יותר: התנכלויות לנוצרים, פגיעה בסמלים נוצריים, אלימות כלפי פלסטינים, והכותרת הרחבה של “ירושלים הכבושה”.
+      </p>
+
+      <div class="highlight">
+        <h2>הבלטת נקודת העריכה הקריטית</h2>
+        <p>
+          לפי הצפייה בסרטון, אל־ג׳זירה עוצרת את קטע תקיפת הנזירה בדיוק ברגע שבו האדם רץ לעבר התוקף, בלי להבהיר היטב שהוא בא לסייע לנזירה. כך נחלשת מאוד דמות “המגן”, שהייתה בפוסט של AP נקודת איזון מוסרית. במקום “יש תוקף ויש גם אדם שבא לעזור”, נוצרת תמונה עמומה בהרבה: אדם נוסף רץ אל התוקף, והרושם עלול להיות שהוא מצטרף לעימות או להסלמה. העריכה הזו מצמצמת את ההצלה החלקית של תדמית ישראל, ומחזקת את התחושה שהמרחב כולו עוין, אלים ונטול הגנה ברורה.
+        </p>
+      </div>
+
+      <p>
+        כאן ההקשר עושה את רוב העבודה. תקיפת הנזירה אינה נתפסת כאירוע יחיד, אלא כראיה נוספת בתוך סיפור קיים: ישראל כמרחב של כיבוש, עליונות, אלימות דתית וצביעות מערבית.
+      </p>
+      <p>
+        לכן התגובות באל־ג׳זירה חריפות בהרבה. הן פונות שוב ושוב לנוצרים שתומכים בישראל: “תראו במי אתם תומכים.” הן מבחינות בין ישראל המקראית לבין מדינת ישראל העכשווית. הן מאשימות את ארה״ב, אירופה והנוצרים האוונגליסטים במתן חסות פוליטית ומוסרית.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>ההבדל בין ביקורת על ישראל לבין גלישה מסוכנת</h2>
+      <p>
+        בכל שלוש הזירות הופיעה ביקורת קשה על ישראל, על קיצונים יהודים, על מתנחלים, על התקשורת ועל המערב. חלק גדול מן הביקורת הזו הוא ביקורת פוליטית ומוסרית לגיטימית: מדוע איש דת נוצרי אינו בטוח בירושלים? מדוע פני התוקף מטושטשות? מדוע יש תחושה שהאירוע יטופל ברכות? מדוע נוצרים בארה״ב ממשיכים לתמוך בישראל גם כאשר נוצרים עצמם נפגעים?
+      </p>
+      <div class="warning">
+        <h3>אבל יש גם קו שחייבים לסמן</h3>
+        <p>
+          לצד הביקורת הלגיטימית הופיעה גם גלישה לאנטישמיות, דה־הומניזציה והכללות נגד יהודים וישראלים כקבוצה. בזירת אל־ג׳זירה התופעה הזו הייתה בולטת במיוחד. מי שמבקר את האלימות, הכיבוש או המדיניות הישראלית אינו בהכרח אנטישמי; אבל מי שהופך את האירוע להוכחה על טבעו המהותי של יהודי, ישראלי או עם שלם — חוצה קו אחר לגמרי.
+        </p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>מה למדנו משלוש הזירות</h2>
+      <div class="compare">
+        <div class="box">
+          <div class="box-title">ABC</div>
+          <p>הסרטון חדר למיינסטרים האמריקאי והפעיל בעיקר שאלות של זהות, טשטוש, אחריות תקשורתית וברית אמריקאית־ישראלית.</p>
+        </div>
+        <div class="box">
+          <div class="box-title">AP</div>
+          <p>האדם שהתערב הפך לדמות מרכזית. הוא יצר מרווח פרשני: לא רק ישראל אלימה, אלא גם יחיד אמיץ שמגן על קורבן חלש.</p>
+        </div>
+        <div class="box">
+          <div class="box-title">Al Jazeera</div>
+          <p>הסרטון הוטמע בתוך סיפור רחב של כיבוש ואלימות כלפי נוצרים ופלסטינים. שם המגן כמעט נעלם כתפקיד מוסרי.</p>
+        </div>
+      </div>
+      <p style="margin-top:18px">
+        ההשוואה מלמדת שסרטון אחד אינו “מדבר בעד עצמו”. הוא מדבר דרך העריכה, דרך הפלטפורמה, דרך זהות הקהל, ודרך המסגור שמקיף אותו.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>סיכום</h2>
+      <p>
+        תקיפת הנזירה בירושלים היא אירוע קטן במונחים גיאופוליטיים, אבל גדול מאוד במונחים תודעתיים. היא פוגעת בדיוק בנקודה רגישה: דימוי ישראל כמדינה המגינה על חופש דת ומקומות קדושים. כאשר הקורבן היא נזירה, כאשר המקום הוא ירושלים, וכאשר הסרטון מופץ דרך רשתות חדשות בינלאומיות — האירוע יוצא מיד מן התחום הפלילי ונכנס לתחום הסמלי.
+      </p>
+      <p>
+        ועדיין, בתוך הסרטון עצמו הייתה לישראל נקודת הצלה אחת: האדם שרץ לסייע. הוא לא מחק את האלימות, לא ביטל את המבוכה, ולא עצר את הביקורת. אבל הוא הזכיר לצופה שיש גם בתוך הזירה הזו אדם שפועל אחרת. ב־AP זה הספיק כדי לרכך את התגובה. באל־ג׳זירה זה כמעט לא הספיק, משום שהעריכה והמסגור הרחב כבר הובילו את הקהל למסקנה אחרת.
+      </p>
+      <p>
+        הלקח התדמיתי ברור: בעולם של סרטונים קצרים, מדינה אינה נשפטת רק לפי מה שעושה התוקף. היא נשפטת גם לפי מי עומד מנגד, מי רץ לעזור, מי מטשטש, מי מסביר, ומי מנסה לומר לעולם — זה לא אנחנו.
+      </p>
+      <div class="footer">
+        מסמך עבודה למחקר תגובות ציבוריות ברשתות: מבוסס על מדגמי תגובות מפייסבוק ואינסטגרם שנאספו ידנית.
+      </div>
+    </section>
+  </main>
+</body>
+</html>
