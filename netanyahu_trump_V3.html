@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>גם במעריב: שיא שפל חדש במעמדו של נתניהו</title>
+  <style>
+    :root{
+      --bg:#f5f1e8;
+      --paper:#fffaf1;
+      --ink:#1d1d1f;
+      --muted:#5f5a52;
+      --accent:#8b1e1e;
+      --accent2:#173b68;
+      --soft:#eadfcd;
+      --gold:#c49a42;
+      --green:#245c43;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at top right, rgba(196,154,66,.19), transparent 34%),
+        linear-gradient(180deg,#f8f2e6 0%, var(--bg) 100%);
+      color:var(--ink);
+      font-family:"Segoe UI", Arial, sans-serif;
+      line-height:1.75;
+    }
+    .page{
+      max-width:1000px;
+      margin:0 auto;
+      padding:34px 18px 44px;
+    }
+    .hero{
+      background:linear-gradient(145deg,#fffaf1 0%,#f2e6d0 100%);
+      border:1px solid #dfd0b6;
+      border-radius:28px;
+      padding:34px 34px 28px;
+      box-shadow:0 18px 45px rgba(64,42,20,.14);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:auto -80px -120px auto;
+      width:260px;height:260px;
+      border-radius:50%;
+      background:rgba(139,30,30,.11);
+    }
+    .topline{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:18px;
+      margin-bottom:22px;
+      position:relative;
+      z-index:1;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 13px;
+      border:1px solid rgba(139,30,30,.20);
+      border-radius:999px;
+      color:var(--accent);
+      background:rgba(255,255,255,.55);
+      font-size:15px;
+      font-weight:700;
+      white-space:nowrap;
+    }
+    .author{
+      text-align:left;
+      color:var(--accent2);
+      font-weight:900;
+      font-size:18px;
+      line-height:1.25;
+      white-space:nowrap;
+    }
+    h1{
+      position:relative;
+      z-index:1;
+      margin:0;
+      font-size:clamp(34px,6vw,62px);
+      line-height:1.05;
+      color:var(--accent);
+      letter-spacing:-.045em;
+      max-width:860px;
+    }
+    .subtitle{
+      position:relative;
+      z-index:1;
+      margin:22px 0 0;
+      font-size:clamp(20px,2.7vw,28px);
+      line-height:1.45;
+      color:#27231e;
+      max-width:900px;
+      font-weight:700;
+    }
+    .meta{
+      position:relative;
+      z-index:1;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:23px;
+      color:var(--muted);
+      font-size:15px;
+    }
+    .meta span{
+      border-right:4px solid var(--gold);
+      padding:7px 12px;
+      background:rgba(255,255,255,.55);
+      border-radius:12px;
+    }
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin:24px 0 0;
+    }
+    .stat{
+      background:#fff;
+      border:1px solid #eadfcd;
+      border-radius:20px;
+      padding:19px 17px;
+      box-shadow:0 10px 25px rgba(0,0,0,.06);
+    }
+    .stat .num{
+      font-size:34px;
+      line-height:1;
+      color:var(--accent2);
+      font-weight:900;
+      letter-spacing:-.02em;
+    }
+    .stat .label{
+      margin-top:8px;
+      color:var(--muted);
+      font-size:15px;
+      font-weight:700;
+    }
+    .article{
+      margin-top:24px;
+      background:var(--paper);
+      border:1px solid #e3d5bf;
+      border-radius:28px;
+      padding:30px 34px;
+      box-shadow:0 14px 32px rgba(64,42,20,.08);
+    }
+    .lead{
+      font-size:22px;
+      line-height:1.65;
+      font-weight:800;
+      color:#23201b;
+      margin:0 0 22px;
+    }
+    p{
+      margin:0 0 18px;
+      font-size:19px;
+    }
+    h2{
+      margin:28px 0 12px;
+      color:var(--accent2);
+      font-size:28px;
+      line-height:1.2;
+    }
+    .quote{
+      border-right:7px solid var(--accent);
+      background:#fff;
+      border-radius:18px;
+      padding:18px 22px;
+      margin:22px 0;
+      font-size:21px;
+      font-weight:850;
+      color:#31271f;
+      box-shadow:0 10px 24px rgba(0,0,0,.05);
+    }
+    .bars{
+      margin:24px 0 8px;
+      display:grid;
+      gap:13px;
+    }
+    .bar-row{
+      display:grid;
+      grid-template-columns:165px 1fr 82px;
+      align-items:center;
+      gap:12px;
+      font-weight:800;
+      color:#302820;
+    }
+    .track{
+      height:18px;
+      background:#eadfcd;
+      border-radius:999px;
+      overflow:hidden;
+      border:1px solid #dac8ad;
+    }
+    .fill{
+      height:100%;
+      border-radius:999px;
+      background:linear-gradient(90deg,var(--accent),#c74936);
+    }
+    .fill.soft{
+      background:linear-gradient(90deg,#827363,#b6a27f);
+    }
+    .insights{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      margin:18px 0 8px;
+    }
+    .insight{
+      background:#fff;
+      border:1px solid #eadfcd;
+      border-radius:20px;
+      padding:18px 20px;
+    }
+    .insight strong{
+      color:var(--accent);
+      display:block;
+      font-size:20px;
+      margin-bottom:7px;
+    }
+    .method{
+      margin-top:28px;
+      background:#f4ead8;
+      border:1px dashed #b79d73;
+      border-radius:22px;
+      padding:20px 23px;
+      color:#3d362e;
+    }
+    .method h2{margin-top:0}
+    .comparison{
+      margin-top:30px;
+      background:#fff;
+      border:1px solid #dfd0b6;
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 10px 24px rgba(0,0,0,.05);
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:18px;
+    }
+    th,td{
+      padding:14px 16px;
+      border-bottom:1px solid #eadfcd;
+      text-align:right;
+      vertical-align:top;
+    }
+    th{
+      background:#f4ead8;
+      color:var(--accent2);
+      font-weight:900;
+    }
+    tr:last-child td{border-bottom:none}
+    .small{
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.55;
+      margin-top:14px;
+    }
+    .signature{
+      margin-top:28px;
+      padding-top:24px;
+      border-top:1px solid #dfd0b6;
+      color:var(--accent2);
+      font-size:26px;
+      font-weight:950;
+      letter-spacing:-.02em;
+    }
+    @media (max-width:760px){
+      .hero,.article{padding:25px 20px}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .insights{grid-template-columns:1fr}
+      .bar-row{grid-template-columns:120px 1fr 62px}
+      .topline{display:block}
+      .author{text-align:right;margin-top:14px;white-space:normal}
+      table{font-size:16px}
+      th,td{padding:11px 10px}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="topline">
+        <div class="eyebrow">ניתוח תגובות גולשים · מעריב</div>
+        <div class="author">אמנון זוסמן — דמוקרטים בוחרים רציונלית</div>
+      </div>
+      <h1>גם במעריב: שיא שפל חדש במעמדו של נתניהו</h1>
+      <p class="subtitle">גם במדגם התגובות ממעריב, הסיפור על גערת טראמפ בנתניהו לא נקרא כאירוע דיפלומטי נקודתי, אלא כסימן נוסף לשחיקה בדימוי הכוח, העצמאות והאמינות של ראש הממשלה.</p>
+      <div class="meta">
+        <span>137 תגובות נותחו מתוך 351 תגובות בכתבה</span>
+        <span>כיסוי המדגם: 39.0% מכלל התגובות</span>
+        <span>הסיווג: סיווג תוכני בעזרת בינה מלאכותית</span>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="נתוני מפתח">
+      <div class="stat">
+        <div class="num">84.0%</div>
+        <div class="label">שיעור משוער של תגובות נגד נתניהו</div>
+      </div>
+      <div class="stat">
+        <div class="num">≈295</div>
+        <div class="label">תגובות נגד נתניהו מתוך 351</div>
+      </div>
+      <div class="stat">
+        <div class="num">≈21</div>
+        <div class="label">תגובות שאינן נגד נתניהו</div>
+      </div>
+      <div class="stat">
+        <div class="num">≈35</div>
+        <div class="label">לא חד־משמעיות / מעורבות</div>
+      </div>
+    </section>
+
+    <article class="article">
+      <p class="lead">במעריב התמונה פחות חד־קולית מזו שנראתה ב־YNET, אך הכיוון הכללי נשאר ברור: רוב גדול של התגובות שנותחו מצייר את נתניהו כראש ממשלה חלש, תלוי, מסובך אישית, וכמי שהעמיד את ישראל במצב מביך מול טראמפ.</p>
+
+      <p>בכתבה במעריב צוינו 351 תגובות. מתוך הקובץ שהורד נותחו 137 תגובות, כלומר כ־39.0% מכלל התגובות. סיווג תוכני בעזרת בינה מלאכותית העלה כי כ־84.0% מהתגובות במדגם הן נגד נתניהו. בהשלכה ליניארית זהו אומדן של כ־295 תגובות נגד נתניהו מתוך כלל 351 התגובות.</p>
+
+      <div class="quote">המסקנה אינה שמעריב ו־YNET זהים. מעריב מגוון יותר, ויש בו יותר ספקנות כלפי הדיווח, אקסיוס והתקשורת. אבל גם במעריב, הכיוון המרכזי של השיח הוא נגד נתניהו.</div>
+
+      <div class="bars">
+        <div class="bar-row">
+          <div>נגד נתניהו</div>
+          <div class="track"><div class="fill" style="width:84.0%"></div></div>
+          <div>84.0%</div>
+        </div>
+        <div class="bar-row">
+          <div>לא נגד נתניהו</div>
+          <div class="track"><div class="fill soft" style="width:6.1%"></div></div>
+          <div>6.1%</div>
+        </div>
+        <div class="bar-row">
+          <div>לא חד־משמעי</div>
+          <div class="track"><div class="fill soft" style="width:9.9%"></div></div>
+          <div>9.9%</div>
+        </div>
+      </div>
+
+      <h2>הנרטיבים הבולטים במעריב</h2>
+      <div class="insights">
+        <div class="insight">
+          <strong>1. המלך עירום</strong>
+          התגובה החזקה ביותר במרחב הזה שאלה מה עוד צריך לקרות כדי שבוחרי נתניהו יבינו שהמלך עירום. זהו ניסוח שמרכז את הרגע: לא רק ביקורת, אלא קריסה של מיתוס.
+        </div>
+        <div class="insight">
+          <strong>2. מכירת המדינה תמורת חנינה</strong>
+          גם במעריב חוזר הנרטיב החריף של עסקה אישית: טראמפ מציל את נתניהו מהכלא, וישראל משלמת מחיר מדיני וביטחוני.
+        </div>
+        <div class="insight">
+          <strong>3. “מר ביטחון” מול מבחן התוצאה</strong>
+          התגובות חוזרות אל הכישלון בצפון, הרחפנים, חיזבאללה והחיילים שנהרגים — ומציבות מול זה את דימוי “מר ביטחון” כחלול.
+        </div>
+        <div class="insight">
+          <strong>4. ספקנות כלפי הדיווח</strong>
+          במעריב בולטת יותר שכבה שמפקפקת באקסיוס, בברק רביד ובתקשורת. זו שכבה קיימת, אך היא אינה משנה את המגמה המרכזית במדגם.
+        </div>
+      </div>
+
+      <h2>הבדל חשוב: מעריב פחות חד־קולי מ־YNET</h2>
+      <p>ב־YNET כמעט כל המרחב נראה כגל אחד נגד נתניהו. במעריב יש יותר רעשי רקע: תגובות בעד המשך תקיפה, תגובות נגד טראמפ, תגובות נגד התקשורת, ותגובות שמטילות ספק באמינות הדיווח. למרות זאת, גם לאחר ההבחנה הזו, התמונה המתקבלת היא של רוב ברור נגד נתניהו.</p>
+
+      <div class="comparison">
+        <table>
+          <thead>
+            <tr>
+              <th>מדד</th>
+              <th>מעריב</th>
+              <th>YNET</th>
+              <th>משמעות</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>מספר תגובות בכתבה</td>
+              <td>351</td>
+              <td>916</td>
+              <td>ב־YNET נפח השיח גדול בהרבה.</td>
+            </tr>
+            <tr>
+              <td>תגובות שנותחו בפועל</td>
+              <td>137 (39.0%)</td>
+              <td>516 (56.3%)</td>
+              <td>ב־YNET גם המדגם גדול יותר וגם הכיסוי היחסי גבוה יותר.</td>
+            </tr>
+            <tr>
+              <td>שיעור נגד נתניהו במדגם</td>
+              <td>84.0%</td>
+              <td>95.7%</td>
+              <td>שני האתרים מצביעים על אותה מגמה; YNET חד־משמעי יותר.</td>
+            </tr>
+            <tr>
+              <td>אומדן תגובות נגד נתניהו בכלל הכתבה</td>
+              <td>≈295 מתוך 351</td>
+              <td>≈877 מתוך 916</td>
+              <td>בהשלכה לכלל התגובות, שני האתרים מציגים רוב גדול נגד נתניהו.</td>
+            </tr>
+            <tr>
+              <td>תגובות שאינן נגד נתניהו / לא חד־משמעיות</td>
+              <td>≈56</td>
+              <td>≈39</td>
+              <td>במעריב יש יותר מקום יחסי לספקנות ולתגובות־נגד.</td>
+            </tr>
+            <tr>
+              <td>הטון הכללי</td>
+              <td>ביקורת חריפה, לצד ספקנות כלפי הדיווח והתקשורת</td>
+              <td>גל אנטי־נתניהו כמעט אחיד</td>
+              <td>אותה מגמה, עוצמה שונה.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+     
+
+      <div class="signature">אמנון זוסמן — דמוקרטים בוחרים רציונלית</div>
+    </article>
+  </main>
+</body>
+</html>
