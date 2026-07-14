@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>שישה ימים לפריימריז: חמש דרכים להכיר 51 מועמדים</title>
+  <meta name="description" content="מיפוי חמש גישות שונות לחשיפת מועמדי הפריימריז של הדמוקרטים ולסיוע לבוחרים בגיבוש פתק הבחירה.">
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --paper: #ffffff;
+      --ink: #172033;
+      --muted: #5e6878;
+      --line: #dbe1e8;
+      --accent: #264f9e;
+      --accent-soft: #edf3ff;
+      --accent-deep: #17366f;
+      --warm: #f8f1e8;
+      --shadow: 0 18px 50px rgba(25, 42, 74, 0.10);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top right, rgba(38,79,158,0.10), transparent 32rem),
+        linear-gradient(180deg, #f8fafc 0%, var(--bg) 100%);
+      color: var(--ink);
+      font-family: Arial, "Noto Sans Hebrew", "Segoe UI", sans-serif;
+      line-height: 1.85;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 3px;
+    }
+
+    a:hover { color: var(--accent-deep); }
+
+    .page {
+      width: min(1040px, calc(100% - 28px));
+      margin: 32px auto 56px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #17366f 0%, #264f9e 62%, #3e6dc4 100%);
+      color: #fff;
+      padding: 54px 56px 46px;
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: -90px;
+      bottom: -120px;
+      width: 320px;
+      height: 320px;
+      border: 42px solid rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+
+    .kicker {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      margin: 0;
+      font-size: clamp(2.2rem, 5.4vw, 4.6rem);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+    }
+
+    .dek {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      margin: 24px 0 0;
+      font-size: 1.22rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.90);
+    }
+
+    .meta {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      margin-top: 28px;
+      font-size: 0.96rem;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .article {
+      margin-top: 26px;
+      background: var(--paper);
+      border: 1px solid rgba(219,225,232,0.8);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .content {
+      max-width: 790px;
+      margin: 0 auto;
+      padding: 58px 44px 64px;
+    }
+
+    .lead {
+      font-size: 1.18rem;
+      color: #273349;
+    }
+
+    .lead p:first-child::first-letter {
+      float: right;
+      font-size: 4.6rem;
+      line-height: 0.8;
+      padding: 0.14em 0 0 0.12em;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .summary-box,
+    .disclosure,
+    .conclusion-box {
+      margin: 34px 0;
+      padding: 24px 26px;
+      border-radius: 18px;
+    }
+
+    .summary-box {
+      background: var(--accent-soft);
+      border-right: 5px solid var(--accent);
+    }
+
+    .summary-box strong {
+      color: var(--accent-deep);
+    }
+
+    .political-call {
+      display: inline-block;
+      margin: 0 0.12em;
+      padding: 0.02em 0.18em 0.08em;
+      color: #7a1f1f;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      text-decoration: underline;
+      text-decoration-thickness: 0.16em;
+      text-decoration-color: #d8a24b;
+      text-underline-offset: 0.16em;
+      background: linear-gradient(transparent 58%, rgba(216,162,75,0.22) 58%);
+    }
+
+    .section {
+      margin-top: 54px;
+      scroll-margin-top: 24px;
+    }
+
+    .section-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 38px;
+      height: 38px;
+      margin-left: 10px;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1rem;
+      vertical-align: middle;
+    }
+
+    h2 {
+      margin: 0 0 20px;
+      font-size: clamp(1.55rem, 3vw, 2.1rem);
+      line-height: 1.3;
+      color: var(--accent-deep);
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      margin: 28px 0 8px;
+      font-size: 1.05rem;
+      color: var(--accent-deep);
+    }
+
+    p { margin: 0 0 18px; }
+
+    .tool-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 4px 0 20px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: #f7f9fc;
+      border: 1px solid var(--line);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .tool-link::before {
+      content: "↗";
+      font-size: 0.95em;
+    }
+
+    .pros-cons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 22px 0 10px;
+    }
+
+    .mini-card {
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fbfcfe;
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent-deep);
+    }
+
+    .disclosure {
+      background: var(--warm);
+      border-right: 5px solid #ad6d2c;
+    }
+
+    .map {
+      margin: 30px 0 10px;
+      border-top: 1px solid var(--line);
+    }
+
+    .map-row {
+      display: grid;
+      grid-template-columns: minmax(150px, 0.9fr) 1.5fr;
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .map-row strong {
+      color: var(--accent-deep);
+    }
+
+    .conclusion-box {
+      background: linear-gradient(135deg, #17366f 0%, #264f9e 100%);
+      color: #fff;
+    }
+
+    .conclusion-box p:last-child { margin-bottom: 0; }
+
+    .footer {
+      padding: 24px 32px 30px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--line);
+      background: #fbfcfe;
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        width: min(100% - 16px, 1040px);
+        margin-top: 8px;
+      }
+
+      .hero {
+        padding: 38px 24px 34px;
+        border-radius: 22px;
+      }
+
+      .content {
+        padding: 38px 22px 48px;
+      }
+
+      .pros-cons {
+        grid-template-columns: 1fr;
+      }
+
+      .map-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .lead p:first-child::first-letter {
+        font-size: 3.8rem;
+      }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; margin: 0; }
+      .hero, .article { box-shadow: none; }
+      .hero { border-radius: 0; }
+      .article { border: none; }
+      a { color: inherit; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="kicker">פריימריז הדמוקרטים 2026</div>
+      <h1>שישה ימים לפריימריז: חמש דרכים להכיר 51 מועמדים</h1>
+      <p class="dek">
+        מאתר המפלגה, דרך כלי התאמה ומשחקי סימולציה, ועד הגרלה משוקללת:
+        חמישה ניסיונות שונים להתמודד עם אותה דילמה של הבוחר.
+      </p>
+      <div class="meta">
+        <span>מאת אמנון זוסמן</span>
+        <span>14 ביולי 2026</span>
+      </div>
+    </header>
+
+    <article class="article">
+      <div class="content">
+        <section class="lead">
+          <p>
+            לפני כשלושה חודשים הייתי, במובנים רבים, חבר מפלגה אופייני: מעורב ואכפתי,
+            אך לא פעיל במיוחד. כשהחלו הדיבורים על הפריימריז והמועמדות והמועמדים הכריזו
+            בזה אחר זה על התמודדותם, הבנתי שהפעם ניצבת בפני הבוחרים דילמה לא פשוטה.
+          </p>
+
+          <p>
+            לא משום שאין במי לבחור, אלא דווקא משום שיש. אל הפריימריז האלה התקבצה קבוצה
+            מרשימה במיוחד של מועמדות ומועמדים איכותיים, בעלי ניסיון, כישורים ומחויבות ציבורית.
+            הסיבה לכך ברורה: מצב החירום שבו נמצאת המדינה יצר מעין <span class="political-call">צו שמונה פוליטי</span>,
+            שמשך אל הזירה הציבורית רבים מטובי אנשינו.
+          </p>
+
+          <p>
+            החלטתי לנצל את הניסיון שצברתי בעבודה עם כלי בינה מלאכותית ולבנות יישום שיסייע
+            לבוחרים להתמודד עם שפע האפשרויות. בדרך עברתי לא מעט שלבים, שיניתי כיוונים
+            ובחנתי תפיסות שונות של תהליך הבחירה.
+          </p>
+
+          <p>
+            בסופו של דבר הגעתי למסקנה אחת מרכזית: המכנה המשותף הרחב ביותר בין בוחרי המפלגה
+            הוא הרצון להעמיד לרשותה את הנבחרת הטובה ביותר האפשרית. ההעדפות האישיות והדגשים
+            האידאולוגיים של כל בוחר חשובים, אך ראוי לבחון אותם גם מול הצורך הרחב יותר לבנות
+            רשימה חזקה, מגוונת ומתפקדת.
+          </p>
+
+          <p>
+            במקביל אליי, ארגונים ואנשים פרטיים התבוננו באותה דילמה מזוויות אחרות ופיתחו
+            דרכים שונות לסייע לבוחרים. המאמר הזה ממפה את הגישות האלה — לא כדי לקבוע איזו
+            מהן נכונה מכולן, אלא כדי להבין כיצד כל אחת מנסה להתמודד, לטובת כלל הבוחרים,
+            עם אותה בעיה מורכבת.
+          </p>
+        </section>
+
+        <div class="summary-box">
+          <strong>הבעיה המשותפת:</strong>
+          51 מועמדים, זמן קצר, פערי חשיפה גדולים ופתק שמחייב לבחור רק מעטים.
+          כל אחד מחמשת היישומים שלהלן מגדיר אחרת את מה שחסר לבוחר.
+        </div>
+
+        <p>
+          לחברי כנסת מכהנים, לבעלי חשיפה תקשורתית ולמועמדים המחזיקים ברשת פעילים רחבה
+          יש יתרון ברור. אחרים, גם כאשר מאחוריהם ניסיון ציבורי משמעותי, מומחיות מקצועית
+          או שנות פעילות בשטח, מתקשים להגיע לתודעת הבוחרים.
+        </p>
+
+        <p>
+          חוגי בית, סרטונים, קבוצות ווטסאפ, ראיונות, המלצות, רשימות תמיכה וסקרים מצמצמים
+          מעט את הפער — אך לכל אחד מהם יש הטיה משלו. המלצה תלויה בממליץ, סרטון מתגמל
+          יכולת הופעה, וסקר מלמד במידה רבה מי כבר הצליח לזכות בחשיפה.
+        </p>
+
+        <p>
+          לצד כל אלה הופיעו כמה יישומים רחבי היקף. הם מתחילים בהצגה הרשמית של המועמדים,
+          עוברים דרך היכרות אישית והתאמה לפי נושאים, ומגיעים עד בניית נבחרת והגרלה משוקללת.
+        </p>
+
+        <section class="section" id="party-site">
+          <h2><span class="section-number">1</span>אתר המפלגה: כל המועמדים במסגרת אחת</h2>
+          <a class="tool-link" href="https://democrats.org.il/candidates/" target="_blank" rel="noopener noreferrer">
+            לאתר המועמדים הרשמי
+          </a>
+
+          <p>
+            נקודת המוצא הטבעית היא אתר המפלגה. זהו המקום הרשמי שבו מוצגים כל 51 המועמדים,
+            כל אחד באמצעות תמונה, תיאור אישי וקישורים שבחר להציג לציבור.
+          </p>
+
+          <p>
+            יתרונו המרכזי של האתר הוא השוויון הפורמלי. כל המועמדים מקבלים מסגרת דומה,
+            ללא דירוג וללא ניסיון לקבוע מי מהם ראוי יותר. הבוחר יכול לעבור בין הכרטיסים,
+            לקרוא, להיכנס לקישורים נוספים ולסמן לעצמו רשימה.
+          </p>
+
+          <p>
+            אבל זהו גם גבולו של האתר. המידע הוא בעיקר הצגה עצמית. הוא מלמד כיצד כל מועמד
+            מבקש להיתפס, אך אינו תמיד מאפשר להשוות בין מועמדים, להבחין בין הצהרות לעשייה
+            או להעריך את עומק הניסיון בתחומים שונים.
+          </p>
+
+          <div class="pros-cons">
+            <div class="mini-card">
+              <strong>החוזקה</strong>
+              המקור הרשמי, השלם והשוויוני ביותר להצגת המתמודדים.
+            </div>
+            <div class="mini-card">
+              <strong>המגבלה</strong>
+              האתר עונה היטב על השאלה מי מתמודד, ופחות על השאלה כיצד לבחור ביניהם.
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="hagush">
+          <h2><span class="section-number">2</span>„עכשיו באות”: להכיר את האדם שמאחורי הכרטיס</h2>
+          <a class="tool-link" href="https://hagush.org.il/candidates.html" target="_blank" rel="noopener noreferrer">
+            לאתר „עכשיו באות”
+          </a>
+
+          <p>
+            האתר של „עכשיו באות” מציע היכרות אישית יותר. לצד פרטים בסיסיים מופיעים תיאורים
+            קצרים, קישורים, ראיונות ומפגשים שבהם אפשר לשמוע את המועמדים מדברים ועונים לשאלות.
+          </p>
+
+          <p>
+            זוהי תוספת חשובה. ביוגרפיה רשמית יכולה ללמד על תפקידים וניסיון, אך קשה ללמוד
+            ממנה כיצד אדם חושב, כיצד הוא מגיב לשאלה בלתי צפויה ומהם הנושאים שבאמת מעסיקים אותו.
+          </p>
+
+          <p>
+            עם זאת, נכון למועד כתיבת שורות אלה, האתר אינו מציג את כל 51 המועמדים.
+            הוא עשוי לסייע בהיכרות עמוקה יותר עם מי שמופיעים בו, אך אינו יכול לשמש לבדו
+            כמפה מלאה של ההתמודדות.
+          </p>
+
+          <div class="pros-cons">
+            <div class="mini-card">
+              <strong>החוזקה</strong>
+              היכרות אנושית ובלתי אמצעית יותר עם חלק מן המתמודדים.
+            </div>
+            <div class="mini-card">
+              <strong>המגבלה</strong>
+              החשיפה אינה מלאה ואינה ניתנת כיום באופן שווה לכל 51 המועמדים.
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="matcher">
+          <h2><span class="section-number">3</span>היישום של נהדי לזר: להתחיל מהנושאים ולא מהשמות</h2>
+          <a class="tool-link" href="https://dbr-primaris.github.io/2026/dbr_P_01_matcher_frame.html" target="_blank" rel="noopener noreferrer">
+            לפתיחת כלי ההתאמה
+          </a>
+
+          <p>
+            היישום של נהדי לזר הופך את כיוון הבחירה. במקום להתחיל ברשימה ארוכה של שמות,
+            הוא מבקש מהמשתמש להגדיר אילו נושאים חשובים לו ואילו מאפיינים הוא מבקש לחזק.
+          </p>
+
+          <p>
+            על בסיס הבחירות האלה מוצגים מועמדים לפי מידת ההתאמה שנקבעה להם. הבוחר אינו
+            מתחיל במי שהוא כבר מכיר, אלא בסדרי העדיפויות שלו: דמוקרטיה, כלכלה, ביטחון,
+            רווחה, דת ומדינה או תחומים אחרים.
+          </p>
+
+          <p>
+            היתרון ברור: הכלי עשוי לחשוף מועמדים פחות מוכרים שפעלו במשך שנים בנושאים
+            החשובים לבוחר. הוא גם מנסה להבחין בין עמדה מוצהרת לבין עשייה בפועל.
+          </p>
+
+          <p>
+            אלא שכל דירוג כזה נשען על החלטות מתודולוגיות: אילו מקורות נאספו, מה נחשב
+            לעשייה, כיצד המידע מתורגם לציון ואיזה משקל ניתן לכל תחום. מועמד שפעילותו
+            אינה מתועדת היטב ברשת עלול להיראות חלש מכפי שהוא באמת.
+          </p>
+
+          <div class="pros-cons">
+            <div class="mini-card">
+              <strong>החוזקה</strong>
+              מסייע לצמצם את עומס השמות ולחשוף מועמדים דרך תחומי עניין וסדרי עדיפויות.
+            </div>
+            <div class="mini-card">
+              <strong>המגבלה</strong>
+              אינו רק מאגר מידע, אלא מערכת פרשנית התלויה במקורות ובשיטת הניקוד.
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="kinrot">
+          <h2><span class="section-number">4</span>אורי כנרות: להכניס הגרלה אל תוך ההכרעה</h2>
+          <a class="tool-link" href="https://urikinrot.org/RandomWeightedSortDemocratsIL.html" target="_blank" rel="noopener noreferrer">
+            לפתיחת ההגרלה המשוקללת
+          </a>
+
+          <p>
+            היישום של אורי כנרות מטפל בשלב אחר לגמרי. הוא אינו מנסה ללמד את הבוחר מי ראוי
+            יותר, ואינו מדרג מועמדים לפי מידע חיצוני. הוא מיועד למי שכבר מכיר מועמדים רבים
+            ורוצה ביותר מהם מכפי שמותר לו לסמן.
+          </p>
+
+          <p>
+            המשתמש מעניק למועמדים ציונים או משקלים, והמערכת מבצעת הגרלה משוקללת. ככל
+            שהמשקל גבוה יותר, כך גדל הסיכוי של המועמד להופיע במקום גבוה — אך התוצאה אינה
+            נקבעת מראש.
+          </p>
+
+          <p>
+            במבט ראשון, הכנסת הגרלה לתהליך פוליטי רציני עלולה להישמע מוזרה. אבל מאחוריה
+            עומדת מחשבה עקבית: לעיתים אין לבוחר הצדקה אמיתית לקבוע שמועמד אחד ראוי למקום
+            השמיני ואחר למקום התשיעי. שניהם ראויים בעיניו, אך הפתק מחייב הכרעה.
+          </p>
+
+          <p>
+            במקום להעמיד פנים שההבדל ביניהם חד וברור, ההגרלה מאפשרת לבטא דרגות שונות
+            של תמיכה ולהותיר חלק מן ההכרעה למקריות משוקללת.
+          </p>
+
+          <div class="pros-cons">
+            <div class="mini-card">
+              <strong>החוזקה</strong>
+              אינו מתיימר לדעת טוב יותר מן הבוחר ומשתמש רק בהעדפות שהוא עצמו נתן.
+            </div>
+            <div class="mini-card">
+              <strong>המגבלה</strong>
+              אינו מסייע כמעט בשלב ההיכרות; הוא מתאים בעיקר להכרעה האחרונה.
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="dbr">
+          <h2><span class="section-number">5</span>ד.ב.ר — דמוקרטים בוחרים רציונלית: לבנות נבחרת</h2>
+          <a class="tool-link" href="https://dbr-primaris.github.io/2026/dbr_P_01_index.html" target="_blank" rel="noopener noreferrer">
+            להיכנס למשחק ד.ב.ר
+          </a>
+
+          <p>
+            ד.ב.ר מציג תפיסה נוספת. הוא אינו רואה בפתק אוסף של המועמדים שקיבלו את הציונים
+            הגבוהים ביותר, אלא ניסיון לבנות נבחרת.
+          </p>
+
+          <p>
+            נקודת המוצא היא שרשימה פוליטית זקוקה לשילוב של ניסיון, יכולות, תחומי עיסוק,
+            פעילות ציבורית וקולות שונים. כפי שקבוצת כדורגל אינה נבנית מאחד־עשר חלוצים,
+            גם רשימה לכנסת אינה בהכרח צריכה להיות מורכבת משמונה אנשים הדומים זה לזה.
+          </p>
+
+          <p>
+            המשתמש יכול להתחיל ממועמדים שהוא כבר מכיר, לעיין בפרופילים, לעבור בין נושאים
+            ונבחרות שנבנו בעזרת בינה מלאכותית, להוסיף ולהסיר מועמדים ולבדוק כיצד משתנה
+            ההרכב שלו.
+          </p>
+
+          <p>
+            במקום להציג תשובה אחת לשאלה מי המועמדים הטובים ביותר, ד.ב.ר מציג סימולציות
+            שונות. כל אחת מהן מדגישה היגיון אחר: תחומי תוכן, סוגי ניסיון, צרכים פוליטיים
+            או מבנים שונים של נבחרת.
+          </p>
+
+          <p>
+            היתרון הוא שהמשתמש נדרש לפעול, להשוות ולבחון הרכבים. מועמד אינו מוצג רק
+            ככרטיס ביוגרפי, אלא כחלק מקבוצה העוסקת בנושא מסוים או ממלאת צורך מסוים.
+          </p>
+
+          <p>
+            אבל ככל שהכלי מורכב יותר, כך גדלה גם מידת הפרשנות של מי שבנה אותו. הגדרת
+            הנושאים, בניית הנבחרות ושיוך המועמדים אליהן מבטאים שיקול דעת. גם כאשר נעשה
+            שימוש בבינה מלאכותית, התוצאות תלויות במקורות שנמצאו, בהנחיות שניתנו ובאופן
+            שבו המידע פורש.
+          </p>
+
+          <p>
+            לכן ד.ב.ר מגדיר את עצמו כמשחק סימולציה ולא כמערכת המחליטה עבור הבוחר.
+            מטרתו לעורר את שיקול הדעת, לא להחליפו.
+          </p>
+
+          <div class="disclosure">
+            <strong>גילוי נאות:</strong> כותב שורות אלה הוא ממפתחי מיזם ד.ב.ר.
+          </div>
+        </section>
+
+        <section class="section" id="map">
+          <h2>חמש תשובות לחמישה שלבים בתהליך הבחירה</h2>
+
+          <div class="map">
+            <div class="map-row">
+              <strong>אתר המפלגה</strong>
+              <span>מספק את מפת הבסיס הרשמית של כל המתמודדים.</span>
+            </div>
+            <div class="map-row">
+              <strong>„עכשיו באות”</strong>
+              <span>מוסיף היכרות אישית ובלתי אמצעית עם המועמדים המופיעים בו.</span>
+            </div>
+            <div class="map-row">
+              <strong>היישום של נהדי לזר</strong>
+              <span>מסדר ומצמצם את המועמדים לפי הנושאים החשובים לבוחר.</span>
+            </div>
+            <div class="map-row">
+              <strong>ד.ב.ר</strong>
+              <span>מאפשר לבדוק נבחרות והרכבים שונים, ולא רק מועמדים יחידים.</span>
+            </div>
+            <div class="map-row">
+              <strong>היישום של אורי כנרות</strong>
+              <span>מסייע כאשר גם בסוף הדרך נשארו יותר מועמדים רצויים ממספר הסימונים המותר.</span>
+            </div>
+          </div>
+
+          <p>
+            במובן הזה, היישומים אינם בהכרח מתחרים. הם עשויים לשמש בשלבים שונים של אותה
+            דרך: להכיר, לצמצם, להשוות, להרכיב ולבסוף להכריע.
+          </p>
+        </section>
+
+        <section class="section" id="conclusion">
+          <h2>אין כלי ללא נקודת מבט</h2>
+
+          <p>
+            אף אחד מהיישומים אינו יוצר אובייקטיביות מוחלטת. כל כלי מבטא תפיסה: מה חשוב
+            לדעת, מה נחשב ניסיון, כיצד יש להשוות בין מועמדים ומהו בכלל פתק בחירה טוב.
+          </p>
+
+          <p>
+            אבל עצם קיומם משנה את תהליך הפריימריז. במקום להסתפק בשמות שכבר מוכרים,
+            ברשימה שהועברה בקבוצת ווטסאפ או בהמלצה של אדם אחד, הבוחר יכול לעבור בין
+            מקורות, לבחון שיטות שונות ולהיחשף למועמדים נוספים.
+          </p>
+
+          <div class="conclusion-box">
+            <p>
+              שישה ימים לפני הבחירות, זו אולי תרומתם החשובה ביותר של היישומים:
+              לא לומר לבוחר במי לבחור, אלא להרחיב את מעגל האנשים שביניהם הוא באמת מסוגל לבחור.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <footer class="footer">
+        המאמר נכתב לקראת הפריימריז של מפלגת הדמוקרטים, יולי 2026.
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
